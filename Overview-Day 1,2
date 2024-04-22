@@ -234,7 +234,7 @@ Do Not Record:
   Any reference to a group (i.e. “Permission granted to ….”)
   Personal IDs (i.e. SIDs)
   Any other non-target identifiers
-  Portions of the MP
+  Portions of the MP (scheme, creds, ssh port are allowed in OpNotes)
 
 Post-Op Checklist:
   DEBRIEF submitted to MC
@@ -248,6 +248,11 @@ Post-Op Checklist:
     Password: password# (no leading zeros for student# or password#)
   Confirm tarball submission and await feedback
 
+Kali OpStation:
+ssh -p 22014 root@10.50.30.29
+
+alias kalimaster='ssh -MS /tmp/kali -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.30.29'
+alias kali='ssh -S /tmp/kali dummy'
 
 
 
