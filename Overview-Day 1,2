@@ -8,7 +8,7 @@ Shared Drive: https://drive.google.com/drive/folders/1hwiPkMVWgvbtoUj5Q4Wli_TB-T
 Links and Tips: https://docs.google.com/document/d/1Bi-lypKlbAS3HkK2-ictdlJb3A9nR-yZ-OapbA8iRD4/edit
 
 Reporting
-=================================================================================================================
+=========================================================================================================================================================================================
 Report when you have as much as you can about what you are reporting
 MC needs to be informed of all things that impact the risk of the op
 YOU are expected to be the technical expert - MC assumes the risk but does not absolve you of any issues that arise associated with that risk
@@ -108,6 +108,159 @@ Remember: they are the ones that write the Mission Plans. Any questions or conce
   Completion of mission plan tasks
 
 Contact SWO for any network/device issues within Blue space
+
+Preparation
+=========================================================================================================================================================================================
+Mission Materials:
+  Anything that contains information that will aid your understanding and performance of the operation and mission, to include but not limited to...
+  The Mission Plan
+  Mission Profiles
+  Mission History
+  Previous Op Notes
+  Non-Standard Database (NSDB)
+  Guidance
+  Daily Read
+  Other Section Specific Information
+
+Mission Plan:
+  ADMIN Block: The who, what, and when of an operation
+  Type of Operation: What is the nature of the operation?
+  Objective: The desired actions and outcomes of a mission in broad strokes.
+  Tools/Techniques: A list of approved tools and techniques (scp, nmap, ssh masquerades, etc) intended to be used to complete the mission.
+  Credentials: Known or suspected credentials that may be used, as well as insight into credential postures
+  Prior Approvals: Pre-assumed risk for commands and techniques, typically for commands required to ensure mission is completed completely and safely.
+  Scheme of Maneuver: The path through which connections will be established, including direction.
+  Target Section: Detailed, target specific information to include IP and ports, operating systems, known risks, and specific actions to be taken on target.
+
+Mission Documents and Materials:
+Project History: Project trends, anticipated changes, and other analyst insights.
+  Has the security posture changed, and if so, why?
+  Known successes and failures that can be learned from
+Previous Op Notes: Notes taken during previous missions
+  Descriptions of threats
+  Benign processes that have been previously vetted
+  Target-specific idiosyncrasies.
+Non-Standard Database (NSDB): Detailed descriptions of and recommendations for known threats
+  What risks have previously been encountered on mission target?
+  What risks have previously been encountered in the network?
+  Is the target on hold?
+  Is the project on hold?
+
+Guidance:
+Official policies, practices, TTPs, and how-to information for tools, techniques, operating systems, threats, and other relevant information.
+  Dos/Don’ts
+  Expectations
+  Safe/Unsafe tool use
+Daily Reads: Recent updates to policies and TTPs that have not yet been integrated into Guidance pages.
+  Updates regularly
+  Supersedes Guidelines
+
+Pre-Op Checklist:
+  Review the mission plan
+  Review relevant guidance (MP, Daily Reads, Confluence, NSDB, etc)
+  Prepare your operational environment
+    Connect to OpStation
+    Create STUDENT DIRECTORY: /student14_<dd-mm-yy>_<op#>
+    cd into STUDENT DIRECTORY
+    Create an opnotes file with: vim notes_<dd-mm-yy>
+    Create a NSDB file with: vim NSDB_<dd-mm-yy>
+    Script all target terminal windows with: script -af termscreen.$$    -$$ Displays the process ID of the current shell
+      Note: opnotes and NSDB are not on target. Do NOT script them (Don't script creation of opnotes and NSDB files)!
+  Conduct pre-brief/IP verification with MC
+(Script should be running before 0830; script then ssh into T1) (script should be running for each target +1 for scans)
+
+Screen Discipline:
+Left/Right Discipline: Creating clear separation between work areas.
+Left Side: Operational space.
+  Windows on target
+  Anything else that is literally on target or touches target
+Right Side: Work space.
+  Op Notes
+  Local terminals
+  Op Plan
+  Team Chat Windows
+  Guidelines and other References
+  Google
+
+Order of Operations:
+  Access Vetting
+    Will ALWAYS be conducted on any host not completely within our control
+    Is it safe to be here?
+    Is it safe to take actions?
+    Is it safe to redirect from here?
+  Vetting complete - all clear
+    Even though each risk has individually been approved, report vetting completion to ensure MC can make risk decisions on the sum of all known risks
+  Survey (if required)
+    Though similar to access vetting, the commands are more in depth and reveal a deeper interest in the machine, potentially revealing future plans and interests
+  Collection (if required)
+    Provides a much clearer picture to observers our intentions and interests
+  (Other actions if required)
+    Could be any operational task.
+    Consult MC/Analyst to see when you should take these actions.
+    Often include enabling actions
+    Scans happen here
+  Redirection (if required)
+    After completing other actions on target
+    Touching other devices introduces unknown risks
+  Effect (if required)
+  D4M: performing these before redirection could prevent redirection
+  May be high profile/increase risk, and thus should be done last to minimize exposure
+  (Other actions if required)
+    Could be any operational task, but at this phase, typically clean-up and resets. Consult MC/Analyst to see when you should take these actions.
+  Exit vetting
+    What bread crumbs did we leave behind?
+    How easy can actions be forensically reconstructed?
+    What can we do about it?
+  Exit vetting complete - Exit
+    Disconnect AS SOON AS THE TARGET IS NO LONGER NEEDED
+    No simultaneous connections from the same redirector unless absolutely necessary!
+
+OpNotes:
+Op notes are an technically focused document used as reference during the mission, and after the mission. These notes provide notable information and details another operator may use as reference when next accessing the device or to provide quick details in case of some form of review.
+
+Do Record:
+  Mission start/end time
+  Time of each connection to and disconnection from each target
+  Start and end timestamps of "Upon Connection" and "Before Disconnect" vetting command sections
+  File hashes
+  Device identifiers (mac/IP/hostnames…)
+  Nonstandard references
+  Unusual/Unexpected target information
+
+Do Not Record:
+  Names
+  Titles (i.e. SFC or Cpt)
+  Positions (i.e. SWO or Analyst)
+  Any reference to a group (i.e. “Permission granted to ….”)
+  Personal IDs (i.e. SIDs)
+  Any other non-target identifiers
+  Portions of the MP
+
+Post-Op Checklist:
+  DEBRIEF submitted to MC
+  Archive your op station
+    All files collected, edited, used by student must be located in STUDENT DIRECTORY
+    Save and Close NSDB and opnotes files: <esc>: wq!<enter>
+    cd out of the STUDENT DIRECTORY: cd ..
+    Exit terminal scripts by running “exit”
+    Zip everything up: tar -cvf <studentdir>.tar <studentdir>
+    Push tar to server: scp <studentdir>.tar student#@10.50.29.204:~
+    Password: password# (no leading zeros for student# or password#)
+  Confirm tarball submission and await feedback
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
