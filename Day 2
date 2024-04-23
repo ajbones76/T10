@@ -1,0 +1,86 @@
+Gaining Access
+====================================================================================================
+Opstation IP: 10.50.30.29
+
+Port to device mapping for opstation access:
+user: root  pass: password
+Student14 
+Port 20014 = Kali RDP
+Port 21014 = Windows RDP
+Port 22014 = Kali SSH
+Port 23014 = Windows SSH
+
+Satellite as a medium had high latency ~479ms
+  Causes packet loss, delay, dropped connection
+Use traceroute or tracert to find TTL and identify connection medium
+Unencrypted Comms: always try to use encrypted comms
+sending any communication over unencrypted comms can compromise:
+  Tools*
+  Techniques
+  Infrastructure*
+  Other missions
+  Target posture
+
+Types of Targets
+====================================================================================================
+If you get kicked off box, vet again
+Blue Space-You Own it fully trusted, no vetting required
+  Ops Station-where you run all commands from
+Gray Space-Treated as an extension of Ops Station, but on the open web, vetting required; connection and scanning commands may be run from here if required
+  Listening Post/Redirector-touches open internet
+Red Space-Enemy network, vetting required 
+  External Router-may be first step into target network, may be dual-homed or NAT'ed/PAT'ed
+  Internal Device-regardless of IP, these are hosts that are internal to enemy network
+
+Shells:
+  *Nix:
+    Bourne Again Shell (bash)
+    Bourne Shell (sh)
+    C Shell (csh)
+    Friendly Interactive Shell (fish)
+  Windows:
+    cmd.exe
+    command.com
+    PowerShell
+    Recovery Console
+
+Remote Access Tools (RATS)
+======================================================================================================
+SSH:
+  -p <port>
+  ssh -MS /tmp/<T#> -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null <user>@<ip> -p <SSHPORT>
+  ssh -S /tmp/<T#> dummy -O forward -L 127.0.0.1:<RandomHighPort>:<Target/RemoteIP>:<RemoteSSHPORT>
+  -O forward or cancel
+  netstat -antup to check that RHP opened on Ops Station
+SSH Tunneling:
+  > forward
+  < reverse
+
+  -L 127.0.0.1:<RandomHighPort>:<Remote Host IP>:<OpenSSHPort on Target box>
+  -L <LocalIP>:<LocalPort>:<RemoteIP>:<RemotePort>
+-L: direction or listening end of tunnel (L)ocal Host or (R)emote target
+ssh -MS /tmp/T1 student14@127.0.0.1 -p <RHP> -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+ssh -S /tmp/T1 dummy -O forward -L 127.0.0.1:<RandomHighPort>:<Target/RemoteIP>:<RemoteSSHPORT>
+ssh -MS /tmp/T2 student14@127.0.0.1 -p <RHP> -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+
+T1 Float IP: 10.50.38.103
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
