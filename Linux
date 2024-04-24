@@ -174,6 +174,7 @@ Malware Prosecution Commands:
   (for user in $(cut -f1 -d: /etc/passwd); do echo $user; crontab -u $user -l; done)
   contents of /proc
   insmod or modprobe
+  use stat for times
 
 Malware Reportable Items:
   Process name/options, PID, Parent ID, user, and hash
