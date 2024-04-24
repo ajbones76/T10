@@ -7,6 +7,7 @@ ssh -S /tmp/<T> -O forward -L 127.0.0.1:<RHP>:<IP>:<SSHPORT> dummy
 ***LINUX VETTING***
 
 w
+who -Ha
 date; date -u
 uname -a
 
