@@ -88,11 +88,35 @@ Residual Risk (Risk out of our control) and Exit Checks:
     manpages.ubuntu.com
     stackoverflow.com
 
+Privileged Users
+===========================================================================================================
+privileged user is a user with the access and ability to detect on net activities and take action to hinder, stop, or prevent it
+tty on locally; pts remotely
+Commands:
+  w : who is logged in, for how long, and how?
+  who -Ha : similar to w
+  netstat -auntp OR ss -auntp : are there any connections associated with their session?
+  ps -elf : are there any networked processes associated with their session/PIDs?
+  last : What does their access pattern of life look like?
+Places to look to identify Privileges:
+  cat /etc/sudoers
+  cat /etc/group
+  groups <username>
+Determine Actions/What they are doing:
+  ps -elfH
+  netstat -auntp
+  User’s ~/.bash_history
+  User’s ~/.lesshst
+  Review logs
 
-
-
-
-
+Risk Assessment:
+  Target - Where did you see this user?
+  User - What is their username?
+  Access time - How long have they been on?
+  Access method - Did they access locally? Remotely? Provide all relevant details
+  Privileges - What are they capable of doing?
+  Activity - What are they currently doing?
+  Recommendation - Do we need to be concerned? Do we need to adjust our plans?
 
 
 
