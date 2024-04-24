@@ -1,7 +1,5 @@
 ENVIRONMENT PREP
-
-Before the Operation
-
+Before the Operation:
 Below are the requirements of the Operator before conducting an operation. Failure to do so may result in immediate failure.
 
     Review mission plan
@@ -11,13 +9,10 @@ Below are the requirements of the Operator before conducting an operation. Failu
     Create an opnotes file with: vim notes_<dd-mm-yy>
     Create a NSDB file with: vim NSDB_<dd-mm-yy>
     Script all target and scanning terminal windows with: script -af termscreen.$$
-
-    Do NOT script your 'notes' or 'NSDB' terminal windows.
-
+       Do NOT script your 'notes' or 'NSDB' terminal windows.
     Verify IPs with MC prior to mission start
 
-Reports
-
+Reports:
 Mandatory Reporting Instructions
 Students must ensure communication with their Operational Team. Any of the below situations must be reported to the proper Team member. Any instruction marked with an "AI" will require the operator to Await Instructions, after reporting, before performing mission objectives (collection, deliver effects, etc) OR moving to the next identified target. Students will communicate with MC/Analyst on the identified medium. Personnel assigned to these roles will not provide answers to critical tasks, command line syntax, or assistance with technical issues.\
 
@@ -34,7 +29,6 @@ Analyst
 
 Total downloads that exceed 100MB per operation
 AI
-
     Encountering logged on Privileged (root;admin) Users AI
     Encountering unknown binaries/processes/files/jobs AI
     Deleting anything from a target device AI
@@ -47,62 +41,44 @@ AI
     Encountering security productsAI
     Log that have been changed based on your actions on target
     Providing details for DEBRIEF after operation
-
-    DEBRIEF Template and example is provided at the bottom of this document
-    MUST include 1 sentence per target, as well as logged in privileged user information
+        DEBRIEF Template and example is provided at the bottom of this document
+        MUST include 1 sentence per target, as well as logged in privileged user information
 
 During every operation, operators will be required to vet every device they connect to and conduct a minimal OPSEC review before disconnecting from a device. Not running one of the commands (or their equivalent), detailed below, will result in a penalty. Students will not utilize scripts to automatically run all of these commands (or redirect a script through their secure tunnel). Command options can be added to, but not subtracted from each command. Use of unauthorized scripts is prohibited and will result in automatic failure of the operation. For all commands that specify OR, attempt the initial command first.
 
-Notes
-
+Notes:
 Mandatory Note Taking
-
 Students are required to keep a log of actions taken inside of the opnotes file. These notes are required to include at a minimum:
-Op Notes
 
+Op Notes:
     Mission start time
     Mission end time
     Time of each connection and disconnection to each target
     Start and end timestamps of "Upon Connection" and "Before Disconnect" vetting command sections
 
 Other Required Submissions
-
-After an Operation
-
+After an Operation:
 Below are the requirements of the Operator after completing or failing to complete an operation.
-
     All files collected, edited, used by student must be located in STUDENT DIRECTORY
     DEBRIEF reported to MC in DM
-
-    See below for DEBRIEF Template
-
+        See below for DEBRIEF Template
     cd out of the STUDENT DIRECTORY: cd ..
     Zip everything up: tar -cvf <studentdir>.tar <studentdir>
-    Push tar to server: scp <studentdir>.tar student#@10.50.45.221:~
-    Password: password#
+    Push tar to server: scp <studentdir>.tar student14@10.50.45.221:~
+    Password: password14
 
-DEBRIEF Template
-
-Operator: <your name>
-
-Operation: <name of operation>
-
-MC: <name of MC>
-
-Analyst: <name of analyst>
-
-Description: <two-three sentence description of operation as well as one sentence summary per target.>
+DEBRIEF Template:
+    Operator: <your name>
+    Operation: <name of operation>
+    MC: <name of MC>
+    Analyst: <name of analyst>
+    Description: <two-three sentence description of operation as well as one sentence summary per target.>
 
  
 
 EXAMPLE:
-
-Operation: DryRun1
-
-Operator: SSG Brandee Lymon
-
-MC: MC2
-
-Analyst: Analyst2
-
-Description: Goal of operation was to collect email from EMAIL3. Mission was overall successful. Operator redirected through EXT_RTR to ADMIN1 to EMAIL3. Admin was logged into T2 running a security product. ClamAV was found on EMAIL3, MC provided guidance and email was collected.
+    Operation: DryRun1
+    Operator: SSG Brandee Lymon
+    MC: MC2
+    Analyst: Analyst2
+    Description: Goal of operation was to collect email from EMAIL3. Mission was overall successful. Operator redirected           through EXT_RTR to ADMIN1 to EMAIL3. Admin was logged into T2 running a security product. ClamAV was found on EMAIL3, MC       provided guidance and email was collected.
