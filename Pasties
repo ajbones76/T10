@@ -1,0 +1,147 @@
+***CONNECT/REDIRECT***
+
+ssh -MS /tmp/<T> -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null <user>@<ip>
+ssh -S /tmp/<T> -O forward -L 127.0.0.1:<RHP>:<IP>:<SSHPORT> dummy
+
+
+***LINUX VETTING***
+
+w
+date; date -u
+uname -a
+
+ls -latr /
+ls -latr /tmp
+ls -latr .
+ls -latr ..
+sudo ls -latr /root
+
+ps -elfH
+ifconfig -a OR ip a
+sudo netstat -auntp OR sudo ss -auntp
+
+sudo ls -latr /var/spool/cron
+tail -n 1000 <files in /var.spool/cron/>
+df
+
+ls -latr /var/*/*acc*
+ls -latr /var/*log*/
+sudo ls -latr /var/log/*
+ls -la /etc/*syslog*
+
+for user in $(cut -f1 -d: /etc/passwd); do echo "###### $user crontab is :"; cat /var/spool/cron/{crontabs/$user,$user} 2>/dev/null; done
+cat /etc/crontab
+ls -la /etc/cron.*
+
+sudo find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -<duration in minutes since initial connection> -type f -print0 | xargs -0 sudo ls -latr
+
+sestatus OR getenforce
+
+sudo cat /root/.bash_history
+cat ~/.bash_history
+
+
+***BEFORE DISCONNECT***
+w
+who -Ha
+ls -latr /tmp
+ps -elf
+sudo netstat -lptn OR sudo ss -lptn
+ls -latr /var/log
+sudo find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -<yourminutesontarget> -type f -print0 | xargs -0 sudo ls -latr
+exit
+
+***LINUX SURVEY COMMANDS***
+mount
+lsmod
+uname -a
+ls -latr /etc/*release*
+cat /etc/*release*
+cat /proc/cpuinfo
+services --status-all || systemctl status --no-pager (depending on systemd vs not systemd)
+cat /proc/meminfo
+sudo cat /etc/shadow
+cat /etc/passwd
+lspci -vv
+arp -a
+lsusb
+lsblk
+sudo fdisk -l
+free -m
+dmidecode -t bios
+
+/////////////////////////////////////////////////////////////////////////
+
+***WINDOWS VETTING***
+date /t
+time /t
+query user
+tasklist /V
+wmic process get processid,parentprocessid,executablepath
+auditpol /get /category:*
+ipconfig /all
+netstat /anob
+netsh advfirewall show allprofiles
+net share
+reg query hklm\software\microsoft\windows\currentversion\run
+reg query hklm\software\microsoft\windows\currentversion\runonce
+reg query hklm\software
+schtasks /query /v
+dir /o:d /t:w c:\
+dir /o:d /t:w c:\windows\temp
+dir /o:d /t:w c:\windows\
+dir /o:d /t:w c:\windows\system32
+dir /o:d /t:w c:\windows\system32\winevt\logs
+dir /o:d /t:w "%appdata%\microsoft\windows\start menu\programs\startup"
+wevtutil qe security /c:25 /rd:true /f:text (whatever has updated from previous dir)
+
+***BEFORE DISCONNECT***
+dir /o:d /t:w c:\windows\temp
+dir /o:d /t:w c:\windows\system32\winevt\logs
+wevtutil qe security /c:25 /rd:true /f:text (whatever has updated from previous dir)
+netstat /anob
+query user
+tasklist /V
+
+***WINDOWS SURVEY COMMANDS***
+systeminfo
+net user
+net localgroup
+net session
+net start
+type %systemroot%\system32\drivers\etc\hosts
+arp -a
+route print
+driverquery /v
+wmic baseboard get Manufacturer, Model, PRoduct, SerialNumber, Version
+wmic cpu get deviceID, Addresswidth, MaxClockSpeed, Name, Manufacturer
+wmic logicaldisk get name, freespace, systemname, filesystem, size, volumeserialnumber
+wmic path Win32_VideoController get caption, CurrentHorizontalResolution, CurrentVerticalResolution, Description, DriverVersion, AdapterRAM /format:list
+wmic printer list full
+wmic path win32_pnpentity where "ConfigManagerErrorCode<>0" get Name, PNPDeviceID
+wmic qfe list full
+wmic service list full
+wmic product get Caption, InstallDate, Vendor
+wmic useraccount where "LocalAccount='TRUE'" get Caption, Disabled, Domain, Lockout, PasswordExpires, SID, Status
+
+
+***POWERSHELL VETTING***
+Get-Date
+query-user
+tasklist /V
+wmic process get processid,parentprocessid,executablepath
+auditpol /get /category:*
+netstat /anob
+netsh advfirewall show allprofiles
+net share
+reg query hklm\software\microsoft\windows\currentversion\run
+reg query hklm\software\microsoft\windows\currentversion\runonce
+reg query hklm\software
+schtasks /query /v
+dir c:\
+dir c:\windows\temp
+dir c:\windows\
+dir c:\windows\system32
+dir c:\windows\system32\winevt\logs
+cmd -r dir "%appdata%\microsoft\windows\start menu\programs\startup"
+wevtutil qe security /c:25 /rd:true /f:text
