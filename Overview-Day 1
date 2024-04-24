@@ -164,7 +164,7 @@ Pre-Op Checklist:
     cd into STUDENT DIRECTORY
     Create an opnotes file with: vim notes_<dd-mm-yy>
     Create a NSDB file with: vim NSDB_<dd-mm-yy>
-    Script all target terminal windows with: script -af termscreen.$$    -$$ Displays the process ID of the current shell
+    Script all target terminal windows with: scriptme or script -af termscreen.$$    -$$ Displays the process ID of the current shell
       Note: opnotes and NSDB are not on target. Do NOT script them (Don't script creation of opnotes and NSDB files)!
   Conduct pre-brief/IP verification with MC
 (Script should be running before 0830; script then ssh into T1) (script should be running for each target +1 for scans)
