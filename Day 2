@@ -92,7 +92,7 @@ Netcat
 nc 127.0.0.1 <port>  #banner grabbing
 nc -nvlp <port>      #nc as server/listener
 
-Demo
+HH02 Demo
 ============================================================================================
 Kali tabs (as many as T's +1)
 mkdir student14...
@@ -101,7 +101,7 @@ vim notes
 scriptme in all tabs
 ssh
 
->T1: <FLOAT_IP>
+>T1: <10.50.38.103>
 ->T2: 192.168.0.13
 --<T3: 192.168.0.9
 ->T4: 192.168.0.27
