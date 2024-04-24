@@ -1,0 +1,117 @@
+Situational Awareness
+===================================================================
+identify adversaries, estimate impact of attacks, evaluate risks, understand situations and make sound decisions on how to protect valued assets swiftly and accurately
+Main Concerns:
+  Logged in Privileged Users
+  Malware
+  Logging
+  Security Products
+
+System Analysis:
+  Date and Time
+  CPU/Memory Usage
+    dmidecode [options]          #Check statistics on the cpu
+    free [options]  -g for gigs, -m for megs      #Check CPU/memory usage
+    top [-b] [-nCOUNT] [-dSECONDS] [-m]           #Check CPU/memory usage, but takes over terminal
+  Disk Usage
+    fdisk      Partition table manipulator for Linux    (-l for list)
+    du         Estimate file space usage
+    df         Display free disk space    (-h human readable)
+    quota      Display disk usage and limits
+    mount      Mount a file system
+    lspci      List all PCI devices
+    lsblk      List block devices
+    lsusb      List all USB devices
+  Distinguish Different Architecture
+    uname -a
+    lscpu
+    Binaries created for one architecture will not run on another architecture. Exception - x86 binaries will often run on 64      bit systems that have x86 support
+  Machine Identification
+    MAC addresses may not always match up
+    IPv4
+      ip a, r, n, t
+    IPv6
+    Hostname
+      uname -a,-r,-v,-m,-i,-o    #use -a
+    Domain Name
+  cat /etc/*rel*
+  Processes
+    ps -elfH      # current running processes
+  Services
+    service --status-all or systemctl status --no-pager
+    ps -elf | grep <PID>
+  Open Ports/Connections
+    netstat -tunap        #-p needs sudo
+    ss -antup
+    Closed_wait    -other side connection closed
+    time_wait      -our connect closed
+  Files
+    ls            List information about file(s)      -latr /, -R for recursive
+    dir           Briefly list directory contents
+    cd            Change Directory
+    file          Determine file type
+    cat           Concatenate and print (display) the content of files
+    tail          Output the last part of file      -<#> of lines wanted
+    head          Output the first part of file(s)  -<#> of lines wanted
+    more          Display output one screen at a time
+    less          Display output one screen at a time    # / to search
+    strings       Output the strings of printable characters in a file
+    grep          Search file(s) for lines that match a given pattern
+    *.swp file means file is currently open and being edited*
+  Jobs
+    /etc/crontab    where cron jobs are stored
+    crontab -u <user> -l
+  Time Stamps
+    Modify    last time the contents of file were changed; timestamp shown when running ls -latr
+    Access    last time data of file was accessed or read; can be from commands or scripts
+    Change    last time the metadata of a file was changed
+    Touch time format          [[CC]YY]MMDDhhmm[.SS]
+    touch -m                                   updates the modify time only
+    touch -t                                   updates the access and modify time.
+    touch (by itself)                          updates everything
+    touch -a                                   updates access only
+    touch -r <file to match to> <file>         use this file’s times
+    stat <file>                show file status
+    stat -f <file>             show file system status
+Residual Risk (Risk out of our control) and Exit Checks: 
+  User Activity
+  Logging
+  Changes to be aware of:
+    Creating files
+    Modifying system configurations
+    Firewall rules
+    Stopping or starting services
+  Open Source Research:
+    Different OSs may run different versions of common commands, or use different commands entirely
+    Do not troubleshoot syntax on target; can use VTA tunnel/practice network to troubleshoot
+    man.openbsd.org
+    manpages.ubuntu.com
+    stackoverflow.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
