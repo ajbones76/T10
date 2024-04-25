@@ -21,14 +21,12 @@ Analyst
     MAC address and IP of all interfaces upon connection
     The completion of any analyst action in the target section
     Remote and local file hashes for all collected files.
-
+MC
     Verify all IP addresses on mission plan before beginning operation AI
     All connections to each target
     All disconnections from each target
     Collecting a file that exceeds 10MB in size AI
-
-Total downloads that exceed 100MB per operation
-AI
+    Total downloads that exceed 100MB per operation AI
     Encountering logged on Privileged (root;admin) Users AI
     Encountering unknown binaries/processes/files/jobs AI
     Deleting anything from a target device AI
@@ -38,7 +36,7 @@ AI
     Changing anything on a target device AI
     Verifying T10 effect immediately before emplacing it AI
     Taking any action not identified in the mission plan AI
-    Encountering security productsAI
+    Encountering security products AI
     Log that have been changed based on your actions on target
     Providing details for DEBRIEF after operation
         DEBRIEF Template and example is provided at the bottom of this document
