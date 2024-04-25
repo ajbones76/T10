@@ -189,6 +189,181 @@ Malware Reportable Items:
   Recommendation - Do we need to be concerned or adjust our plans?
 
 
+Logging
+=======================================================================================================================
+
+Abnormal Logs:
+  /var/account/acct
+  /etc/rsyslog if remote logging is enabled
+
+4 NSDB Incidents - Malware, Privileged Users, Abnormal Logging, Security Products
+Automatically created log files:
+  /var/log or /var/adm
+  /var/log/syslog or /var/log/messages or /var/adm or dmesg
+  /var/log/auth.log or /var/log/secure
+  /var/log/kern
+Useful Logs:
+* /var/account/acct                                         Process-level accounting
+  /var/log/lastlog(ask me about the command lastlog)        Logs each user’s most recent successful login time, and possibly the last unsuccessful login, too    cat /var/null > /var/log/lastlog  to clean
+
+  /var/log/btmp (ask me about the command lastb)                     Records bad login attempts
+
+  secure                                                    Messages generated from the syslog facility that require extra privacy
+
+  sulog                                                     Logs use of the su command
+
+  utmp(x)(ask me about the commands who and w)              Records each user currently logged in
+
+  wtmp(x)(ask me about the command last)                    Provides a permanent record of each time a user logged in and out; also records system shutdowns and startups
+
+  xferlog                                                   Logs ftp access
+
+  /var/log/secure /var/log/auth.log                         Messages generated from the syslog facility that require extra privacy
+
+
+Bare minimum will be in these logs:
+lastlog, secure, utmp
+
+Syslog: one of the main concerns when accessing a target
+  Syslog daemon
+    program to receive, process, and send syslog messages
+    can send syslog remotely to a centralized server or write it to a local file
+  Syslog protocol
+    transport protocol specifying how logs can be sent over a network and a data format definition for syslog messages
+    standard ports are 514 for plain text logs and 6514 for encrypted logs
+  Syslog messages
+    
+
+check rsyslog for local vs remote logging
+look in /etc/hosts for remote logging IP
+inform MC if remote logging is enabled
+
+/var/log/syslog -or- /var/log/messages
+  Stores all global system activity data, including startup messages.
+/var/log/auth.log -or- /var/log/secure
+  successful logins, failed login attempts, and authentication methods.
+/var/log/cron
+  Stores information about cron jobs
+
+Process Accounting
+  method of recording and summarizing commands executed; time and date of when process was ran
+  pacct|psacc will be in /var/*/*acct*/ filepath
+  does it exist and is the timestamp current
+  lastcomm           prints out the information about all previously executed commands
+
+Audit Logging
+  /var/log/audit/audit.log
+  main configuration file for auditd is /etc/audit/auditd.conf
+  Viewing the logs is done with the ‘ausearch’ or ‘aureport’ utilities DONT USE
+  translate epoch time to human readable with date -d @<time>
+
+Security Products
+=======================================================================================================================
+WELL KNOWN; Finds, blocks, and/or removes “malicious” programs
+If you can Google it and the results are anything similar to “detecting trojans, viruses, malware & other malicious threats”, it’s most likely a Security Product
+
+Security-Enhanced Linux (SELinux) is a Linux security architecture;allows administrators to have more control over who can access the system
+SELinux runs at the KERNEL level
+‘getenforce’ or ‘sestatus’ commands to check the status of SELinux
+
+To make a decision on risk, the following information, at a minimum, should to be found:
+  Product name and version
+    Database version
+    Software version
+  Installation location/executable
+  Additional detection modules
+  Cloud based detection?
+    Sometimes, but not common
+
+Get around some security products by directly calling command through binary; ex: run /bin/ls instead of just ls
+
+Name and version of the product
+Primary configuration directory
+Installation folder
+Directory location of associated logs
+Timestamp of all associated log files
+Cloud based?; yes or no                         #If yes most likely no logs
+Can we read the logs?; yes or no
+  If Yes, put the most recent 5 lines of logs in your NSDB File      #tail -n 5
+  If No, why?
+Recommendation - Do we need to be concerned or adjust our plans?
+
+Operational Opjectives
+==========================================================================================================================
+
+Collection
+Information gathering
+  For me (the operator)
+    Triage
+  For others
+    Configurations
+    Files
+    Metadata
+Collection Methods (Always done from Kali box):
+  Hash on both sides to verify integrity (Hashes go to OpNotes and Analyst)
+  scp {source} {Destination}
+  Upload:
+    scp -P <PORT> [/path/to/local/]<file> <user>@<remote_IP>:~/.
+    scp -o ControlPath=/tmp/T# -P <PORT> <file> student23@127.0.0.1:.
+    scp -o ControlPath=/tmp/T# -P <PORT> <file> dummy:.
+  Download
+    scp -P <PORT> <user>@<remote_ip>:[/path/to/remote]<file> [/path/to/local/file]
+    scp -o ControlPath=/tmp/T# -P <PORT> student23@127.0.0.1:[/path/to/remote/file] .
+    scp -o ControlPath=/tmp/T# -P <PORT> dummy:[/path/to/remote/file] .
+  ssh-cat (Use for downloading privileged file; sudo goes in front of cat)
+    Download
+      ssh <user>@<Remote_IP> "cat <file>" > <localfile>
+      ssh -S /tmp/T# dummy "cat <file>" > <localfile>
+  Upload
+      ssh <user>@<Remote_IP> "cat > <file>" < <localfile>
+      ssh -S /tmp/T# dummy "cat > <file>" < <localfile>
+  Determine Size for collection
+    du </dir>
+      - Summarize disk usage of each FILE, recursively for directories.
+      -s display only a total for each argument
+      -S don’t include subdirectories
+      -h human readable
+  Collection Risks:
+    Vetting Complete?
+    Resource Usage?
+    Network Usage?
+    Hashes?
+    Copy Buffer and Accidental Paste into shell?
+
+Redirection
+Analyst’s Survey
+  Who cares? - Analyst
+  Collect files of interest? - If on mission plan, analyst wants, MC approves if hitting size thresholds, and vetting is done
+  Save the Output
+  Notification
+Health and Status (Let Analyst know)
+  What do we expect to be here?
+  Is everything like we remember it?
+  Make sure any implants or accesses are still valid
+  Make sure no new risks have appeared. If so, annotate for future reference.
+Effects (Get MC approval first)
+  D4M
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
