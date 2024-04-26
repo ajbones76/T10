@@ -345,30 +345,136 @@ Effects (Get MC approval first)
   D4M
 
 
+Scanning
+===================================================================================================================
+
+ping
+  TTL Values:
+    -64: *nix based systems
+    -128: Windows based systems
+    -255: Networking devices/Solaris systems
+traceroute (tracepath is new version)
+
+nmap
+  DO NOT USE BUILT-IN SCRIPTS IN THIS COURSE
+  nmap {scan type} {options} {target specification}
+  Common Options:
+    -p {port range} : scan specific port(s)
+    -sS : SYN Stealth Scan
+    -sT : TCP Connect Scan
+    -sU : UDP scan
+    -sV : Use for banner grabbing; get OS version
+Defaults(root/privileged user run -sS by default; unprivileged users run -sT by default)
+  -O is garbage
+nc
+Banner Grab Syntax: nc {options} {hostname/IP-goes-here} {port-range-here}
+  -z : Port scanning mode i.e. zero I/O mode.
+  -v : Be verbose [use twice -vv to be more verbose].
+  -n : Use numeric-only IP addresses i.e. do not use DNS to resolve ip addresses.
+  -w 1 : Set time out value to 1.
+banner grabbing for OS
+wget / curl - wont see in this course
+used to pull files from a server / determine version of an OS and its web service
+wget --header="Accept: text/html" --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0" --referrer connect.wso2.com http://google.com
+curl -A "Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3" http://yahoo.com
+change user agent to hide/masquerade yourself and your box
+change browser preferred language when actually accessing foreign web servers/sites for web operations
+
+SSH
+-M                                 Master mode
+-S                                 Control socket path
+-o ControlMaster                   Master mode
+-o ControlPath=                    Control socket path
+-o StrictHostKeyChecking=no        ssh will allow connections to hosts with changed hostkeys to proceed
+-o UserKnownHostsFile=/dev/null    writes new hosts entries into the void
+-O forward                         request forwardings without command execution
+DONT USE -Nf
+-N                                 Do not execute a remote command
+-f                                 Background ssh
+
+Proxychains to use local tools on remote box
+ssh -S /tmp/T# dummy -O forward -D 9050
+
+DEMO
+ssh -MS /tmp/T1 student14@10.50.38.103 -p 22 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+ssh -S /tmp/T1 dummy -O forward -D 9050
+proxychains nmap -n -Pn -v -sV -sT -T3 -p 21,22,23,80,443,111,67,53,135,445,3389,5985,5986 192.168.0.1/24
+
+Ruby Ping Sweep: Have to get approval to run full network ping sweep
+for i in {1..254} ;do (ping -c 1 192.168.0.$i | grep "bytes from" &) ;done
+
+
+IPTables
+===================================================================================================================
+Used in place of SSH tunneling
+Iptables, in the most basic sense, is a firewall program
+one of the most popularly used firewall applications worldwide
+TABLES: Filter, Mangle, *NAT*
+CHAINS: *Prerouting*, Input, Forward, *Postrouting*, Output
+Commands:
+lsmod        -  shows if iptables is installed and currently active
+iptables -L  -  starts iptables
+         -t  -  table
+         -A  -  append/add
+Done on target
+iptables -t nat -A PREROUTING -p tcp --dport <RandomHighPORT> -j DNAT --to-destination <NextTargetIP>:<SSHPort>
+For Dry-Runs and Evals, dont need to add a postrouting rule
+(Scalpel Method) iptables -t nat -A POSTROUTING -p tcp --dport <CurrentBoxsSSHPort> -j SNAT --to-source <ForwardingHost/CurrentBoxIP>
+(Sledgehammer Method) iptables -t nat -A POSTROUTING -p tcp --dport <CurrentBoxsSSHPort> -j MASQUERADE
+
+SSHed on T1
+T1 ----> 12345 on T2 ----> T3 22
+T1 ----> 23456 on T2 ----> T3 12345 ----> T4 22
+-S /tmp/T1 ... -L 127.0.0.1:12345:T2:12345
+-S /tmp/T1 ... -L 127.0.0.1:4444:T2:23456
+-MS /tmp/T3 -p12345 T3@127.0.0.1
+-MS /tmp/T4 -p4444 T4@127.0.0.1
+
+
+Check the status:
+sysctl net.ipv4.ip_forward
+Enable:
+sysctl -w net.ipv4.ip_forward=1
+
+To permanently enable the IP forwarding:
+net.ipv4.ip_forward = 1
+
+DEMO
+sudo iptables -L -t nat -n
+sudo iptables -t nat -A PREROUTING -p tcp --dport 2222 -j DNAT --to-destination T2IP:22
+sudo iptables -t nat -A POSTROUTING -p tcp --dport 22 -j SNAT --to-source T1InternalIP
+sudo iptables -L -t nat -n
+sudo sysctl net.ipv4.ip_forward
+sudo sysctl -w net.ipv4.ip_forward=1
+
+ssh -S /tmp/T1 dummy -O forward -L 2222:T1InternalIP:2222
+ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@T1ExternalIP -p 2222
+
+
+
+Delete rules:
+sudo iptables -S -t nat
+sudo iptables -t nat -D PREROUTING -p tcp --dport 2222 -j DNAT --to-destination T2IP:22
+sudo iptables -t nat -D POSTROUTING -p tcp --dport 22 -j SNAT --to-source T1InternalIP
+
+Check for packets getting through:
+sudo iptables -L -t nat -n -v
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+└─# ssh -MS /tmp/T1 student14@10.50.38.103 -p 22 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+└─# ssh -S /tmp/T1 -O forward -L 127.0.0.1:2002:192.168.0.10:22 dummy
+└─# ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2002
+student14@Gene:~$ sudo iptables -t nat -A PREROUTING -p tcp --dport 3333 -j DNAT --to-destination 192.168.0.23:22
+student14@Gene:~$ sudo iptables -t nat -A POSTROUTING -p tcp --dport 22 -j SNAT --to-source 192.168.0.10
+student14@Gene:~$ sudo iptables -L -t nat -n -v
+student14@Gene:~$ sudo sysctl net.ipv4.ip_forward
+student14@Gene:~$ sudo sysctl -w net.ipv4.ip_forward=1
+└─# ssh -S /tmp/T1 dummy -O forward -L 3333:192.168.0.10:3333
+└─# ssh -MS /tmp/T3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 3333
+[student14@Bob ~]$ 
 
 
 
