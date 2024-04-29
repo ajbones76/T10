@@ -453,7 +453,6 @@ ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null stud
 
 
 Delete rules:
-sudo iptables -S -t nat
 sudo iptables -t nat -D PREROUTING -p tcp --dport 2222 -j DNAT --to-destination T2IP:22
 sudo iptables -t nat -D POSTROUTING -p tcp --dport 22 -j SNAT --to-source T1InternalIP
 
@@ -463,10 +462,12 @@ sudo iptables -L -t nat -n -v
 
 
 
-
+HH06
 └─# ssh -MS /tmp/T1 student14@10.50.38.103 -p 22 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 └─# ssh -S /tmp/T1 -O forward -L 127.0.0.1:2002:192.168.0.10:22 dummy
 └─# ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2002
+student14@Gene:~$ lsmod | egrep 'ip_tables'
+student14@Gene:~$ sudo iptables -L -t nat -n -v
 student14@Gene:~$ sudo iptables -t nat -A PREROUTING -p tcp --dport 3333 -j DNAT --to-destination 192.168.0.23:22
 student14@Gene:~$ sudo iptables -t nat -A POSTROUTING -p tcp --dport 22 -j SNAT --to-source 192.168.0.10
 student14@Gene:~$ sudo iptables -L -t nat -n -v
@@ -475,6 +476,42 @@ student14@Gene:~$ sudo sysctl -w net.ipv4.ip_forward=1
 └─# ssh -S /tmp/T1 dummy -O forward -L 3333:192.168.0.10:3333
 └─# ssh -MS /tmp/T3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 3333
 [student14@Bob ~]$ 
+Look for devices:
+arp
+ip n
+ip n | cut -d' ' -f1
+ip n | grep -v FAILED | cut -d' ' -f1
+
+Find Windows boxes
+ssh -S /tmp/T3 dummy -o forward -D 9050
+proxychains -q nmap -Pn -sT -n -iL <targetIP file> -p445,5985,5986,3389,139,135 
+proxychains -q nmap -Pn -sT -n -iL <targetIP file> -p445,5985,5986,3389,139,135 > HH06_Targets
+cat HH06_Targets | grep open -B 4 | grep report | cut -d' ' -f5
+Send IPs to EA
+
+ssh -S /tmp/T3 dummy -o cancel -D 9050
+ssh -S /tmp/T3 dummy -o forward -L 4444:192.168.0.27:22
+ssh -MS /tmp/T4 student14@127.0.0.1 -p 4444 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+exit and cancel out; remove iptables rules
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
