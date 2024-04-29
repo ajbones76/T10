@@ -3,28 +3,9 @@ T1: ssh -MS /tmp/T1 student14@10.50.38.103 -p 22 -o StrictHostKeyChecking=no -o 
 T2: ssh -S /tmp/T1 dummy -O forward -L 127.0.0.1:7002:192.168.0.10:22
 ssh -MS /tmp/T2 student14@127.0.0.1 -p 7002 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 
-
-
-
-
-
-
-
 Op Notes
 T1:
 Timestamp -- connected to T1; vetting
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ssh -MS /tmp/T1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@10.50.38.103 -p 22
@@ -56,3 +37,127 @@ ssh -MS /tmp/T4 student14@127.0.0.1 -p 7004 -o StrictHostKeyChecking=no -o UserK
 ssh -S /tmp/T1 dummy -O cancel -L 127.0.0.1:7004:192.168.0.27:22
 ssh -MS /tmp/T1 student14@10.50.38.103 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 ssh -S /tmp/T1 dummy -O cancel -L 127.0.0.1:7002:192.168.0.13:22
+
+
+
+
+
+
+
+
+
+T1 Logged here: secure, messages, lastlog, cron, system.journal
+Target: T1
+Name - Selinux
+Version - 33
+
+Config file Directory & Install Dir - /etc/selinux
+
+Documentation - https://www.selinuxproject.org/
+Description and Recommendation -
+Enabled and in targeted & permissive mode - It will not prevent us from running commands but will log actions. Config file ignores the root dir. Recommend CM and proceed with caution.
+***Security Product***
+
+Target: T 1
+
+Name - linux-malware-detect
+
+Version - v1.6.5
+
+(Nix) Config file Directory
+Symbolic link in /root/linux-malware-detect
+
+Install directory
+/root/linux-malware-detect/
+
+Documentation -https://www.rfxn.com/projects/linux-malware-detect/
+
+Description and Recommendation - Scans for malware on system. Recomend that we CM since we are not uploading payloads to this system.
+Link Preview
+Linux Malware Detect – R-fx Networks
+connected to T2
+[Little_1]
+Little_112:33 PM
+#spoilers
+[Little_1]
+Little_112:42 PM
+Req MC
+[Summers_5]
+Summers_512:47 PM
+Logged here: messages, lastlog, secure, audit.log, lastb
+T2^
+Target: T2
+Name - Selinux
+Version - 31
+
+Config file Directory & Install Dir - /etc/selinux
+
+Documentation - https://www.selinuxproject.org/
+Description and Recommendation -
+
+Enabled and in targeted & enforce mode. Recommend to proceed with caution, our commands are logged and could be prevented from executing. Config file ignores the root dir.
+***Abnormal Logging***
+
+Target: T2
+Name - rsyslog
+PID - 443
+PPID - 1
+User - root
+
+Location of config file -
+etc/rsyslog.conf
+/etc/rsyslog.d/21-cloudinit.conf
+
+Irregular contents
+-. @remote-host:514
+
+Remote IP (hostname if IP cannot be identified) - ?
+192.168.0.99
+Network connections - (not established but attempts)
+udp 0 0 0.0.0.0:35008 0.0.0.0:* 443/rsyslogd
+
+Documentation - https://www.remotesyslog.com/en/
+
+Description and Recommendation - T2 is remote logging to 192.168.0.99. If we need to clear logs, we will have to clear them on T2 and 192.168.0.99. Proceed with caution, and take note for FUOPS.
+Link Preview
+Remote Syslog
+Remote Syslog is a free application what can be used to view syslog messages. Remote Syslog provides an all in one installation with a text/web based viewer to extract syslog logging. It is designed to run in small and big environments. RSX/RSC is created by Tom Slenter.
+connected to T3
+[reatz_6]
+reatz_61:03 PM
+#####Reporting Security Product#####
+
+#Target : T1 and 192.168.0.99
+#Name - Linux Malware Detect
+#Version - v1.6.5
+#Config file - Install directory /root/
+#Documentation - https://github.com/rfxn/linux-malware-detect
+#Description - Improves the security of systems by scanning them based on the signatures of thousands of instances of known malware
+#Recommendation - CM. Do not implant on this target.
+Link Preview
+GitHub - rfxn/linux-malware-detect: Linux Malware Detection (LMD)
+Linux Malware Detection (LMD). Contribute to rfxn/linux-malware-detect development by creating an account on GitHub.
+GitHub
+###################Reporting Security Product#####################
+
+#Target : T1 and 192.168.0.99
+#Name - SELinux
+#Version -33
+#(NIX) Config or install directory - (sestatus) /etc/selinux
+#Documentation - https: //www.redhat.com/en/topics/linux/what-is-selinux
+#Description - Security-Enhanced Linux (SELinux) is a security architecture for Linux® systems that allows administrators to have more control over who can access the system.
+#Recommendation - CM. Currently in permissive mode. Not a threat to operations.
+vetting complete T1
+connected to T2
+[Summers_5]
+Summers_51:07 PM
+T3 Logged here: lastlog, journal
+[reatz_6] 
+
+
+
+
+
+
+
+
