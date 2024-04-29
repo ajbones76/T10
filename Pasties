@@ -74,8 +74,7 @@ dmidecode -t bios
 /////////////////////////////////////////////////////////////////////////
 
 ***WINDOWS VETTING***
-date /t
-time /t
+date /t && time /t
 query user
 tasklist /V
 wmic process get processid,parentprocessid,executablepath
