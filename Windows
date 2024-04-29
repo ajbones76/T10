@@ -113,9 +113,12 @@ stackoverflow.com
 You may need to build alternate pastables for odd OSs once you’ve identified them in the network
 Do not need to report Windows Event Logging for abnormal logging    -    Just need to tell MC what logs you have been logged in
 
+query user : designed for remote environments, this will ONLY display RDP/local logins
+netstat /anob : are there any connections associated with their session?
+tasklist /V : what is the privileged user running
+wmic : lots of uses, but you need specific flags to get the data you want
 
-
-
+net localgroup <group>
 
 
 
