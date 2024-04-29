@@ -119,6 +119,7 @@ tasklist /V : what is the privileged user running
 wmic : lots of uses, but you need specific flags to get the data you want
 
 net localgroup <group>
+net user <username>
 
 
 
