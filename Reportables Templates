@@ -122,3 +122,145 @@ Operator: SSG Brandee Lymon
 MC: MC2
 Analyst: Analyst2
 Description: Goal of operation was to collect email from EMAIL3. Mission was overall successful. Operator redirected through EXT_RTR to ADMIN1 to EMAIL3. Admin was logged into T2 running a security product. ClamAV was found on EMAIL3, MC provided guidance and email was collected.
+
+
+
+==================================================================================================================================================================================================================================================
+
+***Security Product***
+T1 Logged here: secure, messages, lastlog, cron, system.journal
+Target: T1
+Name - Selinux
+Version - 33
+Config file Directory & Install Dir - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Description and Recommendation -
+Enabled and in targeted & permissive mode - It will not prevent us from running commands but will log actions. Config file ignores the root dir. Recommend CM and proceed with caution.
+*****End of Report*****
+
+***Security Product***
+Target: T1
+Name - linux-malware-detect
+Version - v1.6.5
+(Nix) Config file Directory
+Symbolic link in /root/linux-malware-detect
+Install directory
+/root/linux-malware-detect/
+Documentation -https://www.rfxn.com/projects/linux-malware-detect/
+Description and Recommendation - Scans for malware on system. Recomend that we CM since we are not uploading payloads to this system.
+*****End of Report*****
+
+***Security Product***
+Logged here: messages, lastlog, secure, audit.log, lastb
+Target: T2
+Name - Selinux
+Version - 31
+Config file Directory & Install Dir - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Description and Recommendation -
+Enabled and in targeted & enforce mode. Recommend to proceed with caution, our commands are logged and could be prevented from executing. Config file ignores the root dir.
+*****End of Report*****
+
+***Abnormal Logging***
+Target: T2
+Name - rsyslog
+PID - 443
+PPID - 1
+User - root
+Location of config file -
+etc/rsyslog.conf
+/etc/rsyslog.d/21-cloudinit.conf
+Irregular contents
+-. @remote-host:514
+Remote IP (hostname if IP cannot be identified) - ?
+192.168.0.99
+Network connections - (not established but attempts)
+udp 0 0 0.0.0.0:35008 0.0.0.0:* 443/rsyslogd
+Documentation - https://www.remotesyslog.com/en/
+Description and Recommendation - T2 is remote logging to 192.168.0.99. If we need to clear logs, we will have to clear them on T2 and 192.168.0.99. Proceed with caution, and take note for FUOPS.
+Link Preview
+Remote Syslog
+Remote Syslog is a free application what can be used to view syslog messages. Remote Syslog provides an all in one installation with a text/web based viewer to extract syslog logging. It is designed to run in small and big environments. RSX/RSC is created by Tom Slenter.
+*****End of Report*****
+
+***Security Product***
+#Target : T1 and 192.168.0.99
+#Name - Linux Malware Detect
+#Version - v1.6.5
+#Config file - Install directory /root/
+#Documentation - https://github.com/rfxn/linux-malware-detect
+#Description - Improves the security of systems by scanning them based on the signatures of thousands of instances of known malware
+#Recommendation - CM. Do not implant on this target.
+*****End of Report*****
+
+***Security Product***
+#Target : T1 and 192.168.0.99
+#Name - SELinux
+#Version -33
+#(NIX) Config or install directory - (sestatus) /etc/selinux
+#Documentation - https: //www.redhat.com/en/topics/linux/what-is-selinux
+#Description - Security-Enhanced Linux (SELinux) is a security architecture for Linux® systems that allows administrators to have more control over who can access the system.
+#Recommendation - CM. Currently in permissive mode. Not a threat to operations.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: 
+Name - SELinux
+Version - 31 can be different
+mode - enforcing
+associated log - /var/log/audit/audit.log
+log timestamp - 
+last 5 - 
+can be configured to be cloud based
+(NIX) Config file - /etc/selinux/config
+Documentation - https://en.wikipedia.org/wiki/Security-Enhanced_Linux
+Recommendation - continue with mission
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Time Found -
+Target: 
+Name - rsyslog
+PID - 
+PPID - 1
+User - root or rsyslog
+Location of config file -  /etc/rsyslog.conf or the d one
+Remote IP  - 
+Network connections - port 514
+Documentation - https://www.rsyslog.com/doc/index.html
+Description - remote logging, sending logs to the remote host  on port 514
+Recommendation - put box on hold cant clean logs since they are being sent to another machine
+*****End of Report*****
+
+*****Security Product Report*****
+Time found - 
+Target: 
+Name - Lynis
+Version - 
+can be configured to be cloud based
+
+(NIX) Config file - /etc/lynis/default.prf
+associated log - /var/log/lynis.log
+timestamp of log - 
+last 5 of log - 
+associated files - 
+Documentation - https://cisofy.com/lynis/
+Recommendation - continue with mission
+*****End of Report*****
+
+*****Security Product Report*****
+Time found - 
+Target: 
+Name - firejail / firetools (both use eachother, firetools is the gui interface for firejail)
+Version - 
+not cloud based
+logs to syslog when there are blacklist violations
+timestamp of log - could not find a specific syslog for firetools
+last 5 of log - could not find a specific log for firetools
+(NIX) Config file - /firetools/configure
+Documentation - http://firejail.wordpress.com
+Recommendation - continue mission
+associated logs - 
+*****End of Report*****
+
+
