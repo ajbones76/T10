@@ -121,8 +121,90 @@ wmic : lots of uses, but you need specific flags to get the data you want
 net localgroup <group>
 net user <username>
 
+certutil -hashfile <FilePath> MD5
+
+Security Products
+=========================================================================================
+
+Well defined or known; Finds, blocks, and/or removes “malicious” programs
+Can Google it and the results are anything similar to “detecting trojans, viruses, malware & other malicious threats”
+
+Spotting Security Products:
+  The Tasklist
+  Scheduled jobs
+  Program Files directory
+  The Registry
+
+Microsoft Products:
+  Windows Defender
+    Windows 8+ default
+    Currently supported
+    Malware scanning
+    Sandboxing
+    Heuristics detection (questionably)
+  Microsoft Security Essentials
+    Windows XP - 7 support
+    End of Service, receives signature updates until 2023
+  Live OneCare
+    Windows Xp - Vista support
+    No longer supported
+DO NOT NEED TO REPORT WINDOWS DEFENDER
+
+To make a decision on risk, the following information, at a minimum, should to be found:
+  Product name and version (usually in the registry)
+    Database version
+    Software version
+  Installation location/executable
+  Additional detection modules
+  Cloud based detection?
+    99% yes
 
 
+Windows Logging
+=========================================================================================
+
+Event Logs - Windows Logs:
+Application log
+  Application log contains events logged by applications or programs
+*Security log*
+  Security log contains events such as valid and invalid logon attempts, events related to resource use, such as creating, opening, or deleting files or other objects
+Setup log
+  Setup log contains events related to application setup
+System log
+  System log contains events logged by Windows system components; where log is created when a log is cleared
+
+Event Logs - Each event in a log entry contains the following information:
+  Log Name: Log the event is stored in
+  Source: Audit policy that generated log
+  Date: The date/time the event occurred.
+  Event ID: A Windows identification number that specifies the event type.
+  Task: Windows function identified
+  Level/Opcode: The type of event
+  Keyword: Audit policy setting for logs
+  User: The user name of the user who was logged on when the event occurred.
+  Computer: The name of the computer
+  Description: Details on users, processes that generated log, data provided by process or software
+
+CLI:
+  auditpol
+    Run to view what actions Windows is configured to log
+    auditpol /get /category:*
+  wevtutil  -  how to read the log entries
+    wevtutil qe security /c:25 /rd:false /f:text
+  Powershell
+    Get-EventLog system -newest 3 | Format-List
+  WMIC
+    Sure you can use it, but these are easier
+Just need the Windows Event Log that you are in; most likely Security
+
+wevtutil gli <logname>    -    size of log and number of events
+wevtutil cl <logname> /bu:<LocationToBackupPath>    -    backup and clear log
+
+Powershell:
+Get-WinEvent -ListLog *    -    list all logs with entry count
+Get-EventLog *             -    list main logs with entry count
+
+Usually, application logs will be found in Programfiles or ProgramData
 
 
 
