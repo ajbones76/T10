@@ -207,6 +207,63 @@ Get-EventLog *             -    list main logs with entry count
 Usually, application logs will be found in Programfiles or ProgramData
 
 
+Malware
+=========================================================================================
+
+Any software, installed on the computer, which is unknown to the system administrator and weakens the overall security posture of the system
+Indicators:
+  Showing up in the process list
+    tasklist
+    **wmic process get processid,parentprocessid,executablepath | findstr <process ID>**
+  Network connections
+  Scheduled Jobs
+  Weird files
+  Unsigned binaries (or binaries with weird signatures)
+
+Common Locations:
+  C:\
+  C:\windows and \windows\system32
+  The ProgramData directory
+  C:\Windows\Temp
+  C:\Users\<USER>
+  User account directories
+  Scheduling services
+
+Identify all related files to the malware!
+Installation files, child processes and their files, relevant directory files, and literally anything that could be related to the malware
+Reading scripts, finding human readable text, and following PID/PPID is critical to identifying these files
+These files will tell you everything the malware does
+
+Common persistence mechanisms:
+  Run Keys
+  Scheduled Tasks / at jobs (deprecated)
+  Startup locations
+  Services - new or modifying an existing service (likely one disabled)
+  DLL Hijacking
+  WMI Event Consumer Backdoors
+  May be multiple persistence mechanisms utilized
+schtasks /query /fo LIST /v
+certutil -hashfile <FileToHash> MD5
+If you need to hash multiple files at once, you may need to use PowerShell (which may require approval):
+Get-FileHash -Algorithm MD5 -Path (Get-ChildItem "C:\Path\To\Data\*" -Recurse)
+
+Research:
+KOADIC C3 COM Command and Control
+
+DEMO
+vet  -  tasklist /V, netstat /anob, reg query hklm\software\microsoft\windows\currentversion\run, reg query hklm\software\microsoft\windows\currentversion\runonce
+wmic process get processid,parentprocessid,executablepath | findstr <process ID>
+dir the directory found in previous command
+pull back if needed (strings <malware> | less)
+
+
+
+
+
+
+
+
+
 
 
 
