@@ -122,6 +122,8 @@ net localgroup <group>
 net user <username>
 
 certutil -hashfile <FilePath> MD5
+for %F in (*) do @certutil -hashfile "%F" MD5 | findstr -v "CertUtil: -hashfile command completed successfully.”
+powershell -Command "Get-ChildItem -Path 'C:\Windows\Prefetch' -File -Recurse | ForEach-Object { Get-FileHash -Path $_.FullName -Algorithm MD5 }"
 
 Security Products
 =========================================================================================
@@ -257,11 +259,103 @@ dir the directory found in previous command
 pull back if needed (strings <malware> | less)
 
 
+Windows Firewall
+=========================================================================================
+
+Windows Firewall is a security application created by Microsoft and built into Windows, designed to filter network data transmissions to and from a Windows system and block harmful communications and/or the programs that are initiating them
+
+One of three profiles is activated automatically for each network interface:
+  Public    -   assumes that the network is shared with the World and is the most restrictive profile
+  Private   -   assumes that the network is isolated from the Internet and allows more inbound connections than public. A network is never assumed to be private unless designated as such by a local administrator
+  Domain    -   least restrictive; It allows more inbound connections to allow for file sharing etc. The domain profile is selected automatically when connected to a network with a domain trusted by the local computer
+
+Security log capabilities are included; This security log is not enabled by default; the administrator must enable it
+Windows Firewall can be controlled/configured; through the netsh command 
+
+Netsh
+command-line scripting utility that allows you to, either locally or remotely, display or modify the network configuration of a computer that is currently running
+netsh [-a AliasFile] [-c Context] [-r RemoteComputer] [{NetshCommand|-f ScriptFile}]
+We will mainly be working with the Contexts interface and advfirewall
+Interface Context:
+  netsh interface show interface            - Display all network interfaces
+  ip Commands:
+    netsh interface ip show address         - Display IP Address; DHCP;Subnet; Gateway
+    netsh interface ip show dns             - Display DNS information on network interface
+  ***portproxy (Tunneling) Commands***:
+    netsh interface portproxy show all
+    netsh interface portproxy add v4tov4 listenport=12345 listenaddress=192.168.0.221 connectport=54321 connectaddress=192.168.0.98 protocol=tcp
+    netsh interface portproxy add v4tov4 listenport=<PortforCurrentTargetBox> listenaddress=<CurrentTargetIP> connectport=<NextTargetSSHPort> connectaddress=<NextTargetIP> protocol=tcp
+    netsh interface portproxy delete v4tov4 listenport=12345 listenaddress=192.168.0.221
+Advfirewall Context:
+  netsh advfirewall show allprofiles          - See if Windows Firewall is enabled
+  netsh advfirewall show currentprofile       - Show which profiles are active
+  netsh advfirewall export "c:\FW.wfw"        - Create a BACKUP of the configuration
+  netsh advfirewall import "c:\FW.wfw"        - Restore netsh firewall configuration
+firewall Commands:
+  netsh advfirewall firewall show rule name=all      - View firewall configuration
+
+DEMO
+
+Req MC & EA
+Make Student dir
+make opnotes, make nsdb
+scriptme
+verify ips
+connect to T1 -MS /tmp/T1
+notify MC and timestamp for connection and vetting
+notify EA of ip and mac
+notify MC and timestamp for done vetting
+
+connect to T2 -S /tmp/T1; -MS /tmp/T2
+notify MC and timestamp for connection and vetting
+
+connect to T3 -S /tmp/T2; -MS /tmp/T3
+notify MC and timestamp for connection and vetting
+netsh interface portproxy show all
+Req MC permission to add netsh rule
+netsh interface portproxy add v4tov4 listenport=4444 listenaddress=192.168.0.12 connectport=22 connectaddress=192.168.0.13 protocol=tcp
+netsh interface portproxy show all
+
+Kali>ssh -S /tmp/T3 dummy -O forward -L 4444:192.168.0.12:4444    #can do same target or previous target /tmp/T#
+Kali>netstat -tunap
+Kali>ssh -MS /tmp/T4 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 4444
+notify MC and timestamp for connection and vetting
+
+Timestamps Needed:
+connect and start vetting
+vetting complete
+start exit vetting
+Exit vetting complete; disconnect timestamp
+
+req mc permission to remove netsh rule
+delete rule
+verify its deleted
+start exit vetting
+exit vetting complete; exit
 
 
+Evil WinRM
+=========================================================================================
 
+Windows Remote Management(WinRM)
+  Used to incorporate Powershell Remoting onto Windows devices - which is the capability to perform Powershell commands on remote computers
 
+PowerShell Remoting uses Windows Remote Management (WinRM) to allow users to run PowerShell commands on remote computers
+WinRM/Powershell Remoting listens on:
+5985: HTTP
+5986: HTTPS
 
+Evil WinRM:
+Post-exploit tool targeting the WinRM service on Windows devices; Uses Powershell Remoting Protocol (PSRP) to initialize runspace pools and create/process pipelines
+Powershell command and script execution may log in the following:
+  Windows PowerShell.evtx
+  Microsoft-Windows-Power-Shell%4Operational.evtx20
+  Microsoft-Windows-Power-Shell%4Analytic.etl
+The following logs may also contain entries due to WinRM:
+  Microsoft-Windows-WinRM%4Operational.evtx
+  Microsoft-Windows-WinRM%4Analytic.etl
+
+evil-winrm -i <TUNNEL_IP> -u <USERNAME> -P <TUNNEL_PORT>
 
 
 
