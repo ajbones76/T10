@@ -1,0 +1,403 @@
+*****Abnormal Logging Report*****
+Target: T1 / 10.50.30.202
+Name - rsyslog remote logging
+PID - 1096
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - *.* @@10.49.1.4:514
+Network connections - tcp SYN-SENT 0 1 10.145.117.86:39592 10.49.1.4:514
+Documentation - The /etc/rsyslog.conf file specifies rules for logging and which files are to be used to log certain classes of messages.
+https://www.tenable.com/audits/items/CIS_Red_Hat_EL5_v2.2.1_L1.audit:056c4e6e4f4a36d4be92c5d7cee4f608
+Description - rsyslog logs of remote connections to T1 sent to 10.49.1.4 on port 514
+Recommendation - Continue mission, changing log is suspicious and previous connection to T1 has already been established.
+*****End of Report*****
+
+
+*****Security Product Report*****
+Target: T1 / 10.50.30.202
+Name - SELinux
+Version - 2.1
+(NIX) Config file or install directory - /etc/selinux
+Documentation - SELinux status: enabled
+Current mode: enforcing
+SELinux defines access controls for the applications, processes, and files on a system.
+https://www.redhat.com/en/topics/linux/what-is-selinux
+Recommendation - Continue mission, initial access has already been gained and SELinux should not interfere with mission.
+*****End of Report*****
+
+
+
+*****Privileged User Report*****
+Target: T2 / 10.145.117.10
+User - administrator
+Access Time - 3/13/2024 12:04PM (local box time is 3/14/2024 2:08:31 PM)
+Access Method - Local console
+Privileges - Admin privileges
+Activity - User has following processes running:
+LogFusion.exe
+powershell.exe
+conhost.exe
+cmd.exe
+taskhostw.exe
+Description - LogFusion.exe is a realtime log monitoring application for system administrators, user is also running powershell with a terminal window open as well as a taskhost window that launches processes open. ##https://www.logfusion.ca/##
+Recommendation - Continue mission, user has been logged on for 1 day and 2 hours, but with extra vigilance due to user logged in with powershell and log processes running.
+*****End of Report*****
+
+
+*****Abnormal Logging Report*****
+Target: T2 / 10.145.117.10
+Name - LogFusion.exe
+PID - 4256
+PPID - 3440
+User - administrator
+Location of config file - C:\Program Files\LogFusion\LogFusion.dll.config
+Remote IP (hostname if IP cannot be identified) - Logs saved locally
+Network connections - NA
+Documentation - LogFusion.exe is a realtime log monitoring application for system administrators. ##https://www.logfusion.ca/##
+Description - Administrator is running the program, it does not seem to have logged anything based on application logs
+Recommendation - Continue mission, application logs do not show any recent LogFusion logs.
+*****End of Report*****
+
+
+*****Security Product Report*****
+Target: T3 / 10.145.117.16
+Name - SELinux
+Version - 2.1
+(NIX) Config file or install directory - /etc/selinux
+Documentation - SELinux status: enabled
+Current mode: enforcing
+SELinux defines access controls for the applications, processes, and files on a system.
+https://www.redhat.com/en/topics/linux/what-is-selinux
+Recommendation - Continue mission, initial access has already been gained and SELinux should not interfere with mission.
+*****End of Report*****
+
+
+
+
+
+
+
+
+*****Abnormal Logging Report*****
+Target: T4 / 192.169.117.200
+Name - pacct
+PID - NA
+PPID - NA
+User - root
+Location of config file - /var/account/pacct
+Remote IP (hostname if IP cannot be identified) - Logs saved locally
+Network connections - NA
+Documentation - Process accounting (pacct) is the method of recording and summarizing commands executed on Linux.
+https://www.oreilly.com/library/view/practical-unix-and/0596003234/ch21s02.html
+Description - Pacct is running in /var/account/pacct and is logging in that file.
+Recommendation - Continue mission, turning this function off is suspicious, and there are no tools being used that would be compromised by this function.
+*****End of Report*****
+
+
+*****Security Product Report*****
+Target: T4 / 192.169.117.200
+Name - SELinux
+Version - 2.1
+(NIX) Config file or install directory - /etc/selinux
+Documentation - SELinux status: enabled
+Current mode: enforcing
+SELinux defines access controls for the applications, processes, and files on a system.
+https://www.redhat.com/en/topics/linux/what-is-selinux
+Recommendation - Continue mission, initial access has already been gained and SELinux should not interfere with mission.
+*****End of Report*****
+
+
+T4 Collect
+/etc/shadow
+RHash: 30257020d3fc2861c9bc0d25dd98b37a
+LHash: 30257020d3fc2861c9bc0d25dd98b37a
+
+/etc/passwd
+RHash: 86d0de34aeda559db7654e6dc41812bc
+LHash: 86d0de34aeda559db7654e6dc41812bc
+
+/etc/group
+RHash: bd95fa8d231709839db5a160f81ae26a
+LHash: bd95fa8d231709839db5a160f81ae26a
+
+/etc/rsyslog.conf
+RHash: 0dd94a0c285fb32f41fa5b226e83c26b
+LHash: 0dd94a0c285fb32f41fa5b226e83c26b
+
+/etc/sudoers
+RHash: 6609a6a864941d896b6bab81d15898ca
+LHash: 6609a6a864941d896b6bab81d15898ca
+
+/etc/ssh/ssh_config
+RHash: b1fd7a27af48e304eafa6259d4aa143c
+LHash: b1fd7a27af48e304eafa6259d4aa143c
+
+
+*****Abnormal Logging Report*****
+Target: T5 / 192.169.117.201
+Name - rsyslog remote logging
+PID - 1347
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.d/50-default.conf
+Remote IP (hostname if IP cannot be identified) - *.* @@10.50.111.4:514
+Network connections - NA
+Documentation - The /etc/rsyslog.conf file specifies rules for logging and which files are to be used to log certain classes of messages.
+https://www.tenable.com/audits/items/CIS_Red_Hat_EL5_v2.2.1_L1.audit:056c4e6e4f4a36d4be92c5d7cee4f608
+Description - rsyslog logs of remote connections to T1 sent to 10.49.1.4 on port 514, although there are no current network conenctions for it.
+Recommendation - Continue mission, changing log is suspicious and previous connection to T5 has already been established.
+*****End of Report*****
+
+
+
+
+
+
+
+
+
+
+*****Security Product Report*****
+Target: T5 / 192.169.117.201
+Name - tcpdump
+Version - 8
+(NIX) Config file or install directory - /usr/sbin/tcpdump
+Documentation - tcpdump has a capture in /var/log/tcpdump.pcap
+tcpdump is a data-network packet analyzer computer program that runs under a command line interface.
+https://www.tcpdump.org/
+Recommendation - Continue mission, initial access has already been gained and tcpdump is listening on loopback address.
+*****End of Report*****
+
+
+Operator: Cpl Tyler McDonald
+Operation: DryRun03
+MC: MC1
+Analyst: Analyst1
+Description: Goal of operation was to enumerate Krasnovian 1st Artillery BDE network mail server and suspected admin workstations. Mission was somewhat successful. Operator redirected through EXT_RTR that had rsyslog remote logging as well as SELinux security product, to SERVER0 that had an administrator logged on running a powershell session and a log tool named LogFusion.exe, to INT_RTR2 that had SELinux security product, to ADMIN2 that had SELinux security product, to TARGETA that had tcpdump packet analyzer security product, before disconnect due to time constraints occurred.
+
+*****Privileged User Report*****
+Target: T1 / 10.50.30.202
+User - root
+Access Time - 15:16 13-03-24
+Access Method - local console
+Privileges - root privileges
+Activity - User ran following commands: cat /dev/null > /var/log/btmp
+exit
+Description - /dev/null and /var/log/btmp are empty, user has been idle for 22 hours and 20 minutes.
+Recommendation - Continue mission, user has been idle for almost 24 hours and has not ran many commands, and there are no failed login attempts logged to /var/log/btmp.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T1 / 10.50.30.202
+Name - rsyslog remote logging
+PID - 1096
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - *.* @@10.49.1.4:514
+Network connections - tcp SYN-SENT 0 1 10.145.117.86:39592 10.49.1.4:514
+Documentation - The /etc/rsyslog.conf file specifies rules for logging and which files are to be used to log certain classes of messages.
+https://www.tenable.com/audits/items/CIS_Red_Hat_EL5_v2.2.1_L1.audit:056c4e6e4f4a36d4be92c5d7cee4f608
+Description - rsyslog logs of remote connections to T1 sent to 10.49.1.4 on port 514
+Recommendation - Continue mission, changing log is suspicious and previous connection to T1 has already been established.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T2 / 10.145.117.15
+Name - rsyslog remote logging
+PID - 27031
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - *.* @@10.49.1.4:514
+Network connections - NA
+Documentation - The /etc/rsyslog.conf file specifies rules for logging and which files are to be used to log certain classes of messages.
+https://www.tenable.com/audits/items/CIS_Red_Hat_EL5_v2.2.1_L1.audit:056c4e6e4f4a36d4be92c5d7cee4f608
+Description - rsyslog logs of remote connections to T2 sent to hostname 10.49.1.4 on port 514, although there are no network connections with that hostname or port.
+Recommendation - Continue mission, changing log is suspicious and previous connection to T2 has already been established.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T2 / 10.145.117.11
+Name - SELinux
+Version - 2.1
+(NIX) Config file or install directory - /etc/selinux
+Documentation - SELinux status: enabled
+Current mode: enforcing
+SELinux defines access controls for the applications, processes, and files on a system.
+https://www.redhat.com/en/topics/linux/what-is-selinux
+Recommendation - Continue mission, initial access has already been gained and SELinux should not interfere with mission.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T3 / 10.145.117.15
+Name - SELinux
+Version - 2.1
+(NIX) Config file or install directory - /etc/selinux
+Documentation - SELinux status: enabled
+Current mode: enforcing
+SELinux defines access controls for the applications, processes, and files on a system.
+https://www.redhat.com/en/topics/linux/what-is-selinux
+Recommendation - Continue mission, initial access has already been gained and SELinux should not interfere with mission.
+*****End of Report*****
+
+****Malware Report*****
+Target: T3 / 10.145.117.15
+Name - centOS.rtr.updtr
+Hash - fd48f372b0a814108d6624de07fb3ed5
+PID - 9168
+PPID - 1
+User - root
+File type - ELF/netcat listener
+Supporting files - /bin/centOS.rtr.updtr
+/etc/centOS.rtr.conf
+Associated Logs - NA
+Persistence - Likely run at boot with PPID of 1, listener port is open on 41481
+Documentation - VirusTotal claims file is netcat and not necessarily malicious
+https://www.virustotal.com/gui/file/bd368af683198a05841486cbdbf0ea882937b73a1dd78d7573a8428f2003e8f8/details
+Description - Copy of netcat file with a listener port open on 41481
+Recommendation - Continue mission, nc listener does not interfere with mission, be vigilant of users
+that may log on as a result.
+*****End of Report*****
+
+*****Privileged User Report*****
+Target: T4 / 192.169.117.203
+User - administrator
+Access Time - 3/15/2024 12:51PM (local box time is 3/15/2024 04:23PM)
+Access Method - Local console
+Privileges - Admin privileges
+Activity - User has following processes running:
+sihost.exe
+svchost.exe (x3)
+taskhostw.exe
+explorer.exe
+ShellExperienceHost.exe
+SearchUI.exe
+RuntimeBroker.exe (x5)
+ApplicationFrameHost.exe
+MicrosoftEdge.exe
+browser_broker.exe
+ctfmon.exe
+MicrosoftEdgeCP.exe (x2)
+MSASCuiL.exe
+AVGUI.exe (x4)
+dllhost.exe
+OneDrive.exe
+Microsoft.Photos.exe
+SkypeHost.exe
+Description - Admin has several processes running, mostly browsers, and a malware detection service AVGUI.exe.
+Recommendation - Continue mission, user has been logged on for several hours and does not have any applications open that should interfere with mission.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T4 / 192.169.117.203
+Name - AVGUI.exe
+Version - 24.2.8918.1578
+(WIN) Primary registry key - C:\Program Files\AVG\Antivirus\AVGUI.exe
+Documentation - AVGUI is a malware detection program. Administrator has it currently running.
+https://support.avg.com/answers?id=9065p000000kHQGAA2
+Recommendation - Continue mission, operator actions should not trigger malware detector.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T4 / 192.169.117.203
+Name - zenmap
+Version - 7.94
+(WIN) Primary registry key - c:\Users\Administrator\.zenmap\zenmap.conf
+Documentation - Zenmap is the official Nmap Security Scanner GUI which aims to make Nmap easy for beginners to use while providing advanced features for experienced Nmap users.
+https://nmap.org/zenmap/
+Recommendation - Continue mission, nmap scan tool should not interfere with mission and is not currently running.
+*****End of Report*****
+
+Operator: Cpl Tyler McDonald
+Operation: DryRun05
+MC: MC1
+Analyst: Analyst1
+Description: Goal of operation was to Conduct TECHOP on T1, perform access assurance on Krasnovian 1st Artillery BDE network administrator workstations. Mission was somewhat successful. Operator redirected through EXT_RTR that had rsyslog remote logging as well as logged in root user and operator conducted TECHOP, to SERVER1 that had rsyslog remote logging as well as SELinux security product, to INT_RTR1 that had netcat listener malware as well as SELinux security product, to TARGETC that had administrator privileged user as well as AVGUI and zenmap security producs and also backdoor malware, before disconnect due to time constraints occurred.
+
+
+*****Abnormal Logging Report*****
+Target: T1 / 10.50.24.19
+Name - rsyslog remote logging
+PID - 27637
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - *.* @@10.50.22.142:514
+Network connections - NA
+Documentation - The /etc/rsyslog.conf file specifies rules for logging and which files are to be used to log certain classes of messages.
+#Target="remote_host" Port="XXX" Protocol="tcp")
+*.* @@10.50.22.142:514
+https://www.tenable.com/audits/items/CIS_Red_Hat_EL5_v2.2.1_L1.audit:056c4e6e4f4a36d4be92c5d7cee4f608
+Description - rsyslog logs of remote connections to T1 sent to hostname 10.50.22.142 on port 514, although there are no network connections with that IP or port.
+Recommendation - Continue mission, changing log is suspicious and connection to T1 has already been established.
+*****End of Report*****
+
+
+*****Security Product Report*****
+Target: T1 / 10.50.24.19
+Name - SELinux
+Version - Policy Version 19
+(NIX) Config file or install directory - /etc/selinux
+Documentation - SELinux status: enabled
+Current mode: enforcing
+SELinux defines access controls for the applications, processes, and files on a system.
+https://www.redhat.com/en/topics/linux/what-is-selinux
+Recommendation - Continue mission, initial access has already been gained and SELinux should not interfere with mission.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T2 / 10.20.169.121
+Name - rsyslog remote logging
+PID - 23361
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.111.23.4:514
+Network connections - tcp 0 1 10.20.169.121:36092 10.111.23.4:514 SYN_SENT 23361/rsyslogd
+Documentation - The /etc/rsyslog.conf file specifies rules for logging and which files are to be used to log certain classes of messages.
+#Target="remote_host" Port="XXX" Protocol="tcp")
+*.* @@badguy:514
+https://www.tenable.com/audits/items/CIS_Red_Hat_EL5_v2.2.1_L1.audit:056c4e6e4f4a36d4be92c5d7cee4f608
+Description - rsyslog logs of remote connections to T2 sent to 10.111.23.4 on port 514.
+Recommendation - Continue mission, changing log is suspicious and connection to T2 has already been established.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T2 / 10.20.169.121
+Name - SELinux
+Version - Policy Version 19
+(NIX) Config file or install directory - /etc/selinux
+Documentation - SELinux status: enabled
+Current mode: permissive
+SELinux defines access controls for the applications, processes, and files on a system.
+https://www.redhat.com/en/topics/linux/what-is-selinux
+Recommendation - Continue mission, initial access has already been gained and SELinux should not interfere with mission.
+*****End of Report*****
+
+Operator: Cpl Tyler McDonald
+Operation: ANGRYAARDVARK01
+MC: MC1
+Analyst: Analyst1
+Description: Goal of operation was to Enumerate Krasnovian 1st Artillery BDE internal network (192.168.169.0/24). Mission was overall successful. Operator redirected through EXT_RTR that had rsyslog remote logging as well as SELinux security product, to WEBSERVER that had rsyslog remote logging as well as SELinux security product, to Vyos1 where network discovery occured and IPs, OSs, and SSH ports were reported to analyst, before disconnect occurred.
+
+Result: Pass
+
+Point Deductions:
+Missing vetting timestamps in opnotes
+Failed authentication
+
+WARNING: Operator generated btmp entry due to failed auth attemp. ALL logs updated by operator activity - to include btmp when failed auths occur - must be present in log reports
+
+
+
+
+
+
+
+
+*****Security Product Report*****
+Target: T4 / 192.168.169.43
+Name - firetools / firejail
+Version - 0.9.73
