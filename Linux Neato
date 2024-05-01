@@ -1,0 +1,45 @@
+Linux Privileged Users
+Commands:
+w who is logged in, for how long, and how?
+who -Ha similar to w
+netstat -auntp are there any connections associated with their session?
+ps -elf are there any networked processes asociated with their session/PIDs?
+last what does their access pattern of life look like?
+
+Privileged
+Places to look to identify privileges:
+cat /etc/sudoers
+cat /etc/group
+groups <username>
+
+Determine Actions
+ps -elfH
+netstat -auntp
+User's ~/.bash_history
+User's ~/.lesshst
+Review logs
+
+
+Linux Malware
+Common Locations
+Common locations of malware include but are not limited to:
+/
+/root
+/tmp
+/home/*useraccount*
+/etc/crontab
+
+lsof -Pnp <PID> shows all open file handles of that process
+ls -la /proc/<PID>
+
+IDENTIFY ALL FILES RELATED TO MALWARE
+Installation files, child processes and thier files, relevant directory files, reading scripts, finding human readable text, and following PID/PPID to identify files.
+
+OSINT malware hash: https://www.virustotal.com/gui/home/search
+Malware Prosecution Commands
+lsof -Pnp <PID>
+lsmod
+find / -mmin
+(for user in $(cut -f1 -d: /etc/passwd); do echo $user; crontab -u $user -l; done)
+ls -la /proc/<PID>
+insmod OR modprobe
