@@ -222,7 +222,7 @@ Useful Logs:
 
 
 Bare minimum will be in these logs:
-lastlog, secure, utmp
+lastlog, secure, utmp, wtmp
 
 Syslog: one of the main concerns when accessing a target
   Syslog daemon
