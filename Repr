@@ -1,3 +1,117 @@
+T1:192.168.0.99
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  1 13:30
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    type=SYSCALL msg=audit(1714584753.979:1794): arch=c000003e syscall=321 success=yes exit=8 a0=5 a1=7ffca9c34a30 a2=90 a3=4 items=0 ppid=1 pid=207453 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=40 comm="systemd" exe="/usr/lib/systemd/systemd" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=(null)ARCH=x86_64 SYSCALL=bpf AUID="root" UID="root" GID="root" EUID="root" SUID="root" FSUID="root" EGID="root" SGID="root" FSGID="root"
+type=PROCTITLE msg=audit(1714584753.979:1794): proctitle="(systemd)"
+type=BPF msg=audit(1714584753.979:1795): prog-id=170 op=UNLOAD
+type=SERVICE_START msg=audit(1714584754.023:1796): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=user@0 comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'UID="root" AUID="unset"
+type=USER_START msg=audit(1714584754.028:1797): pid=207450 uid=1014 auid=4294967295 ses=4294967295 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/0 res=success'UID="student14" AUID="unset"
+  Recommendation - Enabled and in targeted & permissive mode; will log actions, but it will not prevent us from continuing. Recommend CM
+
+Security Products
+  Name and version of the product - linux-malware-detect ver 1.6.5
+  Installation folder - /root/linux-malware-detect
+  Directory location of associated logs - /usr/local/maldetect
+  Timestamp of all associated log files - May  1 13:10
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+  	ay 01 2024 13:10:01 Louise maldet(206756): {scan} signatures loaded: 17638 (14801 MD5 | 2054 HEX | 783 YARA | 0 USER)
+May 01 2024 13:10:01 Louise maldet(206756): {scan} building file list for /bin, this might take awhile...
+May 01 2024 13:10:01 Louise maldet(206756): {scan} setting nice scheduler priorities for all operations: cpunice 19 , ionice 6
+May 01 2024 13:10:01 Louise maldet(206756): {scan} executed eval /bin/nice -n 19 /bin/ionice -c2 -n 6 /bin/find "/bin" /tmp /var/tmp /dev/shm /var/fcgi_ipc -maxdepth 15 -regextype posix-egrep -type f  -size +24c -size -6947618c  -not -perm 000   -not -uid 0 -not -gid 0  
+May 01 2024 13:10:01 Louise maldet(206756): {scan} scan returned empty file list; check that path exists and contains files in scope of configuration.
+Recommendation - Scans for malware on system; recommend continuing since this box is just being used as a redirector with no effects being done
+
+*****Security Product Report*****
+Target: T1:192.168.0.99
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - Enabled and in targeted & permissive mode; will log actions, but it will not prevent us from continuing. Recommend CM
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T1:192.168.0.99
+Name - linux-malware-detect
+Version - 1.6.5
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /root/linux-malware-detect/
+Documentation - https://www.rfxn.com/projects/linux-malware-detect/
+Recommendation - Scans for malware on system; recommend continuing since this box is just being used as a redirector with no effects being done
+*****End of Report*****
+
+
+
+
+T2: 192.168.0.10
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user - rsyslog, PID:4313, PPID:1, root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 192.168.0.99
+  Provide any network connections opened/established by abnormal logging - Ports 45402 & 47184 opened
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - https://www.rsyslog.com/doc/index.html ; remote logging, sending auth logs to 192.168.0.99 
+  Recommendation - CM; already been caught, if really concerned with being logged, we have access to the host(Louise) the remote logs are going to
+
+*****Abnormal Logging Report*****
+Target: T2: 192.168.0.10
+Name - rsyslog
+PID - 4313
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 192.168.0.99
+Network connections - Ports 45402 & 47184 opened
+Documentation - https://www.rsyslog.com/doc/index.html
+Description - remote logging, sending logs to 192.168.0.99
+Recommendation - CM; already been caught, if really concerned with being logged, we have access to the host(Louise) the remote logs are going to
+*****End of Report*****
+
+T3:192.168.0.13
+Malware
+  Provide process name/options, PID, Parent ID, user, and hash - Reptile, PID: UNK, PPID:UNK
+  Hash: 83a631f611b613ac49574f723a19a621
+  Provide file type of malware binary and supporting files - 
+  Provide any associated logs generated by malware - 
+  Provide location and lines of any persistence mechanisms - 
+  Provide full path of malware files or support files - 
+  Provide any network connections opened/established by malware - 
+  Provide any identifiable text - 
+  Provide any/all modules/.dlls/etc loaded by malware - 
+  Provide brief description of malware purpose/actions and capabilities - 
+  Provide link to open source documentation if available - https://github.com/f0rb1dd3n/Reptile.git
+  Recommendation - 
+
+*****Malware Report*****
+Target: T3:192.168.0.13
+Name - reptile
+Hash - 83a631f611b613ac49574f723a19a621
+PID - <>
+PPID - <>
+User - <>
+File type - <>
+Supporting files - <>
+Associated Logs - <>
+Persistence - backdoor
+Documentation - https://github.com/f0rb1dd3n/Reptile.git
+Description - <>
+Recommendation - <>
+*****End of Report*****
+
+
+
+
+
+
+
 *****Abnormal Logging Report*****
 Target: T1 / 10.50.30.202
 Name - rsyslog remote logging
