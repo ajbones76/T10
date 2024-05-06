@@ -1,0 +1,5 @@
+You have to establish a tunnel through Louise to the windows box. Then use the high port you made for the evil-wrm to make the connection
+Or you can give one of the windows boxes a float ip and use that one for the connection
+
+So my full command would have been something like: evil-winrm -i localhost -u Administrator -p password -P 2222
+MS to Louise, then a forward tunnel to a windows box at port 5985.
