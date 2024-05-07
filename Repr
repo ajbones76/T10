@@ -515,3 +515,12 @@ WARNING: Operator generated btmp entry due to failed auth attemp. ALL logs updat
 Target: T4 / 192.168.169.43
 Name - firetools / firejail
 Version - 0.9.73
+
+
+
+
+Operator: LCpl Bonestroo
+Operation: DR03
+MC: MC1
+Analyst: Analyst1
+Description: The goal of the operation was to enumerate Krasnovian 1st Artillery BDE network mail server and suspected admin workstations. Mission was overall successful. Operation redirected through EXT_RTR to SERVER0 to INT_RTR to ADMIN2 to TARGETA, then backed out to ADMIN2 and redirected to TARGETA_Admin.  T1 had a security product and remote logging. T2 had abnormal logging and a privileged user; operator collected the mailserver creds. T3 had a security product. T4 had a security product and abnormal logging; operator conducted a device survey and collected files of interest. T5 had a security product; operator conducted a device survey. T6 had two security products; operator conducted a device survey.
