@@ -1,0 +1,325 @@
+Date:2024-05-08
+Start time: 0900
+End time: 1500
+
+=========================
+T1: 10.50.24.145
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  8 13:07
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRED_DISP msg=audit(1715173974.812:8611): pid=51616 uid=0 auid=1004 ses=127 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/12 res=success'UID="root" AUID="student4"
+type=USER_ACCT msg=audit(1715173988.106:8612): pid=51624 uid=1014 auid=1014 ses=125 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/11 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715173988.106:8613): pid=51624 uid=1014 auid=1014 ses=125 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/11 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715173988.106:8614): pid=51624 uid=0 auid=1014 ses=125 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/11 res=success'UID="root" AUID="student14"
+type=USER_START msg=audit(1715173988.108:8615): pid=51624 uid=0 auid=1014 ses=125 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/11 res=success'UID="root" AUID="student14"
+
+Recommendation - SELinux is enabled and in  permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 5226 PPID: 1 User: root
+  Provide location of configuration file and its abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.49.1.4
+  Provide any network connections opened/established by abnormal logging - tcp SYN-SENT 10.145.117.86:54318     10.49.1.4:514
+  Provide brief description of the abnormal, irregular or remote logging - Rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+  Documentation - https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T1: 10.50.24.145
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T1: 10.50.24.145
+Name - rsyslog
+PID - 5226
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.49.1.4
+Network connections - tcp SYN-SENT 10.145.117.86:54318   10.49.1.4:514
+Documentation -https://www.rsyslog.com/doc/index.html
+Description - rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box.
+*****End of Report*****
+
+------------------------X
+=========================
+
+=========================
+T2: 10.145.117.10
+=========================
+X-----------------------
+NSDB:
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: LogFusion.exe PID: 4848 PPID: 4472 User: Administrator
+  Provide location of configuration file and its abnormal or irregular contents - c:\Program Files\LogFusion
+  Provide hostname or IP of where logs are being sent - N/A
+  Provide any network connections opened/established by abnormal logging - N/A
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - LogFusion is a realtime log monitoring application, which allows for easy parsing of logs.
+  https://www.logfusion.ca/
+  Recommendation - CM cautiously; we were already aware we would be logged, however now we know someone is actively watching the logs, so we have probably been caught.
+
+Privileged Users
+  Target - Where did you see this user? - T2: 10.145.117.10
+  User - What is their username? - Administrator
+  Access time - How long have they been on? - 5/8/2024 12:12 PM
+  Access method - Did they access locally? Remotely? - Local
+    Provide all relevant details - Active console session, explorer.exe is running
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain. This administrator is currently using the GUI and has a real-time log monitoring program running.
+  Activity - What are they currently doing? - This administrator is currently using the GUI and has a real-time log monitoring program running.
+  Recommendation - CM cautiously; the admin is actively using a log monitoring software, increasing our chances of getting caught.
+
+
+MC:
+
+*****Abnormal Logging Report*****
+Target: T2: 10.145.117.10
+Name - LogFusion.exe
+PID - 4848
+PPID - 4472
+User - Administrator
+Location of config file - c:\Program Files\LogFusion
+Remote IP (hostname if IP cannot be identified) - N/A
+Network connections - N/A
+Documentation - https://www.logfusion.ca/
+Description - LogFusion is a realtime log monitoring application, which allows for easy parsing of logs.
+Recommendation - CM cautiously; we were already aware we would be logged, however now we know someone is actively watching the logs, so we have probably been caught.
+*****End of Report*****
+
+*****Privileged User Report*****
+Target: T2: 10.145.117.10
+User - Administrator
+Access Time - 5/8/2024 12:12 PM
+Access Method - Local
+Privileges - Administrators have complete and unrestricted access to the computer/domain. This administrator is currently using the GUI and has a real-time log monitoring program running.
+Activity - This administrator is currently using the GUI and has a real-time log monitoring program running.
+Description - This administrator is currently using the GUI and has a real-time log monitoring program running.
+Recommendation - CM cautiously; the admin is actively using a log monitoring software, increasing our chances of getting caught.
+*****End of Report*****
+
+------------------------X
+=========================
+
+=========================
+T3: 10.145.117.16
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  8 13:40
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRYPTO_KEY_USER msg=audit(1715175687.558:2762): pid=12704 uid=0 auid=1003 ses=45 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:36:9d:6c:db:57:c1:44:08:09:65:e7:ad:e2:6f:af:a7:90:cf:d2:0b:d2:98:f6:d9:59:f6:07:fe:b0:17:ef:c0 direction=? spid=12720 suid=1003  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'UID="root" AUID="student3" SUID="student3"
+type=USER_ACCT msg=audit(1715175692.813:2763): pid=12753 uid=1014 auid=1014 ses=37 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/3 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715175692.814:2764): pid=12753 uid=1014 auid=1014 ses=37 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/3 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715175692.814:2765): pid=12753 uid=0 auid=1014 ses=37 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/3 res=success'UID="root" AUID="student14"
+type=USER_START msg=audit(1715175692.816:2766): pid=12753 uid=0 auid=1014 ses=37 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/3 res=success'UID="root" AUID="student14"
+
+Recommendation - SELinux is enabled and in  permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T3: 10.145.117.16/192.169.117.198
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+------------------------X
+=========================
+
+=========================
+T4: 192.169.117.200
+=========================
+X-----------------------
+NSDB:
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: Process Accounting PID: UNK PPID: UNK User: root
+  Provide location of configuration file and its abnormal or irregular contents - /var/account/pacct
+  Provide hostname or IP of where logs are being sent - N/A
+  Provide any network connections opened/established by abnormal logging - N/A
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - https://www.oreilly.com/library/view/practical-unix-and/0596003234/ch21s02.html
+Logs every single command run by every single user
+  Recommendation - CM; they will be able to see what we are running, which for the most part is just basic commands. Not doing anything on this box besides collection.
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  8 13:51
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=SERVICE_STOP msg=audit(1715176393.899:4797): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=dnf-makecache comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'UID="root" AUID="unset"
+type=USER_ACCT msg=audit(1715176427.065:4798): pid=40460 uid=1014 auid=1014 ses=39 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/1 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715176427.066:4799): pid=40460 uid=1014 auid=1014 ses=39 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/1 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715176427.066:4800): pid=40460 uid=0 auid=1014 ses=39 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/1 res=success'UID="root" AUID="student14"
+type=USER_START msg=audit(1715176427.067:4801): pid=40460 uid=0 auid=1014 ses=39 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/1 res=success'UID="root" AUID="student14"
+
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+
+MC:
+
+*****Abnormal Logging Report*****
+Target: T4: 192.169.117.200
+Name - Process Accounting
+PID - UNK
+PPID - UNK
+User - root
+Location of config file - /var/account/pacct
+Remote IP (hostname if IP cannot be identified) -
+Network connections - N/A
+Documentation - https://www.oreilly.com/library/view/practical-unix-and/0596003234/ch21s02.html
+Description - Logs every single command run by every single user
+Recommendation - CM; they will be able to see what we are running, which for the most part is just basic commands. Not doing anything on this box besides collection and survey.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T4: 192.169.117.200
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+------------------------X
+=========================
+
+=========================
+T5: 192.169.117.201
+=========================
+X-----------------------
+NSDB:
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: tcpdump PID: 17751 PPID: 1 User: root
+  Provide location of configuration file and its abnormal or irregular contents - /usr/sbin/tcpdump
+  Provide hostname or IP of where logs are being sent - N/A
+  Provide any network connections opened/established by abnormal logging - N/A
+  Provide brief description of the abnormal, irregular or remote logging - tcpdump running on the loopback interface that is writing to /var/log/tcpdump.pcap
+  Open source documentation if available. - https://www.tcpdump.org/
+Recommendation - CM; there is a tcpdump running on the loopback interface that is writing to /var/log/tcpdump.pcap. Doesnt really affect our mission since it is running on their loopback interface.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 1221 PPID: 1 User: root
+  Provide location of configuration file and its abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.50.111.4
+  Provide any network connections opened/established by abnormal logging - didnt show in netstat
+  Provide brief description of the abnormal, irregular or remote logging - Rsyslog is enabled with remote logging. It is sending all logs to the 10.50.111.4 using port 514
+  Documentation - https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box.
+
+
+
+MC:
+
+*****Abnormal Logging Report*****
+Target: T5: 192.169.117.201
+Name - tcpdump
+PID - 17751
+PPID - 1
+User - root
+Location of config file - /usr/sbin/tcpdump
+Remote IP (hostname if IP cannot be identified) - N/A
+Network connections - N/A
+Documentation - https://www.tcpdump.org/
+Description - tcpdump running on the loopback interface that is writing to /var/log/tcpdump.pcap
+Recommendation - CM; there is a tcpdump running on the loopback interface that is writing to /var/log/tcpdump.pcap. Doesnt really affect our mission since it is running on their loopback interface.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T5: 192.169.117.201
+Name - rsyslog
+PID - 1221
+PPID - 1
+User - root
+Location of config file -
+Remote IP (hostname if IP cannot be identified) - 10.50.111.4
+Network connections - didnt show in netstat
+Documentation -https://www.rsyslog.com/doc/index.html
+Description - rsyslog is enabled with remote logging. It is sending all logs to the 10.50.111.4 using port 514
+Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box that we should be concerned with getting logged.
+*****End of Report*****
+
+-----------------------X
+=========================
+
+=========================
+T6: 192.169.117.202
+=========================
+X-----------------------
+All Clear
+
+-----------------------X
+=========================
+
+=========================
+T7: 192.169.117.203
+=========================
+X-----------------------
+NSDB:
+
+  Name and version of the product - Kaspersky ver 21.17.7.539
+  Installation folder - C:\Program Files (x86)\Kaspersky Lab
+  Directory location of associated logs - N/A
+  Timestamp of all associated log files - N/A
+  Cloud based?; no
+  Can we read the logs?; no
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    If No, why? - No log file
+  Recommendation - CM; not putting any tools or doing any effects to this box. Also appears that Kaspersky is only installed, but not actually running.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T7: 192.169.117.203
+Name - Kaspersky
+Version - 21.17.7.539
+(WIN) Primary registry key - HKEY_LOCAL_MACHINE\software\KasperskyLab
+(NIX) Config file or install directory - N/A
+Documentation - https://usa.kaspersky.com/
+Recommendation - CM; not putting any tools or doing any effects to this box. Also appears that Kaspersky is only installed, but not actually running.
+*****End of Report*****
+
+-----------------------X
+=========================
