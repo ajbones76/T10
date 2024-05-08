@@ -1,0 +1,319 @@
+Date: 2024-05-07
+Start time: 0900
+End time: 1500
+------------------------
+=========================
+T1: 10.50.24.145
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May 7 13:05
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRED_DISP msg=audit(1715087339.544:5895): pid=17514 uid=0 auid=1009 ses=87 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/7 res=success'UID="root" AUID="student9"
+type=USER_ACCT msg=audit(1715087351.857:5896): pid=17519 uid=1014 auid=1014 ses=85 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715087351.857:5897): pid=17519 uid=1014 auid=1014 ses=85 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/6 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715087351.857:5898): pid=17519 uid=0 auid=1014 ses=85 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="root" AUID="student14"
+type=USER_START msg=audit(1715087351.859:5899): pid=17519 uid=0 auid=1014 ses=85 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="root" AUID="student14"
+
+Recommendation - SELinux is enabled and in  enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 5226 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.49.1.4
+  Provide any network connections opened/established by abnormal logging - tcp SYN-SENT 10.145.117.86:52218     10.49.1.4:514
+  Provide brief description of the abnormal, irregular or remote logging - Rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+  Documentation - https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T1: 10.50.24.145
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T1: 10.50.24.145
+Name - rsyslog
+PID - 5226
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.49.1.4
+Network connections - tcp SYN-SENT 10.145.117.86:52218   10.49.1.4:514
+Documentation -https://www.rsyslog.com/doc/index.html
+Description - rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box.
+*****End of Report*****
+
+------------------------X
+=========================
+
+=========================
+T2: 10.145.117.10
+=========================
+X-----------------------
+NSDB:
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: LogFusion.exe PID: 7748 PPID: 4812 User: Administrator
+  Provide location of configuration file and it's abnormal or irregular contents - c:\Program Files\LogFusion
+  Provide hostname or IP of where logs are being sent - N/A
+  Provide any network connections opened/established by abnormal logging - N/A
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - LogFusion is a realtime log monitoring application, which allows for easy parsing of logs.
+  https://www.logfusion.ca/
+  Recommendation - CM cautiously; we were already aware we would be logged, however now we know someone is actively watching the logs, so we have probably been caught.
+
+Privileged Users
+  Target - Where did you see this user? - T2: 10.145.117.10
+  User - What is their username? - Administrator
+  Access time - How long have they been on? - 5/7/2024 12:47 PM; ~1 hour
+  Access method - Did they access locally? Remotely? - Local
+    Provide all relevant details - Active console session, explorer.exe is running
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain. This administrator is currently using the GUI and has a real-time log monitoring program running.
+  Activity - What are they currently doing? - This administrator is currently using the GUI and has a real-time log monitoring program running.
+  Recommendation - CM cautiously; the admin is actively using a log monitoring software, increasing our chances of getting caught.
+
+
+MC:
+
+*****Abnormal Logging Report*****
+Target: T2: 10.145.117.10
+Name - LogFusion.exe
+PID - 7748
+PPID - 4812
+User - Administrator
+Location of config file - c:\Program Files\LogFusion
+Remote IP (hostname if IP cannot be identified) - N/A
+Network connections - N/A
+Documentation - https://www.logfusion.ca/
+Description - LogFusion is a realtime log monitoring application, which allows for easy parsing of logs.
+Recommendation - CM cautiously; we were already aware we would be logged, however now we know someone is actively watching the logs, so we have probably been caught.
+*****End of Report*****
+
+*****Privileged User Report*****
+Target: T2: 10.145.117.10
+User - Administrator
+Access Time - 5/7/2024 12:47 PM
+Access Method - Local
+Privileges - Administrators have complete and unrestricted access to the computer/domain. This administrator is currently using the GUI and has a real-time log monitoring program running.
+Activity - This administrator is currently using the GUI and has a real-time log monitoring program running.
+Description - This administrator is currently using the GUI and has a real-time log monitoring program running.
+Recommendation - CM cautiously; the admin is actively using a log monitoring software, increasing our chances of getting caught.
+*****End of Report*****
+
+------------------------X
+=========================
+
+=========================
+T3: 10.145.117.16/192.169.117.198
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  6 13:43
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=USER_END msg=audit(1715092658.693:1193): pid=10050 uid=0 auid=1011 ses=19 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_close grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/8 res=success'UID="root" AUID="student11"
+type=CRED_DISP msg=audit(1715092658.694:1194): pid=10050 uid=0 auid=1011 ses=19 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/8 res=success'UID="root" AUID="student11"
+type=USER_ACCT msg=audit(1715092659.621:1195): pid=10053 uid=1014 auid=1014 ses=15 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715092659.621:1196): pid=10053 uid=1014 auid=1014 ses=15 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/6 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715092659.621:1197): pid=10053 uid=0 auid=1014 ses=15 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="root" AUID="student14"
+
+Recommendation - SELinux is enabled and in  permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T3: 10.145.117.16/192.169.117.198
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+------------------------X
+=========================
+
+=========================
+T4: 192.169.117.200
+=========================
+X-----------------------
+NSDB:
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: Process Accounting PID: UNK PPID: UNK User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /var/account/pacct
+  Provide hostname or IP of where logs are being sent - N/A
+  Provide any network connections opened/established by abnormal logging - N/A
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - https://www.oreilly.com/library/view/practical-unix-and/0596003234/ch21s02.html
+Logs every single command run by every single user
+  Recommendation - CM; they will be able to see what we are running, which for the most part is just basic commands. Not doing anything on this box besides collection.
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  7 14:49
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRED_DISP msg=audit(1715093479.996:1400): pid=35218 uid=0 auid=1005 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/7 res=success'UID="root" AUID="student5"
+type=USER_ACCT msg=audit(1715093492.226:1401): pid=35224 uid=1014 auid=1014 ses=15 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715093492.227:1402): pid=35224 uid=1014 auid=1014 ses=15 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/6 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715093492.227:1403): pid=35224 uid=0 auid=1014 ses=15 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="root" AUID="student14"
+type=USER_START msg=audit(1715093492.228:1404): pid=35224 uid=0 auid=1014 ses=15 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="root" AUID="student14"
+
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+
+MC:
+
+*****Abnormal Logging Report*****
+Target: T4: 192.169.117.200
+Name - Process Accounting
+PID - UNK
+PPID - UNK
+User - root
+Location of config file - /var/account/pacct
+Remote IP (hostname if IP cannot be identified) -
+Network connections - N/A
+Documentation - https://www.oreilly.com/library/view/practical-unix-and/0596003234/ch21s02.html
+Description - Logs every single command run by every single user
+Recommendation - CM; they will be able to see what we are running, which for the most part is just basic commands. Not doing anything on this box besides collection.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T4: 192.169.117.200
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+------------------------X
+=========================
+
+=========================
+T5: 192.169.117.201
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - tcpdump ver 4.9.3
+  Installation folder - /usr/sbin/tcpdump
+  Directory location of associated logs - N/A
+  Timestamp of all associated log files - May  7 15:49 tcpdump.pcap
+  Cloud based?; no
+  Can we read the logs?; no
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    If No, why?
+        Doesn't have logs
+  Recommendation - CM very cautiously; there is a tcpdump running on the loopback interface that is writing to /var/log/tcpdump.pcap. Do what we need to do and get off the box.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T5: 192.169.117.201
+Name - tcpdump
+Version - 4.9.3
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /usr/sbin/tcpdump
+Documentation - https://www.tcpdump.org/
+Recommendation - CM very cautiously; there is a tcpdump running on the loopback interface that is writing to /var/log/tcpdump.pcap. Do what we need to
+do and get off the box.
+*****End of Report*****
+
+-----------------------X
+=========================
+
+=========================
+T6: 129.168.117.54
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  7 16:37
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRED_DISP msg=audit(1715099917.239:1768): pid=192180 uid=0 auid=1003 ses=15 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/2 res=success'UID="root" AUID="student3"
+type=USER_ACCT msg=audit(1715100002.286:1769): pid=192259 uid=1014 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/4 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715100002.287:1770): pid=192259 uid=1014 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/4 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715100002.287:1771): pid=192259 uid=0 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/4 res=success'UID="root" AUID="student14"
+type=USER_START msg=audit(1715100002.288:1772): pid=192259 uid=0 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/4 res=success'UID="root" AUID="student14"
+Recommendation - SELinux is enabled and in  permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+Security Products
+  Name and version of the product - Linux Malware Detect v1.6.5
+  Installation folder - /root/linux-malware-detect/
+  Directory location of associated logs - /root/linux-malware-detect/report.txt
+  Timestamp of all associated log files - May  7 12:57
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    maldet(186423): {scan} file list completed in 0s, found 51 files...
+maldet(186423): {scan} scan of / (51 files) in progress...
+maldet(186423): {scan} 51/51 files scanned: 0 hits 0 cleaned
+maldet(186423): {scan} scan completed on /: files 51, malware hits 0, cleaned hits 0, time 2s
+maldet(186423): {scan} scan report saved, to view run: maldet --report 240507-1257.186423
+  Recommendation - CM; do not implant or place anything on this box in future ops to prevent loss of tools.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T6: 129.168.117.54
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T6: 129.168.117.54
+Name - Linux Malware Detect
+Version - v1.6.5
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /root/linux-malware-detect/
+Documentation - https://github.com/rfxn/linux-malware-detect
+Recommendation - CM; do not implant or place anything on this box in future ops to prevent loss of tools.
+*****End of Report*****
+
+-----------------------X
+=========================
