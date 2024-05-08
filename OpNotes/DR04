@@ -1,0 +1,301 @@
+DR04: Failed
+Didnt report root while exiting T1
+Didnt request Permission to remove netsh rule
+Didnt remove netsh rule
+Didnt report SSHD malware
+Did not properly time stamp add rules on T2 and T5
+Did not adhere to specific guidance by requesting MC permission for download per MP
+Did not have all termscreen (Had 7 needed 8[7 targets + 1 C2])
+Notes:
+Did not report interface to analyst on T7
+
+
+Date:2024-05-08
+Start time: 0900
+End time: 1500
+------------------------
+SOM
+------------------------
+> T1: 10.50.24.145
+-> T2: 10.145.117.10
+--> T3: 10.145.117.16
+---> T4: 192.169.117.200
+----> T5: 192.169.117.201
+-----> T6: 192.169.117.202
+----> T7: 192.169.117.203
+------------------------
+Creds
+------------------------
+student14
+
+password14
+
+Administrator::Admin1234
+=========================
+T1: 10.50.24.145
+=========================
+X-----------------------
+2024-05-08 09:04:35-- connection to T1; start vetting
+ssh -MS /tmp/T1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@10.50.24.145 -p 22011
+password14
+
+fa:16:3e:27:5e:f5
+10.50.24.145/10.145.117.86
+2024-05-08 09:06:00-- date
+Wed May  8 13:05:58 UTC 2024
+Wed May  8 13:05:58 UTC 2024
+Linux dryruns-ext-rtr.novalocal 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+-rw-rw-r--.  1 root   utmp     48768 May  8 13:05 wtmp
+-rw-rw-r--.  1 root   utmp    299008 May  8 13:05 lastlog
+-rw-------.  1 root   root    169805 May  8 13:07 messages
+-rw-------.  1 root   root    684708 May  8 13:07 secure
+/var/log/audit/audit.log
+2024-05-08 09:16:39-- vetting complete; redirecting
+2024-05-08 14:21:38-- start exit vetting
+2024-05-08 14:22:52-- exit vetting complete; disconnect from T1
+
+Logged In: wtmp, utmp, lastlog, messages, secure, audit.log, rsyslog
+------------------------X
+=========================
+
+=========================
+T2: 10.145.117.10
+=========================
+X-----------------------
+2024-05-08 09:17:21-- connection to T2; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2002:10.145.117.10:22012 dummy
+ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2002
+password14
+
+FA-16-3E-81-48-A3
+10.145.117.10
+2024-05-08 09:19:01-- date
+Wed 05/08/2024
+01:18 PM
+administrator         console             1  Active      none   5/8/2024 12:12 PM
+C:\Program Files\LogFusion\LogFusion.exe                                                                   4472
+    4848
+c:\windows\temp\credenctials.txt
+2024-05-08 09:29:58-- vetting complete; netsh setup, redirecting
+
+
+netsh interface portproxy show all
+netsh interface portproxy add v4tov4 listenport=31014 listenaddress=10.145.117.10 connectport=22012 connectaddress=10.145.117.16 protocol=tcp
+netsh interface portproxy show all
+
+netsh interface portproxy delete v4tov4 listenport=31014 listenaddress=10.145.117.10
+
+2024-05-08 14:18:21-- start exit vetting
+2024-05-08 14:20:34-- exit vetting complete; disconnect
+
+Logged In: Security
+------------------------X
+=========================
+
+=========================
+T3: 10.145.117.16
+=========================
+X-----------------------
+2024-05-08 09:35:47-- connection to T3; start vetting
+ssh -S /tmp/T2 dummy -O forward -L 2003:10.145.117.10:31014
+ssh -MS /tmp/T3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2003
+password14
+
+eth0:
+fa:16:3e:c7:0e:7b
+10.145.117.16
+eth1:
+fa:16:3e:c0:9d:1d
+192.169.117.198
+
+2024-05-08 09:37:49-- date
+Wed May  8 13:37:43 UTC 2024
+Wed May  8 13:37:43 UTC 2024
+Linux dryruns-int-rtr2.novalocal 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+-rw-rw-r--.  1 root   utmp    17664 May  8 13:38 wtmp
+-rw-rw-r--.  1 root   utmp   299008 May  8 13:38 lastlog
+-rw-------.  1 root   root    87521 May  8 13:38 messages
+-rw-------.  1 root   root   122258 May  8 13:38 secure
+/var/log/audit/audit.log
+2024-05-08 09:45:26-- vetting complete; redirecting
+2024-05-08 14:16:30-- start exit vetting
+2024-05-08 14:17:46-- exit vetting complete; disconnect from T3
+
+
+Logged In: wtmp, utmp, lastlog, messages, secure, audit.log
+------------------------X
+=========================
+
+=========================
+T4: 192.169.117.200
+=========================
+X-----------------------
+2024-05-08 09:46:38-- connection to T4; start vetting
+ssh -S /tmp/T3 -O forward -L 127.0.0.1:2004:192.169.117.200:22013 dummy
+ssh -MS /tmp/T4 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2004
+password14
+
+fa:16:3e:31:97:97
+192.169.117.200
+2024-05-08 09:47:56-- date
+Wed May  8 13:47:53 UTC 2024
+Wed May  8 13:47:53 UTC 2024
+Linux dryruns-admin2.novalocal 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+/nopasswordanditslocked
+/var/account/pacct
+-rw-rw-r--.  1 root   utmp    20352 May  8 13:49 wtmp
+-rw-rw-r--.  1 root   utmp   299008 May  8 13:49 lastlog
+-rw-------.  1 root   root   227103 May  8 13:49 secure
+-rw-------.  1 root   root    85068 May  8 13:49 messages
+/var/log/audit/audit.log
+SELinux status:                 enabled
+Current mode:                   enforcing
+Max kernel policy version:      33
+
+2024-05-08 09:57:22-- vetting complete; starting survey
+2024-05-08 09:59:36-- survey complete; redirecting
+
+2024-05-08 14:14:12-- start exit vetting
+2024-05-08 14:15:50-- exit vetting complete; disconnect from T4
+
+
+Logged In: wtmp, utmp, lastlog, secure, messages, pacct, audit.log
+------------------------X
+=========================
+
+=========================
+T5: 192.169.117.201
+=========================
+X-----------------------
+2024-05-08 10:01:25-- connection to T5; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:2005:192.169.117.201:22013 dummy
+ssh -MS /tmp/T5 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2005
+password14
+
+ens3:
+fa:16:3e:2e:e0:09
+192.169.117.201
+ens4:
+fa:16:3e:fe:1c:9f
+
+2024-05-08 10:06:38-- date
+Wed May  8 14:06:36 UTC 2024
+Wed May  8 14:06:36 UTC 2024
+Linux dryruns-targeta 4.15.0-212-generic #223-Ubuntu SMP Tue May 23 13:09:22 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+/maytheforcebewithyou.txt
+/etc/file4.txt
+/tmp/file3.txt
+/root/file2.txt
+/home/file1.txt
+4 S root     17751     1  0  80   0 -  5700 -      Apr29 ?        00:00:00   tcpdump -i lo -w /var/log/tcpdump.pcap
+-rw-rw-r--   1 root      utmp              13056 May  8 14:01 wtmp
+-rw-rw-r--   1 root      utmp             299008 May  8 14:01 lastlog
+-rw-r-----   1 syslog    adm                4879 May  8 14:01 syslog
+-rw-r--r--   1 root      root             593920 May  8 14:10 tcpdump.pcap
+-rw-r-----   1 syslog    adm             5867112 May  8 14:10 auth.log
+/var/log/landscape/sysinfo.log
+/etc/rsyslog.d/50-default.conf
+*.* @@10.50.111.4:514
+
+2024-05-08 10:38:32-- vetting complete; starting survey
+2024-05-08 10:46:12-- survey complete; collecting
+10911a19aa67bcf40659269d190d2d8b  /maytheforcebewithyou.txt - remote 4k
+10911a19aa67bcf40659269d190d2d8b  T5/maytheforcebewithyou.txt - local 4k
+9065c9fb7d8c03a62ccbbceae9fa8e48  /etc/file4.txt - remote 4k
+9065c9fb7d8c03a62ccbbceae9fa8e48  T5/file4.txt - local 4k
+d2d64eac679170604c267e26d94d0e44  /tmp/file3.txt - remote 4k
+d2d64eac679170604c267e26d94d0e44  T5/file3.txt - local 4k
+1ee26f0a1c4c9e73e7cd92f731fd8881  /root/file2.txt - remote 4k
+1ee26f0a1c4c9e73e7cd92f731fd8881  T5/file2.txt - local 4k
+5e8481d620702f0f02c11548e9ff7b62  /home/file1.txt - remote 4k
+5e8481d620702f0f02c11548e9ff7b62  T5/file1.txt - local 4k
+
+2024-05-08 10:56:09-- collection complete; setup iptables
+2024-05-08 11:00:05-- redirecting
+
+sudo iptables -L -t nat -n
+iptables -t nat -A PREROUTING -p tcp --dport 22814 -j DNAT --to-destination 192.169.117.202:22013
+sudo iptables -L -t nat -n
+sudo sysctl net.ipv4.ip_forward
+sudo iptables -t nat -D PREROUTING -p tcp --dport 22814 -j DNAT --to-destination 192.169.117.202:22013
+
+2024-05-08 12:54:03-- start exit vetting
+2024-05-08 12:54:44-- exit vetting complete; disconnect
+
+Logged In: wtmp, lastlog, syslog, auth.log, rsyslog, utmp
+-----------------------X
+=========================
+
+=========================
+T6: ----->192.169.117.202
+=========================
+X-----------------------
+2024-05-08 11:12:45-- connection to T6; start vetting
+ssh -S /tmp/T4 -O forward -L 22814:192.169.117.201:22814 dummy
+ssh -MS /tmp/T6 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 22814
+password14
+
+fa:16:3e:60:50:3d
+192.169.117.202
+2024-05-08 11:14:24-- date
+Wed May  8 15:14:21 UTC 2024
+Wed May  8 15:14:21 UTC 2024
+Linux dryruns-targetb 4.9.0-5-amd64 #1 SMP Debian 4.9.65-3+deb9u2 (2018-01-04) x86_64 GNU/Linux
+
+/root/nuke.jpeg
+/root/warship.jpeg
+/root/picz
+/root/Downloads
+-rw-r-----  1 root              adm   31539 May  8 15:12 daemon.log
+-rw-rw-r--  1 root              utmp   1920 May  8 15:12 wtmp
+-rw-rw-r--  1 root              utmp 299008 May  8 15:12 lastlog
+-rw-r-----  1 root              adm   15478 May  8 15:17 syslog
+-rw-r-----  1 root              adm   69365 May  8 15:18 auth.log
+
+2024-05-08 11:26:08-- vetting complete; start survey
+2024-05-08 11:29:39-- survey complete; start collect
+
+d71bb418fc96eab5167550c72e7c1a5b  /root/nuke.jpeg - remote 7345
+d71bb418fc96eab5167550c72e7c1a5b  T6/nuke.jpeg - local 7345
+82fd718f7f1b94ee754e11a587472cfe  /root/warship.jpeg - remote 8357
+82fd718f7f1b94ee754e11a587472cfe  T6/warship.jpeg - local 8357
+ebce1e84d025396140a8e7d00ed8137e  /root/Downloads/spy.png - remote 13142
+ebce1e84d025396140a8e7d00ed8137e  T6/spy.png - local 13142
+be27c817d6182c31cc0d27335e0bcea9  /root/Downloads/ufo.jpeg - remote 4978
+be27c817d6182c31cc0d27335e0bcea9  T6/ufo.jpeg - local 4978
+ca5d11a894e3c3ff1c0c576878c360b8  /root/picz/powerplant.jpeg - remote 6251
+ca5d11a894e3c3ff1c0c576878c360b8  T6/powerplant.jpeg - local 6251
+591ce02f1e3cd546b0ec8a0bf5ac647c  /root/picz/shipyard.png - remote 15009
+591ce02f1e3cd546b0ec8a0bf5ac647c  T6/shipyard.png - local 15009
+
+2024-05-08 11:49:00-- collection complete; start exit vetting
+2024-05-08 11:56:44-- exit vetting complete; disconnect from T6
+Logged In: wtmp, utmp, lastlog, messages, syslog, auth.log, daemon.log
+-----------------------X
+=========================
+Back out of T6,T5; T4->T7
+=========================
+T7: ---->192.169.117.203
+=========================
+X-----------------------
+2024-05-08 13:03:56-- connection to T7; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:7777:192.169.117.203:5985 dummy
+evil-winrm -i 127.0.0.1 -u Administrator -P 7777
+forward tunnel to a windows box at port 5985
+password14
+Administrator::Admin1234
+
+2024-05-08 13:04:30-- date
+Wednesday, May 8, 2024 5:04:27 PM
+HKEY_LOCAL_MACHINE\software\KasperskyLab
+2024-05-08 13:23:32-- vetting complete; start survey
+
+2024-05-08 14:01:47-- survey complete; start exit vetting
+2024-05-08 14:12:46-- exit vetting complete; disconnect from T7
+
+Logged In: Security, Powershell, Powershell Operational, WinRM Operational
+-----------------------X
+=========================
