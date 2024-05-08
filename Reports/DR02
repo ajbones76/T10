@@ -1,0 +1,345 @@
+T1: 10.50.24.145
+=======================================================================================================================
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  6 13:06
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+  type=CRED_DISP msg=audit(1715001046.773:3623): pid=14031 uid=0 auid=1001 ses=67 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/11 res=success'UID="root" AUID="student1"
+type=USER_ACCT msg=audit(1715001053.219:3624): pid=14037 uid=1014 auid=1014 ses=55 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/5 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715001053.219:3625): pid=14037 uid=1014 auid=1014 ses=55 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/5 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715001053.219:3626): pid=14037 uid=0 auid=1014 ses=55 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/5 res=success'UID="root" AUID="student14"
+type=USER_START msg=audit(1715001053.221:3627): pid=14037 uid=0 auid=1014 ses=55 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/5 res=success'UID="root" AUID="student14"
+
+  Recommendation - SELinux is enabled and in  permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 5226 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.49.1.4
+  Provide any network connections opened/established by abnormal logging - tcp SYN-SENT 10.145.117.86:57362     10.49.1.4:514
+  Provide brief description of the abnormal, irregular or remote logging - Rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+  Documentation - https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T1: 10.50.24.145
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T1: 10.50.24.145
+Name - rsyslog
+PID - 5226
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.49.1.4
+Network connections - tcp SYN-SENT 10.145.117.86:57362   10.49.1.4:514
+Documentation -https://www.rsyslog.com/doc/index.html
+Description - rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box.
+*****End of Report*****
+
+
+
+T2: 10.145.117.11
+======================================================================================================================
+
+NSDB:
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 40384 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.49.1.4
+  Provide any network connections opened/established by abnormal logging - tcp SYN-SENT 10.145.117.11:36180 10.49.1.4:514
+  Provide brief description of the abnormal, irregular or remote logging - Rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+  Documentation - https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box.
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  6 13:25
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+  type=CRYPTO_KEY_USER msg=audit(1715002313.799:3206): pid=47436 uid=0 auid=1003 ses=50 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:36:28:32:48:f0:4a:95:78:3b:7b:18:bc:31:c0:04:8e:f1:ae:28:6a:72:3d:a5:7a:5c:9a:b8:45:92:a8:f2:08 direction=? spid=47457 suid=1003  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'UID="root" AUID="student3" SUID="student3"
+type=USER_ACCT msg=audit(1715002317.216:3207): pid=47540 uid=1014 auid=1014 ses=36 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/2 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715002317.216:3208): pid=47540 uid=1014 auid=1014 ses=36 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/2 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715002317.216:3209): pid=47540 uid=1014 auid=1014 ses=36 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/2 res=success'UID="student14" AUID="student14"
+type=USER_START msg=audit(1715002317.218:3210): pid=47540 uid=1014 auid=1014 ses=36 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/2 res=success'UID="student14" AUID="student14"
+
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+
+MC:
+
+*****Abnormal Logging Report*****
+Target: T2: 10.145.117.11
+Name - rsyslog
+PID - 40384
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.49.1.4
+Network connections - tcp SYN-SENT 10.145.117.11:36180 10.49.1.4:514
+Documentation -https://www.rsyslog.com/doc/index.html
+Description - rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T2: 10.145.117.11
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+
+T3: 10.145.117.15
+======================================================================================================================
+
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  6 13:43
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRYPTO_KEY_USER msg=audit(1715003138.274:2834): pid=20497 uid=0 auid=1010 ses=43 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:a5:ea:dc:48:1c:69:82:6b:b1:7a:20:27:5d:92:92:32:1d:e6:5f:48:95:e7:44:ba:ce:70:56:6e:b8:c3:df:a8 direction=? spid=20514 suid=1010  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'UID="root" AUID="student10" SUID="student10"
+type=USER_ACCT msg=audit(1715003170.640:2835): pid=20544 uid=1014 auid=1014 ses=37 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/3 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715003170.640:2836): pid=20544 uid=1014 auid=1014 ses=37 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/3 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715003170.640:2837): pid=20544 uid=0 auid=1014 ses=37 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/3 res=success'UID="root" AUID="student14"
+type=USER_START msg=audit(1715003170.642:2838): pid=20544 uid=0 auid=1014 ses=37 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/3 res=success'UID="root" AUID="student14"
+
+  Recommendation - SELinux is enabled and in  permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T3: 10.145.117.15/192.168.117.98
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in permissive mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+
+T4: 192.168.117.104
+======================================================================================================================
+
+NSDB:
+
+Malware
+  Provide process name/options, PID, Parent ID, user, and hash - Reptile, PID: UNK/Hidden, PPID:UNK/Hidden
+  Hash: 83a631f611b613ac49574f723a19a621
+  Provide file type of malware binary and supporting files -
+/Reptile/scripts/installer.sh: Bourne-Again shell script, ASCII text executable
+  Provide any associated logs generated by malware - N/A
+  Provide location and lines of any persistence mechanisms - crontabs - /Reptile/reptile_cmd tcp 666 hide ; backdoor
+  Provide full path of malware files or support files - /Reptile
+  Provide any network connections opened/established by malware - UNK/Hidden
+  Provide any identifiable text -
+# Backdoor configuration
+#
+MAGIC_VALUE="hax0r"
+PASSWORD="s3cr3t"
+SRCPORT=666
+
+  Provide any/all modules/.dlls/etc loaded by malware - N/A
+  Provide brief description of malware purpose/actions and capabilities - Reptile is a Linux kernel mode rootkit malware that provides a concealment feature for files, directories, processes, and network communications. Can give root to unprivileged users, hide itself, hide persistence, and provide a backdoor.
+  Provide link to open source documentation if available - https://github.com/f0rb1dd3n/Reptile.git
+  Recommendation - CM; Proceed cautiously; be weary of the rootkit in event of us doing any effects on box, be weary of anyone who may gain access through rootkit. Overall, does not currently impact us negatively; could be useful for future ops.
+
+
+MC:
+
+*****Malware Report*****
+Target: T4: 192.168.117.104
+Name - reptile
+Hash - 83a631f611b613ac49574f723a19a621
+PID - UNK/Hidden
+PPID - UNK/Hidden
+User - UNK/Hidden
+File type - Bourne-Again shell script
+Supporting files - /Reptile directory
+/Reptile/configs/defconfig
+/Reptile/kernel/backdoor.c
+Associated Logs - N/A
+Persistence - backdoor, crontabs
+Documentation - https://github.com/f0rb1dd3n/Reptile.git
+Description - Reptile is a Linux kernel mode rootkit malware that provides a concealment feature for files, directories, processes, and network communications. Can give root to unprivileged users, hide itself, hide persistence, and provide a backdoor.
+Recommendation - CM; Proceed cautiously; be weary of the rootkit in event of us doing any effects on box, be weary of anyone who may gain access through rootkit. Overall, does not currently impact us negatively; could be useful for future ops.
+*****End of Report*****
+
+
+
+
+T5: 192.168.117.105
+======================================================================================================================
+
+NSDB:
+
+Security Products
+  Name and version of the product - Wireshark ver 4.2.4
+  Installation folder - C:\Program Files\Wireshark
+  Directory location of associated logs - N/A
+  Timestamp of all associated log files - N/A
+  Cloud based?; no
+  Can we read the logs?; no
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    If No, why? - Doesn't have logs, but we do have access to the pcaps saved on this box
+  Recommendation - Keep an eye on wireshark and proceed very cautious, especially if planning on running any actions. Recommend CM; conduct survey and collection and get off box.
+
+
+Privileged Users
+  Target - Where did you see this user? - T5: 192.168.117.105
+  User - What is their username? - Administrator
+  Access time - How long have they been on? - ~3.5 hours
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - Active console session, explorer.exe is running
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - looking at dumpcap.exe in Wireshark
+  Recommendation - Keep an eye on the administrator user and be very cautious, especially if planning on running any actions. Recommend CM; conduct survey and collection and get off box.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T5: 192.168.117.105
+Name - Wireshark
+Version - 4.2.4
+(WIN) Primary registry key - C:\Program Files\Wireshark
+(NIX) Config file or install directory - N/A
+Documentation - https://www.wireshark.org/
+Recommendation - Keep an eye on wireshark and proceed very cautious, especially if planning on running any actions. Recommend CM; conduct survey and collection and get off box.
+*****End of Report*****
+
+*****Privileged User Report*****
+Target: T5: 192.168.117.105
+User - Administrator
+Access Time - 5/6/2024 12:22 PM
+Access Method - local
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - looking at dumpcap.exe in Wireshark
+Description - Administrators have complete and unrestricted access to the computer/domain. This administrator is currently using the GUI and is on Wireshark.
+Recommendation - Keep an eye on the administrator user and be very cautious, especially if planning on running any actions. Recommend CM; conduct survey and collection and get off box.
+*****End of Report*****
+
+
+T7: 192.168.117.107
+======================================================================================================================
+
+NSDB:
+
+Malware
+  Provide process name/options, PID, Parent ID, user, and hash
+  Name:  PID:  PPID:  User:
+  Hash:
+  Provide file type of malware binary and supporting files -
+  Provide any associated logs generated by malware -
+  Provide location and lines of any persistence mechanisms -
+  Provide full path of malware files or support files -
+  Provide any network connections opened/established by malware -
+  Provide any identifiable text -
+  Provide any/all modules/.dlls/etc loaded by malware -
+  Provide brief description of malware purpose/actions and capabilities -
+  Provide link to open source documentation if available -
+  Recommendation -
+
+Malware
+  Provide process name/options, PID, Parent ID, user, and hash
+  Name:  PID:  PPID:  User:
+  Hash:
+  Provide file type of malware binary and supporting files -
+  Provide any associated logs generated by malware -
+  Provide location and lines of any persistence mechanisms -
+  Provide full path of malware files or support files -
+  Provide any network connections opened/established by malware -
+  Provide any identifiable text -
+  Provide any/all modules/.dlls/etc loaded by malware -
+  Provide brief description of malware purpose/actions and capabilities -
+  Provide link to open source documentation if available -
+  Recommendation -
+
+Privileged Users
+  Target - Where did you see this user? - T7: 192.168.117.107
+  User - What is their username? -
+  Access time - How long have they been on? -
+  Access method - Did they access locally? Remotely? -
+    Provide all relevant details -
+  Privileges - What are they capable of doing? -
+  Activity - What are they currently doing? -
+  Recommendation -
+
+
+MC:
+
+*****Malware Report*****
+Target: T7: 192.168.117.107
+Name - sfk.exe
+Hash - N/A
+PID - N/A
+PPID - N/A
+User - N/A
+File type - executable
+Supporting files - N/A
+Associated Logs - N/A
+Persistence - Currentversion\run
+Documentation - https://www.spyrix.com/
+Description - keylogger setup in reg run key; however does not appear to be running or on box
+Recommendation - CM; does not interfere
+*****End of Report*****
+
+*****Malware Report*****
+Target: T7: 192.168.117.107
+Name - rvlkl.exe
+Hash - b09c3b6b4eea27786b99038235d4164f
+PID - 9864
+PPID - 4764
+User - Administrator
+File type - executable
+Supporting files - C:\windows\system32\rvlkl.exe
+Associated Logs -
+Persistence - N/A
+Documentation - https://www.logixoft.com/en-us/index
+Description - keylogger
+Recommendation - CM; proceed with caution
+*****End of Report*****
+
+*****Privileged User Report*****
+Target: T7: 192.168.117.107
+User - administrator
+Access Time - 5/6/2024 12:14 PM
+Access Method - GUI/local
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - running a keylogger
+Description - Administrators have complete and unrestricted access to the computer/domain. This administrator is currently using the GUI and is running a keylogger through terminal
+Recommendation - CM carefully; be weary of any effects being done in future
+*****End of Report*****
