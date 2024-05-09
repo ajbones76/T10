@@ -1,0 +1,320 @@
+Date:2024-05-09 
+Start time: 0900
+End time: 1300
+
+------------------------
+SOM
+------------------------
+>T1: 10.50.24.145
+->T2: 10.145.117.11
+-->T3: 10.145.117.15
+--->T4: 192.168.117.203
+-->T5: 10.145.117.16	#On Hold
+--->T6: 192.169.117.200
+--->T7: 192.169.117.204
+--->T8: 192.169.117.205
+--->T9: 192.169.117.206
+--->T10: 192.169.117.207
+------------------------
+Creds
+------------------------
+student14
+
+password14
+=========================
+T1: >T1: 10.50.24.145
+=========================
+X-----------------------
+2024-05-09 09:00:41-- connection to T1; start vetting
+ssh -MS /tmp/T1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@10.50.24.145 -p 22011
+password14
+
+fa:16:3e:27:5e:f5
+10.145.117.86
+IPv6:fe80::f816:3eff:fe27:5ef5
+
+root     tty1     -                Wed14   22:29m  0.00s  0.00s -bash
+PID: 929
+4 S root       52006     929  0  80   0 - 56229 -      May08 tty1     00:00:00     -bash
+
+2024-05-09 09:03:37-- date
+Thu May  9 13:03:35 UTC 2024
+Thu May  9 13:03:35 UTC 2024
+Linux dryruns-ext-rtr.novalocal 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+tcp SYN-SENT 0    1   10.145.117.86:42202                       10.49.1.4:514           users:(("rsyslogd",pid=5226,fd=9))                              
+
+-rw-rw-r--.  1 root   utmp     61056 May  9 13:04 wtmp
+-rw-rw-r--.  1 root   utmp    299008 May  9 13:04 lastlog
+-rw-r--r--.  1 root   root     10618 May  9 13:04 dnf.rpm.log
+-rw-r--r--.  1 root   root    127566 May  9 13:04 dnf.librepo.log
+-rw-r--r--.  1 root   root    257257 May  9 13:04 dnf.log
+-rw-------.  1 root   root    240663 May  9 13:06 messages
+-rw-------.  1 root   root    786359 May  9 13:07 secure
+/var/log/audit/audit.log
+/etc/rsyslog.conf
+*.* @@10.49.1.4:514
+SELinux status:                 enabled
+Current mode:                   enforcing
+
+2024-05-09 09:29:03-- vetting complete
+2024-05-09 09:41:44-- create new temp log file
+times May 7 13:01:01 - May 7 17:08:04
+line 4922 - 5676
+cat /tmp/secure.14 | grep -v "May  7 13:01:01" | grep -v "May  7 13:03:09" | grep -v "May  7 13:03:57" | grep -v "May  7 13:04:05" | grep -v "May  7 13:04:47" | grep -v "May  7 13:05:46" | grep -v "May  7 13:08:01" | grep -v "May  7 13:08:10" | grep -v "May  7 13:09:11" | grep -v "May  7 13:09:26" | grep -v "May  7 17:07:51" | grep -v "May  7 17:07:58" | grep -v "May  7 17:08:04" > /tmp/secure.14.clean
+2024-05-09 10:30:14-- clean secure log
+line 981 - 1259
+[student14@dryruns-ext-rtr ~]$ cat /tmp/messages.14 | grep -v "session 85" | grep -v "Session 85" | grep -v 'systemd\[16280\]' | grep -v session-85 > /tmp/messages.14.clean
+2024-05-09 10:40:06-- clean messages log
+2024-05-09 10:51:06-- files deleted
+
+2024-05-09 10:51:22-- redirecting to T2
+
+2024-05-09 12:16:18-- start exit vetting
+2024-05-09 12:19:51-- exit vetting complete; disconnect from T1
+
+Logged In: rsyslog, audit.log, wtmp, utmp, secure, messages, lastlog
+------------------------X
+=========================
+
+=========================
+T2:  ->T2: 10.145.117.11
+=========================
+X-----------------------
+2024-05-09 10:52:06-- connection to T2; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2002:10.145.117.11:22012 dummy
+ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2002
+password14
+
+fa:16:3e:b2:07:7e
+10.145.117.11
+IPv6:fe80::f816:3eff:feb2:77e
+
+2024-05-09 10:53:30-- date
+Thu May  9 14:53:28 UTC 2024
+Thu May  9 14:53:28 UTC 2024
+Linux dryruns-server1.novalocal 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+4 S root        9005       1  0  80   0 - 19182 -      Apr29 ?        00:00:00   /usr/sbin/sshd -D -oCiphers=aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes256-ctr,aes256-cbc,aes128-gcm@openssh.c
+-rw-rw-r--.  1 root   utmp    29184 May  9 14:53 wtmp
+-rw-rw-r--.  1 root   utmp   299008 May  9 14:53 lastlog
+-rw-------.  1 root   root   203905 May  9 14:55 secure
+-rw-------.  1 root   root   135845 May  9 14:55 messages
+/var/log/audit/audit.log
+/etc/rsyslog.conf
+*.* @@upsidedown:514
+tcp     SYN-SENT   0        1                10.145.117.11:53392           10.49.1.4:514      users:(("rsyslogd",pid=40384,fd=8))                                                                           
+SELinux status:                 enabled
+Current mode:                   enforcing
+
+2024-05-09 11:06:57-- vetting complete; redirecting
+
+2024-05-09 12:13:46-- start exit vetting
+2024-05-09 12:15:28-- exit vetting complete; disconnect from T2
+
+Logged In: rsyslog, audit.log, messages, secure, lastlog, wtmp, utmp
+------------------------X
+=========================
+
+=========================
+T3:  -->T3: 10.145.117.15
+=========================
+X-----------------------
+2024-05-09 11:08:05-- connection to T3; start vetting
+ssh -S /tmp/T2 -O forward -L 127.0.0.1:2003:10.145.117.15:22012 dummy
+ssh -MS /tmp/T3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2003
+password14
+
+eth0:
+fa:16:3e:12:ff:65
+10.145.117.15
+IPv6:fe80::f816:3eff:fe12:ff65
+eth1:
+fa:16:3e:90:b1:a1
+192.168.117.98
+IPv6:fe80::f816:3eff:fe90:b1a1
+
+2024-05-09 11:11:15-- date
+Thu May  9 15:11:13 UTC 2024
+Thu May  9 15:11:13 UTC 2024
+Linux dryruns-int-rtr1.novalocal 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+-rw-rw-r--.  1 root   utmp     33408 May  9 15:08 wtmp
+-rw-rw-r--.  1 root   utmp    299008 May  9 15:08 lastlog
+-rw-------.  1 root   root    102467 May  9 15:11 messages
+-rw-------.  1 root   root   8159761 May  9 15:12 secure
+/var/log/audit/audit.log
+SELinux status:                 enabled
+Current mode:                   enforcing
+
+2024-05-09 11:19:13-- vetting complete; redirecting
+
+2024-05-09 12:10:51-- start exit vetting
+2024-05-09 12:13:02-- exit vetting complete; disconnect from T3
+
+Logged In: wtmp, utmp, lastlog, messages, secure, audit.log
+------------------------X
+=========================
+
+=========================
+T4:  --->T4: 192.169.117.203
+=========================
+X-----------------------
+2024-05-09 11:20:43-- connection to T4; start vetting
+ssh -S /tmp/T3 -O forward -L 127.0.0.1:2004:192.169.117.203:22013 dummy
+ssh -MS /tmp/T4 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2004
+password14
+
+FA-16-3E-A9-D2-2C
+192.169.117.203
+2024-05-09 11:22:01-- date
+Thu 05/09/2024                                                                                                                  
+03:21 PM
+
+administrator         console             1  Active      none   5/9/2024 1:29 PM                                               
+avp.exe                       3124 Services                   0     21,988 K Unknown         NT AUTHORITY\SYSTEM                
+avp.exe                       5200 Services                   0      9,108 K Unknown         NT AUTHORITY\SYSTEM                
+avpui.exe                     6316 Console                    1    201,260 K Unknown         DESKTOP-NNG6RG9\Administrator      
+TCP    192.169.117.203:49686  149.13.68.134:443      ESTABLISHED     3124                                                     
+TCP    127.0.0.1:49685        127.0.0.1:49684        ESTABLISHED     3124                                                     
+TCP    127.0.0.1:49684        127.0.0.1:49685        ESTABLISHED     3124                                                     
+TCP    127.0.0.1:49680        0.0.0.0:0              LISTENING       3124                                                     
+HKEY_LOCAL_MACHINE\software\KasperskyLab
+Task To Run:                          C:\Program Files\Common Files\AV\Kaspersky\upgrade_launcher.exe /waitUpgrade              
+TaskName:                             \Kaspersky_Upgrade_Launcher_{278ADC42-419D-4547-A6CA-5B74BE0AD901}                        
+"c:\Program Files (x86)\Kaspersky Lab"
+"c:\Program Files (x86)\Kaspersky Lab\Kaspersky 21.17" 
+Kaspersky is now running
+
+2024-05-09 12:06:43-- vetting complete; start exit vetting
+2024-05-09 12:10:03-- disconnect from T4
+
+Logged In: Security
+------------------------X
+=========================
+
+=========================
+T5:  -->T5: 10.145.117.16  #ON HOLD
+=========================
+X-----------------------
+
+ssh -S /tmp/T2 -O forward -L 127.0.0.1:2005:10.145.117.16:22012 dummy
+ssh -MS /tmp/T5 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2005
+password14
+
+
+
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T6:  --->T6: 192.169.117.200
+=========================
+X-----------------------
+
+ssh -S /tmp/T5 -O forward -L 127.0.0.1:2006:192.169.117.200:22013 dummy
+ssh -MS /tmp/T6 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2006
+password14
+
+
+
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T7: --->T7: 192.169.117.204
+=========================
+X-----------------------
+
+ssh -S /tmp/T5 -O forward -L 127.0.0.1:2007:192.169.117.204:22013 dummy
+ssh -MS /tmp/T7 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2007
+password14
+
+
+
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T8:  --->T8: 192.169.117.205
+=========================
+X-----------------------
+
+ssh -S /tmp/T5 -O forward -L 127.0.0.1:2008:192.169.117.205:22013 dummy
+ssh -MS /tmp/T8 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2008
+password14
+
+
+
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T9:  --->T9: 192.169.117.206
+=========================
+X-----------------------
+
+ssh -S /tmp/T5 -O forward -L 127.0.0.1:2009:192.169.117.206:22013 dummy
+ssh -MS /tmp/T9 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2009
+password14
+
+
+
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T10:  --->T10: 192.169.117.207
+=========================
+X-----------------------
+
+ssh -S /tmp/T5 -O forward -L 127.0.0.1:2010:192.169.117.207:22013 dummy
+ssh -MS /tmp/T10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2010
+password14
+
+
+
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T: 
+=========================
+X-----------------------
+
+
+
+
+
+
+
+
+
+-----------------------X
+=========================
