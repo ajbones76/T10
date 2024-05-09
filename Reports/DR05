@@ -5,6 +5,8 @@ MC: MC2
 Analyst: Analyst1
 Description: The goal of the operation was to conduct TECHOP on T1. If successful, continue mission: Perform access assurance on Krasnovian 1st Artillery BDE network administrator workstations. For initial access targets (T8-T10),  perform device surveys.  The beginning of the operation was overall successful; however, T5 was on hold in the NSDB, so the mission was unable to continue from T5-T10.  The operator redirected from EXT_RTR to SERVER1 to INT_RTR1 to TARGETC.  T1 had a security product, abnormal logging, and a privileged user; operator conducted a TECHOP to clean their logs from DR03. T2  had a security product and abnormal logging. T3 had a security product. T4 had a security product and a privileged user; operator was unable to redirect to T5 and beyond due to T5 being on hold in NSDB.  Operator then exit vetted and exited out of network.
 
+If Target is On-Hold; delete it and everything that can't be accessed from OpNotes and Scheme. Notify MC as soon as you find out target is on hold.
+
 
 Date:2024-05-09 
 Start time: 0900
