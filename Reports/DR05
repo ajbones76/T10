@@ -1,0 +1,367 @@
+Date:2024-05-09 
+Start time: 0900
+End time: 1300
+
+=========================
+T1: 10.50.24.145
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  9 13:09
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRED_REFR msg=audit(1715260470.249:10193): pid=55955 uid=0 auid=1007 ses=145 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="root" AUID="student7"
+type=USER_START msg=audit(1715260470.250:10194): pid=55955 uid=0 auid=1007 ses=145 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="root" AUID="student7"
+type=USER_ACCT msg=audit(1715260470.297:10195): pid=55958 uid=1014 auid=1014 ses=141 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/4 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715260470.297:10196): pid=55958 uid=1014 auid=1014 ses=141 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/4 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715260470.297:10197): pid=55958 uid=0 auid=1014 ses=141 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/4 res=success'UID="root" AUID="student14"
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions that it would catch on this box. Recommend CM.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 5226 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.49.1.4
+  Provide any network connections opened/established by abnormal logging - tcp SYN-SENT 10.145.117.86:42202     10.49.1.4:514  
+  Provide brief description of the abnormal, irregular or remote logging - Rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+  Documentation - https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway other than the secure and messages logs, which we are clearing. 
+
+Privileged Users
+  Target - Where did you see this user? - T1: 10.50.24.145
+  User - What is their username? - root
+  Access time - How long have they been on? - 2024-05-08 14:33
+  Access method - Did they access locally? Remotely? - locally
+    Provide all relevant details - tty
+  Privileges - What are they capable of doing? - "root" user account on Linux has full administrative privileges over the entire system
+  Activity - What are they currently doing? - root has been idle for 22:45m with a bash shell open; root's bash history has: cat /dev/null > /var/log/btmp ; lastb ; exit
+ Recommendation - CM cautiously; root has been idle for almost an entire day, still be mindful if they become active again, since they could boot us out.
+
+
+
+MC:
+
+*****Security Product Report*****
+Target: T1: 10.50.24.145
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions that it would catch on this box. Recommend CM.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T1: 10.50.24.145
+Name - rsyslog
+PID - 5226
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.49.1.4
+Network connections - tcp SYN-SENT 10.145.117.86:42202   10.49.1.4:514 
+Documentation -https://www.rsyslog.com/doc/index.html
+Description - rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway other than the secure and messages logs, which we are clearing.
+*****End of Report*****
+
+*****Privileged User Report*****
+Target: T1: 10.50.24.145
+User -root
+Access Time - 2024-05-08 14:33
+Access Method - Local; tty
+Privileges - "root" user account on Linux has full administrative privileges over the entire system
+Activity - root has been idle for 22:45m with a bash shell open; root's bash history has: cat /dev/null > /var/log/btmp ; lastb ; exit
+Description - "root" user account on Linux has full administrative privileges over the entire system; root has been idle for almost a day with a bash shell open
+Recommendation - CM cautiously; root has been idle for almost an entire day, still be mindful if they become active again, since they could boot us out.
+*****End of Report*****
+
+
+
+------------------------X
+=========================
+
+=========================
+T2: 10.145.117.11
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  9 14:58
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRED_DISP msg=audit(1715266777.860:6227): pid=52553 uid=1015 auid=1015 ses=80 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/10 res=success'UID="student15" AUID="student15"
+type=USER_ACCT msg=audit(1715266777.945:6228): pid=52556 uid=1014 auid=1014 ses=76 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/8 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715266777.946:6229): pid=52556 uid=1014 auid=1014 ses=76 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/8 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715266777.946:6230): pid=52556 uid=1014 auid=1014 ses=76 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/8 res=success'UID="student14" AUID="student14"
+type=USER_START msg=audit(1715266777.947:6231): pid=52556 uid=1014 auid=1014 ses=76 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/8 res=success'UID="student14" AUID="student14"
+
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 40384 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.49.1.4
+  Provide any network connections opened/established by abnormal logging - tcp SYN-SENT 10.145.117.86:53392     10.49.1.4:514  
+  Provide brief description of the abnormal, irregular or remote logging - Rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+  Documentation - https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T2: 10.145.117.11
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T2: 10.145.117.11
+Name - rsyslog
+PID - 40384
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.49.1.4
+Network connections - tcp SYN-SENT 10.145.117.86:53392   10.49.1.4:514 
+Documentation -https://www.rsyslog.com/doc/index.html
+Description - rsyslog is enabled with remote logging. It is sending all logs to the 10.49.1.4 using port 514
+Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway. On top of that, no actions are being done on this box.
+*****End of Report*****
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T3: 10.145.117.15
+=========================
+X-----------------------
+NSBD:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  9 15:14
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRED_DISP msg=audit(1715267754.652:5975): pid=26177 uid=0 auid=1015 ses=81 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/10 res=success'UID="root" AUID="student15"
+type=USER_ACCT msg=audit(1715267756.317:5976): pid=26180 uid=1014 auid=1014 ses=77 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="student14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/8 res=success'UID="student14" AUID="student14"
+type=USER_CMD msg=audit(1715267756.317:5977): pid=26180 uid=1014 auid=1014 ses=77 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/student14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/8 res=success'UID="student14" AUID="student14"
+type=CRED_REFR msg=audit(1715267756.317:5978): pid=26180 uid=0 auid=1014 ses=77 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/8 res=success'UID="root" AUID="student14"
+type=USER_START msg=audit(1715267756.318:5979): pid=26180 uid=0 auid=1014 ses=77 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/8 res=success'UID="root" AUID="student14"
+
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+
+
+
+MC:
+
+*****Security Product Report*****
+Target: T3: 10.145.117.15
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions on this box. Recommend CM.
+*****End of Report*****
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T4: 192.168.117.203
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - Kaspersky ver 21.17.7.539
+  Installation folder - C:\Program Files (x86)\Kaspersky Lab
+  Directory location of associated logs - N/A
+  Timestamp of all associated log files - N/A
+  Cloud based?; UNK
+  Can we read the logs?; 
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    If No, why? - no logs/possibly cloud based
+  Recommendation - CM; not putting any tools or doing any effects to this box.
+
+Privileged Users
+  Target - Where did you see this user? - T4: 192.168.117.203
+  User - What is their username? - administrator
+  Access time - How long have they been on? - 5/9/2024 1:29 PM
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - Active console session, explorer.exe is running
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain.
+  Activity - What are they currently doing? - This admin is using the GUI and has Kaspersky's UI open.
+  Recommendation - CM cautiously; we are not doing any actions on this box that should get caught by Kaspersky; however, the admin could still see us and boot us off.
+
+
+
+MC:
+
+*****Security Product Report*****
+Target: T4: 192.168.117.203
+Name - Kaspersky
+Version - 21.17.7.539
+(WIN) Primary registry key - HKEY_LOCAL_MACHINE\software\KasperskyLab
+(NIX) Config file or install directory - N/A
+Documentation - https://usa.kaspersky.com/
+Recommendation - CM; not putting any tools or doing any effects to this box that would get caught by Kaspersky.
+*****End of Report*****
+
+*****Privileged User Report*****
+Target: T4: 192.168.117.203
+User - administrator
+Access Time - 5/9/2024 1:29 PM
+Access Method - local
+Privileges - Administrators have complete and unrestricted access to the computer/domain.
+Activity - This admin is using the GUI and has Kaspersky's UI open.
+Description - Administrators have complete and unrestricted access to the computer/domain. This admin is using the GUI and has Kaspersky's UI open.
+Recommendation - CM cautiously; we are not doing any actions on this box that should get caught by Kaspersky; however, the admin could still see us and
+ boot us off.
+*****End of Report*****
+
+
+
+------------------------X
+=========================
+
+=========================
+T5: 10.145.117.16
+=========================
+X-----------------------
+NSDB:
+
+
+
+
+
+MC:
+
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T6: 192.169.117.200
+=========================
+X-----------------------
+NSDB:
+
+
+
+
+
+MC:
+
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T7: 192.169.117.204
+=========================
+X-----------------------
+NSDB:
+
+
+
+
+
+MC:
+
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T8: 192.169.117.205
+=========================
+X-----------------------
+NSDB:
+
+
+
+
+
+MC:
+
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T9: 192.169.117.206
+=========================
+X-----------------------
+NSDB:
+
+
+
+
+
+MC:
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T10: 192.169.117.207
+=========================
+X-----------------------
+NSDB:
+
+
+
+
+
+MC:
+
+
+
+
+
+------------------------X
+=========================
