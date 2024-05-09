@@ -176,6 +176,10 @@ Malware Prosecution Commands:
   insmod or modprobe
   use stat for times
 
+make 2 files in /var/tmp and timestamp them 12 hours before malware modify time and 12 hours after
+run command to search file system between those 2 file's timestamps
+
+
 Malware Reportable Items:
   Process name/options, PID, Parent ID, user, and hash
   File type of malware binary and supporting files
