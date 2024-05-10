@@ -1,0 +1,239 @@
+Date:2024-05-10 
+Start time: 0900
+End time: 1500
+
+------------------------
+SOM
+------------------------
+>T1:  10.50.33.94
+->T2: 10.20.169.121
+-->T3: 10.20.169.238
+------------------------
+Creds
+------------------------
+engineer14
+
+enshallah 
+
+
+caisson14
+
+tread_depth
+
+
+NOC_Admin14
+
+5gftE8DCc8
+=========================
+T1: > 10.50.33.94 
+=========================
+X-----------------------
+2024-05-10 09:00:31-- connection to T1; start vetting
+ssh -MS /tmp/T1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null engineer14@10.50.33.94 -p 10123
+enshallah
+
+fa:16:3e:0e:4c:7b
+10.20.169.33
+IPv6: fe80::f816:3eff:fe0e:4c7b
+2024-05-10 09:02:02-- date
+Fri May 10 13:01:58 UTC 2024
+Fri May 10 13:01:58 UTC 2024
+Linux ext-rtr 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+-rw-rw-r--.  1 root   utmp     7680 May 10 13:03 wtmp
+-rw-rw-r--.  1 root   utmp   299300 May 10 13:03 lastlog
+-rw-------.  1 root   root   200570 May 10 13:06 messages
+-rw-------.  1 root   root    35595 May 10 13:06 secure
+/var/log/audit/audit.log
+/etc/rsyslog.conf
+*.* @@10.50.22.142:514
+4 S root        5621       1  0  80   0 - 55686 -      May09 ?        00:00:02   /usr/sbin/rsyslogd -n
+SELinux status:                 enabled
+Current mode:                   enforcing
+Max kernel policy version:      33
+
+2024-05-10 09:19:03-- vetting complete; redirecting to T2
+2024-05-10 11:15:33-- start exit vetting
+2024-05-10 11:17:08-- exit vetting complete; disconnect from T1
+
+
+Logged In: audit.log, wtmp, utmp, rsyslog, lastlog, messages, secure
+------------------------X
+=========================
+
+=========================
+T2: -> 10.20.169.121
+=========================
+X-----------------------
+2024-05-10 09:19:47-- connection to T2; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2002:10.20.169.121:52203 dummy
+ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null caisson14@127.0.0.1 -p 2002
+tread_depth
+
+fa:16:3e:8c:0c:c7
+10.20.169.121
+fe80::f816:3eff:fe8c:cc7
+2024-05-10 09:21:59-- date
+Fri May 10 13:21:57 UTC 2024
+Fri May 10 13:21:57 UTC 2024
+Linux WEBSERVER 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+4 S root       40304       1  0  80   0 - 57513 -      May09 ?        00:00:03   /usr/sbin/rsyslogd -n
+-rw-rw-r--.  1 root   utmp     3840 May 10 13:22 wtmp
+-rw-rw-r--.  1 root   utmp   299300 May 10 13:22 lastlog
+-rw-------.  1 root   root   333200 May 10 13:22 messages
+-rw-------.  1 root   root   191531 May 10 13:22 secure
+/var/log/audit/audit.log
+/etc/rsyslog.conf
+*.* @@badguy:514
+10.111.23.4 badguy
+tcp    SYN-SENT   0       1             10.20.169.121:34650      10.111.23.4:514     users:(("rsyslogd",pid=40304,fd=8))                                 
+SELinux status:                 enabled
+Current mode:                   permissive
+Max kernel policy version:      33
+
+2024-05-10 09:35:28-- vetting complete; starting scan
+
+10.20.169.195 - STALE
+10.20.169.148 - STALE
+10.20.169.1 - STALE
+10.20.169.238 - STALE
+10.20.169.33 - REACHABLE
+10.20.169.239 - STALE
+
+ip n | grep -v FAILED | cut -d' ' -f1
+ssh -S /tmp/T2 dummy -O forward -D 9050
+proxychains -q nmap -n -Pn -v -sV -sT -p 52000-52999 10.20.169.
+proxychains -q nmap -Pn -sT -n <IPs> -p445,5985,5986,3389,139,135 
+proxychains -q nc <IP> <Port>
+proxychains -q nc -vv -n -w1 <target IP address> <target port>
+ssh -S /tmp/T2 dummy -O cancel -D 9050
+
+2024-05-10 09:49:22-- scan complete; redirecting
+2024-05-10 11:12:26-- start exit vetting
+2024-05-10 11:14:20-- exit vetting complete; disconnect from T2
+
+
+Logged In: wtmp, utmp, messages, secure, audit.log, rsyslog, lastlog
+------------------------X
+=========================
+
+=========================
+T3: --> 10.20.169.238
+=========================
+X-----------------------
+2024-05-10 09:52:07-- connection to T3; start vetting
+ssh -S /tmp/T2 -O forward -L 127.0.0.1:2003:10.20.169.238:52230 dummy
+ssh -MS /tmp/T3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null NOC_Admin14@127.0.0.1 -p 2003
+5gftE8DCc8
+
+NOC_Admin14::5gftE8DCc8
+
+eth0:
+fa:16:3e:0e:b6:90
+10.20.169.238
+eth1:
+fa:16:3e:a1:9c:bc
+192.168.169.206
+2024-05-10 09:54:05-- date
+Fri May 10 13:54:00 UTC 2024
+Fri May 10 13:54:00 UTC 2024
+Linux Vyos1 3.13.11-1-amd64-vyos #1 SMP Wed Aug 12 02:08:05 UTC 2015 x86_64 GNU/Linux
+
+-rw-rw-r--  1 root     utmp       24576 May 10 13:52 wtmp
+-rw-rw-r--  1 root     utmp      299300 May 10 13:52 lastlog
+-rw-r-----  1 root     adm       222501 May 10 13:58 auth.log
+
+2024-05-10 10:04:43-- vetting complete; all clear
+2024-05-10 10:05:10-- starting network discovery
+
+192.168.169.13
+
+ip n | grep -v FAILED | cut -d' ' -f1
+ssh -S /tmp/T3 dummy -O forward -D 9050
+proxychains -q nmap -n -Pn -v -sV -sT -p 33000-33999 192.168.169.13,12,5,113,43,16,22,122
+
+Nmap scan report for 192.168.169.13
+Host is up (0.020s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT      STATE SERVICE VERSION
+33521/tcp open  ssh     OpenSSH for_Windows_7.7 (protocol 2.0)
+SSH-2.0-OpenSSH_for_Windows_7.7
+
+PING 192.168.169.13 (192.168.169.13) 56(84) bytes of data.
+64 bytes from 192.168.169.13: icmp_req=1 ttl=128 time=6.20 ms
+
+Nmap scan report for 192.168.169.16
+PORT      STATE SERVICE VERSION
+33521/tcp open  ssh     OpenSSH 7.4p1 Debian 10+deb9u2 (protocol 2.0)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Banner Grab:
+SSH-2.0-OpenSSH_7.4p1 Debian-10+deb9u2
+
+Ping:
+64 bytes from 192.168.169.16: icmp_req=1 ttl=64 time=5.12 ms
+
+
+Nmap scan report for 192.168.169.43
+PORT      STATE SERVICE VERSION
+33125/tcp open  ssh     OpenSSH 8.0 (protocol 2.0)
+33215/tcp open  ssh     OpenSSH 8.0 (protocol 2.0)
+33251/tcp open  ssh     OpenSSH 8.0 (protocol 2.0)
+33521/tcp open  ssh     OpenSSH 8.0 (protocol 2.0)
+
+Banner Grab:
+192.168.169.43 33125 - SSH-2.0-OpenSSH_8.0
+192.168.169.43 33215 - SSH-2.0-OpenSSH_8.0
+192.168.169.43 33251 - SSH-2.0-OpenSSH_8.0
+192.168.169.43 33521 - SSH-2.0-OpenSSH_8.0
+
+Ping:
+64 bytes from 192.168.169.43: icmp_req=1 ttl=64 time=0.368 ms
+
+
+Nmap scan report for 192.168.169.113
+PORT      STATE SERVICE VERSION
+33521/tcp open  ssh     OpenSSH for_Windows_7.6 (protocol 2.0)
+
+Banner Grab:
+SSH-2.0-OpenSSH_for_Windows_7.6
+
+Ping:
+64 bytes from 192.168.169.113: icmp_req=1 ttl=128 time=1.08 ms
+
+
+Nmap scan report for 192.168.169.122
+PORT      STATE SERVICE VERSION
+33521/tcp open  ssh     OpenSSH 8.0 (protocol 2.0)
+
+Banner Grab:
+SSH-2.0-OpenSSH_8.0
+
+Ping:
+64 bytes from 192.168.169.122: icmp_req=1 ttl=64 time=5.58 ms
+
+Nmap scan report for 192.168.169.111
+PORT      STATE SERVICE VERSION
+33521/tcp open  ssh     OpenSSH for_Windows_7.6 (protocol 2.0)
+
+Banner Grab:
+SSH-2.0-OpenSSH_for_Windows_7.6
+
+Ping:
+64 bytes from 192.168.169.111: icmp_req=1 ttl=128 time=0.206 ms
+
+
+
+proxychains -q nmap -Pn -sT -n 192.168.169.13, -p445,5985,5986,3389,139,135
+proxychains -q nc <IP> <Port>
+proxychains -q nc -vv -n -w1 <target IP address> <target port>
+ssh -S /tmp/T3 dummy -O cancel -D 9050
+
+2024-05-10 11:05:57-- network discovery scan complete
+2024-05-10 11:09:19-- start exit vetting
+2024-05-10 11:11:44-- exit vetting complete; disconnect from T3
+
+Logged In: wtmp, utmp, lastlog, auth.log, messages
+------------------------X
+=========================
