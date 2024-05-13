@@ -1,0 +1,235 @@
+***MISSION DEBRIEF***
+Operator: LCpl Bonestroo
+Operation: AA02
+MC: MC2
+Analyst: Analyst2
+Description: The goal of the operation was to enumerate Krasnovian 1st Artillery BDE internal network (192.168.169.0/24) further. Identify path to ADMIN1 workstation. If successfully accessed, pivot from ADMIN1 to any discovered mail servers. Intelligence reporting suggests there are two operational mail servers in a separate internal network connected to ADMIN1. The op was overall a success.  Operator redirected from EXT_RTR to STORAGE1 to Vyos1 to ADMIN1 to EMAIL1 back to ADMIN1 to EMAIL3. T1 had a security product and abnormal logging. T2 appeared to be a clean box. T3 also appeared to be a clean box. Operator identified and verified with EA IP of T4. T4 had a security product; operator performed a device survey and conducted a network discovery to locate the internal mail servers. T5 had a privileged user; operator performed a device survey and collected the emails, before exit vetting and backing out to T4. T6 had abnormal logging; operator performed a device survey and collected the emails. Operator then exit vetted and disconnected from the network.
+
+AA02: Failed
+
+Missed Security Product
+
+
+
+Date:2024-05-13 
+Start time: 0900
+End time: 1500
+
+=========================
+T1: 10.50.33.94
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  13 13:06
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRED_DISP msg=audit(1715605667.087:3576): pid=13220 uid=0 auid=1006 ses=64 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="root" AUID="engineer6"
+type=USER_ACCT msg=audit(1715605677.530:3577): pid=13232 uid=1014 auid=1014 ses=62 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="engineer14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/5 res=success'UID="engineer14" AUID="engineer14"
+type=USER_CMD msg=audit(1715605677.531:3578): pid=13232 uid=1014 auid=1014 ses=62 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/engineer14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/5 res=success'UID="engineer14" AUID="engineer14"
+type=CRED_REFR msg=audit(1715605677.531:3579): pid=13232 uid=0 auid=1014 ses=62 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/5 res=success'UID="root" AUID="engineer14"
+type=USER_START msg=audit(1715605677.532:3580): pid=13232 uid=0 auid=1014 ses=62 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/5 res=success'UID="root" AUID="engineer14"
+
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions that it would catch on this box. Recommend CM.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 5621 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.50.22.142
+  Provide any network connections opened/established by abnormal logging - None shown when ss command was run
+  Provide brief description of the abnormal, irregular or remote logging - Rsyslog is enabled with remote logging. It is sending all logs to the 10.50.22.142 using port 514
+  Documentation - https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway; not doing any effects to this box.
+
+MC:
+
+*****Security Product Report*****
+Target: T1: 10.50.33.94
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions that it would catch on this box. Recommend CM.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T1: 10.50.33.94
+Name - rsyslog
+PID - 5621
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.50.22.142
+Network connections -  None shown when ss command was run
+Documentation -https://www.rsyslog.com/doc/index.html
+Description - rsyslog is enabled with remote logging. It is sending all logs to the 10.50.22.142 using port 514
+Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway; not doing any effects to this box.
+*****End of Report*****
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T2: 10.20.169.122
+=========================
+X-----------------------
+NSDB:
+
+ALL CLEAR
+
+
+                                                                                                                        MC:
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T3: 10.20.169.238
+=========================
+X-----------------------
+NSBD:
+
+ALL CLEAR
+
+
+
+MC:
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T4: 192.168.169.43
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - Firetools/Firejail ver 0.9.72
+  Installation folder - /firetools
+  Directory location of associated logs - N/A
+  Timestamp of all associated log files - N/A
+  Cloud based?; no
+  Can we read the logs?; no
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    If No, why? - No Logs
+  Recommendation - CM; Firetools is installed, but not currently running. Be aware for future ops in case it is running; and know how to exit out of a sandbox.
+
+
+
+
+MC:
+
+*****Security Product Report*****
+Target: T4: 192.168.169.43
+Name - Firetools/Firejail
+Version - 0.9.72
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /firetools
+Documentation - https://firejailtools.wordpress.com/
+Recommendation - CM; Firetools is installed, but not currently running. Be aware for future ops in case it is running; and know how to exit out of a sandbox.
+*****End of Report*****
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T5:10.123.169.30 
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T5:10.123.169.30
+  User - What is their username? - administrator
+  Access time - How long have they been on? - 5/13/2024 12:18 PM
+  Access method - Did they access locally? Remotely? - Local
+    Provide all relevant details - console login; explorer.exe running
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - administrator is logged in with a GUI with MicrosoftEdge.exe, hMailAdmin.exe, and SystemSettings.exe running.
+  Recommendation - CM; be weary of admin in case they notice us and kick us out. They are not doing anything that is harmful to our mission at the moment.
+
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T5:10.123.169.30
+User - administrator
+Access Time - 5/13/2024 12:18 PM
+Access Method - Local
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - administrator is logged in with a GUI with MicrosoftEdge.exe, hMailAdmin.exe, and SystemSettings.exe running.
+Description - Administrators have complete and unrestricted access to the computer/domain; administrator is logged in with a GUI with MicrosoftEdge.exe, hMailAdmin.exe, and SystemSettings.exe running.
+Recommendation - CM; be weary of admin in case they notice us and kick us out. They are not doing anything that is harmful to our mission at the moment.
+*****End of Report*****
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T6: 10.123.169.35
+=========================
+X-----------------------
+NSDB:
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: tcpdump PID: 22343 PPID:22342  User: tcpdump/root
+  Provide location of configuration file and it's abnormal or irregular contents - /var/log/tcpdump
+  Provide hostname or IP of where logs are being sent - N/A
+  Provide any network connections opened/established by abnormal logging - N/A
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - Tcpdump is running a 20 packet count capture on eth0 for port 22 and saving to /var/log/tcpdump. Every 5th minute a cronjob is run requesting the dump to time out.
+https://www.tcpdump.org/
+  Recommendation - CM; Doesn't affect our mission, we are not doing anything with port 22 that should be getting caught.
+
+
+
+
+MC:
+
+*****Abnormal Logging Report*****
+Target: T6: 10.123.169.35
+Name - tcpdump
+PID - 22343
+PPID - 22342
+User - tcpdump/root
+Location of config file - /var/log/tcpdump
+Remote IP (hostname if IP cannot be identified) - N/A
+Network connections - N/A
+Documentation - https://www.tcpdump.org/
+Description - Tcpdump is running a 20
+packet count capture on eth0 for port 22 and saving to /var/log/tcpdump. Every 5th minute a cronjob is run requesting the dump to time out.
+Recommendation - CM; Doesn't affect our mission, we are not doing anything with port 22 that should be getting caught.
+*****End of Report*****
+
+
+
+
+-----------------------X
+=========================
