@@ -1,0 +1,1967 @@
+Date:2024-05-13 
+Start time: 0900
+End time: 1500
+
+------------------------
+SOM
+------------------------
+>T1: 10.50.33.94
+->T2: 10.20.169.122
+-->T3: 10.20.169.238
+--->T4: ADMIN1 - 192.168.169.43
+---->T5: 10.123.169.30
+---->T6: 10.123.169.35
+------------------------
+Creds
+------------------------
+engineer14::enshallah
+caisson14::tread_depth
+NOC_Admin14::5gftE8DCc8
+user14::P455w0rd
+
+=========================
+T1: 10.50.33.94
+=========================
+X-----------------------
+2024-05-13 09:01:26-- connection to T1; start vetting
+ssh -MS /tmp/T1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null engineer14@10.50.33.94 -p 10123
+enshallah
+
+fa:16:3e:0e:4c:7b
+10.50.33.94/10.20.169.33
+2024-05-13 09:02:42-- date
+Mon May 13 13:02:40 UTC 2024
+Mon May 13 13:02:40 UTC 2024
+Linux ext-rtr 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+4 S root        5621       1  0  80   0 - 59782 -      May09 ?        00:00:13   /usr/sbin/rsyslogd -n
+-rw-rw-r--.  1 root   utmp     17664 May 13 13:05 wtmp
+-rw-rw-r--.  1 root   utmp    299300 May 13 13:05 lastlog
+-rw-------.  1 root   root     39094 May 13 13:05 messages
+-rw-------.  1 root   root     13257 May 13 13:05 secure
+/var/log/audit/audit.log
+/etc/rsyslog.conf
+*.* @@10.50.22.142:514
+SELinux status:                 enabled
+Current mode:                   enforcing
+Max kernel policy version:      33
+
+2024-05-13 09:11:25-- vetting complete; redirecting
+
+2024-05-13 14:24:00-- start exit vetting
+2024-05-13 14:25:13-- exit vetting complete; disconnect from T1
+
+Logged In: wtmp, utmp, messages, secure, lastlog, audit.log, rsyslog
+------------------------X
+=========================
+
+=========================
+T2: 10.20.169.122
+=========================
+X-----------------------
+2024-05-13 09:12:11-- connection to T2; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2002:10.20.169.122:52203 dummy
+ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null caisson14@127.0.0.1 -p 2002
+tread_depth
+
+FA-16-3E-11-8A-8E
+10.20.169.122
+2024-05-13 09:14:03-- date
+Mon 05/13/2024
+01:14 PM
+2024-05-13 09:32:45-- vetting complete-all clear; redirecting to T3
+
+2024-05-13 14:22:46-- start exit vetting
+2024-05-13 14:23:32-- exit vetting complete; disconnect from T2
+
+Logged In: Security
+------------------------X
+=========================
+
+=========================
+T3: 10.20.169.238
+=========================
+X-----------------------
+2024-05-13 09:34:57-- connection to T3; start vetting
+ssh -S /tmp/T2 -O forward -L 127.0.0.1:2003:10.20.169.238:52230 dummy
+ssh -MS /tmp/T3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null NOC_Admin14@127.0.0.1 -p 2003
+5gftE8DCc8
+
+eth0:
+fa:16:3e:0e:b6:90
+10.20.169.238
+eth1:
+fa:16:3e:a1:9c:bc
+192.168.169.206
+2024-05-13 09:37:01-- date
+Mon May 13 13:36:59 UTC 2024
+Mon May 13 13:36:59 UTC 2024
+Linux Vyos1 3.13.11-1-amd64-vyos #1 SMP Wed Aug 12 02:08:05 UTC 2015 x86_64 GNU/Linux
+
+-rw-rw-r--  1 root     utmp         36480 May 13 13:40 wtmp
+-rw-rw-r--  1 root     utmp        299300 May 13 13:40 lastlog
+-rw-r-----  1 root     adm       13432916 May 13 13:40 auth.log
+
+2024-05-13 09:50:13--  vetting complete-all clear; identifying path to T4
+
+ip n | grep -v FAILED | cut -d' ' -f1
+192.168.169.122
+192.168.169.22
+192.168.169.5
+192.168.169.113
+192.168.169.43
+192.168.169.16
+
+2024-05-13 09:59:41-- redirecting to T4
+
+2024-05-13 14:18:43-- start exit vetting
+2024-05-13 14:22:16-- exit vetting complete; disconnect from T3
+
+Logged In: wtmp, utmp, auth.log, lastlog
+------------------------X
+=========================
+
+=========================
+T4: --->192.168.169.43
+=========================
+X-----------------------
+2024-05-13 10:00:50-- connection to T4; start vetting
+ssh -S /tmp/T3 -O forward -L 127.0.0.1:2004:192.168.169.43:33125 dummy
+ssh -MS /tmp/T4 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null user14@127.0.0.1 -p 2004
+P455w0rd
+
+eth0:
+fa:16:3e:ef:b1:9f
+10.123.169.5
+eth1:
+fa:16:3e:25:f6:b6
+192.168.169.43
+2024-05-13 10:02:42-- date
+Mon May 13 14:02:38 UTC 2024
+Mon May 13 14:02:38 UTC 2024
+Linux DESKTOP-ADMIN1 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+/firetools
+-rw-rw-r--.  1 root   utmp      4224 May 13 14:08 wtmp
+-rw-rw-r--.  1 root   utmp    299300 May 13 14:08 lastlog
+-rw-------.  1 root   root     43174 May 13 14:10 messages
+-rw-------.  1 root   root     12088 May 13 14:15 secure
+/var/log/audit/audit.log
+2024-05-13 10:22:29-- vetting complete; start device survey
+2024-05-13 10:26:31-- device survey complete; starting network discovery
+
+
+
+
+ip n | grep -v FAILED | cut -d' ' -f1
+
+192.168.169.1
+192.168.169.113
+192.168.169.122
+192.168.169.16
+192.168.169.206
+192.168.169.2
+192.168.169.12
+192.168.169.13
+192.168.169.111
+192.168.169.5
+
+
+ssh -S /tmp/T4 dummy -O forward -D 9050
+proxychains -q nmap -n -Pn -v -sV -sT -p 33000-33999 10.123.169.1,252,35,30
+
+Nmap scan report for 192.168.169.5
+PORT      STATE SERVICE VERSION
+33521/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.7 (Ubuntu Linux; protocol 2.0)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for 192.168.169.13
+PORT      STATE SERVICE VERSION
+33521/tcp open  ssh     OpenSSH for_Windows_7.7 (protocol 2.0)
+
+Nmap scan report for 192.168.169.16
+PORT      STATE SERVICE VERSION
+33521/tcp open  ssh     OpenSSH 7.4p1 Debian 10+deb9u2 (protocol 2.0)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for 192.168.169.111
+PORT      STATE SERVICE VERSION
+33521/tcp open  ssh     OpenSSH for_Windows_7.6 (protocol 2.0)
+
+Nmap scan report for 192.168.169.113
+PORT      STATE SERVICE VERSION
+33521/tcp open  ssh     OpenSSH for_Windows_7.6 (protocol 2.0)
+
+Nmap scan report for 192.168.169.122
+PORT      STATE SERVICE VERSION
+33521/tcp open  ssh     OpenSSH 8.0 (protocol 2.0)
+
+10.123.169.1
+10.123.169.252
+10.123.169.35
+10.123.169.30
+
+Nmap scan report for 10.123.169.30
+PORT      STATE SERVICE VERSION
+33502/tcp open  ssh     OpenSSH for_Windows_7.7 (protocol 2.0)
+135/tcp  open   msrpc
+139/tcp  open   netbios-ssn
+445/tcp  open   microsoft-ds
+3389/tcp open   ms-wbt-server
+5985/tcp closed wsman
+5986/tcp closed wsmans
+25/tcp  open  smtp
+110/tcp open  pop3
+143/tcp open  imap
+587/tcp open  submission
+Banner Grab 33502: SSH-2.0-OpenSSH_for_Windows_7.7
+OS: Windows
+
+Nmap scan report for 10.123.169.35
+PORT      STATE SERVICE VERSION
+33502/tcp open  ssh     OpenSSH 8.0 (protocol 2.0)
+135/tcp  closed msrpc
+139/tcp  closed netbios-ssn
+445/tcp  closed microsoft-ds
+3389/tcp closed ms-wbt-server
+5985/tcp closed wsman
+5986/tcp closed wsmans
+25/tcp  open   smtp
+110/tcp closed pop3
+143/tcp closed imap
+587/tcp closed submission
+Banner Grab 33502: SSH-2.0-OpenSSH_8.0
+OS: Linux
+
+
+
+proxychains -q nmap -Pn -sT -n -p445,5985,5986,3389,139,135 10.123.169.30,35
+proxychains -q nmap -Pn -sT -n -p25,143,110,587 10.123.169.30,35
+proxychains -q nc
+ssh -S /tmp/T4 dummy -O cancel -D 9050
+
+2024-05-13 11:07:04-- network discovery complete; redirecting to T5
+
+2024-05-13 14:16:40-- start exit vetting
+2024-05-13 14:18:07-- exit vetting complete; disconnect from T4
+
+Logged In: wtmp, utmp, messages, secure, audit.log, lastlog
+------------------------X
+=========================
+
+=========================
+T5: ---->10.123.169.30
+=========================
+X-----------------------
+2024-05-13 11:11:47-- connection to T5; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:2005:10.123.169.30:33502 dummy
+ssh -MS /tmp/T5 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null user14@127.0.0.1 -p 2005
+P455w0rd
+
+EMAIL1
+
+FA-16-3E-DE-A5-F0
+10.123.169.30
+2024-05-13 11:12:41-- date
+Mon 05/13/2024
+03:12 PM
+administrator         console             1  Active      none   5/13/2024 12:18 PM
+explorer.exe                  2556 Console                    1    122,616 K Unknown         DESKTOP-EMAIL1\Administrator
+ctfmon.exe                    1980 Console                    1     16,512 K Unknown         DESKTOP-EMAIL1\Administrator
+taskhostw.exe                 2948 Console                    1     16,900 K Unknown         DESKTOP-EMAIL1\Administrator
+smartscreen.exe                328 Console                    1     37,804 K Unknown         DESKTOP-EMAIL1\Administrator
+SystemSettingsAdminFlows.     9120 Console                    1     11,244 K Unknown         DESKTOP-EMAIL1\Administrator
+MicrosoftEdge.exe             3948 Console                    1     59,516 K Unknown         DESKTOP-EMAIL1\Administrator
+hMailAdmin.exe                6716 Console                    1     32,300 K Unknown         DESKTOP-EMAIL1\Administrator
+SystemSettings.exe            8248 Console                    1        196 K Unknown         DESKTOP-EMAIL1\Administrator
+C:\windows\system32\WindowsPowerShell\v1.0\powershell.exe                                                                    3668             4120
+python.exe                    3668 Services                   0     13,512 K Unknown         DESKTOP-EMAIL1\cloudbase-init
+C:\Program Files (x86)\hMailServer\Bin\hMailServer.exe                                                                       644              2248
+C:\Program Files (x86)\hMailServer\Bin\hMailAdmin.exe                                                                        2380             6716
+
+2024-05-13 11:44:29-- vetting complete; starting device survey
+"c:\Program Files (x86)\hMailServer\Data\Workgroup\"
+2024-05-13 12:01:53-- device survey complete; starting collection
+
+c:\Program Files (x86)\hMailServer\Data\Workgroup\Air Defense\
+3a0fb213a7d5570e2e04c36753e1971a	-	Remote
+3a0fb213a7d5570e2e04c36753e1971a  Workgroup/Air Defense/email.eml
+c9d473d2884863606b7439c18d5da2c5	-	Remote
+c9d473d2884863606b7439c18d5da2c5  Workgroup/Air Defense/email1.eml
+718b64282933367e0f90b6fa16922c42
+718b64282933367e0f90b6fa16922c42  Workgroup/Air Defense/email10.eml
+15386bad086d618d07b1b85c938105db
+15386bad086d618d07b1b85c938105db  Workgroup/Air Defense/email11.eml
+2ebecef2de5731e3b0d319c5757eb6fa
+2ebecef2de5731e3b0d319c5757eb6fa  Workgroup/Air Defense/email12.eml
+5b99f9d3118776fb90a995c37eec2f5a
+5b99f9d3118776fb90a995c37eec2f5a  Workgroup/Air Defense/email13.eml
+4ed6be830b2982f17dee0891cac53c99
+4ed6be830b2982f17dee0891cac53c99  Workgroup/Air Defense/email14.eml
+5e0c8b0d8022a719de0279b2f8a806a5
+5e0c8b0d8022a719de0279b2f8a806a5  Workgroup/Air Defense/email15.eml
+816a66f9ba990261434c0dfd00adbaa1
+816a66f9ba990261434c0dfd00adbaa1  Workgroup/Air Defense/email16.eml
+06c0c29785b5be324aab055b21a738fc
+06c0c29785b5be324aab055b21a738fc  Workgroup/Air Defense/email17.eml
+81781cbc6cce2394e8bb314646b06985
+81781cbc6cce2394e8bb314646b06985  Workgroup/Air Defense/email18.eml
+c874fcbcdfc89eac3329652822ee2c33
+c874fcbcdfc89eac3329652822ee2c33  Workgroup/Air Defense/email19.eml
+31baa5632d8c1f04b0beee26dd045fb3
+31baa5632d8c1f04b0beee26dd045fb3  Workgroup/Air Defense/email2.eml
+9fc2990cfbb14e892d6aeafc6688f1df
+9fc2990cfbb14e892d6aeafc6688f1df  Workgroup/Air Defense/email20.eml
+c6bd713a730077a3ee8cee07c471bace
+c6bd713a730077a3ee8cee07c471bace  Workgroup/Air Defense/email21.eml
+3eddd5851d2e9bb00988fc1b688af940
+3eddd5851d2e9bb00988fc1b688af940  Workgroup/Air Defense/email22.eml
+ca0c276a61cfb5e2b733ebde1e7590c6
+ca0c276a61cfb5e2b733ebde1e7590c6  Workgroup/Air Defense/email23.eml
+59c5a42a82405fa7810f84dbfe64ae17
+59c5a42a82405fa7810f84dbfe64ae17  Workgroup/Air Defense/email24.eml
+d4082db3fce246f82266af9b34dc9ea2
+d4082db3fce246f82266af9b34dc9ea2  Workgroup/Air Defense/email25.eml
+005f71690ef763740b07c85c61cf307e
+005f71690ef763740b07c85c61cf307e  Workgroup/Air Defense/email26.eml
+18bd1e21e3322c1e6a86ba232cad43a2
+18bd1e21e3322c1e6a86ba232cad43a2  Workgroup/Air Defense/email27.eml
+46a412f623b9f55d479e8c5d946e1665
+46a412f623b9f55d479e8c5d946e1665  Workgroup/Air Defense/email28.eml
+c53a086146599fd03536556304d7af4c
+c53a086146599fd03536556304d7af4c  Workgroup/Air Defense/email29.eml
+c35ebc441b82d82b3f1ae60f83914eef
+c35ebc441b82d82b3f1ae60f83914eef  Workgroup/Air Defense/email3.eml
+6f412ae7093f5deb380986050be3dae5
+6f412ae7093f5deb380986050be3dae5  Workgroup/Air Defense/email30.eml
+0ee51b3d96a257cdff30c943ae595ee8
+0ee51b3d96a257cdff30c943ae595ee8  Workgroup/Air Defense/email31.eml
+ac7c3bca3acc036c07ac59897b5efb79
+ac7c3bca3acc036c07ac59897b5efb79  Workgroup/Air Defense/email32.eml
+887fef6207bce31b7cd1784c19dd1f58
+887fef6207bce31b7cd1784c19dd1f58  Workgroup/Air Defense/email33.eml
+49d8b9311135a128e468263d03f126ef
+49d8b9311135a128e468263d03f126ef  Workgroup/Air Defense/email34.eml
+6de59a35febdf4c2d73b4e683bc4aff3
+6de59a35febdf4c2d73b4e683bc4aff3  Workgroup/Air Defense/email35.eml
+9cf945f99931d98652360bbf5618f6e1
+9cf945f99931d98652360bbf5618f6e1  Workgroup/Air Defense/email36.eml
+bbd4194783755e874a01e2b6d0e0488e
+bbd4194783755e874a01e2b6d0e0488e  Workgroup/Air Defense/email37.eml
+bcde17da47ef13802b17267027354064
+bcde17da47ef13802b17267027354064  Workgroup/Air Defense/email38.eml
+50f843f50362a757abe0ab384480d560
+50f843f50362a757abe0ab384480d560  Workgroup/Air Defense/email39.eml
+8217f26377fa258f9df3987f0e6772cb
+8217f26377fa258f9df3987f0e6772cb  Workgroup/Air Defense/email4.eml
+a592134d8f625f9687fc99df6bab8ba2
+a592134d8f625f9687fc99df6bab8ba2  Workgroup/Air Defense/email40.eml
+e349b4f6c65b5f239c52e25097924e64
+e349b4f6c65b5f239c52e25097924e64  Workgroup/Air Defense/email41.eml
+abae1c3f9d33e90d26c2c8b66a4a13bb
+abae1c3f9d33e90d26c2c8b66a4a13bb  Workgroup/Air Defense/email42.eml
+e4909873a5a896cdfc2bc205bb2da171
+e4909873a5a896cdfc2bc205bb2da171  Workgroup/Air Defense/email43.eml
+8fefe40ca8e862424134c9d14a7e8d09
+8fefe40ca8e862424134c9d14a7e8d09  Workgroup/Air Defense/email44.eml
+74cd0b0540c8d8f5a19872852620da76
+74cd0b0540c8d8f5a19872852620da76  Workgroup/Air Defense/email45.eml
+615c2b0018bab167efe4e463a59c1455
+615c2b0018bab167efe4e463a59c1455  Workgroup/Air Defense/email46.eml
+2d4016d221edf808166c11b885cd42ba
+2d4016d221edf808166c11b885cd42ba  Workgroup/Air Defense/email47.eml
+53f6f3803ad58ab7fc953f94deb4ca45
+53f6f3803ad58ab7fc953f94deb4ca45  Workgroup/Air Defense/email48.eml
+fd32acd9f1fae337f287cb27b1c6b2ff
+fd32acd9f1fae337f287cb27b1c6b2ff  Workgroup/Air Defense/email49.eml
+0d529a8016d49bbf791dc6086848e5f2
+0d529a8016d49bbf791dc6086848e5f2  Workgroup/Air Defense/email5.eml
+48c47b90307e28f553f2d10d1c284d0c
+48c47b90307e28f553f2d10d1c284d0c  Workgroup/Air Defense/email50.eml
+b09fe5ea085cf8a7ab9442c57a2250e4
+b09fe5ea085cf8a7ab9442c57a2250e4  Workgroup/Air Defense/email6.eml
+28d70646ca45476917e080dca64bb708
+28d70646ca45476917e080dca64bb708  Workgroup/Air Defense/email7.eml
+f6527d92c84e76381319364a87631844
+f6527d92c84e76381319364a87631844  Workgroup/Air Defense/email8.eml
+3b6567a2f018042bba3e8ee946182f07
+3b6567a2f018042bba3e8ee946182f07  Workgroup/Air Defense/email9.eml
+
+c:\Program Files (x86)\hMailServer\Data\Workgroup\Armored Cavalry
+66c42c42aa2b3f6c8e4fc91772f915fc
+66c42c42aa2b3f6c8e4fc91772f915fc  Workgroup/Armored Cavalry/email1.eml
+2ee8a76e66e81284fb2cc19f2507b2b0
+2ee8a76e66e81284fb2cc19f2507b2b0  Workgroup/Armored Cavalry/email10.eml
+c3894b8490a546f138dec979b3258999
+c3894b8490a546f138dec979b3258999  Workgroup/Armored Cavalry/email11.eml
+7e6208a4b2fa674460af51e0faa5d143
+7e6208a4b2fa674460af51e0faa5d143  Workgroup/Armored Cavalry/email12.eml
+9469bb94d4c2d21cd28c1b307295c507
+9469bb94d4c2d21cd28c1b307295c507  Workgroup/Armored Cavalry/email13.eml
+54619a67820e6fad343a9577ca49d778
+54619a67820e6fad343a9577ca49d778  Workgroup/Armored Cavalry/email14.eml
+09b5700c455623f2786c11c799e97967
+09b5700c455623f2786c11c799e97967  Workgroup/Armored Cavalry/email15.eml
+2063679eae0256d02830de3f64737c45
+2063679eae0256d02830de3f64737c45  Workgroup/Armored Cavalry/email16.eml
+f1d2e07e12c915235ffb7da02f93a513
+f1d2e07e12c915235ffb7da02f93a513  Workgroup/Armored Cavalry/email17.eml
+aed7d020395cde14beaad2d76bedb564
+aed7d020395cde14beaad2d76bedb564  Workgroup/Armored Cavalry/email18.eml
+b029facdadeeaa07692b0fff3733bc49
+b029facdadeeaa07692b0fff3733bc49  Workgroup/Armored Cavalry/email19.eml
+2d08576e43752e94bf2becf57fc0e6d2
+2d08576e43752e94bf2becf57fc0e6d2  Workgroup/Armored Cavalry/email2.eml
+7d959861d85abe2503c926792dfaecaa
+7d959861d85abe2503c926792dfaecaa  Workgroup/Armored Cavalry/email20.eml
+57e59368834711362ca0061e47cfaf22
+57e59368834711362ca0061e47cfaf22  Workgroup/Armored Cavalry/email21.eml
+dea9256febb9fbb3d89d652c9b7d9378
+dea9256febb9fbb3d89d652c9b7d9378  Workgroup/Armored Cavalry/email22.eml
+aa69183b76cddc585933e35e03e2d3cc
+aa69183b76cddc585933e35e03e2d3cc  Workgroup/Armored Cavalry/email23.eml
+4226a1e1fb22e4ff19f7e847ba5de3e6
+4226a1e1fb22e4ff19f7e847ba5de3e6  Workgroup/Armored Cavalry/email24.eml
+f9c2dc06e4e7adc2cddc63be0fdf29f5
+f9c2dc06e4e7adc2cddc63be0fdf29f5  Workgroup/Armored Cavalry/email25.eml
+16cb16836e62876de2679e08fdee304e
+16cb16836e62876de2679e08fdee304e  Workgroup/Armored Cavalry/email26.eml
+b32050f5d7b451525cfd4a9673e2f23a
+b32050f5d7b451525cfd4a9673e2f23a  Workgroup/Armored Cavalry/email27.eml
+0522e3d378f03c3d87dcba9e201aca40
+0522e3d378f03c3d87dcba9e201aca40  Workgroup/Armored Cavalry/email28.eml
+4a05bbcc2b05ad836d604097d81bfa18
+4a05bbcc2b05ad836d604097d81bfa18  Workgroup/Armored Cavalry/email29.eml
+615fda7c4c0fe3a20e1eef7d8c4db82a
+615fda7c4c0fe3a20e1eef7d8c4db82a  Workgroup/Armored Cavalry/email3.eml
+8a49f7b549bf0fb55ddc46793b7a0bc1
+8a49f7b549bf0fb55ddc46793b7a0bc1  Workgroup/Armored Cavalry/email30.eml
+b1af7c17f2f89cd7a7546440628a79f7
+b1af7c17f2f89cd7a7546440628a79f7  Workgroup/Armored Cavalry/email31.eml
+93bb3644bd16ed703a92d036278373c4
+93bb3644bd16ed703a92d036278373c4  Workgroup/Armored Cavalry/email32.eml
+d1c41b12f43bd24345f4156d7b702c85
+d1c41b12f43bd24345f4156d7b702c85  Workgroup/Armored Cavalry/email33.eml
+bee7da8aba2175dd3742af734a52d03a
+bee7da8aba2175dd3742af734a52d03a  Workgroup/Armored Cavalry/email34.eml
+2ea2b1195a94e1303babccaa743dd261
+2ea2b1195a94e1303babccaa743dd261  Workgroup/Armored Cavalry/email35.eml
+618aaad48ef3ceaf944bd479e35300c9
+618aaad48ef3ceaf944bd479e35300c9  Workgroup/Armored Cavalry/email36.eml
+bc216bc94e4ba60b9e20b549807850fa
+bc216bc94e4ba60b9e20b549807850fa  Workgroup/Armored Cavalry/email37.eml
+e8a32c32a51d7b33c481a30b534843e8
+e8a32c32a51d7b33c481a30b534843e8  Workgroup/Armored Cavalry/email38.eml
+28c55ae566e71ea192b83870ca6c28a1
+28c55ae566e71ea192b83870ca6c28a1  Workgroup/Armored Cavalry/email39.eml
+7d0c467a9a654df05c43919d55363101
+7d0c467a9a654df05c43919d55363101  Workgroup/Armored Cavalry/email4.eml
+fae36ba9dbacaab17ceb915d5891c2b6
+fae36ba9dbacaab17ceb915d5891c2b6  Workgroup/Armored Cavalry/email40.eml
+bbb209dba242791f325090b658648eb7
+bbb209dba242791f325090b658648eb7  Workgroup/Armored Cavalry/email41.eml
+0fc6fcca57be490e20ebc2e707482a38
+0fc6fcca57be490e20ebc2e707482a38  Workgroup/Armored Cavalry/email42.eml
+3494a1ae1bee6f99d70363bccc69892a
+3494a1ae1bee6f99d70363bccc69892a  Workgroup/Armored Cavalry/email43.eml
+f3bc51b5ffc2bd26eec495c0e5b27a8d
+f3bc51b5ffc2bd26eec495c0e5b27a8d  Workgroup/Armored Cavalry/email44.eml
+f2efdb7a563ea35d0bbf16ef2e1382c1
+f2efdb7a563ea35d0bbf16ef2e1382c1  Workgroup/Armored Cavalry/email45.eml
+4d3da8ccf701faa6884d0624524cfab1
+4d3da8ccf701faa6884d0624524cfab1  Workgroup/Armored Cavalry/email46.eml
+6c27d6f92bf6b836528655ad54eeec60
+6c27d6f92bf6b836528655ad54eeec60  Workgroup/Armored Cavalry/email47.eml
+93aba14fca978c5ad4a7c47741d77958
+93aba14fca978c5ad4a7c47741d77958  Workgroup/Armored Cavalry/email48.eml
+8166c5c365cd3fc98cea670cfc86147a
+8166c5c365cd3fc98cea670cfc86147a  Workgroup/Armored Cavalry/email49.eml
+cf9e9ac83344b04aaed4b1e983fa099f
+cf9e9ac83344b04aaed4b1e983fa099f  Workgroup/Armored Cavalry/email5.eml
+981d82bf4f9f43018cbcbae166f8cbeb
+981d82bf4f9f43018cbcbae166f8cbeb  Workgroup/Armored Cavalry/email50.eml
+b040293265df9650902f7312a048ca67
+b040293265df9650902f7312a048ca67  Workgroup/Armored Cavalry/email6.eml
+765a710f17aa8f98e370e4da91a6d57a
+765a710f17aa8f98e370e4da91a6d57a  Workgroup/Armored Cavalry/email7.eml
+285c6fa051dbe668f45fc521d3635107
+285c6fa051dbe668f45fc521d3635107  Workgroup/Armored Cavalry/email8.eml
+8f4dc65f2f5e8d53fe297892bf00d16e
+8f4dc65f2f5e8d53fe297892bf00d16e  Workgroup/Armored Cavalry/email9.eml
+
+c:\Program Files (x86)\hMailServer\Data\Workgroup\Command Elements
+49950368224ceff7a50ff1348f20e44e
+49950368224ceff7a50ff1348f20e44e  Workgroup/Command Elements/email1.eml
+d5f1ebf4afabaddb4d75d1537640098c
+d5f1ebf4afabaddb4d75d1537640098c  Workgroup/Command Elements/email10.eml
+beee90c7943ff7f3a8d574c5fe404fad
+beee90c7943ff7f3a8d574c5fe404fad  Workgroup/Command Elements/email11.eml
+103c32f04710a035a1884e91af3b4cb7
+103c32f04710a035a1884e91af3b4cb7  Workgroup/Command Elements/email12.eml
+bda23c2ed6bddce06ae5ba5d348a15cc
+bda23c2ed6bddce06ae5ba5d348a15cc  Workgroup/Command Elements/email13.eml
+f02bcdb76e235a286e32f9e1aed138da
+f02bcdb76e235a286e32f9e1aed138da  Workgroup/Command Elements/email14.eml
+26e52b97fde3c9e3c69f5b4190010068
+26e52b97fde3c9e3c69f5b4190010068  Workgroup/Command Elements/email15.eml
+7d13c5a8137edd5ef60c336a3afb5b00
+7d13c5a8137edd5ef60c336a3afb5b00  Workgroup/Command Elements/email16.eml
+6341a7205ccbc0aeeea66effcbf32d70
+6341a7205ccbc0aeeea66effcbf32d70  Workgroup/Command Elements/email17.eml
+da490812eee7cdde258ec29706cb9ecb
+da490812eee7cdde258ec29706cb9ecb  Workgroup/Command Elements/email18.eml
+39b984e27d5a24f9ddcc0c221c95e918
+39b984e27d5a24f9ddcc0c221c95e918  Workgroup/Command Elements/email19.eml
+e47e1c290c9d67cc666cf7164a497254
+e47e1c290c9d67cc666cf7164a497254  Workgroup/Command Elements/email2.eml
+f8fce45d1d17feaee8cc8bb15e72e39c
+f8fce45d1d17feaee8cc8bb15e72e39c  Workgroup/Command Elements/email20.eml
+693b1a590bf8d45c140541bb23e80c66
+693b1a590bf8d45c140541bb23e80c66  Workgroup/Command Elements/email21.eml
+d5ab1f286a128c3265967f77c6a3f3aa
+d5ab1f286a128c3265967f77c6a3f3aa  Workgroup/Command Elements/email22.eml
+e0ef4c3342fe5cc2e10dc3845b626049
+e0ef4c3342fe5cc2e10dc3845b626049  Workgroup/Command Elements/email23.eml
+5ad865eeceb99885008da99d6ec52d22
+5ad865eeceb99885008da99d6ec52d22  Workgroup/Command Elements/email24.eml
+3c9ab8e865151027eee839da26704783
+3c9ab8e865151027eee839da26704783  Workgroup/Command Elements/email25.eml
+8a79c638d5d11fcc3921341327304545
+8a79c638d5d11fcc3921341327304545  Workgroup/Command Elements/email26.eml
+65be8f45a9bcbedc870ca74d7c9289ad
+65be8f45a9bcbedc870ca74d7c9289ad  Workgroup/Command Elements/email27.eml
+a40e0f9901794d2704344d30df69e066
+a40e0f9901794d2704344d30df69e066  Workgroup/Command Elements/email28.eml
+d5ca75c75687a9defb4113c5bae63378
+d5ca75c75687a9defb4113c5bae63378  Workgroup/Command Elements/email29.eml
+d63fa0d3702aa31acba6bc87dcc6eab9
+d63fa0d3702aa31acba6bc87dcc6eab9  Workgroup/Command Elements/email3.eml
+a0592a66983d63c49ca8aea4100d0151
+a0592a66983d63c49ca8aea4100d0151  Workgroup/Command Elements/email30.eml
+987ed904eca762060d39cfef4adb46b4
+987ed904eca762060d39cfef4adb46b4  Workgroup/Command Elements/email31.eml
+2f42ac161c5077510ce58e8fabd0a7a4
+2f42ac161c5077510ce58e8fabd0a7a4  Workgroup/Command Elements/email32.eml
+1f6cdc49b4c5411fcaa0d3fb9434884e
+1f6cdc49b4c5411fcaa0d3fb9434884e  Workgroup/Command Elements/email33.eml
+e92fc48a82a5c08609164eb23893f6cf
+e92fc48a82a5c08609164eb23893f6cf  Workgroup/Command Elements/email34.eml
+1dadfd52ee8f41519e43a40ad73922d7
+1dadfd52ee8f41519e43a40ad73922d7  Workgroup/Command Elements/email35.eml
+3ba907862e0cdba46757e74669fd516b
+3ba907862e0cdba46757e74669fd516b  Workgroup/Command Elements/email36.eml
+fb0908a9953e8ee2280bbf592e8f2ed2
+fb0908a9953e8ee2280bbf592e8f2ed2  Workgroup/Command Elements/email37.eml
+4b32ea9f84d359d3725e1e6758366a95
+4b32ea9f84d359d3725e1e6758366a95  Workgroup/Command Elements/email38.eml
+3e5169ece22bc27c9850c3f4c92a41fa
+3e5169ece22bc27c9850c3f4c92a41fa  Workgroup/Command Elements/email39.eml
+d27954ac59503fc2633a62608cf482bf
+d27954ac59503fc2633a62608cf482bf  Workgroup/Command Elements/email4.eml
+879d64d9776302631d29d7fd628e24e1
+879d64d9776302631d29d7fd628e24e1  Workgroup/Command Elements/email40.eml
+61b074b85f253f4176281bcef92aff2f
+61b074b85f253f4176281bcef92aff2f  Workgroup/Command Elements/email41.eml
+20e27023b962589037563de75b04edde
+20e27023b962589037563de75b04edde  Workgroup/Command Elements/email42.eml
+92115ad7dcae67e6c9bc88ca7c592291
+92115ad7dcae67e6c9bc88ca7c592291  Workgroup/Command Elements/email43.eml
+6fdd134ae6faf540f86bf497923719c7
+6fdd134ae6faf540f86bf497923719c7  Workgroup/Command Elements/email44.eml
+6f192d6ca5b0d73097af4b1b5fc75525
+6f192d6ca5b0d73097af4b1b5fc75525  Workgroup/Command Elements/email45.eml
+ab73b4b238c5b85061f2371babfa0f34
+ab73b4b238c5b85061f2371babfa0f34  Workgroup/Command Elements/email46.eml
+a79e02c79849ff2b4e6e8a2315cefe0c
+a79e02c79849ff2b4e6e8a2315cefe0c  Workgroup/Command Elements/email47.eml
+b99ef5eab6dd4260b8e1358e98c90783
+b99ef5eab6dd4260b8e1358e98c90783  Workgroup/Command Elements/email48.eml
+1c6911c641c1220e3092019dcfef0f0d
+1c6911c641c1220e3092019dcfef0f0d  Workgroup/Command Elements/email49.eml
+899c873bd4550efc915ed152582e1431
+899c873bd4550efc915ed152582e1431  Workgroup/Command Elements/email5.eml
+9dc574af324114389f92eadf579c9d21
+9dc574af324114389f92eadf579c9d21  Workgroup/Command Elements/email50.eml
+2c9d6c768e5ec62741057a7b68e485b5
+2c9d6c768e5ec62741057a7b68e485b5  Workgroup/Command Elements/email6.eml
+3a91c8e4935f9b281e64294a84c3a802
+3a91c8e4935f9b281e64294a84c3a802  Workgroup/Command Elements/email7.eml
+f7b0320ed9585c9d74b19517100bb6c0
+f7b0320ed9585c9d74b19517100bb6c0  Workgroup/Command Elements/email8.eml
+22946a0ef009dc5b4bb3a177f7596cd2
+22946a0ef009dc5b4bb3a177f7596cd2  Workgroup/Command Elements/email9.eml
+
+c:\Program Files (x86)\hMailServer\Data\Workgroup\Cyber-Comms Detachment
+d633e65058d6f952edd501ab0bb63f15  Workgroup/Cyber-Comms Detachment/email1.eml
+ac10ca530fc8fe96261b2f85a424a0e3  Workgroup/Cyber-Comms Detachment/email10.eml
+f8bb03228245438bbcff71d525c13324  Workgroup/Cyber-Comms Detachment/email11.eml
+8f70012f01d273f7f0f1752f4fe05cb5  Workgroup/Cyber-Comms Detachment/email12.eml
+f54cc2322c381560dc2073884dd069b6  Workgroup/Cyber-Comms Detachment/email13.eml
+73990417f6a69199c3694cbbbeb1a3e2  Workgroup/Cyber-Comms Detachment/email14.eml
+722f047c52acbd44544c3ce82bb40d39  Workgroup/Cyber-Comms Detachment/email15.eml
+8aae3741435b824c84d7e7a69c9c76db  Workgroup/Cyber-Comms Detachment/email16.eml
+33ba63188276ee5170f9551ecca38552  Workgroup/Cyber-Comms Detachment/email17.eml
+ad7b8d21cc9afec227379276255a13b2  Workgroup/Cyber-Comms Detachment/email18.eml
+11a561c2c7ee4223cc84c1b902c209cb  Workgroup/Cyber-Comms Detachment/email19.eml
+75e70dbde16954a80cf2b04eb41465c4  Workgroup/Cyber-Comms Detachment/email2.eml
+38d94d5a678df8894d037c9b7d91d3b2  Workgroup/Cyber-Comms Detachment/email20.eml
+63df24be5d3627b77aa7ddd2c984edfd  Workgroup/Cyber-Comms Detachment/email21.eml
+c50d78f16dc68073266e9a548323f2b8  Workgroup/Cyber-Comms Detachment/email22.eml
+797af39e5b5266af9c03d86e617169fa  Workgroup/Cyber-Comms Detachment/email23.eml
+5c926309b1747856bef913170d767ba1  Workgroup/Cyber-Comms Detachment/email24.eml
+d4bc665291d8b63deb450f31bc67789c  Workgroup/Cyber-Comms Detachment/email25.eml
+91bb26dfe61a99039a4e687bdcc4d30f  Workgroup/Cyber-Comms Detachment/email26.eml
+3d855ee69cc984708ada20ef201072e2  Workgroup/Cyber-Comms Detachment/email27.eml
+72c926e48ebbccdb1178930b55dcd136  Workgroup/Cyber-Comms Detachment/email28.eml
+f05a2373e411ba8dcb4912dc10dc2356  Workgroup/Cyber-Comms Detachment/email29.eml
+ec7d90eba7fda653774e69d546274658  Workgroup/Cyber-Comms Detachment/email3.eml
+baa2605b96af0d34f11c19d84ae7b59f  Workgroup/Cyber-Comms Detachment/email30.eml
+806f2b21e7f382249d82c1e314c17ef0  Workgroup/Cyber-Comms Detachment/email31.eml
+aa6f0dd1f7345508b845ab1f7459b78e  Workgroup/Cyber-Comms Detachment/email32.eml
+9734a1d3f2767ecdf7a88adc6c81209b  Workgroup/Cyber-Comms Detachment/email33.eml
+eca3a9104e10fc8f630e591dc3204fc1  Workgroup/Cyber-Comms Detachment/email34.eml
+4ec4505220b6a3965207af819429e8a4  Workgroup/Cyber-Comms Detachment/email35.eml
+11c0f0b93375bcc7067305b06a82e464  Workgroup/Cyber-Comms Detachment/email36.eml
+54357216d4cc05d0c0180fc5cd54ba95  Workgroup/Cyber-Comms Detachment/email37.eml
+d2500897f54012417c6506941d49650e  Workgroup/Cyber-Comms Detachment/email38.eml
+645421ef0d9a0be2fa190e07e51c5f54  Workgroup/Cyber-Comms Detachment/email39.eml
+a10b50316c33d51deac1cee2bb9d35d6  Workgroup/Cyber-Comms Detachment/email4.eml
+33fae33e9e4bf327082eefce33e661ff  Workgroup/Cyber-Comms Detachment/email40.eml
+11c2bb49f5c17108cf1b8ba4abdb5ad2  Workgroup/Cyber-Comms Detachment/email41.eml
+5f09693a0aea51dbff83e7fe8028b16f  Workgroup/Cyber-Comms Detachment/email42.eml
+5b3b4c58b71cf6a6c3663dec95310d2c  Workgroup/Cyber-Comms Detachment/email43.eml
+0cb156ffb621d3fe1245af995732be60  Workgroup/Cyber-Comms Detachment/email44.eml
+bc64d94e574a3a576e259e56f8aa76a2  Workgroup/Cyber-Comms Detachment/email45.eml
+9350a8682352c34c5c1455c06400b8df  Workgroup/Cyber-Comms Detachment/email46.eml
+98247f51a7b0c5701a7f047b5c1d8f9c  Workgroup/Cyber-Comms Detachment/email47.eml
+e40c287d84f8b8e962c8f02d1970186e  Workgroup/Cyber-Comms Detachment/email48.eml
+a2f9c790a762987cd866368c9cfaada8  Workgroup/Cyber-Comms Detachment/email49.eml
+4539c5c97792e08a67adca8f9a882e71  Workgroup/Cyber-Comms Detachment/email5.eml
+1a8cee54ad5200367ea6c2a293e72816  Workgroup/Cyber-Comms Detachment/email50.eml
+bebcd221f374189ea5dfe4e0e7003f19  Workgroup/Cyber-Comms Detachment/email6.eml
+855fc0bf147a36bfbd0715c91df1ce10  Workgroup/Cyber-Comms Detachment/email7.eml
+cad7f639b2fe7ad94d1a613df7d6bab4  Workgroup/Cyber-Comms Detachment/email8.eml
+1358385431ee2bf2949347abdc7f2176  Workgroup/Cyber-Comms Detachment/email9.eml
+
+Remote
+email1.eml
+d633e65058d6f952edd501ab0bb63f15
+email10.eml
+ac10ca530fc8fe96261b2f85a424a0e3
+email11.eml
+f8bb03228245438bbcff71d525c13324
+email12.eml
+8f70012f01d273f7f0f1752f4fe05cb5
+email13.eml
+f54cc2322c381560dc2073884dd069b6
+email14.eml
+73990417f6a69199c3694cbbbeb1a3e2
+email15.eml
+722f047c52acbd44544c3ce82bb40d39
+email16.eml
+8aae3741435b824c84d7e7a69c9c76db
+email17.eml
+33ba63188276ee5170f9551ecca38552
+email18.eml
+ad7b8d21cc9afec227379276255a13b2
+email19.eml
+11a561c2c7ee4223cc84c1b902c209cb
+email2.eml
+75e70dbde16954a80cf2b04eb41465c4
+email20.eml
+38d94d5a678df8894d037c9b7d91d3b2
+email21.eml
+63df24be5d3627b77aa7ddd2c984edfd
+email22.eml
+c50d78f16dc68073266e9a548323f2b8
+email23.eml
+797af39e5b5266af9c03d86e617169fa
+email24.eml
+5c926309b1747856bef913170d767ba1
+email25.eml
+d4bc665291d8b63deb450f31bc67789c
+email26.eml
+91bb26dfe61a99039a4e687bdcc4d30f
+email27.eml
+3d855ee69cc984708ada20ef201072e2
+email28.eml
+72c926e48ebbccdb1178930b55dcd136
+email29.eml
+f05a2373e411ba8dcb4912dc10dc2356
+email3.eml
+ec7d90eba7fda653774e69d546274658
+email30.eml
+baa2605b96af0d34f11c19d84ae7b59f
+email31.eml
+806f2b21e7f382249d82c1e314c17ef0
+email32.eml
+aa6f0dd1f7345508b845ab1f7459b78e
+email33.eml
+9734a1d3f2767ecdf7a88adc6c81209b
+email34.eml
+eca3a9104e10fc8f630e591dc3204fc1
+email35.eml
+4ec4505220b6a3965207af819429e8a4
+email36.eml
+11c0f0b93375bcc7067305b06a82e464
+email37.eml
+54357216d4cc05d0c0180fc5cd54ba95
+email38.eml
+d2500897f54012417c6506941d49650e
+email39.eml
+645421ef0d9a0be2fa190e07e51c5f54
+email4.eml
+a10b50316c33d51deac1cee2bb9d35d6
+email40.eml
+33fae33e9e4bf327082eefce33e661ff
+email41.eml
+11c2bb49f5c17108cf1b8ba4abdb5ad2
+email42.eml
+5f09693a0aea51dbff83e7fe8028b16f
+email43.eml
+5b3b4c58b71cf6a6c3663dec95310d2c
+email44.eml
+0cb156ffb621d3fe1245af995732be60
+email45.eml
+bc64d94e574a3a576e259e56f8aa76a2
+email46.eml
+9350a8682352c34c5c1455c06400b8df
+email47.eml
+98247f51a7b0c5701a7f047b5c1d8f9c
+email48.eml
+e40c287d84f8b8e962c8f02d1970186e
+email49.eml
+a2f9c790a762987cd866368c9cfaada8
+email5.eml
+4539c5c97792e08a67adca8f9a882e71
+email50.eml
+1a8cee54ad5200367ea6c2a293e72816
+email6.eml
+bebcd221f374189ea5dfe4e0e7003f19
+email7.eml
+855fc0bf147a36bfbd0715c91df1ce10
+email8.eml
+cad7f639b2fe7ad94d1a613df7d6bab4
+email9.eml
+1358385431ee2bf2949347abdc7f2176
+
+
+c:\Program Files (x86)\hMailServer\Data\Workgroup\Ground Forces
+3a02d4d974e5f6ae1f58114a47950158  Workgroup/Ground Forces/email1.eml
+92483b554a8269e3db5e1705ff3d1cf0  Workgroup/Ground Forces/email10.eml
+1370f2a5cd012eb03ca7fbd6eeb39b5a  Workgroup/Ground Forces/email11.eml
+604ffe3577aea59176bea64e376a5843  Workgroup/Ground Forces/email12.eml
+15edf358d84a64dde2608dd85027c68c  Workgroup/Ground Forces/email13.eml
+319ecd7d0571dd5ff1feca77ce7f058e  Workgroup/Ground Forces/email14.eml
+4fbfeda544f400c7813c30b833bea41e  Workgroup/Ground Forces/email15.eml
+e1f97c7606325d9b498a06558d47be3b  Workgroup/Ground Forces/email16.eml
+6474c8458a9533b53d765bf7cc9ac0d4  Workgroup/Ground Forces/email17.eml
+40753202713e8134f3d2fbae9a8b6bfc  Workgroup/Ground Forces/email18.eml
+cae9d89ef15f1b18550d1249fff09fcb  Workgroup/Ground Forces/email19.eml
+007795f8c489fc132c2fee5af987150b  Workgroup/Ground Forces/email2.eml
+daec921bba19f1930c5719f9f5f29faf  Workgroup/Ground Forces/email20.eml
+1c1bac057c9d873aa51395adb5e7dbfc  Workgroup/Ground Forces/email21.eml
+f01874b1275e1dc7318f2f3fc69ac28b  Workgroup/Ground Forces/email22.eml
+48459bff016e784024222d8e5a172360  Workgroup/Ground Forces/email23.eml
+d60af54bd0272983e77387c20b55dc96  Workgroup/Ground Forces/email24.eml
+b2a495984282473df9005117787641b1  Workgroup/Ground Forces/email25.eml
+c22603a55f5ee10c9d1a3b2712d3dd27  Workgroup/Ground Forces/email26.eml
+37e2e98f3083d32ed7286b94cd25e1f6  Workgroup/Ground Forces/email27.eml
+6ec9c35962d22f29b5c8aa45f35fce49  Workgroup/Ground Forces/email28.eml
+bac569218b2369446a034caf4289328b  Workgroup/Ground Forces/email29.eml
+a61d6284e86fd320582c3ed9682e92c4  Workgroup/Ground Forces/email3.eml
+53d565a965608aae8bc8c196a6e2f77d  Workgroup/Ground Forces/email30.eml
+e8f6cf1e025127a09ece56a1f0a9868b  Workgroup/Ground Forces/email31.eml
+e818a45856d85fe4c6f833e5911d2129  Workgroup/Ground Forces/email32.eml
+745f95325c4dc0f4f86c59c878a3dd18  Workgroup/Ground Forces/email33.eml
+08a02f9599e0cb3553b0ec5305e59a7f  Workgroup/Ground Forces/email34.eml
+1cf50e73e517522f7339c18e3e332881  Workgroup/Ground Forces/email35.eml
+9a4f14c2f6bbc1b1a04f8a853cac7b03  Workgroup/Ground Forces/email36.eml
+0af9370caf0410f12238b7992b6eb750  Workgroup/Ground Forces/email37.eml
+f9d36dc1e6d611fff1b5e4585ac69281  Workgroup/Ground Forces/email38.eml
+3c7a8c822d522353850079e01087ab6a  Workgroup/Ground Forces/email39.eml
+c13288311627d5d428350aeeae7a7021  Workgroup/Ground Forces/email4.eml
+d74633716cbb6ef7b08227f6bc6dff31  Workgroup/Ground Forces/email40.eml
+d464e7ac89ea1a6583c3f0474c8346fb  Workgroup/Ground Forces/email41.eml
+322855ede5759b2bf889324bb1fa63fa  Workgroup/Ground Forces/email42.eml
+2c609ed3e18e6861f69a761714d9bae7  Workgroup/Ground Forces/email43.eml
+d5465949b357b3eef53beaf5f95c2582  Workgroup/Ground Forces/email44.eml
+22a2990ad4dff711ad0ab23c8750b566  Workgroup/Ground Forces/email45.eml
+e5de38bce3b48cf939aa5fd53b39d5d9  Workgroup/Ground Forces/email46.eml
+535d27ed75635c0fb15eadeb72121f7d  Workgroup/Ground Forces/email47.eml
+dcc358630f5703cb33ae353845e96d18  Workgroup/Ground Forces/email48.eml
+53ef703c875af24744da420eb9a9226f  Workgroup/Ground Forces/email49.eml
+a1ef447b94409a7a0b9258c5caa73378  Workgroup/Ground Forces/email5.eml
+d26ec196e728434903b8975c2922ac24  Workgroup/Ground Forces/email50.eml
+a8809d4a60dcd4fdbc48336996a84021  Workgroup/Ground Forces/email6.eml
+9103493920b258d6fff46afc45dfe855  Workgroup/Ground Forces/email7.eml
+561cf3719c19e8d550f04468c8c064c0  Workgroup/Ground Forces/email8.eml
+1cb54c62a3510815baff67b2b24ea3bc  Workgroup/Ground Forces/email9.eml
+
+Remote
+email1.eml
+3a02d4d974e5f6ae1f58114a47950158
+email10.eml
+92483b554a8269e3db5e1705ff3d1cf0
+email11.eml
+1370f2a5cd012eb03ca7fbd6eeb39b5a
+email12.eml
+604ffe3577aea59176bea64e376a5843
+email13.eml
+15edf358d84a64dde2608dd85027c68c
+email14.eml
+319ecd7d0571dd5ff1feca77ce7f058e
+email15.eml
+4fbfeda544f400c7813c30b833bea41e
+email16.eml
+e1f97c7606325d9b498a06558d47be3b
+email17.eml
+6474c8458a9533b53d765bf7cc9ac0d4
+email18.eml
+40753202713e8134f3d2fbae9a8b6bfc
+email19.eml
+cae9d89ef15f1b18550d1249fff09fcb
+email2.eml
+007795f8c489fc132c2fee5af987150b
+email20.eml
+daec921bba19f1930c5719f9f5f29faf
+email21.eml
+1c1bac057c9d873aa51395adb5e7dbfc
+email22.eml
+f01874b1275e1dc7318f2f3fc69ac28b
+email23.eml
+48459bff016e784024222d8e5a172360
+email24.eml
+d60af54bd0272983e77387c20b55dc96
+email25.eml
+b2a495984282473df9005117787641b1
+email26.eml
+c22603a55f5ee10c9d1a3b2712d3dd27
+email27.eml
+37e2e98f3083d32ed7286b94cd25e1f6
+email28.eml
+6ec9c35962d22f29b5c8aa45f35fce49
+email29.eml
+bac569218b2369446a034caf4289328b
+email3.eml
+a61d6284e86fd320582c3ed9682e92c4
+email30.eml
+53d565a965608aae8bc8c196a6e2f77d
+email31.eml
+e8f6cf1e025127a09ece56a1f0a9868b
+email32.eml
+e818a45856d85fe4c6f833e5911d2129
+email33.eml
+745f95325c4dc0f4f86c59c878a3dd18
+email34.eml
+08a02f9599e0cb3553b0ec5305e59a7f
+email35.eml
+1cf50e73e517522f7339c18e3e332881
+email36.eml
+9a4f14c2f6bbc1b1a04f8a853cac7b03
+email37.eml
+0af9370caf0410f12238b7992b6eb750
+email38.eml
+f9d36dc1e6d611fff1b5e4585ac69281
+email39.eml
+3c7a8c822d522353850079e01087ab6a
+email4.eml
+c13288311627d5d428350aeeae7a7021
+email40.eml
+d74633716cbb6ef7b08227f6bc6dff31
+email41.eml
+d464e7ac89ea1a6583c3f0474c8346fb
+email42.eml
+322855ede5759b2bf889324bb1fa63fa
+email43.eml
+2c609ed3e18e6861f69a761714d9bae7
+email44.eml
+d5465949b357b3eef53beaf5f95c2582
+email45.eml
+22a2990ad4dff711ad0ab23c8750b566
+email46.eml
+e5de38bce3b48cf939aa5fd53b39d5d9
+email47.eml
+535d27ed75635c0fb15eadeb72121f7d
+email48.eml
+dcc358630f5703cb33ae353845e96d18
+email49.eml
+53ef703c875af24744da420eb9a9226f
+email5.eml
+a1ef447b94409a7a0b9258c5caa73378
+email50.eml
+d26ec196e728434903b8975c2922ac24
+email6.eml
+a8809d4a60dcd4fdbc48336996a84021
+email7.eml
+9103493920b258d6fff46afc45dfe855
+email8.eml
+561cf3719c19e8d550f04468c8c064c0
+email9.eml
+1cb54c62a3510815baff67b2b24ea3bc
+
+c:\Program Files (x86)\hMailServer\Data\Workgroup\R&D
+f4ae8901516284b31dc76cf016aa6f31  Workgroup/R&D/email1.eml
+cdf6495b0b0fbff31463f561cf6575bf  Workgroup/R&D/email10.eml
+cc0da442f232fc232431c902a655e0ea  Workgroup/R&D/email11.eml
+21c47b7e310ee6c217631927a457d8e7  Workgroup/R&D/email12.eml
+332ff007f513d233683962afb70d1f6b  Workgroup/R&D/email13.eml
+d2e4ee25c4e134de709a92dfb8cef0e7  Workgroup/R&D/email14.eml
+a7800181a222e9eb38bd623da656bec0  Workgroup/R&D/email15.eml
+6e57ae1d3c3a691b697a5656ca55f9cb  Workgroup/R&D/email16.eml
+ff1ed7d9b957c42cd8b1f1508fcf5cc6  Workgroup/R&D/email17.eml
+9fd131d9cf38aacee8b49a869d91f8f4  Workgroup/R&D/email18.eml
+8ec3e7fae98697a23b142a6895897d3e  Workgroup/R&D/email19.eml
+d92c3fab3b3eb68e4523a2da8190f5e7  Workgroup/R&D/email2.eml
+7a4e8f686cebe813349f5ba58e008f8e  Workgroup/R&D/email20.eml
+48480e0577bee3d94f140c5413769ee1  Workgroup/R&D/email21.eml
+8d4f3042ec7c44f818b4277bba96cac1  Workgroup/R&D/email22.eml
+4a912bb434b2d7cff3d6e2ed478c0fab  Workgroup/R&D/email23.eml
+b58cf64e8af80db3179bce1e9b53a24e  Workgroup/R&D/email24.eml
+404d4e812f1efc478c9a4727e9b10714  Workgroup/R&D/email25.eml
+8ccbffe101373922154157afe9d5077d  Workgroup/R&D/email26.eml
+28c896f52eeb25ab67f1996fa4314afe  Workgroup/R&D/email27.eml
+2a8776a4096420e60914b5d08e651d57  Workgroup/R&D/email28.eml
+61466360f031f3d56b33a0f59acc7260  Workgroup/R&D/email29.eml
+c362eb7231ab61d9a818952b322fc985  Workgroup/R&D/email3.eml
+58f6838d998e40c43a663d15fad0673a  Workgroup/R&D/email30.eml
+96438ef2c6a3844c1cb7770395de5e7d  Workgroup/R&D/email31.eml
+accfbe212f290fb8d62ba33339d46ce1  Workgroup/R&D/email32.eml
+7e05b5f6e59592a3960faabb540ee057  Workgroup/R&D/email33.eml
+52bbdb56f70736279a41595cda4b4cc2  Workgroup/R&D/email34.eml
+60ab496c0a5a34deaf4a3eb1bf0c40e8  Workgroup/R&D/email35.eml
+c2a134b423e689aba58e1427f2611ea0  Workgroup/R&D/email36.eml
+152b45b2132d995c19125e95af3700a1  Workgroup/R&D/email37.eml
+c644ce9ee21ca74cca727e0c6aa1db7d  Workgroup/R&D/email38.eml
+a5bfcc33b630bfca370ed2a09994055a  Workgroup/R&D/email39.eml
+aeff88b385d4fb4de007de90ecc3a41a  Workgroup/R&D/email4.eml
+1b969c3bb90176e57cf1df71d2fb118b  Workgroup/R&D/email40.eml
+d970324f3d5f7c3e2b38368bbbcb7b66  Workgroup/R&D/email41.eml
+9b428d52d561b94dc6c64da33ba00474  Workgroup/R&D/email42.eml
+fde49212d1c6e445dc0ff295d3d2f146  Workgroup/R&D/email43.eml
+c6e714fcfaa1c9fff914fa81cb4813a4  Workgroup/R&D/email44.eml
+ceeb41a2850b309cc0f361ab49064a8b  Workgroup/R&D/email45.eml
+0a7d7a94939425b48f3763c4d48f041e  Workgroup/R&D/email46.eml
+cb89471200f54b38737af52361c7c931  Workgroup/R&D/email47.eml
+fa1a5c4f9f71f56ef20448be131ce8b7  Workgroup/R&D/email48.eml
+74931f5395ed2be906b27be70e08edcb  Workgroup/R&D/email49.eml
+f7024fe9460bb8168f80687dafb58795  Workgroup/R&D/email5.eml
+94f0cee222db50f61850449231798eb0  Workgroup/R&D/email50.eml
+4bf847de32ae393b56d4e2877d758100  Workgroup/R&D/email6.eml
+04d23615d842b89b4126f747c3c3c928  Workgroup/R&D/email7.eml
+8b8d8787cda3e3f8647be598ca7bd0c9  Workgroup/R&D/email8.eml
+b30b78f2162cb5c94a96de60552960b3  Workgroup/R&D/email9.eml
+
+Remote
+email1.eml
+f4ae8901516284b31dc76cf016aa6f31
+email10.eml
+cdf6495b0b0fbff31463f561cf6575bf
+email11.eml
+cc0da442f232fc232431c902a655e0ea
+email12.eml
+21c47b7e310ee6c217631927a457d8e7
+email13.eml
+332ff007f513d233683962afb70d1f6b
+email14.eml
+d2e4ee25c4e134de709a92dfb8cef0e7
+email15.eml
+a7800181a222e9eb38bd623da656bec0
+email16.eml
+6e57ae1d3c3a691b697a5656ca55f9cb
+email17.eml
+ff1ed7d9b957c42cd8b1f1508fcf5cc6
+email18.eml
+9fd131d9cf38aacee8b49a869d91f8f4
+email19.eml
+8ec3e7fae98697a23b142a6895897d3e
+email2.eml
+d92c3fab3b3eb68e4523a2da8190f5e7
+email20.eml
+7a4e8f686cebe813349f5ba58e008f8e
+email21.eml
+48480e0577bee3d94f140c5413769ee1
+email22.eml
+8d4f3042ec7c44f818b4277bba96cac1
+email23.eml
+4a912bb434b2d7cff3d6e2ed478c0fab
+email24.eml
+b58cf64e8af80db3179bce1e9b53a24e
+email25.eml
+404d4e812f1efc478c9a4727e9b10714
+email26.eml
+8ccbffe101373922154157afe9d5077d
+email27.eml
+28c896f52eeb25ab67f1996fa4314afe
+email28.eml
+2a8776a4096420e60914b5d08e651d57
+email29.eml
+61466360f031f3d56b33a0f59acc7260
+email3.eml
+c362eb7231ab61d9a818952b322fc985
+email30.eml
+58f6838d998e40c43a663d15fad0673a
+email31.eml
+96438ef2c6a3844c1cb7770395de5e7d
+email32.eml
+accfbe212f290fb8d62ba33339d46ce1
+email33.eml
+7e05b5f6e59592a3960faabb540ee057
+email34.eml
+52bbdb56f70736279a41595cda4b4cc2
+email35.eml
+60ab496c0a5a34deaf4a3eb1bf0c40e8
+email36.eml
+c2a134b423e689aba58e1427f2611ea0
+email37.eml
+152b45b2132d995c19125e95af3700a1
+email38.eml
+c644ce9ee21ca74cca727e0c6aa1db7d
+email39.eml
+a5bfcc33b630bfca370ed2a09994055a
+email4.eml
+aeff88b385d4fb4de007de90ecc3a41a
+email40.eml
+1b969c3bb90176e57cf1df71d2fb118b
+email41.eml
+d970324f3d5f7c3e2b38368bbbcb7b66
+email42.eml
+9b428d52d561b94dc6c64da33ba00474
+email43.eml
+fde49212d1c6e445dc0ff295d3d2f146
+email44.eml
+c6e714fcfaa1c9fff914fa81cb4813a4
+email45.eml
+ceeb41a2850b309cc0f361ab49064a8b
+email46.eml
+0a7d7a94939425b48f3763c4d48f041e
+email47.eml
+cb89471200f54b38737af52361c7c931
+email48.eml
+fa1a5c4f9f71f56ef20448be131ce8b7
+email49.eml
+74931f5395ed2be906b27be70e08edcb
+email5.eml
+f7024fe9460bb8168f80687dafb58795
+email50.eml
+94f0cee222db50f61850449231798eb0
+email6.eml
+4bf847de32ae393b56d4e2877d758100
+email7.eml
+04d23615d842b89b4126f747c3c3c928
+email8.eml
+8b8d8787cda3e3f8647be598ca7bd0c9
+email9.eml
+b30b78f2162cb5c94a96de60552960b3
+
+
+c:\Program Files (x86)\hMailServer\Data\Workgroup\Supply
+873b8c6e2336e039224e940d1fba6f46  Workgroup/Supply/email1.eml
+4b4dc082ae85389601730a267eb4ca13  Workgroup/Supply/email10.eml
+f63d1fb6da7085e66647d38a4a97cf2f  Workgroup/Supply/email11.eml
+8a18061c4e5cda4f6b9c77e5309dccf1  Workgroup/Supply/email12.eml
+43f7d703c97e8bf254a2c6b13ca67168  Workgroup/Supply/email13.eml
+96b938bb9862e801c354bfb71600ff1e  Workgroup/Supply/email14.eml
+9e0f14eebbf229ed7b4df3e1b61ecae6  Workgroup/Supply/email15.eml
+bce1c03a671b9faf19a16cf248db24d0  Workgroup/Supply/email16.eml
+636b6914bce35f0b807ceb390567abf0  Workgroup/Supply/email17.eml
+db1c5135ed48d24894930f8b4385c9b8  Workgroup/Supply/email18.eml
+3c8adf7f38b93e77c3d707a06891785e  Workgroup/Supply/email19.eml
+ece4b5323cf6b28219154e309214796b  Workgroup/Supply/email2.eml
+102cd23591d5d7d738ec02c7affb5651  Workgroup/Supply/email20.eml
+7c26e22bb145a50b1fc49221dc0c83d4  Workgroup/Supply/email21.eml
+4d15259d9b40f716cce89d36f46d774f  Workgroup/Supply/email22.eml
+e7a71466f023c455b2f2de4a503f936b  Workgroup/Supply/email23.eml
+75ba664937a9e466400031e30f908285  Workgroup/Supply/email24.eml
+917b46aa3b33a2d4911ae49134e3f855  Workgroup/Supply/email25.eml
+fc4d94546ee5774d3df84d0dccd93139  Workgroup/Supply/email26.eml
+665880248501054951cd549136ee8a8e  Workgroup/Supply/email27.eml
+b693529d775894890047a9481eb5f5d4  Workgroup/Supply/email28.eml
+6757469ed4413a6f3a0285d54284d9b9  Workgroup/Supply/email29.eml
+612d6e484d396a8b9c946b793cc1502b  Workgroup/Supply/email3.eml
+78301fe8bd50f501f45807be239e44ac  Workgroup/Supply/email30.eml
+5acc2d48efc25cb743fe7a44eddbf360  Workgroup/Supply/email31.eml
+5a950b1c27223723fc721e2f879be318  Workgroup/Supply/email32.eml
+3ac9414627fcd030ff2d8d83ed63dcf0  Workgroup/Supply/email33.eml
+d82a4c78abe805d23233b0c45afc91c8  Workgroup/Supply/email34.eml
+cd99c62b30ec46e15ecf4d6ba85ca266  Workgroup/Supply/email35.eml
+2a7bb898ea789189cf0c79cb5e4e6ff0  Workgroup/Supply/email36.eml
+2b798bf767ac433456549e2f22b39b7d  Workgroup/Supply/email37.eml
+9d8d6554890e8a474b89a06bd01bf51c  Workgroup/Supply/email38.eml
+559127151f6f62bcd718f6d0e32818c7  Workgroup/Supply/email39.eml
+5b07f2ab73a48490b58a6514d84c0262  Workgroup/Supply/email4.eml
+8ac203b2ca37982680ed7e8b829598d8  Workgroup/Supply/email40.eml
+8d2ed03e90b980c6426850b8ff8fdb3b  Workgroup/Supply/email41.eml
+e8250fb75321b9597d81593db8d62326  Workgroup/Supply/email42.eml
+b4f63239c12f3e774d32f959057fba40  Workgroup/Supply/email43.eml
+a3e4de7d7728ab83874b4f66e066afd1  Workgroup/Supply/email44.eml
+a70677eb677eba9e0f0ee914035d0262  Workgroup/Supply/email45.eml
+fa3dafd4adc9758fb3008815429c9f03  Workgroup/Supply/email46.eml
+7f34ea16bccb1a54389c0504728ae72f  Workgroup/Supply/email47.eml
+b47a9523c6be660f57175fb956fd4c7b  Workgroup/Supply/email48.eml
+e0b89c37905295c61558051a38f15f57  Workgroup/Supply/email49.eml
+641f6861fcbe538d0b59f617a21d21b0  Workgroup/Supply/email5.eml
+cc456117ba72c0497895d555a087bec5  Workgroup/Supply/email50.eml
+1a0787067716694901056c4935ed7f9b  Workgroup/Supply/email6.eml
+98d34422b3722dd2378a69924234fbb4  Workgroup/Supply/email7.eml
+e26fe82a22523050c5f7c83ded6ca53a  Workgroup/Supply/email8.eml
+0dce5d3f6a838efa68d50a673a18be15  Workgroup/Supply/email9.eml
+
+Remote
+email1.eml
+873b8c6e2336e039224e940d1fba6f46
+email10.eml
+4b4dc082ae85389601730a267eb4ca13
+email11.eml
+f63d1fb6da7085e66647d38a4a97cf2f
+email12.eml
+8a18061c4e5cda4f6b9c77e5309dccf1
+email13.eml
+43f7d703c97e8bf254a2c6b13ca67168
+email14.eml
+96b938bb9862e801c354bfb71600ff1e
+email15.eml
+9e0f14eebbf229ed7b4df3e1b61ecae6
+email16.eml
+bce1c03a671b9faf19a16cf248db24d0
+email17.eml
+636b6914bce35f0b807ceb390567abf0
+email18.eml
+db1c5135ed48d24894930f8b4385c9b8
+email19.eml
+3c8adf7f38b93e77c3d707a06891785e
+email2.eml
+ece4b5323cf6b28219154e309214796b
+email20.eml
+102cd23591d5d7d738ec02c7affb5651
+email21.eml
+7c26e22bb145a50b1fc49221dc0c83d4
+email22.eml
+4d15259d9b40f716cce89d36f46d774f
+email23.eml
+e7a71466f023c455b2f2de4a503f936b
+email24.eml
+75ba664937a9e466400031e30f908285
+email25.eml
+917b46aa3b33a2d4911ae49134e3f855
+email26.eml
+fc4d94546ee5774d3df84d0dccd93139
+email27.eml
+665880248501054951cd549136ee8a8e
+email28.eml
+b693529d775894890047a9481eb5f5d4
+email29.eml
+6757469ed4413a6f3a0285d54284d9b9
+email3.eml
+612d6e484d396a8b9c946b793cc1502b
+email30.eml
+78301fe8bd50f501f45807be239e44ac
+email31.eml
+5acc2d48efc25cb743fe7a44eddbf360
+email32.eml
+5a950b1c27223723fc721e2f879be318
+email33.eml
+3ac9414627fcd030ff2d8d83ed63dcf0
+email34.eml
+d82a4c78abe805d23233b0c45afc91c8
+email35.eml
+cd99c62b30ec46e15ecf4d6ba85ca266
+email36.eml
+2a7bb898ea789189cf0c79cb5e4e6ff0
+email37.eml
+2b798bf767ac433456549e2f22b39b7d
+email38.eml
+9d8d6554890e8a474b89a06bd01bf51c
+email39.eml
+559127151f6f62bcd718f6d0e32818c7
+email4.eml
+5b07f2ab73a48490b58a6514d84c0262
+email40.eml
+8ac203b2ca37982680ed7e8b829598d8
+email41.eml
+8d2ed03e90b980c6426850b8ff8fdb3b
+email42.eml
+e8250fb75321b9597d81593db8d62326
+email43.eml
+b4f63239c12f3e774d32f959057fba40
+email44.eml
+a3e4de7d7728ab83874b4f66e066afd1
+email45.eml
+a70677eb677eba9e0f0ee914035d0262
+email46.eml
+fa3dafd4adc9758fb3008815429c9f03
+email47.eml
+7f34ea16bccb1a54389c0504728ae72f
+email48.eml
+b47a9523c6be660f57175fb956fd4c7b
+email49.eml
+e0b89c37905295c61558051a38f15f57
+email5.eml
+641f6861fcbe538d0b59f617a21d21b0
+email50.eml
+cc456117ba72c0497895d555a087bec5
+email6.eml
+1a0787067716694901056c4935ed7f9b
+email7.eml
+98d34422b3722dd2378a69924234fbb4
+email8.eml
+e26fe82a22523050c5f7c83ded6ca53a
+email9.eml
+0dce5d3f6a838efa68d50a673a18be15
+
+2024-05-13 13:10:31--  collection complete; start exit vetting
+2024-05-13 13:12:00-- exit vetting complete; disconnect from T5
+
+
+
+Logged In: Security, Application, System
+-----------------------X
+=========================
+
+=========================
+T6: ---->10.123.169.35
+=========================
+X-----------------------
+2024-05-13 13:14:18-- connection to T6; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:2006:10.123.169.35:33502 dummy
+ssh -MS /tmp/T6 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null user14@127.0.0.1 -p 2006
+P455w0rd
+
+EMAIL3
+
+fa:16:3e:c1:df:60
+10.123.169.35
+2024-05-13 13:17:17-- date
+Mon May 13 17:17:13 UTC 2024
+Mon May 13 17:17:13 UTC 2024
+Linux DESKTOP-EMAIL3 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+0 S root       22342   22341  0  80   0 - 55340 -      17:15 ?        00:00:00       timeout 270 tcpdump -c 20 -i eth0 port 22 -w /var/log/tcpdump
+4 S tcpdump    22343   22342  0  80   0 - 13919 -      17:15 ?        00:00:00         tcpdump -c 20 -i eth0 port 22 -w /var/log/tcpdump
+-rw-rw-r--.  1 root    utmp      4608 May 13 17:16 wtmp
+-rw-rw-r--.  1 root    utmp    299300 May 13 17:16 lastlog
+-rw-r--r--.  1 tcpdump tcpdump     24 May 13 17:19 tcpdump
+-rw-------.  1 root    root     91999 May 13 17:19 messages
+-rw-r--r--.  1 root    root    289808 May 13 17:19 cron
+-rw-------.  1 root    root     53011 May 13 17:19 secure
+/var/log/audit/audit.log
+*/5 * * * * root timeout 270 tcpdump -c 20 -i eth0 port 22 -w /var/log/tcpdump
+
+2024-05-13 13:37:22-- vetting complete; start device survey
+2024-05-13 13:40:06-- device survey complete; starting collection
+
+Local
+3a0fb213a7d5570e2e04c36753e1971a  T6/Air
+b796e48b725326176451af82711661d6  T6/Air Defense/email1.eml
+821c9118bd4a6117976acff9395fdded  T6/Air Defense/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  T6/Air Defense/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  T6/Air Defense/email12.eml
+54d856479c87305317658fa3122c4628  T6/Air Defense/email13.eml
+d324897b43c04d02a6e6861c6971c098  T6/Air Defense/email14.eml
+910c8b47de95561b12f156d1d82f8862  T6/Air Defense/email15.eml
+bda620862d7beda2d53b2fc9938937e8  T6/Air Defense/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  T6/Air Defense/email17.eml
+71841fb9edde9f0e460534e41a271daf  T6/Air Defense/email18.eml
+21092b81ec04a311c038d99ea6594413  T6/Air Defense/email19.eml
+0b946b78ded5c537159c558998aa1100  T6/Air Defense/email2.eml
+b3f0aaba5612860004eba31e913759b0  T6/Air Defense/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  T6/Air Defense/email21.eml
+39811550b1b688ad365788976371b449  T6/Air Defense/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  T6/Air Defense/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  T6/Air Defense/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  T6/Air Defense/email25.eml
+c31b96a6cb4f19973c555c43151ee964  T6/Air Defense/email26.eml
+1202e5f32f2637f1156ecf333a907328  T6/Air Defense/email27.eml
+497933533704e674061e7c2c461aaef5  T6/Air Defense/email28.eml
+34794261c9e77f3c623d64c90adf1064  T6/Air Defense/email29.eml
+dbf771df5330165a08e02723fe77f391  T6/Air Defense/email3.eml
+0e3d82450e2aab76afd1a82359c96467  T6/Air Defense/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  T6/Air Defense/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  T6/Air Defense/email32.eml
+f2305f3454ffd2db6023e693f76a1341  T6/Air Defense/email33.eml
+7e8869057c50dfbcde166633e724fd90  T6/Air Defense/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  T6/Air Defense/email35.eml
+c5374a72520f15d4d20cc8e9539783da  T6/Air Defense/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  T6/Air Defense/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  T6/Air Defense/email38.eml
+0f951680d13e3a111780642d57f2aa95  T6/Air Defense/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  T6/Air Defense/email4.eml
+97c3760f07250796da50cdde0dc82f24  T6/Air Defense/email40.eml
+6229376e6978eca80c5a92f9097380fa  T6/Air Defense/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  T6/Air Defense/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  T6/Air Defense/email43.eml
+ad9c82c14c96af014da2fe64d754350b  T6/Air Defense/email44.eml
+b77b8c5271670e83eb95c920f842d822  T6/Air Defense/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  T6/Air Defense/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  T6/Air Defense/email47.eml
+28be5fe3a61608d10df20908f410abdd  T6/Air Defense/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  T6/Air Defense/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  T6/Air Defense/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  T6/Air Defense/email50.eml
+5df6643325760fad462f3be9a92ea450  T6/Air Defense/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  T6/Air Defense/email7.eml
+4d009fce534364a101cc94677f190ff4  T6/Air Defense/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  T6/Air Defense/email9.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email1.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email10.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email11.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email12.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email13.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email14.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email15.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email16.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email17.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email18.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email19.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email2.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email20.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email21.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email22.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email23.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email24.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email25.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email26.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email27.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email28.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email29.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email3.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email30.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email31.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email32.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email33.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email34.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email35.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email36.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email37.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email38.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email39.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email4.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email40.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email41.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email42.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email43.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email44.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email45.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email46.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email47.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email48.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email49.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email5.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email50.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email6.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email7.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email8.eml
+e6c727458e0e17a22a0cf8fce718331b  T6/Armored Cavalry/email9.eml
+b796e48b725326176451af82711661d6  T6/Command Elements/email1.eml
+821c9118bd4a6117976acff9395fdded  T6/Command Elements/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  T6/Command Elements/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  T6/Command Elements/email12.eml
+54d856479c87305317658fa3122c4628  T6/Command Elements/email13.eml
+d324897b43c04d02a6e6861c6971c098  T6/Command Elements/email14.eml
+910c8b47de95561b12f156d1d82f8862  T6/Command Elements/email15.eml
+bda620862d7beda2d53b2fc9938937e8  T6/Command Elements/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  T6/Command Elements/email17.eml
+71841fb9edde9f0e460534e41a271daf  T6/Command Elements/email18.eml
+21092b81ec04a311c038d99ea6594413  T6/Command Elements/email19.eml
+0b946b78ded5c537159c558998aa1100  T6/Command Elements/email2.eml
+b3f0aaba5612860004eba31e913759b0  T6/Command Elements/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  T6/Command Elements/email21.eml
+39811550b1b688ad365788976371b449  T6/Command Elements/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  T6/Command Elements/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  T6/Command Elements/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  T6/Command Elements/email25.eml
+c31b96a6cb4f19973c555c43151ee964  T6/Command Elements/email26.eml
+1202e5f32f2637f1156ecf333a907328  T6/Command Elements/email27.eml
+497933533704e674061e7c2c461aaef5  T6/Command Elements/email28.eml
+34794261c9e77f3c623d64c90adf1064  T6/Command Elements/email29.eml
+dbf771df5330165a08e02723fe77f391  T6/Command Elements/email3.eml
+0e3d82450e2aab76afd1a82359c96467  T6/Command Elements/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  T6/Command Elements/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  T6/Command Elements/email32.eml
+f2305f3454ffd2db6023e693f76a1341  T6/Command Elements/email33.eml
+7e8869057c50dfbcde166633e724fd90  T6/Command Elements/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  T6/Command Elements/email35.eml
+c5374a72520f15d4d20cc8e9539783da  T6/Command Elements/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  T6/Command Elements/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  T6/Command Elements/email38.eml
+0f951680d13e3a111780642d57f2aa95  T6/Command Elements/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  T6/Command Elements/email4.eml
+97c3760f07250796da50cdde0dc82f24  T6/Command Elements/email40.eml
+6229376e6978eca80c5a92f9097380fa  T6/Command Elements/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  T6/Command Elements/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  T6/Command Elements/email43.eml
+ad9c82c14c96af014da2fe64d754350b  T6/Command Elements/email44.eml
+b77b8c5271670e83eb95c920f842d822  T6/Command Elements/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  T6/Command Elements/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  T6/Command Elements/email47.eml
+28be5fe3a61608d10df20908f410abdd  T6/Command Elements/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  T6/Command Elements/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  T6/Command Elements/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  T6/Command Elements/email50.eml
+5df6643325760fad462f3be9a92ea450  T6/Command Elements/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  T6/Command Elements/email7.eml
+4d009fce534364a101cc94677f190ff4  T6/Command Elements/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  T6/Command Elements/email9.eml
+b796e48b725326176451af82711661d6  T6/Cyber-Comms Detachment/email1.eml
+821c9118bd4a6117976acff9395fdded  T6/Cyber-Comms Detachment/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  T6/Cyber-Comms Detachment/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  T6/Cyber-Comms Detachment/email12.eml
+54d856479c87305317658fa3122c4628  T6/Cyber-Comms Detachment/email13.eml
+d324897b43c04d02a6e6861c6971c098  T6/Cyber-Comms Detachment/email14.eml
+910c8b47de95561b12f156d1d82f8862  T6/Cyber-Comms Detachment/email15.eml
+bda620862d7beda2d53b2fc9938937e8  T6/Cyber-Comms Detachment/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  T6/Cyber-Comms Detachment/email17.eml
+71841fb9edde9f0e460534e41a271daf  T6/Cyber-Comms Detachment/email18.eml
+21092b81ec04a311c038d99ea6594413  T6/Cyber-Comms Detachment/email19.eml
+0b946b78ded5c537159c558998aa1100  T6/Cyber-Comms Detachment/email2.eml
+b3f0aaba5612860004eba31e913759b0  T6/Cyber-Comms Detachment/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  T6/Cyber-Comms Detachment/email21.eml
+39811550b1b688ad365788976371b449  T6/Cyber-Comms Detachment/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  T6/Cyber-Comms Detachment/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  T6/Cyber-Comms Detachment/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  T6/Cyber-Comms Detachment/email25.eml
+c31b96a6cb4f19973c555c43151ee964  T6/Cyber-Comms Detachment/email26.eml
+1202e5f32f2637f1156ecf333a907328  T6/Cyber-Comms Detachment/email27.eml
+497933533704e674061e7c2c461aaef5  T6/Cyber-Comms Detachment/email28.eml
+34794261c9e77f3c623d64c90adf1064  T6/Cyber-Comms Detachment/email29.eml
+dbf771df5330165a08e02723fe77f391  T6/Cyber-Comms Detachment/email3.eml
+0e3d82450e2aab76afd1a82359c96467  T6/Cyber-Comms Detachment/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  T6/Cyber-Comms Detachment/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  T6/Cyber-Comms Detachment/email32.eml
+f2305f3454ffd2db6023e693f76a1341  T6/Cyber-Comms Detachment/email33.eml
+7e8869057c50dfbcde166633e724fd90  T6/Cyber-Comms Detachment/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  T6/Cyber-Comms Detachment/email35.eml
+c5374a72520f15d4d20cc8e9539783da  T6/Cyber-Comms Detachment/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  T6/Cyber-Comms Detachment/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  T6/Cyber-Comms Detachment/email38.eml
+0f951680d13e3a111780642d57f2aa95  T6/Cyber-Comms Detachment/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  T6/Cyber-Comms Detachment/email4.eml
+97c3760f07250796da50cdde0dc82f24  T6/Cyber-Comms Detachment/email40.eml
+6229376e6978eca80c5a92f9097380fa  T6/Cyber-Comms Detachment/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  T6/Cyber-Comms Detachment/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  T6/Cyber-Comms Detachment/email43.eml
+ad9c82c14c96af014da2fe64d754350b  T6/Cyber-Comms Detachment/email44.eml
+b77b8c5271670e83eb95c920f842d822  T6/Cyber-Comms Detachment/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  T6/Cyber-Comms Detachment/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  T6/Cyber-Comms Detachment/email47.eml
+28be5fe3a61608d10df20908f410abdd  T6/Cyber-Comms Detachment/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  T6/Cyber-Comms Detachment/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  T6/Cyber-Comms Detachment/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  T6/Cyber-Comms Detachment/email50.eml
+5df6643325760fad462f3be9a92ea450  T6/Cyber-Comms Detachment/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  T6/Cyber-Comms Detachment/email7.eml
+4d009fce534364a101cc94677f190ff4  T6/Cyber-Comms Detachment/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  T6/Cyber-Comms Detachment/email9.eml
+b796e48b725326176451af82711661d6  T6/Ground Forces/email1.eml
+821c9118bd4a6117976acff9395fdded  T6/Ground Forces/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  T6/Ground Forces/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  T6/Ground Forces/email12.eml
+54d856479c87305317658fa3122c4628  T6/Ground Forces/email13.eml
+d324897b43c04d02a6e6861c6971c098  T6/Ground Forces/email14.eml
+910c8b47de95561b12f156d1d82f8862  T6/Ground Forces/email15.eml
+bda620862d7beda2d53b2fc9938937e8  T6/Ground Forces/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  T6/Ground Forces/email17.eml
+71841fb9edde9f0e460534e41a271daf  T6/Ground Forces/email18.eml
+21092b81ec04a311c038d99ea6594413  T6/Ground Forces/email19.eml
+0b946b78ded5c537159c558998aa1100  T6/Ground Forces/email2.eml
+b3f0aaba5612860004eba31e913759b0  T6/Ground Forces/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  T6/Ground Forces/email21.eml
+39811550b1b688ad365788976371b449  T6/Ground Forces/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  T6/Ground Forces/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  T6/Ground Forces/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  T6/Ground Forces/email25.eml
+c31b96a6cb4f19973c555c43151ee964  T6/Ground Forces/email26.eml
+1202e5f32f2637f1156ecf333a907328  T6/Ground Forces/email27.eml
+497933533704e674061e7c2c461aaef5  T6/Ground Forces/email28.eml
+34794261c9e77f3c623d64c90adf1064  T6/Ground Forces/email29.eml
+dbf771df5330165a08e02723fe77f391  T6/Ground Forces/email3.eml
+0e3d82450e2aab76afd1a82359c96467  T6/Ground Forces/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  T6/Ground Forces/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  T6/Ground Forces/email32.eml
+f2305f3454ffd2db6023e693f76a1341  T6/Ground Forces/email33.eml
+7e8869057c50dfbcde166633e724fd90  T6/Ground Forces/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  T6/Ground Forces/email35.eml
+c5374a72520f15d4d20cc8e9539783da  T6/Ground Forces/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  T6/Ground Forces/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  T6/Ground Forces/email38.eml
+0f951680d13e3a111780642d57f2aa95  T6/Ground Forces/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  T6/Ground Forces/email4.eml
+97c3760f07250796da50cdde0dc82f24  T6/Ground Forces/email40.eml
+6229376e6978eca80c5a92f9097380fa  T6/Ground Forces/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  T6/Ground Forces/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  T6/Ground Forces/email43.eml
+ad9c82c14c96af014da2fe64d754350b  T6/Ground Forces/email44.eml
+b77b8c5271670e83eb95c920f842d822  T6/Ground Forces/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  T6/Ground Forces/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  T6/Ground Forces/email47.eml
+28be5fe3a61608d10df20908f410abdd  T6/Ground Forces/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  T6/Ground Forces/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  T6/Ground Forces/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  T6/Ground Forces/email50.eml
+5df6643325760fad462f3be9a92ea450  T6/Ground Forces/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  T6/Ground Forces/email7.eml
+4d009fce534364a101cc94677f190ff4  T6/Ground Forces/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  T6/Ground Forces/email9.eml
+b796e48b725326176451af82711661d6  T6/R&D/email1.eml
+821c9118bd4a6117976acff9395fdded  T6/R&D/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  T6/R&D/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  T6/R&D/email12.eml
+54d856479c87305317658fa3122c4628  T6/R&D/email13.eml
+d324897b43c04d02a6e6861c6971c098  T6/R&D/email14.eml
+910c8b47de95561b12f156d1d82f8862  T6/R&D/email15.eml
+bda620862d7beda2d53b2fc9938937e8  T6/R&D/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  T6/R&D/email17.eml
+71841fb9edde9f0e460534e41a271daf  T6/R&D/email18.eml
+21092b81ec04a311c038d99ea6594413  T6/R&D/email19.eml
+0b946b78ded5c537159c558998aa1100  T6/R&D/email2.eml
+b3f0aaba5612860004eba31e913759b0  T6/R&D/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  T6/R&D/email21.eml
+39811550b1b688ad365788976371b449  T6/R&D/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  T6/R&D/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  T6/R&D/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  T6/R&D/email25.eml
+c31b96a6cb4f19973c555c43151ee964  T6/R&D/email26.eml
+1202e5f32f2637f1156ecf333a907328  T6/R&D/email27.eml
+497933533704e674061e7c2c461aaef5  T6/R&D/email28.eml
+34794261c9e77f3c623d64c90adf1064  T6/R&D/email29.eml
+dbf771df5330165a08e02723fe77f391  T6/R&D/email3.eml
+0e3d82450e2aab76afd1a82359c96467  T6/R&D/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  T6/R&D/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  T6/R&D/email32.eml
+f2305f3454ffd2db6023e693f76a1341  T6/R&D/email33.eml
+7e8869057c50dfbcde166633e724fd90  T6/R&D/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  T6/R&D/email35.eml
+c5374a72520f15d4d20cc8e9539783da  T6/R&D/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  T6/R&D/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  T6/R&D/email38.eml
+0f951680d13e3a111780642d57f2aa95  T6/R&D/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  T6/R&D/email4.eml
+97c3760f07250796da50cdde0dc82f24  T6/R&D/email40.eml
+6229376e6978eca80c5a92f9097380fa  T6/R&D/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  T6/R&D/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  T6/R&D/email43.eml
+ad9c82c14c96af014da2fe64d754350b  T6/R&D/email44.eml
+b77b8c5271670e83eb95c920f842d822  T6/R&D/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  T6/R&D/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  T6/R&D/email47.eml
+28be5fe3a61608d10df20908f410abdd  T6/R&D/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  T6/R&D/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  T6/R&D/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  T6/R&D/email50.eml
+5df6643325760fad462f3be9a92ea450  T6/R&D/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  T6/R&D/email7.eml
+4d009fce534364a101cc94677f190ff4  T6/R&D/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  T6/R&D/email9.eml
+b796e48b725326176451af82711661d6  T6/Supply/email1.eml
+821c9118bd4a6117976acff9395fdded  T6/Supply/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  T6/Supply/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  T6/Supply/email12.eml
+54d856479c87305317658fa3122c4628  T6/Supply/email13.eml
+d324897b43c04d02a6e6861c6971c098  T6/Supply/email14.eml
+910c8b47de95561b12f156d1d82f8862  T6/Supply/email15.eml
+bda620862d7beda2d53b2fc9938937e8  T6/Supply/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  T6/Supply/email17.eml
+71841fb9edde9f0e460534e41a271daf  T6/Supply/email18.eml
+21092b81ec04a311c038d99ea6594413  T6/Supply/email19.eml
+0b946b78ded5c537159c558998aa1100  T6/Supply/email2.eml
+b3f0aaba5612860004eba31e913759b0  T6/Supply/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  T6/Supply/email21.eml
+39811550b1b688ad365788976371b449  T6/Supply/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  T6/Supply/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  T6/Supply/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  T6/Supply/email25.eml
+c31b96a6cb4f19973c555c43151ee964  T6/Supply/email26.eml
+1202e5f32f2637f1156ecf333a907328  T6/Supply/email27.eml
+497933533704e674061e7c2c461aaef5  T6/Supply/email28.eml
+34794261c9e77f3c623d64c90adf1064  T6/Supply/email29.eml
+dbf771df5330165a08e02723fe77f391  T6/Supply/email3.eml
+0e3d82450e2aab76afd1a82359c96467  T6/Supply/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  T6/Supply/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  T6/Supply/email32.eml
+f2305f3454ffd2db6023e693f76a1341  T6/Supply/email33.eml
+7e8869057c50dfbcde166633e724fd90  T6/Supply/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  T6/Supply/email35.eml
+c5374a72520f15d4d20cc8e9539783da  T6/Supply/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  T6/Supply/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  T6/Supply/email38.eml
+0f951680d13e3a111780642d57f2aa95  T6/Supply/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  T6/Supply/email4.eml
+97c3760f07250796da50cdde0dc82f24  T6/Supply/email40.eml
+6229376e6978eca80c5a92f9097380fa  T6/Supply/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  T6/Supply/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  T6/Supply/email43.eml
+ad9c82c14c96af014da2fe64d754350b  T6/Supply/email44.eml
+b77b8c5271670e83eb95c920f842d822  T6/Supply/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  T6/Supply/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  T6/Supply/email47.eml
+28be5fe3a61608d10df20908f410abdd  T6/Supply/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  T6/Supply/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  T6/Supply/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  T6/Supply/email50.eml
+5df6643325760fad462f3be9a92ea450  T6/Supply/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  T6/Supply/email7.eml
+4d009fce534364a101cc94677f190ff4  T6/Supply/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  T6/Supply/email9.eml
+
+
+
+Remote
+3a0fb213a7d5570e2e04c36753e1971a  /var/mail/Air
+b796e48b725326176451af82711661d6  /var/mail/Air Defense/email1.eml
+821c9118bd4a6117976acff9395fdded  /var/mail/Air Defense/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  /var/mail/Air Defense/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  /var/mail/Air Defense/email12.eml
+54d856479c87305317658fa3122c4628  /var/mail/Air Defense/email13.eml
+d324897b43c04d02a6e6861c6971c098  /var/mail/Air Defense/email14.eml
+910c8b47de95561b12f156d1d82f8862  /var/mail/Air Defense/email15.eml
+bda620862d7beda2d53b2fc9938937e8  /var/mail/Air Defense/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  /var/mail/Air Defense/email17.eml
+71841fb9edde9f0e460534e41a271daf  /var/mail/Air Defense/email18.eml
+21092b81ec04a311c038d99ea6594413  /var/mail/Air Defense/email19.eml
+0b946b78ded5c537159c558998aa1100  /var/mail/Air Defense/email2.eml
+b3f0aaba5612860004eba31e913759b0  /var/mail/Air Defense/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  /var/mail/Air Defense/email21.eml
+39811550b1b688ad365788976371b449  /var/mail/Air Defense/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  /var/mail/Air Defense/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  /var/mail/Air Defense/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  /var/mail/Air Defense/email25.eml
+c31b96a6cb4f19973c555c43151ee964  /var/mail/Air Defense/email26.eml
+1202e5f32f2637f1156ecf333a907328  /var/mail/Air Defense/email27.eml
+497933533704e674061e7c2c461aaef5  /var/mail/Air Defense/email28.eml
+34794261c9e77f3c623d64c90adf1064  /var/mail/Air Defense/email29.eml
+dbf771df5330165a08e02723fe77f391  /var/mail/Air Defense/email3.eml
+0e3d82450e2aab76afd1a82359c96467  /var/mail/Air Defense/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  /var/mail/Air Defense/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  /var/mail/Air Defense/email32.eml
+f2305f3454ffd2db6023e693f76a1341  /var/mail/Air Defense/email33.eml
+7e8869057c50dfbcde166633e724fd90  /var/mail/Air Defense/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  /var/mail/Air Defense/email35.eml
+c5374a72520f15d4d20cc8e9539783da  /var/mail/Air Defense/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  /var/mail/Air Defense/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  /var/mail/Air Defense/email38.eml
+0f951680d13e3a111780642d57f2aa95  /var/mail/Air Defense/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  /var/mail/Air Defense/email4.eml
+97c3760f07250796da50cdde0dc82f24  /var/mail/Air Defense/email40.eml
+6229376e6978eca80c5a92f9097380fa  /var/mail/Air Defense/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  /var/mail/Air Defense/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  /var/mail/Air Defense/email43.eml
+ad9c82c14c96af014da2fe64d754350b  /var/mail/Air Defense/email44.eml
+b77b8c5271670e83eb95c920f842d822  /var/mail/Air Defense/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  /var/mail/Air Defense/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  /var/mail/Air Defense/email47.eml
+28be5fe3a61608d10df20908f410abdd  /var/mail/Air Defense/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  /var/mail/Air Defense/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  /var/mail/Air Defense/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  /var/mail/Air Defense/email50.eml
+5df6643325760fad462f3be9a92ea450  /var/mail/Air Defense/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  /var/mail/Air Defense/email7.eml
+4d009fce534364a101cc94677f190ff4  /var/mail/Air Defense/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  /var/mail/Air Defense/email9.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email1.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email10.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email11.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email12.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email13.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email14.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email15.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email16.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email17.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email18.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email19.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email2.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email20.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email21.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email22.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email23.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email24.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email25.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email26.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email27.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email28.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email29.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email3.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email30.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email31.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email32.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email33.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email34.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email35.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email36.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email37.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email38.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email39.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email4.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email40.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email41.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email42.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email43.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email44.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email45.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email46.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email47.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email48.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email49.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email5.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email50.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email6.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email7.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email8.eml
+e6c727458e0e17a22a0cf8fce718331b  /var/mail/Armored Cavalry/email9.eml
+b796e48b725326176451af82711661d6  /var/mail/Command Elements/email1.eml
+821c9118bd4a6117976acff9395fdded  /var/mail/Command Elements/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  /var/mail/Command Elements/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  /var/mail/Command Elements/email12.eml
+54d856479c87305317658fa3122c4628  /var/mail/Command Elements/email13.eml
+d324897b43c04d02a6e6861c6971c098  /var/mail/Command Elements/email14.eml
+910c8b47de95561b12f156d1d82f8862  /var/mail/Command Elements/email15.eml
+bda620862d7beda2d53b2fc9938937e8  /var/mail/Command Elements/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  /var/mail/Command Elements/email17.eml
+71841fb9edde9f0e460534e41a271daf  /var/mail/Command Elements/email18.eml
+21092b81ec04a311c038d99ea6594413  /var/mail/Command Elements/email19.eml
+0b946b78ded5c537159c558998aa1100  /var/mail/Command Elements/email2.eml
+b3f0aaba5612860004eba31e913759b0  /var/mail/Command Elements/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  /var/mail/Command Elements/email21.eml
+39811550b1b688ad365788976371b449  /var/mail/Command Elements/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  /var/mail/Command Elements/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  /var/mail/Command Elements/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  /var/mail/Command Elements/email25.eml
+c31b96a6cb4f19973c555c43151ee964  /var/mail/Command Elements/email26.eml
+1202e5f32f2637f1156ecf333a907328  /var/mail/Command Elements/email27.eml
+497933533704e674061e7c2c461aaef5  /var/mail/Command Elements/email28.eml
+34794261c9e77f3c623d64c90adf1064  /var/mail/Command Elements/email29.eml
+dbf771df5330165a08e02723fe77f391  /var/mail/Command Elements/email3.eml
+0e3d82450e2aab76afd1a82359c96467  /var/mail/Command Elements/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  /var/mail/Command Elements/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  /var/mail/Command Elements/email32.eml
+f2305f3454ffd2db6023e693f76a1341  /var/mail/Command Elements/email33.eml
+7e8869057c50dfbcde166633e724fd90  /var/mail/Command Elements/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  /var/mail/Command Elements/email35.eml
+c5374a72520f15d4d20cc8e9539783da  /var/mail/Command Elements/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  /var/mail/Command Elements/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  /var/mail/Command Elements/email38.eml
+0f951680d13e3a111780642d57f2aa95  /var/mail/Command Elements/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  /var/mail/Command Elements/email4.eml
+97c3760f07250796da50cdde0dc82f24  /var/mail/Command Elements/email40.eml
+6229376e6978eca80c5a92f9097380fa  /var/mail/Command Elements/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  /var/mail/Command Elements/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  /var/mail/Command Elements/email43.eml
+ad9c82c14c96af014da2fe64d754350b  /var/mail/Command Elements/email44.eml
+b77b8c5271670e83eb95c920f842d822  /var/mail/Command Elements/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  /var/mail/Command Elements/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  /var/mail/Command Elements/email47.eml
+28be5fe3a61608d10df20908f410abdd  /var/mail/Command Elements/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  /var/mail/Command Elements/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  /var/mail/Command Elements/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  /var/mail/Command Elements/email50.eml
+5df6643325760fad462f3be9a92ea450  /var/mail/Command Elements/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  /var/mail/Command Elements/email7.eml
+4d009fce534364a101cc94677f190ff4  /var/mail/Command Elements/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  /var/mail/Command Elements/email9.eml
+b796e48b725326176451af82711661d6  /var/mail/Cyber-Comms Detachment/email1.eml
+821c9118bd4a6117976acff9395fdded  /var/mail/Cyber-Comms Detachment/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  /var/mail/Cyber-Comms Detachment/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  /var/mail/Cyber-Comms Detachment/email12.eml
+54d856479c87305317658fa3122c4628  /var/mail/Cyber-Comms Detachment/email13.eml
+d324897b43c04d02a6e6861c6971c098  /var/mail/Cyber-Comms Detachment/email14.eml
+910c8b47de95561b12f156d1d82f8862  /var/mail/Cyber-Comms Detachment/email15.eml
+bda620862d7beda2d53b2fc9938937e8  /var/mail/Cyber-Comms Detachment/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  /var/mail/Cyber-Comms Detachment/email17.eml
+71841fb9edde9f0e460534e41a271daf  /var/mail/Cyber-Comms Detachment/email18.eml
+21092b81ec04a311c038d99ea6594413  /var/mail/Cyber-Comms Detachment/email19.eml
+0b946b78ded5c537159c558998aa1100  /var/mail/Cyber-Comms Detachment/email2.eml
+b3f0aaba5612860004eba31e913759b0  /var/mail/Cyber-Comms Detachment/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  /var/mail/Cyber-Comms Detachment/email21.eml
+39811550b1b688ad365788976371b449  /var/mail/Cyber-Comms Detachment/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  /var/mail/Cyber-Comms Detachment/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  /var/mail/Cyber-Comms Detachment/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  /var/mail/Cyber-Comms Detachment/email25.eml
+c31b96a6cb4f19973c555c43151ee964  /var/mail/Cyber-Comms Detachment/email26.eml
+1202e5f32f2637f1156ecf333a907328  /var/mail/Cyber-Comms Detachment/email27.eml
+497933533704e674061e7c2c461aaef5  /var/mail/Cyber-Comms Detachment/email28.eml
+34794261c9e77f3c623d64c90adf1064  /var/mail/Cyber-Comms Detachment/email29.eml
+dbf771df5330165a08e02723fe77f391  /var/mail/Cyber-Comms Detachment/email3.eml
+0e3d82450e2aab76afd1a82359c96467  /var/mail/Cyber-Comms Detachment/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  /var/mail/Cyber-Comms Detachment/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  /var/mail/Cyber-Comms Detachment/email32.eml
+f2305f3454ffd2db6023e693f76a1341  /var/mail/Cyber-Comms Detachment/email33.eml
+7e8869057c50dfbcde166633e724fd90  /var/mail/Cyber-Comms Detachment/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  /var/mail/Cyber-Comms Detachment/email35.eml
+c5374a72520f15d4d20cc8e9539783da  /var/mail/Cyber-Comms Detachment/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  /var/mail/Cyber-Comms Detachment/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  /var/mail/Cyber-Comms Detachment/email38.eml
+0f951680d13e3a111780642d57f2aa95  /var/mail/Cyber-Comms Detachment/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  /var/mail/Cyber-Comms Detachment/email4.eml
+97c3760f07250796da50cdde0dc82f24  /var/mail/Cyber-Comms Detachment/email40.eml
+6229376e6978eca80c5a92f9097380fa  /var/mail/Cyber-Comms Detachment/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  /var/mail/Cyber-Comms Detachment/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  /var/mail/Cyber-Comms Detachment/email43.eml
+ad9c82c14c96af014da2fe64d754350b  /var/mail/Cyber-Comms Detachment/email44.eml
+b77b8c5271670e83eb95c920f842d822  /var/mail/Cyber-Comms Detachment/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  /var/mail/Cyber-Comms Detachment/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  /var/mail/Cyber-Comms Detachment/email47.eml
+28be5fe3a61608d10df20908f410abdd  /var/mail/Cyber-Comms Detachment/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  /var/mail/Cyber-Comms Detachment/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  /var/mail/Cyber-Comms Detachment/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  /var/mail/Cyber-Comms Detachment/email50.eml
+5df6643325760fad462f3be9a92ea450  /var/mail/Cyber-Comms Detachment/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  /var/mail/Cyber-Comms Detachment/email7.eml
+4d009fce534364a101cc94677f190ff4  /var/mail/Cyber-Comms Detachment/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  /var/mail/Cyber-Comms Detachment/email9.eml
+b796e48b725326176451af82711661d6  /var/mail/Ground Forces/email1.eml
+821c9118bd4a6117976acff9395fdded  /var/mail/Ground Forces/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  /var/mail/Ground Forces/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  /var/mail/Ground Forces/email12.eml
+54d856479c87305317658fa3122c4628  /var/mail/Ground Forces/email13.eml
+d324897b43c04d02a6e6861c6971c098  /var/mail/Ground Forces/email14.eml
+910c8b47de95561b12f156d1d82f8862  /var/mail/Ground Forces/email15.eml
+bda620862d7beda2d53b2fc9938937e8  /var/mail/Ground Forces/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  /var/mail/Ground Forces/email17.eml
+71841fb9edde9f0e460534e41a271daf  /var/mail/Ground Forces/email18.eml
+21092b81ec04a311c038d99ea6594413  /var/mail/Ground Forces/email19.eml
+0b946b78ded5c537159c558998aa1100  /var/mail/Ground Forces/email2.eml
+b3f0aaba5612860004eba31e913759b0  /var/mail/Ground Forces/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  /var/mail/Ground Forces/email21.eml
+39811550b1b688ad365788976371b449  /var/mail/Ground Forces/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  /var/mail/Ground Forces/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  /var/mail/Ground Forces/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  /var/mail/Ground Forces/email25.eml
+c31b96a6cb4f19973c555c43151ee964  /var/mail/Ground Forces/email26.eml
+1202e5f32f2637f1156ecf333a907328  /var/mail/Ground Forces/email27.eml
+497933533704e674061e7c2c461aaef5  /var/mail/Ground Forces/email28.eml
+34794261c9e77f3c623d64c90adf1064  /var/mail/Ground Forces/email29.eml
+dbf771df5330165a08e02723fe77f391  /var/mail/Ground Forces/email3.eml
+0e3d82450e2aab76afd1a82359c96467  /var/mail/Ground Forces/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  /var/mail/Ground Forces/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  /var/mail/Ground Forces/email32.eml
+f2305f3454ffd2db6023e693f76a1341  /var/mail/Ground Forces/email33.eml
+7e8869057c50dfbcde166633e724fd90  /var/mail/Ground Forces/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  /var/mail/Ground Forces/email35.eml
+c5374a72520f15d4d20cc8e9539783da  /var/mail/Ground Forces/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  /var/mail/Ground Forces/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  /var/mail/Ground Forces/email38.eml
+0f951680d13e3a111780642d57f2aa95  /var/mail/Ground Forces/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  /var/mail/Ground Forces/email4.eml
+97c3760f07250796da50cdde0dc82f24  /var/mail/Ground Forces/email40.eml
+6229376e6978eca80c5a92f9097380fa  /var/mail/Ground Forces/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  /var/mail/Ground Forces/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  /var/mail/Ground Forces/email43.eml
+ad9c82c14c96af014da2fe64d754350b  /var/mail/Ground Forces/email44.eml
+b77b8c5271670e83eb95c920f842d822  /var/mail/Ground Forces/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  /var/mail/Ground Forces/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  /var/mail/Ground Forces/email47.eml
+28be5fe3a61608d10df20908f410abdd  /var/mail/Ground Forces/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  /var/mail/Ground Forces/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  /var/mail/Ground Forces/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  /var/mail/Ground Forces/email50.eml
+5df6643325760fad462f3be9a92ea450  /var/mail/Ground Forces/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  /var/mail/Ground Forces/email7.eml
+4d009fce534364a101cc94677f190ff4  /var/mail/Ground Forces/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  /var/mail/Ground Forces/email9.eml
+b796e48b725326176451af82711661d6  /var/mail/R&D/email1.eml
+821c9118bd4a6117976acff9395fdded  /var/mail/R&D/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  /var/mail/R&D/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  /var/mail/R&D/email12.eml
+54d856479c87305317658fa3122c4628  /var/mail/R&D/email13.eml
+d324897b43c04d02a6e6861c6971c098  /var/mail/R&D/email14.eml
+910c8b47de95561b12f156d1d82f8862  /var/mail/R&D/email15.eml
+bda620862d7beda2d53b2fc9938937e8  /var/mail/R&D/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  /var/mail/R&D/email17.eml
+71841fb9edde9f0e460534e41a271daf  /var/mail/R&D/email18.eml
+21092b81ec04a311c038d99ea6594413  /var/mail/R&D/email19.eml
+0b946b78ded5c537159c558998aa1100  /var/mail/R&D/email2.eml
+b3f0aaba5612860004eba31e913759b0  /var/mail/R&D/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  /var/mail/R&D/email21.eml
+39811550b1b688ad365788976371b449  /var/mail/R&D/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  /var/mail/R&D/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  /var/mail/R&D/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  /var/mail/R&D/email25.eml
+c31b96a6cb4f19973c555c43151ee964  /var/mail/R&D/email26.eml
+1202e5f32f2637f1156ecf333a907328  /var/mail/R&D/email27.eml
+497933533704e674061e7c2c461aaef5  /var/mail/R&D/email28.eml
+34794261c9e77f3c623d64c90adf1064  /var/mail/R&D/email29.eml
+dbf771df5330165a08e02723fe77f391  /var/mail/R&D/email3.eml
+0e3d82450e2aab76afd1a82359c96467  /var/mail/R&D/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  /var/mail/R&D/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  /var/mail/R&D/email32.eml
+f2305f3454ffd2db6023e693f76a1341  /var/mail/R&D/email33.eml
+7e8869057c50dfbcde166633e724fd90  /var/mail/R&D/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  /var/mail/R&D/email35.eml
+c5374a72520f15d4d20cc8e9539783da  /var/mail/R&D/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  /var/mail/R&D/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  /var/mail/R&D/email38.eml
+0f951680d13e3a111780642d57f2aa95  /var/mail/R&D/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  /var/mail/R&D/email4.eml
+97c3760f07250796da50cdde0dc82f24  /var/mail/R&D/email40.eml
+6229376e6978eca80c5a92f9097380fa  /var/mail/R&D/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  /var/mail/R&D/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  /var/mail/R&D/email43.eml
+ad9c82c14c96af014da2fe64d754350b  /var/mail/R&D/email44.eml
+b77b8c5271670e83eb95c920f842d822  /var/mail/R&D/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  /var/mail/R&D/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  /var/mail/R&D/email47.eml
+28be5fe3a61608d10df20908f410abdd  /var/mail/R&D/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  /var/mail/R&D/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  /var/mail/R&D/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  /var/mail/R&D/email50.eml
+5df6643325760fad462f3be9a92ea450  /var/mail/R&D/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  /var/mail/R&D/email7.eml
+4d009fce534364a101cc94677f190ff4  /var/mail/R&D/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  /var/mail/R&D/email9.eml
+b796e48b725326176451af82711661d6  /var/mail/Supply/email1.eml
+821c9118bd4a6117976acff9395fdded  /var/mail/Supply/email10.eml
+73a4c1ec21075278cf6054111cbb2fbd  /var/mail/Supply/email11.eml
+0d1d6fe6379968b530800cacdfb4f85a  /var/mail/Supply/email12.eml
+54d856479c87305317658fa3122c4628  /var/mail/Supply/email13.eml
+d324897b43c04d02a6e6861c6971c098  /var/mail/Supply/email14.eml
+910c8b47de95561b12f156d1d82f8862  /var/mail/Supply/email15.eml
+bda620862d7beda2d53b2fc9938937e8  /var/mail/Supply/email16.eml
+8592d3285f6b7aef056e67dfe59276d7  /var/mail/Supply/email17.eml
+71841fb9edde9f0e460534e41a271daf  /var/mail/Supply/email18.eml
+21092b81ec04a311c038d99ea6594413  /var/mail/Supply/email19.eml
+0b946b78ded5c537159c558998aa1100  /var/mail/Supply/email2.eml
+b3f0aaba5612860004eba31e913759b0  /var/mail/Supply/email20.eml
+45f70ae17a9a878a7930576cf4481d5b  /var/mail/Supply/email21.eml
+39811550b1b688ad365788976371b449  /var/mail/Supply/email22.eml
+0823385e8bfa2a4e186cf772b0e3b64b  /var/mail/Supply/email23.eml
+e037d27c63955b48b047ee14cdcb9d31  /var/mail/Supply/email24.eml
+6254ca218fc5fbee076cef4309d6dd40  /var/mail/Supply/email25.eml
+c31b96a6cb4f19973c555c43151ee964  /var/mail/Supply/email26.eml
+1202e5f32f2637f1156ecf333a907328  /var/mail/Supply/email27.eml
+497933533704e674061e7c2c461aaef5  /var/mail/Supply/email28.eml
+34794261c9e77f3c623d64c90adf1064  /var/mail/Supply/email29.eml
+dbf771df5330165a08e02723fe77f391  /var/mail/Supply/email3.eml
+0e3d82450e2aab76afd1a82359c96467  /var/mail/Supply/email30.eml
+c340f2d45ac9c0b77ba4dcaa5ceacc19  /var/mail/Supply/email31.eml
+e1f85edeca2c0ba0d4f6132821743b59  /var/mail/Supply/email32.eml
+f2305f3454ffd2db6023e693f76a1341  /var/mail/Supply/email33.eml
+7e8869057c50dfbcde166633e724fd90  /var/mail/Supply/email34.eml
+a2ef5df79bf0a8ca9d60c16ed0e70a52  /var/mail/Supply/email35.eml
+c5374a72520f15d4d20cc8e9539783da  /var/mail/Supply/email36.eml
+ae211dfac9a7e3844f40b12fd8b8c9c1  /var/mail/Supply/email37.eml
+8a3323464070a8611c16fb3db4bc22eb  /var/mail/Supply/email38.eml
+0f951680d13e3a111780642d57f2aa95  /var/mail/Supply/email39.eml
+3a9c108bf90bf6e2c5fc10c6a86d445e  /var/mail/Supply/email4.eml
+97c3760f07250796da50cdde0dc82f24  /var/mail/Supply/email40.eml
+6229376e6978eca80c5a92f9097380fa  /var/mail/Supply/email41.eml
+6265f263df60e6f0f2222a3c4492c8ce  /var/mail/Supply/email42.eml
+a02a49dda2424d0bb9b8ac3bfe84cfd3  /var/mail/Supply/email43.eml
+ad9c82c14c96af014da2fe64d754350b  /var/mail/Supply/email44.eml
+b77b8c5271670e83eb95c920f842d822  /var/mail/Supply/email45.eml
+487310ae56b03c7c82dd4c6dc11d2cba  /var/mail/Supply/email46.eml
+a6cd3eb97f869a93f829591ce74b2c7b  /var/mail/Supply/email47.eml
+28be5fe3a61608d10df20908f410abdd  /var/mail/Supply/email48.eml
+a4f1ffba520ebfc4362dedb28a0c2e56  /var/mail/Supply/email49.eml
+98b5d9cfda797a8e2556ddeda2502834  /var/mail/Supply/email5.eml
+e9b68cd88feb908b4ba02b3ece2c48f0  /var/mail/Supply/email50.eml
+5df6643325760fad462f3be9a92ea450  /var/mail/Supply/email6.eml
+30c5d555adb78e7c8e59ca135dabde61  /var/mail/Supply/email7.eml
+4d009fce534364a101cc94677f190ff4  /var/mail/Supply/email8.eml
+ada04c1c5568b8c28623bf719d366fa7  /var/mail/Supply/email9.eml
+
+2024-05-13 14:10:18-- collection complete
+2024-05-13 14:13:42-- start exit vetting
+2024-05-13 14:15:53-- exit vetting complete; disconnect from T6
+
+Logged In: utmp, wtmp, lastlog, secure, messages, audit.log
+-----------------------X
+=========================
