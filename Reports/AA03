@@ -1,0 +1,256 @@
+***MISSION DEBRIEF***
+Operator: LCpl Bonestroo
+Operation: AA03
+MC: MC2
+Analyst: Analyst3
+Description: The goal of the operation was to perform survey of listed user devices within the Krasnovian 1st Artillery BDE internal network  (192.168.169.0/24).  If successfully accessed, add a user to the Administrators or privileged user group on T7 with hostname “USER13” for sustained access assurance. The op was overall successful. Operator redirected from EXT_RTR to STORAGE1 to Vyos1 to ADMIN1 caught a callback from T5 to gain access and redirected to USER12 with netsh before backing out to ADMIN1 and redirecting to USER13.  T1 didn't have any nonstandards that needed to be reported. T2 appeared to be a clean box. T3 also appeared to be a clean box. T4 had two security products; operator collected files for EA and caught a callback from T5. T5 had a privileged user; operator added a netsh rule to gain access to T6. T6 appeared to be a clean box; operator conducted a device survey and cataloged user accounts and login data, before exit vetting and disconnecting from T6 and T5. T7 also appeared to be a clean box; operator conducted a device survey and cataloged user accounts and login data. Operator successfully conducted a T10 effect by adding a new user and adding said user to the admin group before exit vetting and disconnecting from the network.
+
+
+Result: No Go.
+Reason: Missed abnormal logging.
+
+
+Date:2024-05-14 
+Start time: 0900
+End time: 1500
+
+=========================
+T1: 10.50.33.94
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  14 13:05
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRED_DISP msg=audit(1715692011.855:5847): pid=17161 uid=0 auid=1006 ses=89 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/3 res=success'UID="root" AUID="engineer6"
+type=USER_ACCT msg=audit(1715692012.847:5848): pid=17164 uid=1014 auid=1014 ses=95 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="engineer14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="engineer14" AUID="engineer14"
+type=USER_CMD msg=audit(1715692012.847:5849): pid=17164 uid=1014 auid=1014 ses=95 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/engineer14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/6 res=success'UID="engineer14" AUID="engineer14"
+type=CRED_REFR msg=audit(1715692012.847:5850): pid=17164 uid=0 auid=1014 ses=95 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="root" AUID="engineer14"
+type=USER_START msg=audit(1715692012.849:5851): pid=17164 uid=0 auid=1014 ses=95 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/6 res=success'UID="root" AUID="engineer14"
+
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions that it would catch on this box. Recommend CM.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 5621 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.50.22.142
+  Provide any network connections opened/established by abnormal logging - None shown when ss command was run
+  Provide brief description of the abnormal, irregular or remote logging - Rsyslog is enabled with remote logging. It is sending all logs to the 10.50.22.142 using port 514
+  Documentation - https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway; not doing any effects to this box. 
+
+
+MC:
+
+*****Security Product Report*****
+Target: T1: 10.50.33.94
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we are not doing any actions that it would catch on this box. Recommend CM.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T1: 10.50.33.94
+Name - rsyslog
+PID - 5621
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.50.22.142
+Network connections -  None shown when ss command was run
+Documentation -https://www.rsyslog.com/doc/index.html
+Description - rsyslog is enabled with remote logging. It is sending all logs to the 10.50.22.142 using port 514
+Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway; not doing any effects to this box.
+*****End of Report*****
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T2: 10.20.169.122
+=========================
+X-----------------------
+NSDB:
+
+Clean box
+
+
+MC:
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T3: 10.20.169.238
+=========================
+X-----------------------
+NSBD:
+
+All Clear
+
+
+
+MC:
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T4: 192.168.169.43
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - Firetools/Firejail ver 0.9.72
+  Installation folder - /firetools
+  Directory location of associated logs - N/A
+  Timestamp of all associated log files - N/A
+  Cloud based?; no
+  Can we read the logs?; no
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    If No, why? - No Logs
+  Recommendation - CM; Firetools is installed, but not currently running. Be aware for future ops in case it is running; and know how to exit out of a sandbox.
+
+Security Products
+  Name and version of the product - Lynis ver 3.1.1
+  Installation folder - /etc/lynis
+  Directory location of associated logs - /var/log/lynis.log 
+  Timestamp of all associated log files - May 14 13:00
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+2024-05-14 13:00:44 Action: removing temporary file /tmp/lynis.QAf6npedct
+2024-05-14 13:00:44 Info: temporary file /tmp/lynis.1tJty1NGf9 was already removed
+2024-05-14 13:00:44 Info: temporary file /tmp/lynis.erT2loLYEX was already removed
+2024-05-14 13:00:44 Action: removing temporary file /tmp/lynis.uREVx3lXaD
+2024-05-14 13:00:44 Lynis ended successfully.
+
+  Recommendation - CM; lynis is a security product; we are not putting any malware or tools on this box, or doing anything that lynis would catch.
+
+
+
+MC:
+
+*****Security Product Report*****
+Target: T4: 192.168.169.43
+Name - Firetools/Firejail
+Version - 0.9.72
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /firetools
+Documentation - https://firejailtools.wordpress.com/
+Recommendation - CM; Firetools is installed, but not currently running. Be aware for future ops in case it is running; and know how to exit out of a sandbox.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T4: 192.168.169.43
+Name - Lynis
+Version - 3.1.1
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/lynis
+Documentation - https://cisofy.com/lynis/
+Recommendation - CM; lynis is a security product; we are not putting any malware or tools on this box, or doing anything that lynis would catch.
+*****End of Report*****
+
+
+------------------------X
+=========================
+
+=========================
+T5: 192.168.169.111
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T5: 192.168.169.111
+  User - What is their username? - Administrator
+  Access time - How long have they been on? - UNK; quser, query user do not work
+  Access method - Did they access locally? Remotely? - Remote
+    Provide all relevant details - mstsc.exe is a remote session host
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - Administrator is remoted on using mstsc.exe on port 3389 from 192.168.169.12. They are using a GUI as evident by explorer.exe running. 
+  Recommendation - CM; admin doesn't seem to be doing much, proceed with caution in case the start doing something that could compromise the mission.
+
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T5: 192.168.169.111
+User - Administrator
+Access Time - UNK
+Access Method - Remote access using mstsc.exe
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - Administrator is remoted on using mstsc.exe on port 3389 from 192.168.169.12. They are using a GUI as evident by explorer.exe running.
+Description - Administrators have complete and unrestricted access to the computer/domain; Administrator is remoted on using mstsc.exe on port 3389 from 192.168.169.12.
+Recommendation - CM; admin is remoting into the 192.168.169.12 from this box using mstsc.exe. Proceed with caution in case they disconnect from the .12 box and catch us/kick us out.
+*****End of Report*****
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T6: 192.168.169.122
+=========================
+X-----------------------
+NSDB:
+
+Clean box
+
+
+
+MC:
+
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T7: 192.168.169.113
+=========================
+X-----------------------
+NSDB:
+
+Clean box
+
+
+
+MC:
+
+
+
+
+
+-----------------------X
+=========================
+
