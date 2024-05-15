@@ -1,0 +1,289 @@
+***MISSION DEBRIEF***
+Operator: LCpl Bonestroo
+Operation: AB01
+MC: MC1
+Analyst: Analyst2
+Description: The goal of the operation was to configure koadic stagers on Listening Post (LP) to accept callbacks that follow the scheme of maneuver. Perform SSH masquerade to T1 and establish tunnels to catch callbacks from T2-T5. Conduct device surveys on T2-T5. Operation was overall successful with a few hiccups, such as all terminals crashing. Operator redirected to the LP to KOA_EXT_RTR and from the EXT_RTR redirected using Koadic to T2, T3, T4, and T5. LP had a privileged user. T1 had a security product, privileged user, and remote logging; operator set up remote tunnel to catch callback from T2. T2 had a privilege user; operator conducted a device survey, exit vetted and disconnected. T3 had a privileged user; operator conducted a device survey, exit vetted and disconnected. T4 had a privileged user; operator conducted a device survey, exit vetted and disconnected. T5 had a privileged user; operator conducted a device survey, exit vetted and disconnected. Operator then exited vetted T1 and the LP and disconnected from the network.
+
+
+Result: Fail
+Missed nonstandard:
+-Malware
+Tarball: contained .swp files
+
+
+Date:2024-05-15 
+Start time: 0900
+End time: 1500
+
+=========================
+LP: 10.50.35.15
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - LP: 10.50.35.15
+  User - What is their username? - root
+  Access time - How long have they been on? - 2024-05-14 16:38
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - tty
+  Privileges - What are they capable of doing? - full administrative privileges over the entire system
+  Activity - What are they currently doing? - zsh; root is logged in but has been idle for 20:25, in a zsh shell, which is an interactive login shell
+  Recommendation - CM; need this box for rest of op
+
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: LP: 10.50.35.15
+User - root
+Access Time - 2024-05-14 16:38
+Access Method - local
+Privileges - full administrative privileges over the entire system
+Activity - zsh
+Description - root is logged in but has been idle for 20:25, in a zsh shell, which is an interactive login shell
+Recommendation - CM; need this box for rest of op
+*****End of Report*****
+
+
+
+------------------------X
+=========================
+
+=========================
+T1: 10.50.31.171 
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May  15 13:26
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+type=CRYPTO_KEY_USER msg=audit(1715779659.702:637): pid=6614 uid=0 auid=1015 ses=21 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:da:6e:f3:9b:bc:3b:01:49:bb:aa:1c:9e:52:ab:f2:fd:11:e8:26:3b:df:bc:51:9f:a0:45:a0:50:81:46:36:d8 direction=? spid=6636 suid=1015  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'UID="root" AUID="NOC_admin15" SUID="NOC_admin15"
+type=USER_ACCT msg=audit(1715779669.326:638): pid=6666 uid=1014 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="NOC_admin14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/2 res=success'UID="NOC_admin14" AUID="NOC_admin14"
+type=USER_CMD msg=audit(1715779669.326:639): pid=6666 uid=1014 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/NOC_admin14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/2 res=success'UID="NOC_admin14" AUID="NOC_admin14"
+type=CRED_REFR msg=audit(1715779669.326:640): pid=6666 uid=0 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/2 res=success'UID="root" AUID="NOC_admin14"
+type=USER_START msg=audit(1715779669.328:641): pid=6666 uid=0 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/2 res=success'UID="root" AUID="NOC_admin14"
+
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we were not really concerned with logs in the first place. Recommend CM.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 6088 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.50.22.142
+  Provide any network connections opened/established by abnormal logging - None shown when ss command was run
+  Provide brief description of the abnormal, irregular or remote logging - Rsyslog is enabled with remote logging. It is sending all logs to the 10.50.22.142 using port 514
+  Documentation - https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway.
+
+Privileged Users
+  Target - Where did you see this user? - T1: 10.50.31.171
+  User - What is their username? - root
+  Access time - How long have they been on? - Tue16; idle for 20:36m
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - tty
+  Privileges - What are they capable of doing? - full administrative privileges over the entire system
+  Activity - What are they currently doing? - idle in a bash shell
+  Recommendation - CM; they have been idle for almost a day; be cautious if they come back.
+
+
+MC:
+
+*****Security Product Report*****
+Target: T1: 10.50.31.171
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.selinuxproject.org/
+Recommendation - SELinux is enabled and in enforcing mode.  It will log our actions, but it does not prevent us from continuing, and we were not really concerned with logs in the first place. Recommend CM.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T1: 10.50.31.171
+Name - rsyslog
+PID - 6088
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.50.22.142
+Network connections -  None shown when ss command was run
+Documentation -https://www.rsyslog.com/doc/index.html
+Description - rsyslog is enabled with remote logging. It is sending all logs to the 10.50.22.142 using port 514
+Recommendation - CM; we have already been caught, and we were not really concerned with the logs anyway.
+*****End of Report*****
+
+*****Privileged User Report*****
+Target: T1: 10.50.31.171
+User - root
+Access Time - Tue16
+Access Method - local; tty
+Privileges - full administrative privileges over the entire system
+Activity - idle for 20:36m; in a bash shell
+Description - root is logged on locally is in a bash shell and has been idle for 20:36m; root has full administrative privileges over the entire system
+Recommendation - CM; they have been idle for almost a day; be cautious if they come back.
+*****End of Report*****
+
+
+------------------------X
+=========================
+
+=========================
+T2: 10.180.169.17
+=========================
+X-----------------------
+NSBD:
+
+Privileged Users
+  Target - Where did you see this user? - T2: 10.180.169.17
+  User - What is their username? - administrator
+  Access time - How long have they been on? - 5/14/2024 5:02 PM
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - explorer.exe-GUI; console; mmc.exe-Local Group Policy Editor
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - Logged on with a GUI, running mmc.exe-Local Group Policy Editor, which is a component of Microsoft Windows that provides system administrators and advanced users an interface for configuring and monitoring the system.
+  Recommendation - CM; we are just running basic commands on this box and getting off.
+
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T2: 10.180.169.17
+User - administrator
+Access Time - 5/14/2024 5:02 PM
+Access Method - local
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - Logged on with a GUI, running mmc.exe-Local Group Policy Editor, which is a component of Microsoft Windows that provides system administrators and advanced users an interface for configuring and monitoring the system.
+Description - Administrator had been logged in since 5/14/2024 5:02 PM. Administrators have complete and unrestricted access to the computer/domain. This admin is using a GUI and is running mmc.exe-Local Group Policy Editor, which is a component of Microsoft Windows that provides system administrators and advanced users an interface for configuring and monitoring the system.
+Recommendation - CM; we are just running basic commands on this box and getting off.
+*****End of Report*****
+
+
+
+------------------------X
+=========================
+
+=========================
+T3: 10.180.169.16
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T3: 10.180.169.16
+  User - What is their username? - administrator
+  Access time - How long have they been on? - 5/14/2024 1:37 PM
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - explorer.exe-GUI; console; 
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - Logged on with a GUI, running Microsoft store, photos
+  Recommendation - CM; we are just running basic commands on this box and getting off.
+
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T3: 10.180.169.16
+User - administrator
+Access Time - 5/14/2024 1:37 PM
+Access Method - local
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - Logged on with a GUI, running Microsoft store
+Description - Administrator had been logged in since 5/14/2024 1:37 PM. Administrators have complete and unrestricted access to the computer/domain. This admin is using a GUI and is running Microsoft store, Photos.
+Recommendation - CM; we are just running basic commands on this box and getting off.
+*****End of Report*****
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T4: 10.180.169.9
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T4: 10.180.169.9
+  User - What is their username? - administrator
+  Access time - How long have they been on? - 5/14/2024 5:04 PM
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - explorer.exe-GUI; console;
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - Logged on with a GUI, running Microsoft Photos, Edge, Microsoft Windows Malicious Software Removal Tool
+  Recommendation - CM; we are just running basic commands on this box and getting off.
+
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T4: 10.180.169.9
+User - administrator
+Access Time - 5/14/2024 5:04 PM
+Access Method - local
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - Logged on with a GUI, running Microsoft Photos, Edge, Microsoft Windows Malicious Software Removal Tool
+Description - Administrator had been logged in since 5/14/2024 1:37 PM. Administrators have complete and unrestricted access to the computer/domain. This admin is using a GUI and is running Microsoft Photos, Edge, Microsoft Windows Malicious Software Removal Tool
+Recommendation - CM; we are just running basic commands on this box and getting off.
+*****End of Report*****
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T5: 10.180.169.20 
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T5: 10.180.169.20
+  User - What is their username? - administrator
+  Access time - How long have they been on? - 5/14/2024 1:37 PM
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - explorer.exe-GUI; console;
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - Logged on with a GUI, running Microsoft Store, Photos
+  Recommendation - CM; we are just running basic commands on this box and getting off.
+
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T5: 10.180.169.20
+User - administrator
+Access Time - 5/14/2024 1:37 PM
+Access Method - local
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - Logged on with a GUI, running Microsoft Photos, Store
+Description - Administrator had been logged in since 5/14/2024 1:37 PM. Administrators have complete and unrestricted access to the computer/domain. This admin is using a GUI and is running Microsoft Photos, Store
+Recommendation - CM; we are just running basic commands on this box and getting off.
+*****End of Report*****
+
+
+
+
+-----------------------X
+=========================
