@@ -512,6 +512,24 @@ exit and cancel out; remove iptables rules
 
 
 
+cat /etc/passwd
+PROMPT_COMMAND='echo -en "\033]0; TARGET 8 \a"'
+sudo useradd -md /home/useraccounts/a.graham.07 -s /bin/bash -c "embarrassed musician" -u 1047 -p DaXedayLasarah a.graham.07
+sudo useradd -G wheel a.graham.07
+id a.graham.07
+cat /etc/passwd
+sudo groupadd -u a.graham.07 wheel
+sudo usermod -G wheel a.graham.07
+id a.graham.07
+cat /etc/passwd
+su a.graham.07
+sudo passwd a.graham.07
+su a.graham.07
+sudo cat /etc/shadow
+md5sum DaXedayLasarah
+echo "DaXedayLasarah" | md5sum
+echo 'a.graham.07:DaXedayLasarah' | chpasswd --crypt-method MD5
+echo 'a.graham.07:DaXedayLasarah' | sudo chpasswd --crypt-method MD5
 
 
 
