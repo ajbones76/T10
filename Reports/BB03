@@ -1,0 +1,407 @@
+***MISSION DEBRIEF***
+Operator: LCpl Bonestroo
+Operation: BB03
+MC: MC2
+Analyst: Analyst2
+Description: The goal of the operation was to perform survey of identified user devices within Krasnovian 3rd Armour BDE internal network (192.186.169.0/24). Once successfully accessed, add a user to the root group on T8 (192.186.169.142 // hostname “DESKTOP-USER24") for sustained access assurance. The operation was overall successful. Operator redirected from EXT_RTR to STORAGE2 to Vyos2 to ADMIN2 where he then pivoted to DESKTOP-USER21 before backing out to T4 and redirecting to T6 backed out to T4 and redirected to T7 backed out to T4. Operator redirected from T4 to DESKTOP-USER24 where operator conducted a T10 effect.  T1 was a clean box. T2 had a privileged user. T3 appeared to be a clean box. T4 also appeared to be a clean box aside from the previously reported and known pacct. T5 had a privileged user and abnormal logging; EA told operator not to conduct the device survey. T6 had a privileged user and two types of malware; operator conducted a device survey. T7 had a privileged user, a security product suite, and an empty security product; operator conducted a device survey. T8 had a security product and remote logging; operator conducted a device survey. After confirming the hostname of T8, operator executed T10 effect in the form of adding a new user to the box. Operator exit vetted and disconnected from the network.
+
+
+Result: FAIL
+
+Missed Security Product
+
+
+Date:2024-05-21 
+Start time: 0900
+End time: 1500
+
+=========================
+T1: 10.50.34.234
+=========================
+X-----------------------
+NSDB:
+
+ALL CLEAR
+
+
+
+MC:
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T2: 10.20.169.30
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T2: 10.20.169.30 
+  User - What is their username? - Administrator
+  Access time - How long have they been on? - 5/21/2024 12:02 PM
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - console login, no network connection
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - Admin is logged in and active; running from a terminal/command prompt
+  Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T2: 10.20.169.30
+User - Administrator
+Access Time - 5/21/2024 12:02 PM
+Access Method - local
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - Admin is logged in and active; running from a terminal/command prompt
+Description - Admin is actively logged in and has been for around an hour. They have a console login.
+Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+*****End of Report*****
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T3: 10.20.169.239
+=========================
+X-----------------------
+NSBD:
+
+CLEAN BOX
+
+
+
+MC:
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T4: 192.186.169.133
+=========================
+X-----------------------
+NSDB:
+
+Clean box
+
+
+
+MC:
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T5: 192.186.169.201
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T5: 192.186.169.201
+  User - What is their username? - radicle
+  Access time - How long have they been on? - 12:05; idle for 1:40m
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - tty
+  Privileges - What are they capable of doing? - privileged access to root commands - root privilege, is the highest level of access permissions given on a computer or network system
+  Activity - What are they currently doing? - running tcpdump on ens4, which is currently down, and writing to /var/log/tcpdump2.pcap; also sshed as root to 129.168.169.186 on port 33715
+  Recommendation - CM; we are running basic commands and disconnecting.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: tcpdump PID: 5262 PPID: 5246 User: root, but run by radicle using sudo
+  Provide location of configuration file and it's abnormal or irregular contents - /usr/sbin/tcpdump; /var/log/tcpdump2.pcap
+  Provide hostname or IP of where logs are being sent - N/A
+  Provide any network connections opened/established by abnormal logging - N/A  
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - tcpdump is running on ens4, which is a down interface and writing to /var/log/tcpdump2.pcap
+https://www.tcpdump.org/
+  Recommendation - CM; tcpdump is running on their ens4 interface, which is down, should not pickup anything we are doing on this box for this Op.
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T5: 192.186.169.201
+User - radicle
+Access Time - 12:05; idle for 1:40m
+Access Method - local; tty
+Privileges - privileged access to root commands - root privilege, is the highest level of access permissions given on a computer or network system
+Activity - running tcpdump on ens4, which is currently down, and writing to /var/log/tcpdump2.pcap; also sshed as root to 129.168.169.186 on port 33715
+Description - radicle is a member of the sudo group, which means they have privileged access to root commands. They are currently sshed onto the 129.168.169.186 box and are idle, but running tcpdump on ens4 and writing to /var/log/tcpdump2.pcap
+Recommendation - CM; we are running basic commands and disconnecting.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T5: 192.186.169.201
+Name - tcpdump
+PID - 5262
+PPID - 5246
+User - root, but run by radicle using sudo
+Location of config file - /usr/sbin/tcpdump; /var/log/tcpdump2.pcap
+Remote IP (hostname if IP cannot be identified) - N/A
+Network connections - N/A
+Documentation - https://www.tcpdump.org/
+Description - tcpdump is running on ens4, which is a down interface and writing to /var/log/tcpdump2.pcap
+Recommendation - CM; tcpdump is running on their ens4 interface, which is down, should not pickup anything we are doing on this box for this Op..
+*****End of Report*****
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T6: 192.186.169.134
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T6: 192.186.169.134
+  User - What is their username? - radicle
+  Access time - How long have they been on? - 12:12; idle for 3:02
+  Access method - Did they access locally? Remotely? - remote
+    Provide all relevant details - pts; network connection, ssh
+  Privileges - What are they capable of doing? - privileged access to root commands - root privilege, is the highest level of access permissions given on a computer or network system
+  Activity - What are they currently doing? - sshed onto this box from 192.186.169.133, running a disguised nc listener which provides a bash shell
+  Recommendation - CM; we are running basic commands and disconnecting. Be weary because others can gain access through that listener.
+
+Malware
+  Provide process name/options, PID, Parent ID, user, and hash
+  Name: malice PID: UNK PPID: UNK User: root
+  Hash: a0c66aa022cfb2cb7a2c2f4f7a3c4fd1
+  Provide file type of malware binary and supporting files - /.malice/malice.sh - executable-bash script; /.malice/Alias - text file
+  Provide any associated logs generated by malware - N/A
+  Provide location and lines of any persistence mechanisms - /etc/cron.hourly/malice.cron - #!/bin/bash; /.malice/malice.sh
+  Provide full path of malware files or support files - /.malice/malice.sh; /.malice/Alias
+  Provide any network connections opened/established by malware - N/A
+  Provide any identifiable text - /.malice/malice.sh
+Lots of If Else
+Provide any/all modules/.dlls/etc loaded by malware - N/A
+  Provide brief description of malware purpose/actions and capabilities - malice is a if else script that if certain commands are run it will echo some phrases, and run some other commands, will also set aliases.
+  Provide link to open source documentation if available - open source just has a VirusTotal clone that is local; not what this malice is
+  Recommendation - CM cautiously; do what we have to do and get off the box. should be fine for this Op, just be careful of the changes that can be made
+
+Malware
+  Provide process name/options, PID, Parent ID, user, and hash
+  Name: svchost.exe (netcat) PID: 9230 PPID: 9098 User: radicle
+  Hash: 5da8e46a7c6475ba70053683778183b9
+  Provide file type of malware binary and supporting files - /bin/svchost.exe
+  Provide any associated logs generated by malware - N/A
+  Provide location and lines of any persistence mechanisms - N/A
+  Provide full path of malware files or support files - /bin/svchost.exe
+  Provide any network connections opened/established by malware - tcp  0.0.0.0:31337           0.0.0.0:*               LISTEN      9230/svchost.exe    
+  Provide any identifiable text - /bin/svchost.exe -knvlp 31337 -e /bin/bash
+  Provide any/all modules/.dlls/etc loaded by malware - N/A
+  Provide brief description of malware purpose/actions and capabilities - has ability to be used as a remote shell; this instance is disguised as a windows service and is opening port 31337 and giving a bash shell to anyone who connects to that port.
+  Provide link to open source documentation if available - https://netcat.sourceforge.net/
+  Recommendation - CM; we are running basic commands and disconnecting. Be weary because others can gain access through that listener.
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T6: 192.186.169.134
+User - radicle
+Access Time - 12:12; idle for 3:02
+Access Method - remote; pts; network connection, ssh
+Privileges - the highest level of access permissions given on a computer or network system
+Activity - sshed onto this box from 192.186.169.133, running a disguised nc listener which provides a bash shell
+Description - radicle, who has sudo privileges is sshed onto this box 192.186.169.133, running a disguised nc listener which provides a bash shell.
+Recommendation - CM; we are running basic commands and disconnecting. Be weary because others can gain access through that listener.
+*****End of Report*****
+
+*****Malware Report*****
+Target: T6: 192.186.169.134
+Name - malice
+Hash - a0c66aa022cfb2cb7a2c2f4f7a3c4fd1
+PID - UNK
+PPID - UNK
+User - root
+File type - /.malice/malice.sh - executable-bash script; /.malice/Alias - text file
+Supporting files - /.malice/malice.sh, /.malice/Alias
+Associated Logs - N/A
+Persistence - /etc/cron.hourly/malice.cron - #!/bin/bash; /.malice/malice.sh
+Documentation - open source just has a VirusTotal clone that is local; not what this malice is
+Description - malice is a if else script that if certain commands are run it will echo some phrases, and run some other commands, will also set aliases.
+Recommendation - CM cautiously; do what we have to do and get off the box. should be fine for this Op, just be careful of the changes that can be made.
+*****End of Report*****
+
+*****Malware Report*****
+Target: T6: 192.186.169.134
+Name - svchost.exe (netcat)
+Hash - 5da8e46a7c6475ba70053683778183b9
+PID - 9230
+PPID - 9098
+User - radicle
+File type - binary
+Supporting files - /bin/svchost.exe
+Associated Logs - N/A
+Persistence - N/A
+Documentation - https://netcat.sourceforge.net/
+Description - has ability to be used as a remote shell; this instance is disguised as a windows service and is opening port 31337 and giving a bash shell to anyone who connects to that port.
+Recommendation - CM; we are running basic commands and disconnecting. Be weary because others can gain access through that listener.
+*****End of Report*****
+
+-----------------------X
+=========================
+
+=========================
+T7: 192.186.169.144
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T7: 192.186.169.144
+  User - What is their username? - administrator
+  Access time - How long have they been on? - 5/20/2024 12:30 AM
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - console; explorer.exe-GUI, no network connection
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - Logged in with GUI; have 13 firefox's running, microsoft photos, skype, onedrive, and avira
+  Recommendation - CM; be cautious to not get caught by admin, we are only running basic commands and disconnecting.
+
+Security Products
+  Name and version of the product - Avira Security ver 1.0.2404.2771
+  Installation folder - c:\Program Files\Avira; c:\Program Files (x86)\Avira
+  Directory location of associated logs - c:\Program Files\Avira\Endpoint Protection SDK\logs
+  Timestamp of all associated log files - N/A
+  Cloud based?; no
+  Can we read the logs?; no
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    If No, why? - Empty
+  Recommendation - CM; does not really impact this Op; be weary for any future op with effects planned.
+
+Security Products
+  Name and version of the product - BullGuard Ltd ver UNK
+  Installation folder - HKEY_LOCAL_MACHINE\software\BullGuard Ltd.
+  Directory location of associated logs - N/A
+  Timestamp of all associated log files - N/A
+  Cloud based?; no
+  Can we read the logs?; no
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    If No, why? - Doesn't exist
+  Recommendation - CM; only shows up in HKLM\software, not actually running.
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T7: 192.186.169.144
+User - administrator
+Access Time - 5/20/2024 12:30 AM
+Access Method - local; console; explorer.exe-GUI, no network connection
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - Logged in with GUI; have 13 firefox's running, microsoft photos, skype, onedrive, and avira
+Description - This admin has been logged in for around 3 hours. They have complete and unrestricted access to the computer/domain. They have a GUI and have 13 firefox's running, microsoft photos, skype, onedrive, and avira running
+Recommendation - CM; be cautious to not get caught by admin, we are only running basic commands and disconnecting.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T7: 192.186.169.144
+Name - Avira Security
+Version - 1.0.2404.2771
+(WIN) Primary registry key - HKEY_LOCAL_MACHINE\software\WOW6432Node\Avira
+(NIX) Config file or install directory - N/A
+Documentation - https://www.avira.com/
+Recommendation - CM; does not really impact this Op; be weary for any future op with effects planned.
+*****End of Report*****
+
+*****Security Product Report*****
+Target: T7: 192.186.169.144
+Name -BullGuard Ltd
+Version - UNK
+(WIN) Primary registry key - HKEY_LOCAL_MACHINE\software\BullGuard Ltd.
+(NIX) Config file or install directory - N/A
+Documentation - https://www.bullguard.com/
+Recommendation - CM; only shows up in HKLM\software, not actually running.
+*****End of Report*****
+
+
+-----------------------X
+=========================
+
+=========================
+T8: 192.186.169.142
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 31
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May 21 16:20
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    type=CRED_DISP msg=audit(1716308458.447:1065): pid=9814 uid=0 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/3 res=success'UID="root" AUID="askar14"
+type=USER_ACCT msg=audit(1716308543.596:1066): pid=9818 uid=1014 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="askar14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/3 res=success'UID="askar14" AUID="askar14"
+type=USER_CMD msg=audit(1716308543.596:1067): pid=9818 uid=1014 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/askar14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 terminal=pts/3 res=success'UID="askar14" AUID="askar14"
+type=CRED_REFR msg=audit(1716308543.597:1068): pid=9818 uid=0 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/3 res=success'UID="root" AUID="askar14"
+type=USER_START msg=audit(1716308543.598:1069): pid=9818 uid=0 auid=1014 ses=17 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/3 res=success'UID="root" AUID="askar14"
+
+  Recommendation - CM; enabled and in enforcing mode; will log actions but does not prevent us from continuing
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 1702 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 192.186.169.201
+  Provide any network connections opened/established by abnormal logging - udp  UNCONN  0.0.0.0:48464   0.0.0.0:*     users:(("rsyslogd",pid=1702,fd=5))
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - rsyslog is remote logging to 192.186.169.201 using port 1514.
+https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught and we have access to the box where the logs are being sent if we are concerned with the logs.
+
+
+
+MC:
+
+*****Security Product Report*****
+Target: T8: 192.186.169.142
+Name - SELinux
+Version - 31
+(WIN) Primary registry key - N/A
+(NIX) Config file or install directory - /etc/selinux
+Documentation - https://www.redhat.com/en/topics/linux/what-is-selinux
+Recommendation - CM; enabled and in enforcing mode; will log actions but does not prevent us from continuing
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T8: 192.186.169.142
+Name - rsyslog
+PID - 1702
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 192.186.169.201
+Network connections - udp  UNCONN  0.0.0.0:48464   0.0.0.0:*     users:(("rsyslogd",pid=1702,fd=5))
+Documentation - https://www.rsyslog.com/doc/index.html
+Description - rsyslog is remote logging to 192.186.169.201 using port 1514.
+Recommendation - CM; we have already been caught and we have access to the box where the logs are being sent if we are concerned with the logs.
+*****End of Report*****
+
+
+
+------------------------X
+=========================
