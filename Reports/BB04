@@ -1,0 +1,349 @@
+***MISSION DEBRIEF***
+Operator: LCpl Bonestroo
+Operation: BB04
+MC: MC1
+Analyst: Analyst2
+Description: The goal of this op was to confirm health and status of all previously accessed targets. Intelligence reports suggest T9 (129.168.169.186) is a new, unidentified admin workstation and T10 (10.20.169.121) is the network web server. Once connected and confirmed on the correct target web server, deliver the approved cyber effect to deny port 1480 traffic. The operation was overall successful.  Operator redirected from EXT_RTR to STORAGE1, CHATSVR, and STORAGE2; operator was unable to access FILESVR due to it being on hold. Operator then redirected from STORAGE2 to Vyos2 to ADMIN2 to DESKTOP-USER21; operator was unable to add iptable rules to DESKTOP-USER21 which prevented access to T9. Operator then exited back to EXT_RTR and redirected to WEBSERVER.  T1 was a clean box. T2 was also a clean box. T3 had a privileged user and abnormal logging. T4 was on hold. T5 had a privileged user. T6 had a privileged user. T7 didn't have anything that hadn't already been reported. T8 had two privileged users; operator had to burn off the box, which meant that the iptables rule was not added and operator could not access T9. Operator then exit vetted and disconnected back to T1 where he redirected to T10. T10 had a security product and remote logging; operator conducted a device survey and verified the device with the EA. Operator then conducted T10 effects, verified effects were effective, and removed effects. Operator then exit vetted and disconnected from the network.
+
+
+Result: FAIL
+Missed /tmp/acpid - MALWARE
+
+
+Date:2024-05-22 
+Start time: 0900
+End time: 1500
+
+=========================
+T1: 10.50.34.234
+=========================
+X-----------------------
+NSDB:
+
+All Clear
+
+
+
+MC:
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T2: 10.20.169.122
+=========================
+X-----------------------
+NSDB:
+
+All Clear
+
+
+
+MC:
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T3: 10.20.169.10
+=========================
+X-----------------------
+NSBD:
+
+Privileged Users
+  Target - Where did you see this user? - T3: 10.20.169.10 
+  User - What is their username? - Administrator
+  Access time - How long have they been on? - 5/20/2024 12:21 PM
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - console login, no network connection
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - Admin is logged in and active; running baretail.exe from a terminal/command prompt
+  Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: baretail.exe PID: 788 PPID: 2768 User: Administrator
+  Provide location of configuration file and it's abnormal or irregular contents - C:\Users\Administrator\Downloads\baretail.exe
+  Provide hostname or IP of where logs are being sent - N/A
+  Provide any network connections opened/established by abnormal logging - N/A
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - Baretail is a free real-time log file monitoring tool. Can also be used like tail on Linux. Admin is most likely only installing baretail since it is beinbg run from Downloads directory with no trace in any other directory.
+https://www.baremetalsoft.com/baretail/
+  Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T3: 10.20.169.10
+User - Administrator
+Access Time - 5/20/2024 12:21 PM
+Access Method - local
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - Admin is logged in and active; running baretail.exe from a terminal/command prompt
+Description - Admin is actively logged in and has been for around 2 days and an hour. They have a console login and are running baretail.exe. Baretail is a free real-time log file monitoring tool.
+Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T3: 10.20.169.10
+Name - baretail.exe
+PID - 788
+PPID - 2768
+User - administrator
+Location of config file - C:\Users\Administrator\Downloads\baretail.exe
+Remote IP (hostname if IP cannot be identified) - N/A
+Network connections - N/A
+Documentation - https://www.baremetalsoft.com/baretail/
+Description - Baretail is a free real-time log file monitoring tool. Can also be used like tail on Linux. Admin is most likely only installing baretail since it is being run from Downloads directory with no trace in any other directory.
+Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+*****End of Report*****
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T5:  10.20.169.30
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T5: 10.20.169.30 
+  User - What is their username? - Administrator
+  Access time - How long have they been on? - 5/21/2024 12:02 PM
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - console login, no network connection
+  Privileges - What are they capable of doing? - Administrators have complete and unrestricted access to the computer/domain
+  Activity - What are they currently doing? - Admin is logged in and active; running from a terminal/command prompt
+  Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T5: 10.20.169.30
+User - Administrator
+Access Time - 5/21/2024 12:02 PM
+Access Method - local
+Privileges - Administrators have complete and unrestricted access to the computer/domain
+Activity - Admin is logged in and active; running from a terminal/command prompt
+Description - Admin is actively logged in and has been for around 1 day an hour and a half. They have a console login.
+Recommendation - CM; we are just running basic commands and then redirecting; be cautious for any future ops if planning on doing any effects.
+*****End of Report*****
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T6: 10.20.169.239
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T6: 10.20.169.239
+  User - What is their username? - radicle
+  Access time - How long have they been on? - 12:11; idle for 1:52m
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - tty
+  Privileges - What are they capable of doing? - privileged access to root commands - root privilege, is the highest level of access permissions given on a computer or network system
+  Activity - What are they currently doing? - vbash
+  Recommendation - CM; we are running basic commands and redirecting.
+
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T6: 10.20.169.239
+User - radicle
+Access Time - May 22 12:11; idle for 1:52m
+Access Method - local; tty
+Privileges - privileged access to root commands - root privilege, is the highest level of access permissions given on a computer or network system
+Activity - idle with vbash open
+Description - radicle has root privileges and has been idle for 1:52m with a vbash shell running.
+Recommendation - CM; we are running basic commands and redirecting.
+*****End of Report*****
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T7: 192.186.169.133
+=========================
+X-----------------------
+NSDB:
+
+All clear
+
+
+
+MC:
+
+
+
+
+
+-----------------------X
+=========================
+
+=========================
+T8: 192.186.169.201
+=========================
+X-----------------------
+NSDB:
+
+Privileged Users
+  Target - Where did you see this user? - T8: 192.186.169.201
+  User - What is their username? - root
+  Access time - How long have they been on? - 2024-05-22 13:07; idle for 1:49m
+  Access method - Did they access locally? Remotely? - local
+    Provide all relevant details - tty
+  Privileges - What are they capable of doing? - the highest level of access permissions given on a computer or network system
+  Activity - What are they currently doing? - in a bash shell
+  Recommendation - CM; root has been idle for almost 2 hours; be cautious in case they come back and notice our new IPtables rule that we plan to add.
+
+Privileged Users
+  Target - Where did you see this user? - T8: 192.186.169.201
+  User - What is their username? - root 
+  Access time - How long have they been on? - 2024-05-22 13:08
+  Access method - Did they access locally? Remotely? - remote
+    Provide all relevant details - pts; ssh connection
+  Privileges - What are they capable of doing? - the highest level of access permissions given on a computer or network system
+  Activity - What are they currently doing? - sshed on from 192.186.169.133 using port 22. They are in a bash shell that is running the netcat listener that we are using to connect to this box.
+  Recommendation - CM; not impacting our mission; they are what enabled us to gain access to this box.
+
+
+
+MC:
+
+*****Privileged User Report*****
+Target: T8: 192.186.169.201
+User - root
+Access Time - 2024-05-22 13:07; idle for 1:49m
+Access Method - local; tty
+Privileges - the highest level of access permissions given on a computer or network system
+Activity - in a bash shell
+Description - root has the highest level of access permissions given on a computer or network system; they are logged on locally and have been idle for almost 2 hours in a bash shell.
+Recommendation - CM; root has been idle for almost 2 hours; be cautious in case they come back and notice our new IPtables rule that we plan to add.
+*****End of Report*****
+
+*****Privileged User Report*****
+Target: T8: 192.186.169.201
+User - root
+Access Time - 2024-05-22 13:08
+Access Method - remote; pts; ssh connection
+Privileges - the highest level of access permissions given on a computer or network system
+Activity - sshed on from 192.186.169.133 using port 22. They are in a bash shell that is running the netcat listener that we are using to connect to this box.
+Description - root had the highest level of access permissions given on a computer or network system. This root is currently sshed on from 192.186.169.133.
+Recommendation - CM; not impacting our mission; they are what enabled us to gain access to this box.
+*****End of Report*****
+
+
+
+-----------------------X
+=========================
+
+=========================
+T9: 129.168.169.186
+=========================
+X-----------------------
+
+
+
+
+
+
+
+
+
+
+------------------------X
+=========================
+
+=========================
+T10: 10.20.169.121
+=========================
+X-----------------------
+NSDB:
+
+Security Products
+  Name and version of the product - SELinux ver 33
+  Installation folder - /etc/selinux
+  Directory location of associated logs - /var/log/audit/audit.log
+  Timestamp of all associated log files - May 22 15:32
+  Cloud based?; no
+  Can we read the logs?; yes
+    If Yes, put the most recent 5 lines of logs in your NSDB File
+    type=CRED_DISP msg=audit(1716391950.756:3389): pid=64731 uid=1014 auid=1014 ses=33 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/2 res=success'UID="caisson14" AUID="caisson14"
+type=USER_ACCT msg=audit(1716392030.483:3390): pid=64796 uid=1014 auid=1014 ses=33 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="caisson14" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/2 res=success'UID="caisson14" AUID="caisson14"
+type=USER_CMD msg=audit(1716392030.483:3391): pid=64796 uid=1014 auid=1014 ses=33 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd="/home/useraccounts/caisson14" cmd=7461696C202D6E2035202F7661722F6C6F672F61756469742F61756469742E6C6F67 exe="/usr/bin/sudo" terminal=pts/2 res=success'UID="caisson14" AUID="caisson14"
+type=CRED_REFR msg=audit(1716392030.484:3392): pid=64796 uid=1014 auid=1014 ses=33 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_env,pam_localuser,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/2 res=success'UID="caisson14" AUID="caisson14"
+type=USER_START msg=audit(1716392030.486:3393): pid=64796 uid=1014 auid=1014 ses=33 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/2 res=success'UID="caisson14" AUID="caisson14"
+
+  Recommendation - CM; enabled and in enforcing mode; will log actions but does not prevent us from continuing.
+
+Abnormal Logging
+  Provide process name/options, PID, Parent ID, user
+  Name: rsyslog PID: 40304 PPID: 1 User: root
+  Provide location of configuration file and it's abnormal or irregular contents - /etc/rsyslog.conf
+  Provide hostname or IP of where logs are being sent - 10.111.23.4
+  Provide any network connections opened/established by abnormal logging - N/A
+  Provide brief description of the abnormal, irregular or remote logging and a link to open source documentation if available. - rsyslog is remote logging to 10.111.23.4 over port 514.
+https://www.rsyslog.com/doc/index.html
+  Recommendation - CM; we have already been caught; not really concerned with logs.
+
+
+
+MC:
+
+*****Security Product Report*****
+Target: T10: 10.20.169.121
+Name - SELinux
+Version - 33
+(WIN) Primary registry key - N/A
+(NIX) Config file or install dirctory - /etc/selinux
+Documentation - https://www.redhat.com/en/topics/linux/what-is-selinux
+Recommendation - CM; enabled and in enforcing mode; will log actions but does not prevent us from continuing.
+*****End of Report*****
+
+*****Abnormal Logging Report*****
+Target: T10: 10.20.169.121
+Name - rsyslog
+PID - 40304
+PPID - 1
+User - root
+Location of config file - /etc/rsyslog.conf
+Remote IP (hostname if IP cannot be identified) - 10.111.23.4
+Network connections - N/A
+Documentation - https://www.rsyslog.com/doc/index.html
+Description - rsyslog is remote logging to 10.111.23.4 over port 514.
+Recommendation - CM; we have already been caught; not really concerned with logs.
+*****End of Report*****
+
+
+
+
+------------------------X
+=========================
