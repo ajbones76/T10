@@ -1,0 +1,161 @@
+AA01
+====================================================================================================================
+Non-Standards:
+  T1:
+    rsyslog remote logging
+    selinux
+  T2:
+    rsyslog remote logging
+    selinux
+  T3:
+    Clean box
+
+AA02
+====================================================================================================================
+Non-Standards:
+  T1:
+    rsyslog
+    selinux
+  T2:
+    clean box
+  T3:
+    clean box
+  T4:
+    lynis
+    firetools
+  T5:
+    privileged user - admin
+  T6:
+    tcpdump
+
+AA03
+====================================================================================================================
+Non-Standards:
+  T1:
+    no reports
+  T2:
+    clean box
+  T3:
+    cleanbox
+  T4:
+    firetools
+    lynis
+  T5:
+    privileged user - admin
+  T6:
+    LogWatch - in /etc and and apparently in cron (I call bullshit)
+  T7:
+    clean box
+
+AB01
+====================================================================================================================
+Non-Standards:
+  LP:
+    root
+  T1:
+    rsyslog
+    selinux
+    root
+  T2:
+    privileged user - admin
+  T3:
+    privileged user - admin
+  T4:
+    privileged user - admin
+    malware - win32update
+  T5:
+    privileged user - admin
+    
+BB01
+====================================================================================================================
+Non-Standards:
+  T1:
+    rsyslog
+  T2:
+    privileged user - admin
+    keylogger
+    Doskey
+  T3:
+    clean box
+  T4:
+    Pacct
+  T5:
+    security product - comodo
+  T6:
+    rsyslog
+    selinux
+
+BB02
+====================================================================================================================
+Non-Standards:
+  T1:
+    clean box
+  T2:
+    privileged user - admin
+    abnormal logging - baretail
+  T3:
+    clean box
+  T5:
+    privileged user - radicle
+    rsyslog
+    abnormal logging - tcpdump
+  T6:
+    unexpected OS
+    malware - malice
+    rsyslog
+  T7:
+    kaspersky
+
+BB03
+====================================================================================================================
+Non-Standards:
+  T1:
+    clean box
+  T2:
+    priveliged user - admin
+  T3:
+    clean box
+  T4:
+    clean box
+  T5:
+    privileged user - radicle
+    tcpdump
+  T6:
+    privileged user - radicle
+    malware - malice
+    malware - svchost.exe(netcat)
+    abnormal logging - rkhunter
+  T7:
+    prvileged user - admin
+    security product - avira
+  T8:
+    rsyslog
+
+BB04
+====================================================================================================================
+Non-Standards:
+  T1:
+    clean box
+  T2:
+    clean box
+  T3:
+    privileged user - admin
+    baretail
+  T4:
+    on-hold
+  T5:
+    privileged user - admin
+  T6:
+    privileged user - radicle
+  T7:
+    clean box
+  T8:
+    privileged user -root
+    privileged user - root
+    malware - acpid    (fuck this one, they fucked up so you couldn't use sudo; no way to prosecute)
+  T9:
+    no access
+  T10:
+    rsyslog
+    selinux
+
